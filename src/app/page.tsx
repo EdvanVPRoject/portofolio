@@ -489,7 +489,7 @@ export default function PortfolioPage() {
                   </span>
                 </div>
                 <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white mt-2">
-                  Proyek Terpilih & Riset
+                  Proyek yang Saya Kerjakan
                 </h2>
               </div>
               <p className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
