@@ -332,7 +332,7 @@ export default function PortfolioPage() {
                     alt="Edvan Nuriana Putra Septia"
                     fill
                     priority
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    className="object-cover"
                     sizes="(max-width: 768px) 192px, 224px"
                   />
                 </div>
