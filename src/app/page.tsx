@@ -63,7 +63,7 @@ const projectsData: Project[] = [
     category: 'Aplikasi Desktop & Mobile',
     year: '2026',
     title: 'ENCross — High-Speed Local File & Screen Sharing',
-    description: 'Aplikasi transfer data dan berbagi layar lokal berkecepatan tinggi tanpa kuota internet dan tanpa server perantara, memanfaatkan protokol WebRTC DataChannel.',
+    description: 'Aplikasi transfer berkas dan berbagi layar lokal P2P berkecepatan tinggi lintas-platform (Windows & Android) tanpa kuota internet dan tanpa server perantara, memanfaatkan protokol WebRTC DataChannel.',
     image: '/encross-icon.svg',
     imageType: 'encross',
     tech: 'React 19 · WebRTC · Electron · Capacitor · Tailwind CSS',
@@ -71,7 +71,7 @@ const projectsData: Project[] = [
     modalDetails: {
       kicker: 'Aplikasi Cross-Platform · 2026',
       title: 'ENCross — High-Speed Local File & Screen Sharing',
-      summary: 'Aplikasi transfer file dan berbagi layar antar-perangkat lokal (Windows, Android, dan Browser) berkecepatan tinggi tanpa kuota internet dan tanpa server perantara pihak ketiga.',
+      summary: 'Aplikasi transfer berkas dan screen sharing antar-perangkat lokal (Windows, Android, dan Browser) berkecepatan tinggi tanpa kuota internet dan tanpa server perantara pihak ketiga.',
       bullets: [
         'Direct P2P DataChannel: Berkas dialirkan langsung antar-memori perangkat via WebRTC dengan pembagian chunk 64KB dan mekanisme flow control buffer.',
         'Zero Cloud Storage: Data tidak pernah melewati server publik, menjamin privasi penuh dan throughput maksimal jaringan lokal.',
@@ -88,7 +88,7 @@ const projectsData: Project[] = [
     category: 'Skripsi & Penelitian',
     year: '2025—2026',
     title: 'Parkir Pintar dan Pengenalan Pelat Nomor',
-    description: 'Sistem validasi akses kendaraan dengan autentikasi ganda: identifikasi pengguna via RFID e-KTP dan verifikasi kendaraan menggunakan deteksi YOLOv8 serta OCR CNN.',
+    description: 'Sistem validasi akses gerbang parkir dengan autentikasi ganda: identifikasi pengguna via RFID e-KTP dan verifikasi kendaraan menggunakan deteksi YOLOv8 serta OCR CNN berbasis ESP32.',
     image: '/parking-process-blurred.png',
     imageType: 'image',
     tech: 'YOLOv8 Nano · TensorFlow CNN · ESP32 · SQLite · Firebase',
@@ -112,7 +112,7 @@ const projectsData: Project[] = [
     category: 'Publikasi Ilmiah',
     year: '2025—2026',
     title: 'Prediksi Penyakit Liver dengan Model Perbandingan',
-    description: 'Komparasi performa algoritma Machine Learning (Logistic Regression, Random Forest, SVM) untuk klasifikasi risiko penyakit liver dari rekam medis pasien.',
+    description: 'Komparasi performa algoritma Machine Learning (Random Forest, SVM, Logistic Regression) untuk klasifikasi risiko penyakit liver dari rekam medis pasien yang dipublikasikan pada Jurnal Komputika.',
     image: '/journal-liver.jpg',
     imageType: 'image',
     tech: 'Random Forest · SVM · Logistic Regression · Scikit-Learn',
@@ -135,7 +135,7 @@ const projectsData: Project[] = [
     category: 'Proyek Akademik',
     year: '2024—2025',
     title: 'Sistem Point of Sale Berbasis ESP32 dan Sensor Load Cell',
-    description: 'Perancangan hardware timbangan digital terintegrasi aplikasi kasir untuk otomatisasi pencatatan bobot dan transaksi pada pelaku UMKM.',
+    description: 'Perancangan hardware timbangan digital terintegrasi aplikasi kasir untuk otomatisasi pencatatan bobot dan transaksi UMKM yang dipublikasikan pada Jurnal Biner.',
     image: '/journal-pos.jpg',
     imageType: 'image',
     tech: 'ESP32 · Sensor Load Cell HX711 · Web Application',
@@ -377,11 +377,11 @@ export default function PortfolioPage() {
               </div>
 
               <h1 className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-neutral-900 dark:text-neutral-50 leading-[1.2]">
-                Membangun solusi rekayasa dari data, komputasi perangkat, dan aplikasi terpadu.
+                Membangun solusi rekayasa komputasi, visi komputer, dan sistem aplikasi terdistribusi.
               </h1>
 
-              <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-light max-w-2xl">
-                Saya Edvan Nuriana, lulusan S1 Sistem Komputer Universitas Komputer Indonesia. Berfokus pada perancangan perangkat lunak, sistem visi komputer (<em>computer vision</em>), integrasi IoT, dan aplikasi web modern.
+              <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-light max-w-2xl text-justify">
+                Saya Edvan Nuriana Putra Septia, S.Kom., lulusan Sistem Komputer dari Universitas Komputer Indonesia. Berfokus pada perancangan arsitektur perangkat lunak terapan—mulai dari transfer berkas lokal P2P berkecepatan tinggi via WebRTC (ENCross), sistem otentikasi visi komputer berbasis YOLOv8 dan IoT (Skripsi Parkir Pintar), komparasi algoritma machine learning pada data medis (Jurnal Komputika), hingga instrumentasi cerdas berbasis ESP32 (Jurnal Biner).
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-wider font-medium">
@@ -416,19 +416,19 @@ export default function PortfolioPage() {
                 <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-sm">
                   <Image
                     src="/profile.jpeg"
-                    alt="Edvan Nuriana Putra Septia"
+                    alt="Edvan Nuriana Putra Septia, S.Kom."
                     fill
                     priority
                     className="object-cover"
                     sizes="(max-width: 768px) 208px, 240px"
                   />
                 </div>
-                <div className="text-center font-mono text-xs text-neutral-500 dark:text-neutral-400 w-full">
+                <div className="text-center text-xs w-full">
                   <p className="font-sans font-semibold text-sm text-neutral-900 dark:text-neutral-100">
-                    Edvan Nuriana P. S.
+                    Edvan Nuriana Putra Septia, S.Kom.
                   </p>
-                  <p className="text-neutral-500 dark:text-neutral-400 mt-0.5 text-[11px]">
-                    S.Kom. Candidate · <span className="text-blue-600 dark:text-blue-400 font-semibold">IPK 3.53</span>
+                  <p className="font-mono text-neutral-500 dark:text-neutral-400 mt-1 text-[11px]">
+                    S1 Sistem Komputer UNIKOM · IPK 3.53
                   </p>
                 </div>
               </div>
@@ -445,22 +445,22 @@ export default function PortfolioPage() {
               {/* Label dengan Indikator Bulat Scrollspy */}
               <div className="md:col-span-4 lg:col-span-3">
                 <div className="flex items-center gap-2 sticky top-24">
-                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'about' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
-                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'about' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
-                    01 / Latar Belakang
+                  <span className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeSection === 'about' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-sm sm:text-base font-mono uppercase tracking-wider transition-colors ${activeSection === 'about' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    01 / Tentang Saya
                   </span>
                 </div>
               </div>
 
               <div className="md:col-span-8 lg:col-span-9 space-y-5 text-neutral-700 dark:text-neutral-300 text-base leading-relaxed font-light">
-                <h2 className="font-heading text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-neutral-100 leading-snug">
-                  Dedikasi pada pemecahan masalah melalui pemrograman analitis dan perangkat terdistribusi.
+                <h2 className="font-heading text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white leading-snug">
+                  Dedikasi pada integrasi rekayasa perangkat lunak, komputasi cerdas, dan sistem tertanam.
                 </h2>
-                <p>
-                  Saya menyelesaikan studi sarjana di Program Studi Sistem Komputer, Universitas Komputer Indonesia (UNIKOM). Selama masa perkuliahan dan proyek mandiri, fokus saya tertuju pada implementasi kecerdasan buatan terapan (<em>computer vision</em> dan <em>machine learning</em>), rekayasa antarmuka modern, serta instrumentasi IoT.
+                <p className="text-justify">
+                  Sebagai Sarjana Komputer lulusan Universitas Komputer Indonesia (UNIKOM) dengan IPK 3.53, saya berfokus pada rekayasa sistem yang menghubungkan komputasi perangkat keras cerdas dan arsitektur perangkat lunak modern. Portofolio saya mencakup solusi teknologi yang telah teruji secara fungsional maupun empiris melalui publikasi ilmiah di jurnal nasional.
                 </p>
-                <p>
-                  Terbiasa bekerja dengan ekosistem Python, model deteksi YOLOv8, pengenalan karakter berbasis CNN TensorFlow, serta mikrokontroler ESP32. Dalam pengembangan aplikasi, saya mengombinasikan keunggulan React 19, Next.js, dan WebRTC untuk menghadirkan sistem komunikasi berlatensi rendah.
+                <p className="text-justify">
+                  Keahlian teknis saya terwujud nyata dalam perancangan aplikasi <strong>ENCross</strong> (berbagi berkas & layar P2P lokal dengan WebRTC tanpa server), riset skripsi <strong>Sistem Parkir Pintar</strong> (otentikasi ganda RFID e-KTP dan deteksi pelat nomor YOLOv8 serta OCR CNN), publikasi <strong>Machine Learning klasifikasi penyakit liver</strong> di Jurnal Komputika, serta prototipe <strong>Sistem Kasir POS UMKM</strong> berbasis mikrokontroler ESP32 dan sensor Load Cell di Jurnal Biner.
                 </p>
                 <div className="pt-2">
                   <a
@@ -483,12 +483,12 @@ export default function PortfolioPage() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'projects' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
-                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'projects' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
-                    02 / Portofolio
+                  <span className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeSection === 'projects' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-sm sm:text-base font-mono uppercase tracking-wider transition-colors ${activeSection === 'projects' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    02 / Proyek & Riset
                   </span>
                 </div>
-                <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100 mt-2">
+                <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white mt-2">
                   Proyek Terpilih & Riset
                 </h2>
               </div>
@@ -539,11 +539,11 @@ export default function PortfolioPage() {
                         <span className="text-neutral-400 dark:text-neutral-500">{project.year}</span>
                       </div>
 
-                      <h3 className="font-heading font-semibold text-xl text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <h3 className="font-heading font-semibold text-xl text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {project.title}
                       </h3>
 
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light text-justify">
                         {project.description}
                       </p>
 
@@ -598,52 +598,68 @@ export default function PortfolioPage() {
               
               <div className="md:col-span-4 lg:col-span-3">
                 <div className="flex items-center gap-2 sticky top-24">
-                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'skills' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
-                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'skills' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
-                    03 / Kompetensi
+                  <span className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeSection === 'skills' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-sm sm:text-base font-mono uppercase tracking-wider transition-colors ${activeSection === 'skills' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    03 / Keahlian
                   </span>
                 </div>
               </div>
 
               <div className="md:col-span-8 lg:col-span-9 divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
                 <div className="pb-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    Rekayasa Perangkat Lunak
-                  </h4>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
-                    Python, TypeScript, JavaScript, C++, C, React 19, Next.js, Tailwind CSS, dan Electron untuk pengembangan lintas-platform.
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
+                    <div className="space-y-1 flex-1">
+                      <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
+                        Rekayasa Perangkat Lunak
+                      </h3>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
+                        Python, TypeScript, JavaScript, C++, C, React 19, Next.js, Tailwind CSS, dan Electron untuk pengembangan lintas-platform.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="py-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    Computer Vision & Data Medis
-                  </h4>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
-                    YOLOv8 Object Detection, arsitektur CNN TensorFlow/Keras, pemodelan klasifikasi tabular (Random Forest, SVM, Logistic Regression).
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
+                    <div className="space-y-1 flex-1">
+                      <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
+                        Computer Vision & Data Medis
+                      </h3>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
+                        YOLOv8 Object Detection, arsitektur CNN TensorFlow/Keras, pemodelan klasifikasi tabular (Random Forest, SVM, Logistic Regression).
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="py-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    Sistem Tertanam & IoT
-                  </h4>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
-                    ESP32, modul RFID RC522, sensor Load Cell & modul HX711, WebRTC RTCDataChannel P2P, Firebase Realtime Database, SQLite.
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
+                    <div className="space-y-1 flex-1">
+                      <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
+                        Sistem Tertanam & IoT
+                      </h3>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
+                        ESP32, modul RFID RC522, sensor Load Cell & modul HX711, WebRTC RTCDataChannel P2P, Firebase Realtime Database, SQLite.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pt-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    Peralatan Pendukung
-                  </h4>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
-                    Git, GitHub, VS Code, Postman, Android Studio, serta kemahiran administrasi data menggunakan paket Microsoft Office.
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
+                    <div className="space-y-1 flex-1">
+                      <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
+                        Peralatan Pendukung
+                      </h3>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
+                        Git, GitHub, VS Code, Postman, Android Studio, serta kemahiran administrasi data menggunakan paket Microsoft Office.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -657,9 +673,9 @@ export default function PortfolioPage() {
               
               <div className="md:col-span-4 lg:col-span-3">
                 <div className="flex items-center gap-2 sticky top-24">
-                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'academic' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
-                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'academic' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
-                    04 / Akademik
+                  <span className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeSection === 'academic' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-sm sm:text-base font-mono uppercase tracking-wider transition-colors ${activeSection === 'academic' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    04 / Akademik & Publikasi
                   </span>
                 </div>
               </div>
@@ -667,14 +683,14 @@ export default function PortfolioPage() {
               <div className="md:col-span-8 lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
                 <div className="space-y-1.5 border-l-2 border-blue-500/40 pl-4">
                   <p className="text-xs font-mono text-neutral-400">2022—2026</p>
-                  <h3 className="font-heading font-semibold text-base text-neutral-900 dark:text-neutral-100">S1 Sistem Komputer</h3>
+                  <h3 className="font-heading font-semibold text-base text-neutral-900 dark:text-white">S1 Sistem Komputer</h3>
                   <p className="text-neutral-600 dark:text-neutral-400 font-light">Universitas Komputer Indonesia (UNIKOM)</p>
-                  <p className="text-xs font-mono text-blue-600 dark:text-blue-400 font-medium">Indeks Prestasi Kumulatif: 3,53</p>
+                  <p className="text-xs font-mono text-neutral-500 dark:text-neutral-400 font-medium">Indeks Prestasi Kumulatif: 3,53</p>
                 </div>
 
                 <div className="space-y-1.5 border-l-2 border-blue-500/40 pl-4">
                   <p className="text-xs font-mono text-neutral-400">Publikasi Nasional</p>
-                  <h3 className="font-heading font-semibold text-base text-neutral-900 dark:text-neutral-100">2 Artikel Jurnal Ilmiah</h3>
+                  <h3 className="font-heading font-semibold text-base text-neutral-900 dark:text-white">2 Artikel Jurnal Ilmiah</h3>
                   <div className="text-xs font-mono space-y-1 pt-1 text-blue-600 dark:text-blue-400">
                     <p><a href="https://doi.org/10.34010/komputika.v15i1.19799" target="_blank" rel="noreferrer" className="underline hover:text-neutral-900 dark:hover:text-neutral-100">Jurnal Komputika (Prediksi Liver) ↗</a></p>
                     <p><a href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/" target="_blank" rel="noreferrer" className="underline hover:text-neutral-900 dark:hover:text-neutral-100">Jurnal Biner (POS ESP32) ↗</a></p>
@@ -699,15 +715,15 @@ export default function PortfolioPage() {
               <div className="md:col-span-5 space-y-6">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'contact' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
-                    <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
-                      05 / Komunikasi
+                    <span className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeSection === 'contact' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                    <span className={`text-sm sm:text-base font-mono uppercase tracking-wider transition-colors ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                      05 / Kontak & Ulasan
                     </span>
                   </div>
-                  <h2 className="font-heading text-2xl font-semibold text-neutral-900 dark:text-neutral-100 mt-2">
+                  <h2 className="font-heading text-2xl font-semibold text-neutral-900 dark:text-white mt-2">
                     Hubungi Saya
                   </h2>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 font-light leading-relaxed">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 font-light leading-relaxed text-justify">
                     Terbuka untuk diskusi proyek rekayasa perangkat lunak, tawaran peluang kerja, atau kolaborasi penelitian.
                   </p>
                 </div>
@@ -742,7 +758,7 @@ export default function PortfolioPage() {
                   </a>
 
                   <a
-                    href="https://www.linkedin.com/in/edvannuriana"
+                    href="https://linkedin.com/in/edvannuriana"
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -761,10 +777,10 @@ export default function PortfolioPage() {
                     <p className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">
                       Buku Tamu & Feedback
                     </p>
-                    <h3 className="font-heading font-semibold text-lg text-neutral-900 dark:text-neutral-100 mt-1">
+                    <h3 className="font-heading font-semibold text-lg text-neutral-900 dark:text-white mt-1">
                       Kesan & Catatan Pengunjung
                     </h3>
-                    <p className="text-xs text-neutral-500 mt-1">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 text-justify">
                       Pesan Anda akan langsung diteruskan secara instan ke bot Telegram pribadi saya.
                     </p>
                   </div>
@@ -902,12 +918,12 @@ export default function PortfolioPage() {
               <p className="text-[11px] font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">
                 {activeModalProject.modalDetails.kicker}
               </p>
-              <h3 className="font-heading font-semibold text-xl text-neutral-900 dark:text-neutral-100 mt-1">
+              <h3 className="font-heading font-semibold text-xl text-neutral-900 dark:text-white mt-1">
                 {activeModalProject.modalDetails.title}
               </h3>
             </div>
 
-            <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed font-light">
+            <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed font-light text-justify">
               {activeModalProject.modalDetails.summary}
             </p>
 
@@ -925,12 +941,12 @@ export default function PortfolioPage() {
             )}
 
             <div className="p-3.5 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 text-xs space-y-1">
-              <p className="font-medium text-neutral-900 dark:text-neutral-100 font-mono">Hasil Pengujian:</p>
-              <p className="text-neutral-600 dark:text-neutral-300 font-light">
+              <p className="font-medium text-neutral-900 dark:text-white font-mono">Hasil Pengujian:</p>
+              <p className="text-neutral-600 dark:text-neutral-300 font-light text-justify">
                 {activeModalProject.modalDetails.results}
               </p>
               {activeModalProject.modalDetails.note && (
-                <p className="text-[11px] text-neutral-400 italic pt-1">
+                <p className="text-[11px] text-neutral-400 italic pt-1 text-justify">
                   Catatan: {activeModalProject.modalDetails.note}
                 </p>
               )}
