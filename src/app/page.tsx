@@ -10,11 +10,9 @@ import {
   Menu, 
   X, 
   Star, 
-  Send, 
   Check, 
   Mail, 
   Phone, 
-  ExternalLink,
   FileText
 } from 'lucide-react';
 
@@ -161,6 +159,7 @@ export default function PortfolioPage() {
   const [isDark, setIsDark] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+  const [activeSection, setActiveSection] = useState<'top' | 'about' | 'projects' | 'skills' | 'academic' | 'contact'>('top');
 
   // Form State
   const [name, setName] = useState('');
@@ -169,20 +168,54 @@ export default function PortfolioPage() {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Sinkronisasi tema
   useEffect(() => {
     const saved = localStorage.getItem('portfolio-theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldBeDark = saved === 'dark' || (!saved && prefersDark);
-    setIsDark(shouldBeDark);
-    if (shouldBeDark) {
+    const isDarkTheme = saved === 'dark' || (!saved && prefersDark);
+    setIsDark(isDarkTheme);
+    if (isDarkTheme) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
   }, []);
 
+  // Scrollspy to track current active section
+  useEffect(() => {
+    const sectionIds: ('top' | 'about' | 'projects' | 'skills' | 'academic' | 'contact')[] = [
+      'top', 'about', 'projects', 'skills', 'academic', 'contact'
+    ];
+    
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          });
+        },
+        { rootMargin: '-25% 0px -55% 0px', threshold: 0 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+    };
+  }, []);
+
   const toggleTheme = () => {
-    const nextDark = !isDark;
+    const isCurrentlyDark = document.documentElement.classList.contains('dark');
+    const nextDark = !isCurrentlyDark;
     setIsDark(nextDark);
     if (nextDark) {
       document.documentElement.classList.add('dark');
@@ -224,24 +257,67 @@ export default function PortfolioPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#faf9f6] text-neutral-900 dark:bg-[#0c0c0e] dark:text-neutral-100 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col font-sans bg-[#faf9f6] text-neutral-900 dark:bg-[#0c0c0e] dark:text-neutral-100 transition-colors duration-200">
       
       {/* NAVBAR */}
-      <header className="sticky top-0 z-40 bg-[#faf9f6]/85 dark:bg-[#0c0c0e]/85 backdrop-blur-md border-b border-neutral-200/70 dark:border-neutral-800/70">
-        <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#top" className="font-heading font-semibold text-lg tracking-tight text-neutral-900 dark:text-neutral-100 hover:opacity-80 transition-opacity">
-            Edvan Nuriana<span className="text-neutral-400 dark:text-neutral-500 font-light ml-1.5 text-sm">/ Sistem Komputer</span>
+      <header className="sticky top-0 z-40 bg-[#faf9f6]/90 dark:bg-[#0c0c0e]/90 backdrop-blur-md border-b border-neutral-200/70 dark:border-neutral-800/70">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 h-16 flex items-center justify-between">
+          
+          {/* Logo / Brand */}
+          <a href="#top" className="group flex items-center gap-2.5">
+            <span className="font-heading font-bold text-lg tracking-tight text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              Edvan Nuriana<span className="text-blue-600 dark:text-blue-400">.</span>
+            </span>
+            <span className="text-[11px] font-mono tracking-wider px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-900/60 hidden sm:inline-block">
+              Portfolio
+            </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-7 text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-            <a href="#about" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Tentang</a>
-            <a href="#projects" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Proyek</a>
-            <a href="#skills" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Keahlian</a>
-            <a href="#contact" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">Kontak</a>
+          {/* Desktop Navigation with Active Section Indicator Dot */}
+          <nav className="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+            <a 
+              href="#about" 
+              className={`inline-flex items-center gap-1.5 transition-colors ${activeSection === 'about' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'hover:text-neutral-900 dark:hover:text-neutral-100'}`}
+            >
+              {activeSection === 'about' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
+              )}
+              Tentang
+            </a>
+
+            <a 
+              href="#projects" 
+              className={`inline-flex items-center gap-1.5 transition-colors ${activeSection === 'projects' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'hover:text-neutral-900 dark:hover:text-neutral-100'}`}
+            >
+              {activeSection === 'projects' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
+              )}
+              Proyek
+            </a>
+
+            <a 
+              href="#skills" 
+              className={`inline-flex items-center gap-1.5 transition-colors ${activeSection === 'skills' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'hover:text-neutral-900 dark:hover:text-neutral-100'}`}
+            >
+              {activeSection === 'skills' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
+              )}
+              Keahlian
+            </a>
+
+            <a 
+              href="#contact" 
+              className={`inline-flex items-center gap-1.5 transition-colors ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'hover:text-neutral-900 dark:hover:text-neutral-100'}`}
+            >
+              {activeSection === 'contact' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
+              )}
+              Kontak
+            </a>
+
             <a 
               href="#feedback"
-              className="text-neutral-900 dark:text-neutral-100 font-semibold hover:opacity-70 transition-opacity"
+              className="text-blue-600 dark:text-blue-400 font-semibold hover:underline transition-all"
             >
               Ulasan ↗
             </a>
@@ -252,14 +328,14 @@ export default function PortfolioPage() {
             <button
               onClick={toggleTheme}
               aria-label="Ganti mode tema"
-              className="w-8 h-8 rounded-full border border-neutral-200 dark:border-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+              className="w-9 h-9 rounded-full border border-neutral-200 dark:border-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              {isDark ? <Sun className="w-3.5 h-3.5 text-amber-300" /> : <Moon className="w-3.5 h-3.5" />}
+              {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4" />}
             </button>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 text-neutral-700 dark:text-neutral-300"
+              className="md:hidden p-2 text-neutral-700 dark:text-neutral-300"
               aria-label="Toggle navigasi"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -269,38 +345,49 @@ export default function PortfolioPage() {
 
         {/* Mobile Nav */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-neutral-200 dark:border-neutral-800 bg-[#faf9f6] dark:bg-[#0c0c0e] px-6 py-6 flex flex-col gap-4 text-xs font-medium uppercase tracking-wider">
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-900">Tentang</a>
-            <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-900">Proyek</a>
-            <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-900">Keahlian</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-neutral-900">Kontak</a>
-            <a href="#feedback" onClick={() => setMobileMenuOpen(false)} className="text-neutral-900 dark:text-neutral-100 font-bold">Kirim Ulasan Telegram ↗</a>
+          <div className="md:hidden border-b border-neutral-200 dark:border-neutral-800 bg-[#faf9f6] dark:bg-[#0c0c0e] px-6 py-6 flex flex-col gap-4 text-xs font-mono uppercase tracking-wider">
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-2 py-1 ${activeSection === 'about' ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`}>
+              {activeSection === 'about' && <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>} Tentang
+            </a>
+            <a href="#projects" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-2 py-1 ${activeSection === 'projects' ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`}>
+              {activeSection === 'projects' && <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>} Proyek
+            </a>
+            <a href="#skills" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-2 py-1 ${activeSection === 'skills' ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`}>
+              {activeSection === 'skills' && <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>} Keahlian
+            </a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-2 py-1 ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`}>
+              {activeSection === 'contact' && <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>} Kontak
+            </a>
+            <a href="#feedback" onClick={() => setMobileMenuOpen(false)} className="text-blue-600 dark:text-blue-400 font-bold py-1">Kirim Ulasan Telegram ↗</a>
           </div>
         )}
       </header>
 
-      <main id="top" className="flex-1">
+      <main className="flex-1">
         {/* HERO SECTION */}
-        <section className="max-w-4xl mx-auto px-6 pt-20 pb-20 md:pt-28 md:pb-28">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+        <section id="top" className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pt-14 pb-16 md:pt-20 md:pb-24">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            <div className="md:col-span-8 space-y-6">
-              <p className="text-xs font-mono tracking-widest uppercase text-neutral-500 dark:text-neutral-400">
-                Sumedang, Indonesia · UNIKOM 2026
-              </p>
+            <div className="md:col-span-7 lg:col-span-8 space-y-6">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400"></span>
+                <p className="text-xs font-mono tracking-widest uppercase text-blue-700 dark:text-blue-400 font-medium">
+                  Sumedang, Indonesia · UNIKOM 2026
+                </p>
+              </div>
 
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-neutral-900 dark:text-neutral-50 leading-[1.2]">
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-neutral-900 dark:text-neutral-50 leading-[1.2]">
                 Membangun solusi rekayasa dari data, komputasi perangkat, dan aplikasi terpadu.
               </h1>
 
-              <p className="text-base text-neutral-600 dark:text-neutral-300 leading-relaxed font-light max-w-xl">
-                Saya Edvan Nuriana, lulusan S1 Sistem Komputer Universitas Komputer Indonesia. Berfokus pada perancangan perangkat lunak, sistem visi komputer (*computer vision*), integrasi IoT, dan aplikasi web modern.
+              <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-light max-w-2xl">
+                Saya Edvan Nuriana, lulusan S1 Sistem Komputer Universitas Komputer Indonesia. Berfokus pada perancangan perangkat lunak, sistem visi komputer (<em>computer vision</em>), integrasi IoT, dan aplikasi web modern.
               </p>
 
-              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-medium">
+              <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-wider font-medium">
                 <a
                   href="#projects"
-                  className="px-5 py-2.5 rounded-full bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 hover:opacity-85 transition-opacity inline-flex items-center gap-2"
+                  className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white transition-colors shadow-sm inline-flex items-center gap-2"
                 >
                   Eksplorasi Proyek <ArrowDown className="w-3.5 h-3.5" />
                 </a>
@@ -309,36 +396,40 @@ export default function PortfolioPage() {
                   href="/cv-edvan.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="px-5 py-2.5 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 hover:border-neutral-900 dark:hover:border-neutral-100 transition-colors inline-flex items-center gap-2"
+                  className="px-5 py-3 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 hover:border-blue-600 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2"
                 >
-                  <FileText className="w-3.5 h-3.5" /> Unduh CV <span>↗</span>
+                  <FileText className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> Unduh CV <span>↗</span>
                 </a>
 
                 <a
                   href="mailto:septiaedvan@gmail.com"
-                  className="px-3 py-2.5 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors inline-flex items-center gap-1.5"
+                  className="px-3 py-3 text-neutral-500 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-1.5"
                 >
                   Kirim Email <span>↗</span>
                 </a>
               </div>
             </div>
 
-            {/* Profile Photo - Minimal & Editorial */}
-            <div className="md:col-span-4 flex justify-start md:justify-end">
-              <div className="w-48 sm:w-56 space-y-3">
-                <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-sm">
+            {/* Profile Photo - Rata Tengah (Center Aligned) */}
+            <div className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end">
+              <div className="w-52 sm:w-60 space-y-3 flex flex-col items-center">
+                <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-sm">
                   <Image
                     src="/profile.jpeg"
                     alt="Edvan Nuriana Putra Septia"
                     fill
                     priority
                     className="object-cover"
-                    sizes="(max-width: 768px) 192px, 224px"
+                    sizes="(max-width: 768px) 208px, 240px"
                   />
                 </div>
-                <div className="text-left font-mono text-[11px] text-neutral-500 dark:text-neutral-400">
-                  <p className="font-sans font-medium text-xs text-neutral-900 dark:text-neutral-100">Edvan Nuriana P. S.</p>
-                  <p>S.Kom. Candidate · IPK 3.53</p>
+                <div className="text-center font-mono text-xs text-neutral-500 dark:text-neutral-400 w-full">
+                  <p className="font-sans font-semibold text-sm text-neutral-900 dark:text-neutral-100">
+                    Edvan Nuriana P. S.
+                  </p>
+                  <p className="text-neutral-500 dark:text-neutral-400 mt-0.5 text-[11px]">
+                    S.Kom. Candidate · <span className="text-blue-600 dark:text-blue-400 font-semibold">IPK 3.53</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -348,20 +439,25 @@ export default function PortfolioPage() {
 
         {/* SECTION 01: TENTANG */}
         <section id="about" className="border-t border-neutral-200 dark:border-neutral-800/80 py-20">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-              <div className="md:col-span-3">
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  01 / Latar Belakang
-                </span>
+              
+              {/* Label dengan Indikator Bulat Scrollspy */}
+              <div className="md:col-span-4 lg:col-span-3">
+                <div className="flex items-center gap-2 sticky top-24">
+                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'about' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'about' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    01 / Latar Belakang
+                  </span>
+                </div>
               </div>
 
-              <div className="md:col-span-9 space-y-5 text-neutral-700 dark:text-neutral-300 text-base leading-relaxed font-light">
+              <div className="md:col-span-8 lg:col-span-9 space-y-5 text-neutral-700 dark:text-neutral-300 text-base leading-relaxed font-light">
                 <h2 className="font-heading text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-neutral-100 leading-snug">
                   Dedikasi pada pemecahan masalah melalui pemrograman analitis dan perangkat terdistribusi.
                 </h2>
                 <p>
-                  Saya menyelesaikan studi sarjana di Program Studi Sistem Komputer, Universitas Komputer Indonesia (UNIKOM). Selama masa perkuliahan dan proyek mandiri, fokus saya tertuju pada implementasi kecerdasan buatan terapan (*computer vision* dan *machine learning*), rekayasa antarmuka modern, serta instrumentasi IoT.
+                  Saya menyelesaikan studi sarjana di Program Studi Sistem Komputer, Universitas Komputer Indonesia (UNIKOM). Selama masa perkuliahan dan proyek mandiri, fokus saya tertuju pada implementasi kecerdasan buatan terapan (<em>computer vision</em> dan <em>machine learning</em>), rekayasa antarmuka modern, serta instrumentasi IoT.
                 </p>
                 <p>
                   Terbiasa bekerja dengan ekosistem Python, model deteksi YOLOv8, pengenalan karakter berbasis CNN TensorFlow, serta mikrokontroler ESP32. Dalam pengembangan aplikasi, saya mengombinasikan keunggulan React 19, Next.js, dan WebRTC untuk menghadirkan sistem komunikasi berlatensi rendah.
@@ -371,7 +467,7 @@ export default function PortfolioPage() {
                     href="https://www.linkedin.com/in/edvannuriana"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-neutral-900 dark:text-neutral-100 hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 hover:underline font-semibold"
                   >
                     Profil LinkedIn <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
@@ -383,12 +479,15 @@ export default function PortfolioPage() {
 
         {/* SECTION 02: PROYEK */}
         <section id="projects" className="border-t border-neutral-200 dark:border-neutral-800/80 py-20">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-3">
               <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  02 / Portofolio
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'projects' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'projects' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    02 / Portofolio
+                  </span>
+                </div>
                 <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100 mt-2">
                   Proyek Terpilih & Riset
                 </h2>
@@ -398,17 +497,16 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            {/* List Showcase Gaya Editorial */}
-            <div className="space-y-12">
-              {projectsData.map((project, idx) => (
+            {/* Grid 2 Kolom Seimbang di Layar Lebar */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {projectsData.map((project) => (
                 <article
                   key={project.id}
-                  className="group border border-neutral-200/80 dark:border-neutral-800/80 rounded-xl bg-white dark:bg-[#121215] overflow-hidden hover:border-neutral-400 dark:hover:border-neutral-700 transition-colors"
+                  className="group border border-neutral-200/80 dark:border-neutral-800/80 rounded-xl bg-white dark:bg-[#121215] overflow-hidden hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-colors flex flex-col justify-between"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-12">
-                    
+                  <div>
                     {/* Media Preview Frame */}
-                    <div className="md:col-span-5 relative aspect-[16/10] md:aspect-auto min-h-[220px] bg-neutral-100 dark:bg-neutral-950 border-b md:border-b-0 md:border-r border-neutral-200/80 dark:border-neutral-800/80 overflow-hidden flex items-center justify-center">
+                    <div className="relative aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 border-b border-neutral-200/80 dark:border-neutral-800/80 overflow-hidden flex items-center justify-center">
                       {project.imageType === 'encross' ? (
                         <div className="w-full h-full bg-[#0a0a0c] flex items-center justify-center p-8 relative">
                           <div className="w-20 h-20 relative">
@@ -419,7 +517,7 @@ export default function PortfolioPage() {
                               className="object-contain"
                             />
                           </div>
-                          <span className="absolute bottom-3 right-3 text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 rounded bg-neutral-900 text-neutral-400 border border-neutral-800">
+                          <span className="absolute bottom-3 right-3 text-[10px] font-mono tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-blue-950/80 text-blue-400 border border-blue-800/60">
                             P2P WebRTC
                           </span>
                         </div>
@@ -428,67 +526,65 @@ export default function PortfolioPage() {
                           src={project.image}
                           alt={project.title}
                           fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 40vw"
+                          className="object-cover group-hover:scale-102 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       )}
                     </div>
 
                     {/* Metadata & Deskripsi */}
-                    <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-5">
-                      <div>
-                        <div className="flex items-center justify-between text-xs font-mono text-neutral-400 dark:text-neutral-500 mb-2">
-                          <span>{project.category}</span>
-                          <span>{project.year}</span>
-                        </div>
-
-                        <h3 className="font-heading font-semibold text-xl text-neutral-900 dark:text-neutral-100 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
-                          {project.title}
-                        </h3>
-
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2.5 leading-relaxed font-light">
-                          {project.description}
-                        </p>
-
-                        <p className="text-xs font-mono text-neutral-400 dark:text-neutral-500 mt-4">
-                          {project.tech}
-                        </p>
+                    <div className="p-6 sm:p-7 space-y-4">
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="text-blue-600 dark:text-blue-400 font-semibold">{project.category}</span>
+                        <span className="text-neutral-400 dark:text-neutral-500">{project.year}</span>
                       </div>
 
-                      {/* Tautan Aksi */}
-                      <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800/70 flex items-center gap-5 text-xs font-mono uppercase tracking-wider">
-                        <button
-                          onClick={() => setActiveModalProject(project)}
-                          className="text-neutral-900 dark:text-neutral-100 font-semibold hover:underline inline-flex items-center gap-1"
-                        >
-                          Rincian Proyek <ArrowUpRight className="w-3.5 h-3.5" />
-                        </button>
+                      <h3 className="font-heading font-semibold text-xl text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {project.title}
+                      </h3>
 
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex items-center gap-1 ml-auto"
-                          >
-                            <GithubIcon className="w-3.5 h-3.5" /> GitHub ↗
-                          </a>
-                        )}
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
+                        {project.description}
+                      </p>
 
-                        {project.externalUrl && (
-                          <a
-                            href={project.externalUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex items-center gap-1 ml-auto"
-                          >
-                            Publikasi ↗
-                          </a>
-                        )}
-                      </div>
+                      <p className="text-xs font-mono text-neutral-400 dark:text-neutral-500 pt-2">
+                        {project.tech}
+                      </p>
                     </div>
-
                   </div>
+
+                  {/* Tautan Aksi Bawah */}
+                  <div className="p-6 sm:p-7 pt-0 border-t border-neutral-100 dark:border-neutral-800/70 flex items-center gap-5 text-xs font-mono uppercase tracking-wider mt-4">
+                    <button
+                      onClick={() => setActiveModalProject(project)}
+                      className="text-neutral-900 dark:text-neutral-100 font-semibold hover:text-blue-600 dark:hover:text-blue-400 hover:underline inline-flex items-center gap-1 transition-colors"
+                    >
+                      Rincian Proyek <ArrowUpRight className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                    </button>
+
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-neutral-500 hover:text-blue-600 dark:hover:text-blue-400 inline-flex items-center gap-1.5 ml-auto transition-colors"
+                      >
+                        <GithubIcon className="w-3.5 h-3.5" /> GitHub ↗
+                      </a>
+                    )}
+
+                    {project.externalUrl && (
+                      <a
+                        href={project.externalUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-neutral-500 hover:text-blue-600 dark:hover:text-blue-400 inline-flex items-center gap-1 ml-auto transition-colors"
+                      >
+                        Publikasi ↗
+                      </a>
+                    )}
+                  </div>
+
                 </article>
               ))}
             </div>
@@ -497,38 +593,54 @@ export default function PortfolioPage() {
 
         {/* SECTION 03: KEAHLIAN */}
         <section id="skills" className="border-t border-neutral-200 dark:border-neutral-800/80 py-20">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-              <div className="md:col-span-3">
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  03 / Kompetensi
-                </span>
+              
+              <div className="md:col-span-4 lg:col-span-3">
+                <div className="flex items-center gap-2 sticky top-24">
+                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'skills' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'skills' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    03 / Kompetensi
+                  </span>
+                </div>
               </div>
 
-              <div className="md:col-span-9 divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
+              <div className="md:col-span-8 lg:col-span-9 divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
                 <div className="pb-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100">Rekayasa Perangkat Lunak</h4>
+                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    Rekayasa Perangkat Lunak
+                  </h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
                     Python, TypeScript, JavaScript, C++, C, React 19, Next.js, Tailwind CSS, dan Electron untuk pengembangan lintas-platform.
                   </p>
                 </div>
 
                 <div className="py-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100">Computer Vision & Data Medis</h4>
+                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    Computer Vision & Data Medis
+                  </h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
                     YOLOv8 Object Detection, arsitektur CNN TensorFlow/Keras, pemodelan klasifikasi tabular (Random Forest, SVM, Logistic Regression).
                   </p>
                 </div>
 
                 <div className="py-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100">Sistem Tertanam & IoT</h4>
+                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    Sistem Tertanam & IoT
+                  </h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
                     ESP32, modul RFID RC522, sensor Load Cell & modul HX711, WebRTC RTCDataChannel P2P, Firebase Realtime Database, SQLite.
                   </p>
                 </div>
 
                 <div className="pt-6">
-                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100">Peralatan Pendukung</h4>
+                  <h4 className="font-heading font-medium text-base text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    Peralatan Pendukung
+                  </h4>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 font-light leading-relaxed">
                     Git, GitHub, VS Code, Postman, Android Studio, serta kemahiran administrasi data menggunakan paket Microsoft Office.
                   </p>
@@ -539,33 +651,37 @@ export default function PortfolioPage() {
         </section>
 
         {/* SECTION 04: PENDIDIKAN & PUBLIKASI */}
-        <section className="border-t border-neutral-200 dark:border-neutral-800/80 py-20">
-          <div className="max-w-4xl mx-auto px-6">
+        <section id="academic" className="border-t border-neutral-200 dark:border-neutral-800/80 py-20">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-              <div className="md:col-span-3">
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                  04 / Akademik
-                </span>
+              
+              <div className="md:col-span-4 lg:col-span-3">
+                <div className="flex items-center gap-2 sticky top-24">
+                  <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'academic' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                  <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'academic' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                    04 / Akademik
+                  </span>
+                </div>
               </div>
 
-              <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
-                <div className="space-y-1.5 border-l border-neutral-200 dark:border-neutral-800 pl-4">
+              <div className="md:col-span-8 lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
+                <div className="space-y-1.5 border-l-2 border-blue-500/40 pl-4">
                   <p className="text-xs font-mono text-neutral-400">2022—2026</p>
                   <h3 className="font-heading font-semibold text-base text-neutral-900 dark:text-neutral-100">S1 Sistem Komputer</h3>
                   <p className="text-neutral-600 dark:text-neutral-400 font-light">Universitas Komputer Indonesia (UNIKOM)</p>
-                  <p className="text-xs font-mono text-neutral-500">Indeks Prestasi Kumulatif: 3,53</p>
+                  <p className="text-xs font-mono text-blue-600 dark:text-blue-400 font-medium">Indeks Prestasi Kumulatif: 3,53</p>
                 </div>
 
-                <div className="space-y-1.5 border-l border-neutral-200 dark:border-neutral-800 pl-4">
+                <div className="space-y-1.5 border-l-2 border-blue-500/40 pl-4">
                   <p className="text-xs font-mono text-neutral-400">Publikasi Nasional</p>
                   <h3 className="font-heading font-semibold text-base text-neutral-900 dark:text-neutral-100">2 Artikel Jurnal Ilmiah</h3>
-                  <div className="text-xs font-mono space-y-1 pt-1">
+                  <div className="text-xs font-mono space-y-1 pt-1 text-blue-600 dark:text-blue-400">
                     <p><a href="https://doi.org/10.34010/komputika.v15i1.19799" target="_blank" rel="noreferrer" className="underline hover:text-neutral-900 dark:hover:text-neutral-100">Jurnal Komputika (Prediksi Liver) ↗</a></p>
                     <p><a href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/" target="_blank" rel="noreferrer" className="underline hover:text-neutral-900 dark:hover:text-neutral-100">Jurnal Biner (POS ESP32) ↗</a></p>
                   </div>
                 </div>
 
-                <div className="space-y-1.5 border-l border-neutral-200 dark:border-neutral-800 pl-4 sm:col-span-2">
+                <div className="space-y-1.5 border-l-2 border-blue-500/40 pl-4 sm:col-span-2">
                   <p className="text-xs font-mono text-neutral-400">Sertifikasi Resmi</p>
                   <p className="text-neutral-800 dark:text-neutral-200 font-medium">Google Gemini Certified Student — University · Cisco CCNA: Introduction to Networks</p>
                 </div>
@@ -576,15 +692,18 @@ export default function PortfolioPage() {
 
         {/* SECTION 05: KONTAK & FEEDBACK */}
         <section id="contact" className="border-t border-neutral-200 dark:border-neutral-800/80 py-20 bg-neutral-100/60 dark:bg-[#0f0f12]">
-          <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               
               {/* Kontak Personal Kiri */}
               <div className="md:col-span-5 space-y-6">
                 <div>
-                  <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-                    05 / Komunikasi
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSection === 'contact' ? 'bg-blue-600 dark:bg-blue-400 scale-125 shadow-sm shadow-blue-500' : 'bg-neutral-300 dark:bg-neutral-700'}`}></span>
+                    <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${activeSection === 'contact' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-400 dark:text-neutral-500'}`}>
+                      05 / Komunikasi
+                    </span>
+                  </div>
                   <h2 className="font-heading text-2xl font-semibold text-neutral-900 dark:text-neutral-100 mt-2">
                     Hubungi Saya
                   </h2>
@@ -598,7 +717,7 @@ export default function PortfolioPage() {
                     href="https://wa.me/6289630887748"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors"
+                    className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     <span className="text-neutral-500">WhatsApp</span>
                     <span className="font-semibold text-neutral-900 dark:text-neutral-100">+62 896-3088-7748</span>
@@ -606,7 +725,7 @@ export default function PortfolioPage() {
 
                   <a
                     href="mailto:septiaedvan@gmail.com"
-                    className="flex items-center justify-between p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors"
+                    className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     <span className="text-neutral-500">Email</span>
                     <span className="font-semibold text-neutral-900 dark:text-neutral-100">septiaedvan@gmail.com</span>
@@ -616,7 +735,7 @@ export default function PortfolioPage() {
                     href="https://github.com/EdvanVPRoject"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors"
+                    className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     <span className="text-neutral-500">GitHub</span>
                     <span className="font-semibold text-neutral-900 dark:text-neutral-100">EdvanVPRoject</span>
@@ -626,7 +745,7 @@ export default function PortfolioPage() {
                     href="https://www.linkedin.com/in/edvannuriana"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors"
+                    className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     <span className="text-neutral-500">LinkedIn</span>
                     <span className="font-semibold text-neutral-900 dark:text-neutral-100">edvannuriana</span>
@@ -636,10 +755,10 @@ export default function PortfolioPage() {
 
               {/* Form Feedback Terintegrasi Telegram Kanan */}
               <div id="feedback" className="md:col-span-7">
-                <div className="p-6 sm:p-7 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
+                <div className="p-6 sm:p-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
                   
                   <div className="mb-5">
-                    <p className="text-xs font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
+                    <p className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">
                       Buku Tamu & Feedback
                     </p>
                     <h3 className="font-heading font-semibold text-lg text-neutral-900 dark:text-neutral-100 mt-1">
@@ -652,7 +771,7 @@ export default function PortfolioPage() {
 
                   {formStatus === 'success' ? (
                     <div className="py-8 text-center space-y-3">
-                      <div className="w-10 h-10 rounded-full border border-neutral-300 dark:border-neutral-700 flex items-center justify-center mx-auto text-neutral-900 dark:text-neutral-100">
+                      <div className="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center mx-auto text-blue-600 dark:text-blue-400">
                         <Check className="w-5 h-5" />
                       </div>
                       <p className="font-heading font-semibold text-neutral-900 dark:text-neutral-100 text-sm">
@@ -663,7 +782,7 @@ export default function PortfolioPage() {
                       </p>
                       <button
                         onClick={() => setFormStatus('idle')}
-                        className="text-xs font-mono underline text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 pt-2"
+                        className="text-xs font-mono underline text-blue-600 dark:text-blue-400 hover:underline pt-2"
                       >
                         Kirim catatan baru ↗
                       </button>
@@ -708,14 +827,14 @@ export default function PortfolioPage() {
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           placeholder="Anonim"
-                          className="w-full px-3 py-2 rounded-md bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 dark:focus:border-neutral-100 transition-colors"
+                          className="w-full px-3.5 py-2.5 rounded-md bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
                         />
                       </div>
 
                       {/* Komentar */}
                       <div>
                         <label htmlFor="comment" className="block text-xs font-mono text-neutral-500 mb-1">
-                          Pesan / Masukan *
+                          Pesan / Masukan <span className="text-blue-600 dark:text-blue-400">*</span>
                         </label>
                         <textarea
                           id="comment"
@@ -724,7 +843,7 @@ export default function PortfolioPage() {
                           value={comment}
                           onChange={(e) => setComment(e.target.value)}
                           placeholder="Tulis ulasan, umpan balik, atau ajakan diskusi..."
-                          className="w-full px-3 py-2 rounded-md bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 dark:focus:border-neutral-100 transition-colors resize-none"
+                          className="w-full px-3.5 py-2.5 rounded-md bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-sm text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors resize-none"
                         ></textarea>
                       </div>
 
@@ -737,7 +856,7 @@ export default function PortfolioPage() {
                       <button
                         type="submit"
                         disabled={formStatus === 'loading'}
-                        className="w-full py-2.5 rounded-md bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-xs font-mono uppercase tracking-wider font-semibold hover:opacity-85 transition-opacity disabled:opacity-50"
+                        className="w-full py-2.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono uppercase tracking-wider font-semibold transition-colors disabled:opacity-50 shadow-sm"
                       >
                         {formStatus === 'loading' ? 'Mengirim...' : 'Kirim Ulasan ↗'}
                       </button>
@@ -754,9 +873,9 @@ export default function PortfolioPage() {
 
       {/* FOOTER */}
       <footer className="border-t border-neutral-200 dark:border-neutral-800/80 py-8 text-xs font-mono text-neutral-400 dark:text-neutral-600">
-        <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© 2026 Edvan Nuriana Putra Septia · Portofolio Pribadi</p>
-          <a href="#top" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+          <a href="#top" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             Kembali ke atas ↑
           </a>
         </div>
@@ -780,7 +899,7 @@ export default function PortfolioPage() {
             </button>
 
             <div>
-              <p className="text-[11px] font-mono uppercase tracking-widest text-neutral-400">
+              <p className="text-[11px] font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">
                 {activeModalProject.modalDetails.kicker}
               </p>
               <h3 className="font-heading font-semibold text-xl text-neutral-900 dark:text-neutral-100 mt-1">
@@ -823,7 +942,7 @@ export default function PortfolioPage() {
                   href={activeModalProject.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-4 py-2 rounded-md bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 font-semibold hover:opacity-85 transition-opacity inline-flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-colors inline-flex items-center gap-1.5"
                 >
                   <GithubIcon className="w-3.5 h-3.5" /> Buka GitHub ↗
                 </a>
@@ -834,7 +953,7 @@ export default function PortfolioPage() {
                   href={activeModalProject.externalUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-4 py-2 rounded-md border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-semibold hover:border-neutral-900 dark:hover:border-neutral-100 transition-colors inline-flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-md border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-semibold hover:border-blue-600 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-1.5"
                 >
                   {activeModalProject.externalLabel || 'Buka Jurnal ↗'}
                 </a>
