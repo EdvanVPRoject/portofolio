@@ -42,7 +42,8 @@ interface Project {
   title: string;
   description: string;
   image: string;
-  imageType: 'image' | 'encross';
+  imageType: 'image' | 'encross' | 'enclip';
+  badgeLabel?: string;
   tech: string;
   githubUrl?: string;
   externalUrl?: string;
@@ -58,6 +59,35 @@ interface Project {
 }
 
 const projectsData: Project[] = [
+  {
+    id: 'enclip',
+    category: 'Aplikasi Desktop & AI',
+    year: '2026',
+    title: 'ENCLip — Native AI Video Clipper & Subtitle Generator',
+    description: 'Aplikasi desktop Windows untuk pemotongan video berdurasi panjang menjadi klip vertikal viral (Shorts, TikTok, Reels) otomatis dengan transkripsi AI dan pembuatan subtitle dinamis.',
+    image: '/enclip-icon.png',
+    imageType: 'enclip',
+    badgeLabel: 'AI & PyQt6',
+    tech: 'Python · PyQt6 · Faster-Whisper · Qwen 2.5 GGUF · Gemini API · FFmpeg',
+    githubUrl: 'https://github.com/EdvanVPRoject/ENCLip',
+    externalUrl: 'https://github.com/EdvanVPRoject/ENCLip/releases/latest',
+    externalLabel: 'Rilis .exe ↗',
+    modalDetails: {
+      kicker: 'Aplikasi Desktop Native · 2026',
+      title: 'ENCLip — Native AI Video Clipper & Subtitle Generator',
+      summary: 'Aplikasi desktop Windows yang dirancang untuk mempermudah kreator konten dan video editor dalam memotong video berdurasi panjang menjadi klip highlight vertikal secara otomatis dengan transkripsi AI dan pembuatan subtitle dinamis tanpa biaya langganan cloud.',
+      bullets: [
+        'Dukungan Hybrid AI: Mendukung model lokal 100% offline (Faster-Whisper & Qwen 2.5 GGUF) untuk privasi data penuh, serta integrasi Cloud via Google Gemini 3.8 Flash.',
+        'Deteksi Momen Cerdas: Algoritma AI mendeteksi hook video, reaksi streamer, punchline humor, dan materi penting secara otomatis.',
+        'Format & Auto-Framing Fleksibel: Menghasilkan rasio 9:16 (Shorts/TikTok), 16:9, 1:1, dan 4:3 dengan fitur smart background blur.',
+        'Styling Subtitle Dinamis (Hardsub): 7+ preset gaya subtitle (Karaoke, Neon, Highlight, Box) dengan posisi teks yang dapat diseret bebas pada preview video.',
+        'Akselerasi GPU & Render Cepat: Memanfaatkan encoder perangkat keras (Nvidia NVENC, Intel QSV, AMD AMF) untuk pemrosesan video ultra-cepat tanpa pop-up terminal CMD.',
+        'Distribusi Siap Pakai: Tersedia paket rilis portabel Windows (.exe) tanpa memerlukan instalasi dependensi Python terpisah.'
+      ],
+      results: 'Mampu mentranskripsi dan merender klip video vertikal siap unggah dalam hitungan menit secara offline tanpa watermark dan tanpa biaya langganan.',
+      note: 'Source code dan installer Windows (.exe) tersedia publik di GitHub Releases.'
+    }
+  },
   {
     id: 'encross',
     category: 'Aplikasi Desktop & Mobile',
@@ -381,7 +411,7 @@ export default function PortfolioPage() {
               </h1>
 
               <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed font-light max-w-2xl text-justify">
-                Saya Edvan Nuriana Putra Septia, S.Kom., lulusan Sistem Komputer dari Universitas Komputer Indonesia. Berfokus pada perancangan arsitektur perangkat lunak terapan—mulai dari transfer berkas lokal P2P berkecepatan tinggi via WebRTC (ENCross), sistem otentikasi visi komputer berbasis YOLOv8 dan IoT (Skripsi Parkir Pintar), komparasi algoritma machine learning pada data medis (Jurnal Komputika), hingga instrumentasi cerdas berbasis ESP32 (Jurnal Biner).
+                Saya Edvan Nuriana Putra Septia, S.Kom., lulusan Sistem Komputer dari Universitas Komputer Indonesia. Berfokus pada perancangan arsitektur perangkat lunak terapan—mulai dari aplikasi desktop AI video clipper otomatis (ENCLip), transfer berkas lokal P2P berkecepatan tinggi via WebRTC (ENCross), sistem otentikasi visi komputer berbasis YOLOv8 dan IoT (Skripsi Parkir Pintar), komparasi algoritma machine learning pada data medis (Jurnal Komputika), hingga instrumentasi cerdas berbasis ESP32 (Jurnal Biner).
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-wider font-medium">
@@ -460,7 +490,7 @@ export default function PortfolioPage() {
                   Sebagai Sarjana Komputer lulusan Universitas Komputer Indonesia (UNIKOM) dengan IPK 3.53, saya berfokus pada rekayasa sistem yang menghubungkan komputasi perangkat keras cerdas dan arsitektur perangkat lunak modern. Portofolio saya mencakup solusi teknologi yang telah teruji secara fungsional maupun empiris melalui publikasi ilmiah di jurnal nasional.
                 </p>
                 <p className="text-justify">
-                  Keahlian teknis saya terwujud nyata dalam perancangan aplikasi <strong>ENCross</strong> (berbagi berkas & layar P2P lokal dengan WebRTC tanpa server), riset skripsi <strong>Sistem Parkir Pintar</strong> (otentikasi ganda RFID e-KTP dan deteksi pelat nomor YOLOv8 serta OCR CNN), publikasi <strong>Machine Learning klasifikasi penyakit liver</strong> di Jurnal Komputika, serta prototipe <strong>Sistem Kasir POS UMKM</strong> berbasis mikrokontroler ESP32 dan sensor Load Cell di Jurnal Biner.
+                  Keahlian teknis saya terwujud nyata dalam perancangan aplikasi desktop AI <strong>ENCLip</strong> (video clipper & subtitle generator otomatis), aplikasi <strong>ENCross</strong> (berbagi berkas & layar P2P lokal dengan WebRTC tanpa server), riset skripsi <strong>Sistem Parkir Pintar</strong> (otentikasi ganda RFID e-KTP dan deteksi pelat nomor YOLOv8 serta OCR CNN), publikasi <strong>Machine Learning klasifikasi penyakit liver</strong> di Jurnal Komputika, serta prototipe <strong>Sistem Kasir POS UMKM</strong> berbasis mikrokontroler ESP32 dan sensor Load Cell di Jurnal Biner.
                 </p>
                 <div className="pt-2">
                   <a
@@ -493,7 +523,7 @@ export default function PortfolioPage() {
                 </h2>
               </div>
               <p className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
-                4 Dokumentasi Lengkap
+                5 Dokumentasi Lengkap
               </p>
             </div>
 
@@ -507,18 +537,18 @@ export default function PortfolioPage() {
                   <div>
                     {/* Media Preview Frame */}
                     <div className="relative aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 border-b border-neutral-200/80 dark:border-neutral-800/80 overflow-hidden flex items-center justify-center">
-                      {project.imageType === 'encross' ? (
+                      {project.imageType === 'encross' || project.imageType === 'enclip' ? (
                         <div className="w-full h-full bg-[#0a0a0c] flex items-center justify-center p-8 relative">
                           <div className="w-20 h-20 relative">
                             <Image
                               src={project.image}
                               alt={project.title}
                               fill
-                              className="object-contain"
+                              className={`object-contain ${project.imageType === 'enclip' ? 'rounded-2xl' : ''}`}
                             />
                           </div>
                           <span className="absolute bottom-3 right-3 text-[10px] font-mono tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-blue-950/80 text-blue-400 border border-blue-800/60">
-                            P2P WebRTC
+                            {project.badgeLabel || (project.imageType === 'encross' ? 'P2P WebRTC' : 'AI & PyQt6')}
                           </span>
                         </div>
                       ) : (
@@ -580,7 +610,7 @@ export default function PortfolioPage() {
                         rel="noreferrer"
                         className="text-neutral-500 hover:text-blue-600 dark:hover:text-blue-400 inline-flex items-center gap-1 ml-auto transition-colors"
                       >
-                        Publikasi ↗
+                        {project.externalLabel || 'Publikasi ↗'}
                       </a>
                     )}
                   </div>
@@ -614,7 +644,7 @@ export default function PortfolioPage() {
                         Rekayasa Perangkat Lunak
                       </h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
-                        Python, TypeScript, JavaScript, C++, C, React 19, Next.js, Tailwind CSS, dan Electron untuk pengembangan lintas-platform.
+                        Python, TypeScript, JavaScript, C++, C, PyQt6, React 19, Next.js, Tailwind CSS, Electron, dan FFmpeg untuk pengembangan lintas-platform.
                       </p>
                     </div>
                   </div>
