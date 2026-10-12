@@ -94,8 +94,9 @@ const projectsData: Project[] = [
     year: '2026',
     title: 'ENCross — High-Speed Local File & Screen Sharing',
     description: 'Aplikasi transfer berkas dan berbagi layar lokal P2P berkecepatan tinggi lintas-platform (Windows & Android) tanpa kuota internet dan tanpa server perantara, memanfaatkan protokol WebRTC DataChannel.',
-    image: '/encross-icon.svg',
+    image: '/encross-logo.png',
     imageType: 'encross',
+    badgeLabel: 'P2P WebRTC',
     tech: 'React 19 · WebRTC · Electron · Capacitor · Tailwind CSS',
     githubUrl: 'https://github.com/EdvanVPRoject/ENCross',
     modalDetails: {
@@ -539,12 +540,12 @@ export default function PortfolioPage() {
                     <div className="relative aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 border-b border-neutral-200/80 dark:border-neutral-800/80 overflow-hidden flex items-center justify-center">
                       {project.imageType === 'encross' || project.imageType === 'enclip' ? (
                         <div className="w-full h-full bg-[#0a0a0c] flex items-center justify-center p-8 relative">
-                          <div className="w-20 h-20 relative">
+                          <div className="w-24 h-24 sm:w-28 sm:h-28 relative rounded-2xl overflow-hidden shadow-lg border border-neutral-800/80 bg-neutral-900/60 flex items-center justify-center p-1">
                             <Image
                               src={project.image}
                               alt={project.title}
                               fill
-                              className={`object-contain ${project.imageType === 'enclip' ? 'rounded-2xl' : ''}`}
+                              className="object-contain rounded-xl"
                             />
                           </div>
                           <span className="absolute bottom-3 right-3 text-[10px] font-mono tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-blue-950/80 text-blue-400 border border-blue-800/60">
