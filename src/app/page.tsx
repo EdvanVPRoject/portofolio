@@ -640,13 +640,20 @@ export default function PortfolioPage() {
                 <div className="pb-6">
                   <div className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
-                    <div className="space-y-1 flex-1">
+                    <div className="space-y-2 flex-1">
                       <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
-                        Rekayasa Perangkat Lunak
+                        Rekayasa AI, LLM & Pemrosesan Media
                       </h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
-                        Python, TypeScript, JavaScript, C++, C, PyQt6, React 19, Next.js, Tailwind CSS, Electron, dan FFmpeg untuk pengembangan lintas-platform.
+                        Integrasi Speech-to-Text Faster-Whisper (CTranslate2) untuk transkripsi offline berpresisi tinggi, inferensi LLM lokal (Qwen-2.5 GGUF via llama-cpp-python), API Cloud Generative AI (Google Gemini SDK), serta pipeline otomasi pemotongan video dan subtitle dinamis menggunakan FFmpeg CLI dan MoviePy.
                       </p>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {['Faster-Whisper', 'Qwen-2.5 GGUF', 'Gemini API', 'FFmpeg CLI', 'MoviePy', 'CTranslate2'].map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/60">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -654,13 +661,20 @@ export default function PortfolioPage() {
                 <div className="py-6">
                   <div className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
-                    <div className="space-y-1 flex-1">
+                    <div className="space-y-2 flex-1">
                       <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
-                        Computer Vision & Data Medis
+                        Computer Vision & Machine Learning Terapan
                       </h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
-                        YOLOv8 Object Detection, arsitektur CNN TensorFlow/Keras, pemodelan klasifikasi tabular (Random Forest, SVM, Logistic Regression).
+                        Deteksi objek real-time menggunakan YOLOv8 (Ultralytics), arsitektur Convolutional Neural Networks (CNN) TensorFlow/Keras untuk karakter OCR, manipulasi citra OpenCV, serta pemodelan analitik data medis (Random Forest, SVM, Logistic Regression, penyeimbangan data SMOTE) dengan Scikit-Learn.
                       </p>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {['YOLOv8', 'CNN (TensorFlow/Keras)', 'OpenCV', 'Scikit-Learn', 'Random Forest', 'SVM', 'Pandas & NumPy'].map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/60">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -668,13 +682,62 @@ export default function PortfolioPage() {
                 <div className="py-6">
                   <div className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
-                    <div className="space-y-1 flex-1">
+                    <div className="space-y-2 flex-1">
                       <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
-                        Sistem Tertanam & IoT
+                        Komunikasi Jaringan P2P & Real-Time
                       </h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
-                        ESP32, modul RFID RC522, sensor Load Cell & modul HX711, WebRTC RTCDataChannel P2P, Firebase Realtime Database, SQLite.
+                        Arsitektur transfer berkas terdesentralisasi tanpa server perantara (zero-server P2P) menggunakan WebRTC RTCDataChannel berkecepatan tinggi, transmisi layar langsung melalui MediaStream API, penemuan perangkat lokal otomatis (mDNS / UDP broadcast), serta manajemen NAT traversal (STUN/TURN).
                       </p>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {['WebRTC DataChannel', 'MediaStream API', 'mDNS Discovery', 'UDP Broadcast', 'STUN/TURN', 'P2P Security'].map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/60">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="py-6">
+                  <div className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
+                    <div className="space-y-2 flex-1">
+                      <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
+                        Rekayasa Perangkat Lunak Desktop & Web
+                      </h3>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
+                        Pengembangan GUI desktop native dengan Python PyQt6 berbasis multithreading QThread (menjamin antarmuka tetap responsif tanpa freeze), aplikasi lintas-platform berbasis Electron.js, serta pengembangan antarmuka web modern dengan Next.js, React 19, TypeScript, Tailwind CSS, dan Vite.
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {['PyQt6 (QThread)', 'Python 3.11', 'Electron.js', 'React 19', 'Next.js', 'TypeScript', 'Tailwind CSS'].map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/60">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="py-6">
+                  <div className="flex items-start gap-3">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
+                    <div className="space-y-2 flex-1">
+                      <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
+                        Sistem Tertanam (Embedded) & IoT
+                      </h3>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
+                        Pemrograman mikrokontroler ESP32 menggunakan C/C++, instrumentasi sensor berat Load Cell dengan ADC 24-bit HX711 (kalibrasi faktor skala matematis), antarmuka modul RFID RC522 (pembacaan UID e-KTP 13.56 MHz), sinkronisasi basis data cloud Firebase Realtime Database, dan kendali aktuator.
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {['ESP32 (C/C++)', 'RFID RC522 (e-KTP)', 'Load Cell & HX711', 'Firebase RTDB', 'I2C / UART', 'Sensor Calibration'].map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/60">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -682,13 +745,20 @@ export default function PortfolioPage() {
                 <div className="pt-6">
                   <div className="flex items-start gap-3">
                     <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
-                    <div className="space-y-1 flex-1">
+                    <div className="space-y-2 flex-1">
                       <h3 className="font-heading font-semibold text-base sm:text-lg text-neutral-900 dark:text-white">
-                        Peralatan Pendukung
+                        Peralatan & Alur Kerja Pengembangan
                       </h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed text-justify">
-                        Git, GitHub, VS Code, Postman, Android Studio, serta kemahiran administrasi data menggunakan paket Microsoft Office.
+                        Kontrol versi Git, GitHub (Releases & CI/CD workflow), VS Code, Android Studio, Postman untuk pengujian API, Vercel deployment, manajemen basis data SQLite/MySQL, dan penyusunan dokumentasi teknis berstandar jurnal ilmiah nasional.
                       </p>
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {['Git & GitHub', 'VS Code', 'Postman', 'Vercel CI/CD', 'SQLite', 'Publikasi Ilmiah'].map((tag) => (
+                          <span key={tag} className="px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/60">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
