@@ -363,6 +363,7 @@ export default function PortfolioPage() {
           name: guestName.trim() || 'Anonim',
           rating: 5,
           comment: guestMessage.trim(),
+          message: guestMessage.trim(),
         }),
       });
 
@@ -383,40 +384,55 @@ export default function PortfolioPage() {
   return (
     <div
       id="top"
-      className="min-h-screen bg-[#0A0A0A] text-zinc-100 antialiased selection:bg-zinc-200 selection:text-zinc-950"
+      className="relative min-h-screen bg-[#0A0A0C] text-zinc-100 antialiased selection:bg-amber-500/25 selection:text-amber-200"
     >
+      {/* Subtle Architectural Dot-Matrix Grid (Bukan Glowing Blobs AI) */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] opacity-25"
+        style={{
+          backgroundImage: 'radial-gradient(#52525b 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+          maskImage:
+            'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+        }}
+      />
+
       {/* NAVBAR */}
-      <header className="sticky top-0 z-50 border-b border-zinc-800/80 bg-[#0A0A0A]/85 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-zinc-800/80 bg-[#0A0A0C]/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a
             href="#top"
-            className="flex items-center gap-2.5 text-base font-semibold tracking-tight text-zinc-100"
+            className="flex items-center gap-2.5 text-base font-semibold tracking-tight text-zinc-100 hover:opacity-90 transition"
           >
-            <span>Edvan Nuriana.</span>
+            <span>
+              Edvan Nuriana<span className="text-amber-500">.</span>
+            </span>
             <span className="rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 font-mono text-[11px] font-normal text-zinc-400">
               Portfolio
             </span>
           </a>
 
           <nav className="hidden items-center gap-7 text-sm text-zinc-400 md:flex">
-            <a href="#about" className="transition hover:text-zinc-100">
+            <a href="#about" className="transition hover:text-amber-400">
               Tentang
             </a>
-            <a href="#projects" className="transition hover:text-zinc-100">
+            <a href="#projects" className="transition hover:text-amber-400">
               Proyek
             </a>
-            <a href="#skills" className="transition hover:text-zinc-100">
+            <a href="#skills" className="transition hover:text-amber-400">
               Keahlian
             </a>
-            <a href="#academic" className="transition hover:text-zinc-100">
+            <a href="#academic" className="transition hover:text-amber-400">
               Akademik
             </a>
-            <a href="#contact" className="transition hover:text-zinc-100">
+            <a href="#contact" className="transition hover:text-amber-400">
               Kontak
             </a>
             <a
               href="#feedback"
-              className="rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-800"
+              className="rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-300 transition hover:border-amber-500/50 hover:bg-amber-500/15"
             >
               Ulasan ↗
             </a>
@@ -435,46 +451,46 @@ export default function PortfolioPage() {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-800 bg-[#0A0A0A]/95 px-6 py-4 space-y-3 text-sm font-medium backdrop-blur-lg">
+          <div className="md:hidden border-b border-zinc-800 bg-[#0A0A0C]/95 px-6 py-4 space-y-3 text-sm font-medium backdrop-blur-lg">
             <a
               href="#about"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-zinc-100 py-1"
+              className="block text-zinc-300 hover:text-amber-400 py-1"
             >
               Tentang
             </a>
             <a
               href="#projects"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-zinc-100 py-1"
+              className="block text-zinc-300 hover:text-amber-400 py-1"
             >
               Proyek & Riset
             </a>
             <a
               href="#skills"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-zinc-100 py-1"
+              className="block text-zinc-300 hover:text-amber-400 py-1"
             >
               Keahlian
             </a>
             <a
               href="#academic"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-zinc-100 py-1"
+              className="block text-zinc-300 hover:text-amber-400 py-1"
             >
               Akademik & Publikasi
             </a>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-zinc-100 py-1"
+              className="block text-zinc-300 hover:text-amber-400 py-1"
             >
               Kontak
             </a>
             <a
               href="#feedback"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-100 font-bold py-1"
+              className="block text-amber-300 font-bold py-1"
             >
               Kirim Ulasan Telegram ↗
             </a>
@@ -489,28 +505,37 @@ export default function PortfolioPage() {
             {/* Left Column */}
             <div className="space-y-6 lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5">
-                <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3 py-1 text-xs text-zinc-300">
+                <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/90 px-3 py-1 text-xs text-zinc-300">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   <span>Sumedang, Indonesia · UNIKOM 2026</span>
                 </div>
-                <span className="rounded-full border border-zinc-800/80 px-3 py-1 font-mono text-xs text-zinc-400">
+                <span className="rounded-full border border-amber-500/25 bg-amber-500/10 px-3 py-1 font-mono text-xs text-amber-300">
                   Software, Applied AI & Embedded Engineer
                 </span>
               </div>
 
               <h1 className="text-4xl font-bold tracking-tight text-zinc-50 sm:text-5xl lg:leading-[1.15]">
-                Merancang perangkat lunak cerdas, visi komputer, dan sistem terdistribusi yang siap pakai.
+                Merancang perangkat lunak cerdas, visi komputer, dan sistem
+                terdistribusi yang siap pakai.
               </h1>
 
               <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-                Saya <strong className="font-medium text-zinc-200">Edvan Nuriana Putra Septia, S.Kom.</strong>, lulusan Sistem Komputer UNIKOM (IPK 3.53). Berfokus mengubah riset algoritma AI dan sistem tertanam (IoT) menjadi aplikasi desktop, web, dan lintas-platform yang cepat, mandiri, serta teruji secara empiris melalui rilis produk dan publikasi jurnal ilmiah nasional.
+                Saya{' '}
+                <strong className="font-medium text-zinc-100">
+                  Edvan Nuriana Putra Septia, S.Kom.
+                </strong>
+                , lulusan Sistem Komputer UNIKOM (IPK 3.53). Berfokus mengubah
+                riset algoritma AI dan sistem tertanam (IoT) menjadi aplikasi
+                desktop, web, dan lintas-platform yang cepat, mandiri, serta
+                teruji secara empiris melalui rilis produk dan publikasi jurnal
+                ilmiah nasional.
               </p>
 
               {/* CTA Group */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="#projects"
-                  className="rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition hover:bg-zinc-300"
+                  className="rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition hover:bg-amber-400"
                 >
                   Eksplorasi Proyek
                 </a>
@@ -518,13 +543,13 @@ export default function PortfolioPage() {
                   href="/cv-edvan.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-800"
+                  className="rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-amber-500/40 hover:text-amber-300"
                 >
                   Unduh CV ↗
                 </a>
                 <a
                   href="mailto:septiaedvan@gmail.com"
-                  className="rounded-lg border border-transparent px-4 py-2.5 text-sm font-medium text-zinc-400 transition hover:text-zinc-100"
+                  className="rounded-lg border border-transparent px-4 py-2.5 text-sm font-medium text-zinc-400 transition hover:text-amber-400"
                 >
                   Kirim Email ↗
                 </a>
@@ -541,7 +566,7 @@ export default function PortfolioPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="font-mono text-2xl font-semibold tabular-nums text-zinc-100">
+                  <p className="font-mono text-2xl font-semibold tabular-nums text-amber-400">
                     05
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
@@ -561,7 +586,7 @@ export default function PortfolioPage() {
 
             {/* Right Column: Profile Card */}
             <div className="lg:col-span-4">
-              <div className="mx-auto max-w-xs rounded-xl border border-zinc-800 bg-zinc-900/40 p-3.5">
+              <div className="mx-auto max-w-xs rounded-xl border border-zinc-800 bg-zinc-900/40 p-3.5 transition hover:border-zinc-700">
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-zinc-900">
                   <Image
                     src="/profile.jpeg"
@@ -572,13 +597,18 @@ export default function PortfolioPage() {
                     priority
                   />
                 </div>
-                <div className="mt-3.5 px-1">
-                  <p className="text-sm font-medium text-zinc-100">
-                    Edvan Nuriana Putra Septia, S.Kom.
-                  </p>
-                  <p className="mt-0.5 font-mono text-xs text-zinc-500">
-                    S1 Sistem Komputer UNIKOM · IPK 3.53
-                  </p>
+                <div className="mt-3.5 flex items-center justify-between px-1">
+                  <div>
+                    <p className="text-sm font-medium text-zinc-100">
+                      Edvan Nuriana Putra Septia, S.Kom.
+                    </p>
+                    <p className="mt-0.5 font-mono text-xs text-zinc-500">
+                      S1 Sistem Komputer UNIKOM
+                    </p>
+                  </div>
+                  <span className="rounded border border-amber-500/25 bg-amber-500/10 px-2 py-0.5 font-mono text-xs font-medium text-amber-300">
+                    3.53
+                  </span>
                 </div>
               </div>
             </div>
@@ -592,18 +622,20 @@ export default function PortfolioPage() {
         >
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
-                01 / Tentang Saya
-              </p>
+              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-amber-500">
+                <span className="h-1.5 w-1.5 bg-amber-500" />
+                <span>01 / Tentang Saya</span>
+              </div>
               <h2 className="mt-3 text-2xl font-semibold leading-snug text-zinc-100 sm:text-3xl">
-                Menjembatani arsitektur perangkat lunak modern dengan komputasi AI dan perangkat keras cerdas.
+                Menjembatani arsitektur perangkat lunak modern dengan komputasi
+                AI dan perangkat keras cerdas.
               </h2>
               <div className="mt-6">
                 <a
                   href="https://www.linkedin.com/in/edvannuriana"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-800"
+                  className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-amber-500/40 hover:text-amber-300"
                 >
                   <span>Profil LinkedIn</span>
                   <span>↗</span>
@@ -613,36 +645,64 @@ export default function PortfolioPage() {
 
             <div className="space-y-5 text-zinc-400 lg:col-span-8">
               <p className="leading-relaxed">
-                Sebagai lulusan S1 Sistem Komputer Universitas Komputer Indonesia (UNIKOM) dengan IPK 3.53, saya memiliki fokus kuat pada pengembangan teknologi <strong className="font-medium text-zinc-200">end-to-end</strong>—mulai dari perancangan logika sistem di level perangkat keras hingga antarmuka aplikasi yang digunakan langsung oleh pengguna akhir. Saya terbiasa membangun solusi dari nol hingga tahap distribusi nyata, baik dalam bentuk aplikasi instalasi mandiri (<code className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-xs text-zinc-300">.exe</code> & lintas-platform) maupun riset yang tervalidasi di jurnal ilmiah nasional.
+                Sebagai lulusan S1 Sistem Komputer Universitas Komputer
+                Indonesia (UNIKOM) dengan IPK 3.53, saya memiliki fokus kuat
+                pada pengembangan teknologi{' '}
+                <strong className="font-medium text-zinc-200">
+                  end-to-end
+                </strong>
+                —mulai dari perancangan logika sistem di level perangkat keras
+                hingga antarmuka aplikasi yang digunakan langsung oleh pengguna
+                akhir. Saya terbiasa membangun solusi dari nol hingga tahap
+                distribusi nyata, baik dalam bentuk aplikasi instalasi mandiri (
+                <code className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-xs text-amber-300">
+                  .exe
+                </code>{' '}
+                & lintas-platform) maupun riset yang tervalidasi di jurnal
+                ilmiah nasional.
               </p>
               <p className="leading-relaxed">
-                Dalam merancang sistem, saya memprioritaskan <strong className="font-medium text-zinc-200">efisiensi sumber daya, kecepatan respons antarmuka, dan keandalan arsitektur</strong>. Pendekatan ini saya terapkan saat mengintegrasikan inferensi LLM dan Speech-to-Text lokal agar berjalan mulus di aplikasi desktop berbasis multithreading, membangun komunikasi peer-to-peer (P2P) lokal berkecepatan tinggi tanpa ketergantungan server, hingga menggabungkan model Computer Vision (YOLOv8 & CNN) dengan mikrokontroler ESP32 untuk otomasi sistem fisik secara real-time.
+                Dalam merancang sistem, saya memprioritaskan{' '}
+                <strong className="font-medium text-zinc-200">
+                  efisiensi sumber daya, kecepatan respons antarmuka, dan
+                  keandalan arsitektur
+                </strong>
+                . Pendekatan ini saya terapkan saat mengintegrasikan inferensi
+                LLM dan Speech-to-Text lokal agar berjalan mulus di aplikasi
+                desktop berbasis multithreading, membangun komunikasi
+                peer-to-peer (P2P) lokal berkecepatan tinggi tanpa ketergantungan
+                server, hingga menggabungkan model Computer Vision (YOLOv8 &
+                CNN) dengan mikrokontroler ESP32 untuk otomasi sistem fisik
+                secara real-time.
               </p>
 
               {/* 3 Engineering Pillars */}
               <div className="grid gap-4 pt-3 sm:grid-cols-3">
                 <div className="rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4">
-                  <p className="font-mono text-xs text-zinc-300">
+                  <p className="font-mono text-xs text-amber-400">
                     01 · Native & Cross-Platform
                   </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
-                    Aplikasi desktop dan web responsif dengan manajemen thread asinkron dan komunikasi real-time.
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
+                    Aplikasi desktop dan web responsif dengan manajemen thread
+                    asinkron dan komunikasi real-time.
                   </p>
                 </div>
                 <div className="rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4">
-                  <p className="font-mono text-xs text-zinc-300">
+                  <p className="font-mono text-xs text-amber-400">
                     02 · Applied AI & Vision
                   </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
-                    Integrasi model LLM GGUF, Faster-Whisper, YOLOv8, dan CNN untuk otomasi media serta verifikasi visual.
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
+                    Integrasi model LLM GGUF, Faster-Whisper, YOLOv8, dan CNN
+                    untuk otomasi media serta verifikasi visual.
                   </p>
                 </div>
                 <div className="rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4">
-                  <p className="font-mono text-xs text-zinc-300">
+                  <p className="font-mono text-xs text-amber-400">
                     03 · Edge IoT & Riset
                   </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-500">
-                    Instrumentasi ESP32, kalibrasi sensor presisi, serta pengujian ilmiah berstandar publikasi jurnal.
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
+                    Instrumentasi ESP32, kalibrasi sensor presisi, serta
+                    pengujian ilmiah berstandar publikasi jurnal.
                   </p>
                 </div>
               </div>
@@ -657,9 +717,10 @@ export default function PortfolioPage() {
         >
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
-                02 / Proyek & Riset
-              </p>
+              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-amber-500">
+                <span className="h-1.5 w-1.5 bg-amber-500" />
+                <span>02 / Proyek & Riset</span>
+              </div>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
                 Proyek yang Saya Kerjakan
               </h2>
@@ -679,7 +740,7 @@ export default function PortfolioPage() {
                   onClick={() => setActiveFilter(tab.id as ProjectCategory)}
                   className={`rounded-lg px-3.5 py-1.5 text-xs font-medium transition ${
                     activeFilter === tab.id
-                      ? 'bg-zinc-100 text-zinc-950'
+                      ? 'border border-amber-500/40 bg-amber-500/15 text-amber-300'
                       : 'border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                   }`}
                 >
@@ -695,7 +756,7 @@ export default function PortfolioPage() {
               {filteredApps.map((app) => (
                 <article
                   key={app.id}
-                  className="group flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition hover:border-zinc-700 hover:bg-zinc-900/60"
+                  className="group flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition hover:border-amber-500/35 hover:bg-zinc-900/60"
                 >
                   <div>
                     <div className="mb-5 flex items-start justify-between gap-4">
@@ -711,7 +772,7 @@ export default function PortfolioPage() {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="rounded border border-zinc-700/80 bg-zinc-800/80 px-2 py-0.5 font-mono text-[11px] text-zinc-300">
+                            <span className="rounded border border-amber-500/25 bg-amber-500/10 px-2 py-0.5 font-mono text-[11px] text-amber-300">
                               {app.badge}
                             </span>
                             <span className="font-mono text-xs text-zinc-500">
@@ -725,7 +786,7 @@ export default function PortfolioPage() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-semibold text-zinc-100">
+                    <h3 className="text-lg font-semibold text-zinc-100 transition group-hover:text-amber-300">
                       {app.title}
                     </h3>
 
@@ -734,7 +795,7 @@ export default function PortfolioPage() {
                     </p>
 
                     {/* Architectural Highlights */}
-                    <ul className="mt-4 space-y-1.5 border-l border-zinc-700 pl-3">
+                    <ul className="mt-4 space-y-1.5 border-l-2 border-amber-500/50 pl-3">
                       {app.highlights.map((item) => (
                         <li key={item} className="text-xs text-zinc-300">
                           {item}
@@ -747,7 +808,7 @@ export default function PortfolioPage() {
                       {app.tech.map((t) => (
                         <span
                           key={t}
-                          className="rounded border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-400"
+                          className="rounded border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-300"
                         >
                           {t}
                         </span>
@@ -760,9 +821,9 @@ export default function PortfolioPage() {
                     <button
                       type="button"
                       onClick={() => setActiveModalProject(app)}
-                      className="text-xs font-medium text-zinc-400 hover:text-zinc-100 hover:underline inline-flex items-center gap-1 transition"
+                      className="text-xs font-medium text-zinc-400 hover:text-amber-400 hover:underline inline-flex items-center gap-1 transition"
                     >
-                      Rincian <ArrowUpRight className="w-3.5 h-3.5" />
+                      Rincian <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
                     </button>
 
                     <div className="flex flex-wrap items-center gap-2">
@@ -774,7 +835,7 @@ export default function PortfolioPage() {
                           rel="noreferrer"
                           className={`rounded-lg px-3.5 py-2 text-xs font-medium transition ${
                             link.primary
-                              ? 'bg-zinc-100 text-zinc-950 hover:bg-zinc-300'
+                              ? 'bg-zinc-100 text-zinc-950 hover:bg-amber-400'
                               : 'border border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100'
                           }`}
                         >
@@ -794,7 +855,7 @@ export default function PortfolioPage() {
               {filteredResearch.map((project) => (
                 <article
                   key={project.id}
-                  className="group flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition hover:border-zinc-700 hover:bg-zinc-900/60"
+                  className="group flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition hover:border-amber-500/35 hover:bg-zinc-900/60"
                 >
                   <div>
                     <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
@@ -808,12 +869,14 @@ export default function PortfolioPage() {
                     </div>
 
                     <div className="p-5">
-                      <div className="flex items-center justify-between gap-2 font-mono text-xs text-zinc-500">
-                        <span>{project.tagline.split('·')[0]}</span>
-                        <span>{project.year}</span>
+                      <div className="flex items-center justify-between gap-2 font-mono text-xs">
+                        <span className="text-amber-400/90">
+                          {project.tagline.split('·')[0]}
+                        </span>
+                        <span className="text-zinc-500">{project.year}</span>
                       </div>
 
-                      <h3 className="mt-2 text-base font-semibold text-zinc-100">
+                      <h3 className="mt-2 text-base font-semibold text-zinc-100 transition group-hover:text-amber-300">
                         {project.title}
                       </h3>
 
@@ -821,7 +884,7 @@ export default function PortfolioPage() {
                         {project.description}
                       </p>
 
-                      <ul className="mt-3.5 space-y-1 border-l border-zinc-700 pl-2.5">
+                      <ul className="mt-3.5 space-y-1 border-l-2 border-amber-500/50 pl-2.5">
                         {project.highlights.map((h) => (
                           <li key={h} className="text-[11px] text-zinc-300">
                             {h}
@@ -847,16 +910,16 @@ export default function PortfolioPage() {
                       <button
                         type="button"
                         onClick={() => setActiveModalProject(project)}
-                        className="text-xs font-medium text-zinc-400 hover:text-zinc-100 hover:underline inline-flex items-center gap-1 transition"
+                        className="text-xs font-medium text-zinc-400 hover:text-amber-400 hover:underline inline-flex items-center gap-1 transition"
                       >
-                        Rincian <ArrowUpRight className="w-3.5 h-3.5" />
+                        Rincian <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
                       </button>
 
                       <a
                         href={project.link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center text-xs font-medium text-zinc-200 transition hover:text-white"
+                        className="inline-flex items-center text-xs font-medium text-amber-400 transition hover:text-amber-300"
                       >
                         {project.link.label}
                       </a>
@@ -874,9 +937,10 @@ export default function PortfolioPage() {
           className="scroll-mt-20 border-t border-zinc-800/80 py-16 md:py-20"
         >
           <div className="mb-10">
-            <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
-              03 / Keahlian Teknis
-            </p>
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-amber-500">
+              <span className="h-1.5 w-1.5 bg-amber-500" />
+              <span>03 / Keahlian Teknis</span>
+            </div>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
               Kompetensi Rekayasa Sistem
             </h2>
@@ -889,7 +953,7 @@ export default function PortfolioPage() {
                 className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition hover:border-zinc-700"
               >
                 <div>
-                  <span className="font-mono text-xs text-zinc-500">
+                  <span className="font-mono text-xs font-medium text-amber-500">
                     {skill.index}
                   </span>
                   <h3 className="mt-1.5 text-base font-semibold text-zinc-100">
@@ -921,9 +985,10 @@ export default function PortfolioPage() {
           className="scroll-mt-20 border-t border-zinc-800/80 py-16 md:py-20"
         >
           <div className="mb-10">
-            <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
-              04 / Akademik & Publikasi
-            </p>
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-amber-500">
+              <span className="h-1.5 w-1.5 bg-amber-500" />
+              <span>04 / Akademik & Publikasi</span>
+            </div>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
               Kualifikasi Akademik & Sertifikasi
             </h2>
@@ -932,21 +997,21 @@ export default function PortfolioPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {/* Pendidikan */}
             <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-              <p className="font-mono text-xs text-zinc-500">2022—2026</p>
+              <p className="font-mono text-xs text-amber-400">2022—2026</p>
               <h3 className="mt-2 text-lg font-semibold text-zinc-100">
                 S1 Sistem Komputer
               </h3>
               <p className="mt-1 text-sm text-zinc-400">
                 Universitas Komputer Indonesia (UNIKOM)
               </p>
-              <p className="mt-4 inline-block rounded border border-zinc-800 bg-zinc-950 px-3 py-1.5 font-mono text-xs text-zinc-200">
+              <p className="mt-4 inline-block rounded border border-amber-500/25 bg-amber-500/10 px-3 py-1.5 font-mono text-xs text-amber-300">
                 IPK: 3,53 / 4,00
               </p>
             </div>
 
             {/* Publikasi Nasional */}
             <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-              <p className="font-mono text-xs text-zinc-500">
+              <p className="font-mono text-xs text-amber-400">
                 Publikasi Nasional
               </p>
               <h3 className="mt-2 text-lg font-semibold text-zinc-100">
@@ -957,7 +1022,7 @@ export default function PortfolioPage() {
                   href="https://doi.org/10.34010/komputika.v15i1.19799"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-300 transition hover:border-zinc-700 hover:text-zinc-100"
+                  className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-300 transition hover:border-amber-500/40 hover:text-amber-300"
                 >
                   <span>Jurnal Komputika (Prediksi Liver)</span>
                   <span>↗</span>
@@ -966,7 +1031,7 @@ export default function PortfolioPage() {
                   href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-300 transition hover:border-zinc-700 hover:text-zinc-100"
+                  className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-300 transition hover:border-amber-500/40 hover:text-amber-300"
                 >
                   <span>Jurnal Biner (POS ESP32)</span>
                   <span>↗</span>
@@ -976,7 +1041,7 @@ export default function PortfolioPage() {
 
             {/* Sertifikasi Resmi */}
             <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-              <p className="font-mono text-xs text-zinc-500">
+              <p className="font-mono text-xs text-amber-400">
                 Sertifikasi Resmi
               </p>
               <h3 className="mt-2 text-lg font-semibold text-zinc-100">
@@ -1003,9 +1068,10 @@ export default function PortfolioPage() {
             {/* Kontak Langsung */}
             <div className="space-y-6 lg:col-span-6">
               <div>
-                <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
-                  05 / Kontak & Ulasan
-                </p>
+                <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-amber-500">
+                  <span className="h-1.5 w-1.5 bg-amber-500" />
+                  <span>05 / Kontak & Ulasan</span>
+                </div>
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
                   Hubungi Saya
                 </h2>
@@ -1026,9 +1092,9 @@ export default function PortfolioPage() {
                   href="https://wa.me/6289630887748"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-zinc-700 hover:bg-zinc-900/70"
+                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-amber-500/40 hover:bg-zinc-900/70"
                 >
-                  <span className="font-mono text-xs text-zinc-500">
+                  <span className="font-mono text-xs text-amber-400">
                     WhatsApp
                   </span>
                   <span className="mt-1 text-sm font-medium text-zinc-100">
@@ -1038,9 +1104,11 @@ export default function PortfolioPage() {
 
                 <a
                   href="mailto:septiaedvan@gmail.com"
-                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-zinc-700 hover:bg-zinc-900/70"
+                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-amber-500/40 hover:bg-zinc-900/70"
                 >
-                  <span className="font-mono text-xs text-zinc-500">Email</span>
+                  <span className="font-mono text-xs text-amber-400">
+                    Email
+                  </span>
                   <span className="mt-1 truncate text-sm font-medium text-zinc-100">
                     septiaedvan@gmail.com
                   </span>
@@ -1050,7 +1118,7 @@ export default function PortfolioPage() {
                   href="https://github.com/EdvanVPRoject"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-zinc-700 hover:bg-zinc-900/70"
+                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-amber-500/40 hover:bg-zinc-900/70"
                 >
                   <span className="font-mono text-xs text-zinc-500">
                     GitHub
@@ -1064,7 +1132,7 @@ export default function PortfolioPage() {
                   href="https://linkedin.com/in/edvannuriana"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-zinc-700 hover:bg-zinc-900/70"
+                  className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition hover:border-amber-500/40 hover:bg-zinc-900/70"
                 >
                   <span className="font-mono text-xs text-zinc-500">
                     LinkedIn
@@ -1079,7 +1147,7 @@ export default function PortfolioPage() {
             {/* Buku Tamu & Feedback */}
             <div id="feedback" className="scroll-mt-24 lg:col-span-6">
               <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 sm:p-8">
-                <p className="font-mono text-xs uppercase tracking-wider text-zinc-500">
+                <p className="font-mono text-xs uppercase tracking-wider text-amber-500">
                   Buku Tamu & Feedback
                 </p>
                 <h3 className="mt-1.5 text-lg font-semibold text-zinc-100">
@@ -1107,7 +1175,7 @@ export default function PortfolioPage() {
                       value={guestName}
                       onChange={(e) => setGuestName(e.target.value)}
                       placeholder="Contoh: Budi — Tech Lead di PT XYZ"
-                      className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-zinc-500"
+                      className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-amber-500/60"
                     />
                   </div>
 
@@ -1125,14 +1193,14 @@ export default function PortfolioPage() {
                       value={guestMessage}
                       onChange={(e) => setGuestMessage(e.target.value)}
                       placeholder="Tulis kesan, masukan, atau ajakan diskusi proyek..."
-                      className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-zinc-500"
+                      className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-amber-500/60"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-lg bg-zinc-100 px-5 py-2.5 text-xs font-semibold text-zinc-950 transition hover:bg-zinc-300 disabled:opacity-50"
+                    className="w-full rounded-lg bg-zinc-100 px-5 py-2.5 text-xs font-semibold text-zinc-950 transition hover:bg-amber-400 disabled:opacity-50"
                   >
                     {isSubmitting
                       ? 'Mengirim ke Telegram...'
@@ -1140,7 +1208,7 @@ export default function PortfolioPage() {
                   </button>
 
                   {submitStatus === 'success' && (
-                    <p className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-center text-xs text-zinc-200">
+                    <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center text-xs text-amber-300">
                       Terima kasih! Pesan Anda telah diteruskan ke Telegram saya.
                     </p>
                   )}
@@ -1157,12 +1225,12 @@ export default function PortfolioPage() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-zinc-800/80 bg-[#0A0A0A] py-8">
+      <footer className="border-t border-zinc-800/80 bg-[#0A0A0C] py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-xs text-zinc-500 sm:flex-row">
           <p>© 2026 Edvan Nuriana Putra Septia · Portofolio Pribadi</p>
           <a
             href="#top"
-            className="font-medium text-zinc-400 transition hover:text-zinc-100"
+            className="font-medium text-zinc-400 transition hover:text-amber-400"
           >
             Kembali ke atas ↑
           </a>
@@ -1178,7 +1246,7 @@ export default function PortfolioPage() {
           onClick={() => setActiveModalProject(null)}
         >
           <div
-            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-zinc-800 bg-[#0E0E10] p-6 sm:p-8 shadow-2xl text-left"
+            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-zinc-800 bg-[#0E0E11] p-6 sm:p-8 shadow-2xl text-left"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -1191,7 +1259,7 @@ export default function PortfolioPage() {
 
             <div className="space-y-4">
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-zinc-500">
+                <span className="font-mono text-xs uppercase tracking-wider text-amber-500">
                   {activeModalProject.modalDetails?.kicker || 'Dokumentasi Teknis'}
                 </span>
                 <h3 className="font-heading text-xl sm:text-2xl font-semibold text-zinc-100 mt-1">
@@ -1211,7 +1279,7 @@ export default function PortfolioPage() {
                   <ul className="space-y-2 text-xs text-zinc-300">
                     {activeModalProject.modalDetails.bullets.map((bullet, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
-                        <span className="text-zinc-500 font-mono text-[11px] mt-0.5">•</span>
+                        <span className="text-amber-400 font-mono text-[11px] mt-0.5">•</span>
                         <span className="leading-relaxed text-justify">{bullet}</span>
                       </li>
                     ))}
@@ -1220,8 +1288,8 @@ export default function PortfolioPage() {
               )}
 
               {activeModalProject.modalDetails?.results && (
-                <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4 text-xs text-zinc-300 leading-relaxed">
-                  <span className="font-medium text-zinc-100 block mb-1">
+                <div className="rounded-lg border border-amber-500/25 bg-amber-500/10 p-4 text-xs text-amber-200 leading-relaxed">
+                  <span className="font-medium text-amber-300 block mb-1">
                     Hasil & Capaian Kinerja:
                   </span>
                   {activeModalProject.modalDetails.results}
@@ -1252,7 +1320,7 @@ export default function PortfolioPage() {
                         rel="noreferrer"
                         className={`px-4 py-2 rounded-lg text-xs font-medium transition ${
                           link.primary
-                            ? 'bg-zinc-100 text-zinc-950 hover:bg-zinc-300'
+                            ? 'bg-zinc-100 text-zinc-950 hover:bg-amber-400'
                             : 'border border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100'
                         }`}
                       >
@@ -1264,7 +1332,7 @@ export default function PortfolioPage() {
                       href={activeModalProject.link.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="px-4 py-2 rounded-lg text-xs font-medium bg-zinc-100 text-zinc-950 hover:bg-zinc-300 transition"
+                      className="px-4 py-2 rounded-lg text-xs font-medium bg-zinc-100 text-zinc-950 hover:bg-amber-400 transition"
                     >
                       {activeModalProject.link.label}
                     </a>

@@ -36,7 +36,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth dark`}
     >
-      <body className="font-sans antialiased bg-[#0A0A0A] text-zinc-100 min-h-screen selection:bg-zinc-200 selection:text-zinc-950">
+      <body className="font-sans antialiased bg-[#0A0A0C] text-zinc-100 min-h-screen selection:bg-amber-500/25 selection:text-amber-200">
         {children}
       </body>
     </html>
