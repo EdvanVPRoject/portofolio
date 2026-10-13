@@ -11,11 +11,15 @@ function escapeHtml(text: string): string {
 
 export async function POST(request: Request) {
   try {
-    const { name, rating, comment } = await request.json();
+    const body = await request.json();
+    const commentText = body.comment || body.message;
 
-    if (!comment || typeof comment !== 'string' || comment.trim().length === 0) {
-      return NextResponse.json({ error: 'Komentar wajib diisi.' }, { status: 400 });
+    if (!commentText || typeof commentText !== 'string' || commentText.trim().length === 0) {
+      return NextResponse.json({ error: 'Komentar atau pesan wajib diisi.' }, { status: 400 });
     }
+
+    const { name, rating } = body;
+    const comment = commentText;
 
     const ratingNum = Number(rating) || 5;
     const cleanRating = Math.max(1, Math.min(5, ratingNum));
