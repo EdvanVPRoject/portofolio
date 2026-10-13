@@ -34,26 +34,9 @@ export default function RootLayout({
     <html
       lang="id"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth dark`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                var saved = localStorage.getItem('portfolio-theme');
-                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (saved === 'dark' || (!saved && prefersDark)) {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
-      <body className="font-sans antialiased bg-[#faf9f6] text-neutral-900 dark:bg-[#0c0c0e] dark:text-neutral-100 min-h-screen selection:bg-blue-600 selection:text-white transition-colors duration-200">
+      <body className="font-sans antialiased bg-[#090D16] text-slate-100 min-h-screen selection:bg-cyan-500/30 selection:text-cyan-200">
         {children}
       </body>
     </html>
