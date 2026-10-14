@@ -1,0 +1,12 @@
+[
+  {
+    "id": "2026-10-14-optimasi-inferensi-llm-gguf",
+    "title": "Mengoptimasi Inferensi LLM Lokal dengan Kuantisasi GGUF dan Multithreading PyQt6",
+    "category": "Applied AI & Desktop Engineering",
+    "date": "2026-10-14",
+    "slug": "2026-10-14-optimasi-inferensi-llm-gguf",
+    "summary": "Teknik kuantisasi 4-bit Q4_K_M pada model Qwen-2.5 dan arsitektur QThread untuk mencegah GUI freeze pada aplikasi desktop AI mandiri.",
+    "tags": ["LLM", "GGUF", "llama-cpp", "PyQt6", "QThread", "Optimization"],
+    "file": "2026-10-14-optimasi-inferensi-llm-gguf.md"
+  }
+]
