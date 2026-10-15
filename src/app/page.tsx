@@ -1,8 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+
+const NAV_ITEMS = [
+  { id: 'about', label: 'Tentang' },
+  { id: 'projects', label: 'Proyek' },
+  { id: 'skills', label: 'Keahlian' },
+  { id: 'academic', label: 'Akademik' },
+  { id: 'contact', label: 'Kontak' },
+];
 
 type ProjectCategory = 'all' | 'software' | 'iot-cv' | 'publication';
 
@@ -384,6 +392,26 @@ export default function PortfolioPage() {
   const [activeModalProject, setActiveModalProject] = useState<
     FeaturedApp | ResearchProject | null
   >(null);
+  const [activeSection, setActiveSection] = useState<string>('about');
+
+  useEffect(() => {
+    const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 220;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPosition) {
+          setActiveSection(id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const [guestName, setGuestName] = useState('');
   const [guestMessage, setGuestMessage] = useState('');
@@ -464,25 +492,35 @@ export default function PortfolioPage() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-7 text-sm text-zinc-400 md:flex">
-            <a href="#about" className="transition hover:text-emerald-400">
-              Tentang
-            </a>
-            <a href="#projects" className="transition hover:text-emerald-400">
-              Proyek
-            </a>
-            <a href="#skills" className="transition hover:text-emerald-400">
-              Keahlian
-            </a>
-            <a href="#academic" className="transition hover:text-emerald-400">
-              Akademik
-            </a>
-            <a href="#contact" className="transition hover:text-emerald-400">
-              Kontak
-            </a>
+          <nav className="hidden items-center gap-1.5 text-xs font-medium md:flex">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={() => setActiveSection(item.id)}
+                  className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-all ${
+                    isActive
+                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 font-semibold shadow-sm shadow-emerald-950/40'
+                      : 'border border-transparent text-zinc-400 hover:border-zinc-800 hover:bg-zinc-900/60 hover:text-zinc-200'
+                  }`}
+                >
+                  {isActive && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  )}
+                  {item.label}
+                </a>
+              );
+            })}
             <a
               href="#feedback"
-              className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-300 transition hover:border-emerald-500/50 hover:bg-emerald-500/15"
+              onClick={() => setActiveSection('feedback')}
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+                activeSection === 'feedback'
+                  ? 'border border-emerald-400 bg-emerald-500/25 text-emerald-200 font-semibold shadow-sm shadow-emerald-950/40'
+                  : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:border-emerald-500/50 hover:bg-emerald-500/15'
+              }`}
             >
               Ulasan ↗
             </a>
@@ -501,46 +539,41 @@ export default function PortfolioPage() {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-800 bg-[#0A0A0C]/95 px-6 py-4 space-y-3 text-sm font-medium backdrop-blur-lg">
-            <a
-              href="#about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-emerald-400 py-1"
-            >
-              Tentang
-            </a>
-            <a
-              href="#projects"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-emerald-400 py-1"
-            >
-              Proyek & Riset
-            </a>
-            <a
-              href="#skills"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-emerald-400 py-1"
-            >
-              Keahlian
-            </a>
-            <a
-              href="#academic"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-emerald-400 py-1"
-            >
-              Akademik & Publikasi
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-300 hover:text-emerald-400 py-1"
-            >
-              Kontak
-            </a>
+          <div className="md:hidden border-b border-zinc-800 bg-[#0A0A0C]/95 px-6 py-4 space-y-2 text-sm font-medium backdrop-blur-lg">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={() => {
+                    setActiveSection(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center gap-2 rounded-lg px-3 py-2 transition ${
+                    isActive
+                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 font-semibold'
+                      : 'border border-transparent text-zinc-300 hover:text-emerald-300'
+                  }`}
+                >
+                  {isActive && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  )}
+                  {item.label}
+                </a>
+              );
+            })}
             <a
               href="#feedback"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-emerald-300 font-bold py-1"
+              onClick={() => {
+                setActiveSection('feedback');
+                setMobileMenuOpen(false);
+              }}
+              className={`block rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                activeSection === 'feedback'
+                  ? 'border border-emerald-400 bg-emerald-500/25 text-emerald-200'
+                  : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+              }`}
             >
               Kirim Ulasan Telegram ↗
             </a>
@@ -673,7 +706,7 @@ export default function PortfolioPage() {
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-                <span className="h-1.5 w-1.5 bg-emerald-500" />
+                <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'about' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
                 <span>01 / Tentang Saya</span>
               </div>
               <h2 className="mt-3 text-2xl font-semibold leading-snug text-zinc-100 sm:text-3xl">
@@ -768,7 +801,7 @@ export default function PortfolioPage() {
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-                <span className="h-1.5 w-1.5 bg-emerald-500" />
+                <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'projects' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
                 <span>02 / Proyek & Riset</span>
               </div>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
@@ -988,7 +1021,7 @@ export default function PortfolioPage() {
         >
           <div className="mb-10">
             <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-              <span className="h-1.5 w-1.5 bg-emerald-500" />
+              <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'skills' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
               <span>03 / Keahlian Teknis</span>
             </div>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
@@ -1036,7 +1069,7 @@ export default function PortfolioPage() {
         >
           <div className="mb-10">
             <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-              <span className="h-1.5 w-1.5 bg-emerald-500" />
+              <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'academic' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
               <span>04 / Akademik & Publikasi</span>
             </div>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
@@ -1119,7 +1152,7 @@ export default function PortfolioPage() {
             <div className="space-y-6 lg:col-span-6">
               <div>
                 <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-                  <span className="h-1.5 w-1.5 bg-emerald-500" />
+                  <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'contact' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
                   <span>05 / Kontak & Ulasan</span>
                 </div>
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
