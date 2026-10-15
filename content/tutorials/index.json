@@ -1,5 +1,15 @@
 [
   {
+    "id": "2026-10-15-realtime-computer-vision-webrtc-aiortc",
+    "title": "Implementasi Edge Computer Vision Real-Time Menggunakan WebRTC (aiortc) dan OpenCV",
+    "category": "Computer Vision & Edge Engineering",
+    "date": "2026-10-15",
+    "slug": "2026-10-15-realtime-computer-vision-webrtc-aiortc",
+    "summary": "Arsitektur transmisi video sub-detik untuk inferensi Computer Vision berbasis edge menggunakan aiortc dan OpenCV, mengatasi kendala bottleneck buffer pada protokol RTSP tradisional.",
+    "tags": ["Computer Vision", "WebRTC", "aiortc", "OpenCV", "Edge AI", "Python"],
+    "file": "2026-10-15-realtime-computer-vision-webrtc-aiortc.md"
+  },
+  {
     "id": "2026-10-14-optimasi-inferensi-llm-gguf",
     "title": "Mengoptimasi Inferensi LLM Lokal dengan Kuantisasi GGUF dan Multithreading PyQt6",
     "category": "Applied AI & Desktop Engineering",
