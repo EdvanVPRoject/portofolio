@@ -4,9 +4,9 @@
       <stop offset="0%" stop-color="#10b981"/>
       <stop offset="100%" stop-color="#047857"/>
     </linearGradient>
-    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
+    <linearGradient id="mintGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
     </linearGradient>
   </defs>
   <!-- Base Background -->
@@ -29,6 +29,6 @@
         stroke="url(#hubGrad)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- Pulse indicator dot -->
-  <circle cx="350" cy="165" r="16" fill="url(#amberGrad)"/>
-  <circle cx="350" cy="165" r="24" fill="none" stroke="#f59e0b" stroke-width="4" opacity="0.5"/>
+  <circle cx="350" cy="165" r="16" fill="url(#mintGrad)"/>
+  <circle cx="350" cy="165" r="24" fill="none" stroke="#10b981" stroke-width="4" opacity="0.5"/>
 </svg>
