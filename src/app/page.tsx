@@ -140,6 +140,56 @@ const FEATURED_APPS: FeaturedApp[] = [
         'Mencapai kecepatan transfer mendekati batas fisik throughput Wi-Fi lokal tanpa konsumsi kuota internet.',
     },
   },
+  {
+    id: 'eninformasi',
+    title: 'EnInformasi Hub — Portal Wawasan AI, Komputasi & Tutorial Praktis',
+    tagline: 'Platform Edukasi & Publikasi Web · Bilingual ID/EN',
+    year: '2026',
+    badge: 'Next.js & Cloudflare',
+    category: ['software'],
+    image: '/eninformasi-icon.svg',
+    description:
+      'Platform web modern yang menyajikan 150 katalog terkurasi, terbagi atas 65 tutorial praktis hands-on dan 85 analisis mendalam tren AI & teknologi komputasi. Dilengkapi dual segmented language switcher real-time (100% ID & EN tanpa refresh), interactive reading progress bar, scrollspy table of contents, serta practice checklist dengan status tersimpan otomatis.',
+    highlights: [
+      '150 Katalog Terstruktur (65 Hands-on Guide & 85 Deep-Dive Trends)',
+      'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
+    ],
+    tech: [
+      'Next.js 15',
+      'TypeScript',
+      'Tailwind CSS',
+      'OpenNext',
+      'Cloudflare Pages',
+      'Lucide React',
+    ],
+    links: [
+      {
+        label: 'Kunjungi Website ↗',
+        url: 'https://github.com/EdvanVPRoject/eninformasi-hub',
+        primary: true,
+      },
+      {
+        label: 'GitHub ↗',
+        url: 'https://github.com/EdvanVPRoject/eninformasi-hub',
+        primary: false,
+      },
+    ],
+    modalDetails: {
+      kicker: 'Platform Web & Portal Teknologi · 2026',
+      summary:
+        'Platform web modern yang memisahkan secara tegas antara Tutorial Praktis (Hands-on Guide) dan EnInformasi (Deep-Dive Insight & Trends), dirancang dengan fokus pada kecepatan akses, tipografi editorial yang nyaman dibaca, dan modularitas konten bilingual penuh.',
+      bullets: [
+        'Katalog Konten Terkurasi: Memuat 150 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
+        'Sistem Bilingual Real-Time: Switcher bahasa terisolasi yang mengalihkan 100% judul, ringkasan, teks artikel, dan daftar isi secara instan tanpa re-render halaman penuh.',
+        'Interactive Practice Checklist: Fitur pencatatan progres praktik pengguna langsung di browser berbasis sessionStorage per artikel dengan tombol reset instan.',
+        'Smart Viewport Scrollspy: Navigasi daftar isi aktif yang melacak posisi pembacaan secara real-time pada desktop dan mobile.',
+        'Arsitektur Edge Delivery: Dibangun dengan Next.js App Router dan dioptimasi via OpenNext untuk deployment edge berlatensi rendah pada Cloudflare Pages.',
+      ],
+      results:
+        'Menyediakan platform dokumentasi dan tutorial komputasi berperforma tinggi dengan skor Core Web Vitals optimal dan pengalaman pengguna interaktif.',
+      note: 'Source code dan dokumentasi arsitektur dapat diakses publik pada repositori GitHub.',
+    },
+  },
 ];
 
 const RESEARCH_PROJECTS: ResearchProject[] = [
@@ -567,7 +617,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <p className="font-mono text-2xl font-semibold tabular-nums text-amber-400">
-                    05
+                    06
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
                     Dokumentasi Proyek Lengkap
@@ -729,8 +779,8 @@ export default function PortfolioPage() {
             {/* Category Filter Buttons */}
             <div className="flex flex-wrap gap-2">
               {[
-                { id: 'all', label: 'Semua (5)' },
-                { id: 'software', label: 'Aplikasi & AI (2)' },
+                { id: 'all', label: 'Semua (6)' },
+                { id: 'software', label: 'Aplikasi & AI (3)' },
                 { id: 'iot-cv', label: 'IoT & Visi Komputer (2)' },
                 { id: 'publication', label: 'Jurnal Ilmiah (2)' },
               ].map((tab) => (
@@ -752,7 +802,7 @@ export default function PortfolioPage() {
 
           {/* Bento Row 1: Featured Software Applications */}
           {filteredApps.length > 0 && (
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 lg:grid-cols-3 md:grid-cols-2">
               {filteredApps.map((app) => (
                 <article
                   key={app.id}

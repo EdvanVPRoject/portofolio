@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="hubGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Base Background -->
+  <rect width="512" height="512" rx="128" fill="#09090b"/>
+  <rect x="40" y="40" width="432" height="432" rx="96" fill="#141416" stroke="#27272a" stroke-width="6"/>
+
+  <!-- Portal / Knowledge Hub Emblem -->
+  <!-- Outer Orbit Rings -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#27272a" stroke-width="8" stroke-dasharray="16 12"/>
+  
+  <!-- Stylized Monogram Box -->
+  <rect x="136" y="136" width="240" height="240" rx="48" fill="#18181b" stroke="#3f3f46" stroke-width="6"/>
+  
+  <!-- "E" Letter -->
+  <path d="M 195 200 L 235 200 M 195 256 L 225 256 M 195 312 L 235 312 M 195 200 L 195 312" 
+        stroke="#f4f4f5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+        
+  <!-- "N" Letter with Emerald Accent -->
+  <path d="M 275 312 L 275 200 L 325 312 L 325 200" 
+        stroke="url(#hubGrad)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Pulse indicator dot -->
+  <circle cx="350" cy="165" r="16" fill="url(#amberGrad)"/>
+  <circle cx="350" cy="165" r="24" fill="none" stroke="#f59e0b" stroke-width="4" opacity="0.5"/>
+</svg>
