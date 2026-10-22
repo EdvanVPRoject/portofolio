@@ -249,6 +249,44 @@ const FEATURED_APPS: FeaturedApp[] = [
       note: 'Website live dapat dicoba di doclens-pdf.vercel.app dan kode sumber tersedia terbuka di GitHub.',
     },
   },
+  {
+    id: 'enlife',
+    title: 'ENLife — All-in-One Daily Life & Productivity Hub',
+    tagline: 'Mobile & Desktop App · Flutter Offline-First',
+    year: '2026',
+    badge: 'Flutter & Dart',
+    category: ['software'],
+    image: '/enlife-icon.svg',
+    description:
+      'Aplikasi asisten produktivitas dan utilitas sehari-hari terlengkap berbasis Flutter (Dart Native) dengan tema Tactile Obsidian dan arsitektur 100% Offline-First. Mengintegrasikan 4 modul inti: Smart Expense Tracker & visualisasi anggaran fl_chart, Habit Tracker dengan penghitung streak & timer fokus Pomodoro, Brankas ID/Dokumen terenkripsi lokal dengan deteksi masa kedaluwarsa kartu, serta utilitas kalkulator Split Bill dan diskon belanja.',
+    highlights: [
+      'Arsitektur 100% Offline-First & Privasi Total (Zero-Cloud Storage)',
+      '4 Modul Esensial (Keuangan, Habit/Pomodoro, ID Vault, Quick Tools)',
+    ],
+    tech: ['Flutter', 'Dart', 'Provider', 'fl_chart', 'SharedPreferences', 'Material 3'],
+    links: [
+      {
+        label: 'GitHub ↗',
+        url: 'https://github.com/EdvanVPRoject/ENLife',
+        primary: true,
+      },
+    ],
+    modalDetails: {
+      kicker: 'Aplikasi Mobile & Desktop · 2026',
+      summary:
+        'Aplikasi asisten produktivitas dan manajemen kehidupan sehari-hari yang dikembangkan secara native dengan Flutter. Beroperasi sepenuhnya secara offline (local persistence) untuk menjamin kecepatan respons instan dan privasi data mutlak tanpa dependensi server pihak ketiga.',
+      bullets: [
+        'Smart Expense & Budgeting: Pencatatan kilat pemasukan dan pengeluaran dalam format Rupiah (Rp) dilengkapi grafik pai dinamis (fl_chart) berdasarkan kategori pengeluaran.',
+        'Habit Tracker & Pomodoro Timer: Sistem pelacak kebiasaan harian dengan streak counter berturut-turut, manajemen to-do list berprioritas, serta timer siklus fokus Pomodoro 25/5 menit.',
+        'Brankas Identitas & Dokumen (ID Vault): Penyimpanan nomor identitas penting (KTP, SIM, Rekening, BPJS) secara terenkripsi lokal dengan fitur salin 1-klik dan peringatan visual saat masa berlaku mendekati 30 hari.',
+        'Utilitas Cepat Sehari-hari: Kalkulator Split Bill presisi per orang beserta pajak/service fee, dan kalkulator diskon belanja instan.',
+        'Desain Tactile Obsidian: UI modern bernuansa gelap ergonomis (#0B0D11, #12151C) dengan aksen warna mikro semantik untuk kenyamanan penggunaan jangka panjang.',
+      ],
+      results:
+        'Menghadirkan ekosistem produktivitas personal terintegrasi yang ultra-ringan, responsif, dan bebas kuota internet dengan waktu muat 0 detik.',
+      note: 'Kode sumber lengkap dan panduan kompilasi multiplatform (Android/Windows/Web) tersedia di GitHub.',
+    },
+  },
 ];
 
 const RESEARCH_PROJECTS: ResearchProject[] = [
@@ -701,7 +739,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <p className="font-mono text-2xl font-semibold tabular-nums text-emerald-400">
-                    07
+                    08
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
                     Dokumentasi Proyek Lengkap

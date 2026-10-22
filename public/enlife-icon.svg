@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12151C"/>
+      <stop offset="100%" stop-color="#0B0D11"/>
+    </linearGradient>
+
+    <!-- Amber Glow Gradient for Energy & Daily Focus -->
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+
+    <!-- Emerald Glow Gradient for Finance & Growth -->
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+
+    <!-- Sky Glow Gradient for Vault & Tools -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0B0D11" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer Rounded Squircle with Tactile Border -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="#171B24" fill-opacity="0.6" stroke="#222631" stroke-width="4"/>
+
+  <!-- Subtle Radial Ambient Glow -->
+  <circle cx="256" cy="256" r="180" fill="url(#centerGlow)"/>
+
+  <!-- Modern Dynamic Geometric Life/Productivity Emblem -->
+  <!-- Left Wing: Finance & Habits (Ascending Emerald Bar) -->
+  <path d="M150 340 V200 C150 177.9 167.9 160 190 160 H200 C211 160 220 169 220 180 V340 C220 351 211 360 200 360 H170 C158.9 360 150 351 150 340 Z" fill="url(#emeraldGrad)"/>
+
+  <!-- Center-Right: Tactile Obsidian 'L' & Lightning Spark (Focus & Vitality) -->
+  <path d="M256 120 L310 220 H260 L290 320 L210 240 H250 Z" fill="url(#amberGrad)"/>
+
+  <!-- Right Arc: Vault & Shield Arc (Privacy & Security) -->
+  <path d="M300 360 H340 C356.5 360 370 346.5 370 330 V220 C370 209 361 200 350 200 H330 C319 200 310 209 310 220 V330 C310 346.5 305.5 360 300 360 Z" fill="url(#skyGrad)"/>
+
+  <!-- Pulse Status Ring Dots -->
+  <circle cx="256" cy="380" r="10" fill="#F59E0B"/>
+  <circle cx="256" cy="380" r="18" fill="none" stroke="#F59E0B" stroke-width="3" opacity="0.4"/>
+</svg>
