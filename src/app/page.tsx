@@ -198,6 +198,57 @@ const FEATURED_APPS: FeaturedApp[] = [
       note: 'Source code dan dokumentasi arsitektur dapat diakses publik pada repositori GitHub.',
     },
   },
+  {
+    id: 'endoclens-pdf',
+    title: 'ENDocLens-PDF — Perangkat Dokumen, Scanner OCR & AI Copilot',
+    tagline: 'Client-Side Web Suite · 16 Modul PDF & Tooling Dokumen',
+    year: '2026',
+    badge: 'Web Suite & OCR',
+    category: ['software'],
+    image: '/endoclens-icon.svg',
+    description:
+      'Perangkat produktivitas dokumen dan PDF terlengkap berbasis 100% client-side yang beroperasi murni di browser tanpa upload ke server. Dilengkapi 16 modul alat: scanner dokumen berteknologi perspective warp setara Microsoft Lens, optical character recognition (Tesseract.js), compiler multi-halaman (A4/F4/Letter), enkripsi dokumen, konversi format, serta asisten AI Copilot cerdas.',
+    highlights: [
+      '16 Modul Produktivitas Dokumen & 100% Client-Side Privacy',
+      'Auto-Perspective Warp (Setara M365 Lens) & OCR Tesseract.js',
+    ],
+    tech: [
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS 4',
+      'Vite 8',
+      'pdf-lib',
+      'Tesseract.js',
+      'jsPDF',
+    ],
+    links: [
+      {
+        label: 'Kunjungi Website ↗',
+        url: 'https://doclens-pdf.vercel.app',
+        primary: true,
+      },
+      {
+        label: 'GitHub ↗',
+        url: 'https://github.com/EdvanVPRoject/ENDocLens-PDF',
+        primary: false,
+      },
+    ],
+    modalDetails: {
+      kicker: 'Web Productivity Suite · 2026',
+      summary:
+        'Aplikasi web produktivitas dokumen modern yang mengintegrasikan 16 modul pemrosesan PDF dan berkas secara komprehensif. Seluruh komputasi pemindaian, manipulasi dokumen, ekstraksi OCR, dan enkripsi dieksekusi murni di sisi klien (client-side di browser) sehingga menjamin privasi dokumen sensitif tanpa ketergantungan server perantara.',
+      bullets: [
+        'Scanner Dokumen Tingkat Lanjut: Algoritma deteksi sudut otomatis (corner detection) dan perspective warp yang meluruskan foto miring, dilengkapi filter Magic Color untuk menghilangkan bayangan dan memutihkan latar belakang kertas.',
+        '16 Modul Terpadu: Menggabungkan merge/split PDF, kompresi, enkripsi sandi, watermarking, konversi PDF ke gambar/Word, ekstraksi halaman, hingga penandatanganan digital.',
+        'OCR & AI Copilot di Browser: Ekstraksi teks dari gambar pindaian menggunakan Tesseract.js secara offline di browser serta integrasi bantuan ringkasan dokumen cerdas.',
+        'Compiler Multi-Halaman Fleksibel: Mendukung ukuran standar Indonesia (F4/Folio) dan internasional (A4, Letter) dengan kontrol margin, DPI cetak presisi, dan drag-and-drop reordering.',
+        'Zero Server Upload: Seluruh proses perenderan menggunakan pdf-lib, pdfjs-dist, dan canvas native menjamin kecepatan instan tanpa latensi jaringan dan bebas risiko kebocoran data.',
+      ],
+      results:
+        'Mampu memproses pemindaian multi-halaman dan kompilasi dokumen PDF beresolusi tinggi dalam hitungan detik langsung di browser tanpa batas ukuran server.',
+      note: 'Website live dapat dicoba di doclens-pdf.vercel.app dan kode sumber tersedia terbuka di GitHub.',
+    },
+  },
 ];
 
 const RESEARCH_PROJECTS: ResearchProject[] = [
@@ -650,7 +701,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <p className="font-mono text-2xl font-semibold tabular-nums text-emerald-400">
-                    06
+                    07
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
                     Dokumentasi Proyek Lengkap
@@ -812,8 +863,8 @@ export default function PortfolioPage() {
             {/* Category Filter Buttons */}
             <div className="flex flex-wrap gap-2">
               {[
-                { id: 'all', label: 'Semua (6)' },
-                { id: 'software', label: 'Aplikasi & AI (3)' },
+                { id: 'all', label: 'Semua (7)' },
+                { id: 'software', label: 'Aplikasi & AI (4)' },
                 { id: 'iot-cv', label: 'IoT & Visi Komputer (2)' },
                 { id: 'publication', label: 'Jurnal Ilmiah (2)' },
               ].map((tab) => (
@@ -835,7 +886,7 @@ export default function PortfolioPage() {
 
           {/* Bento Row 1: Featured Software Applications */}
           {filteredApps.length > 0 && (
-            <div className="grid gap-6 lg:grid-cols-3 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2">
               {filteredApps.map((app) => (
                 <article
                   key={app.id}
