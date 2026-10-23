@@ -157,9 +157,9 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/eninformasi-icon.svg',
     description:
-      'Platform web modern yang menyajikan 174 katalog terkurasi, terbagi atas 65 tutorial praktis hands-on dan 109 analisis mendalam tren AI & teknologi komputasi. Dilengkapi dual segmented language switcher real-time (100% ID & EN tanpa refresh), interactive reading progress bar, scrollspy table of contents, serta practice checklist dengan status tersimpan otomatis.',
+      'Platform web modern yang menyajikan 177 katalog terkurasi, terbagi atas 65 tutorial praktis hands-on dan 112 analisis mendalam tren AI & teknologi komputasi. Dilengkapi dual segmented language switcher real-time (100% ID & EN tanpa refresh), interactive reading progress bar, scrollspy table of contents, serta practice checklist dengan status tersimpan otomatis.',
     highlights: [
-      '174 Katalog Terstruktur (65 Hands-on Guide & 109 Deep-Dive Trends)',
+      '177 Katalog Terstruktur (65 Hands-on Guide & 112 Deep-Dive Trends)',
       'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
     ],
     tech: [
@@ -187,7 +187,7 @@ const FEATURED_APPS: FeaturedApp[] = [
       summary:
         'Platform web modern yang memisahkan secara tegas antara Tutorial Praktis (Hands-on Guide) dan EnInformasi (Deep-Dive Insight & Trends), dirancang dengan fokus pada kecepatan akses, tipografi editorial yang nyaman dibaca, dan modularitas konten bilingual penuh.',
       bullets: [
-        'Katalog Konten Terkurasi: Memuat 174 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
+        'Katalog Konten Terkurasi: Memuat 177 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
         'Sistem Bilingual Real-Time: Switcher bahasa terisolasi yang mengalihkan 100% judul, ringkasan, teks artikel, dan daftar isi secara instan tanpa re-render halaman penuh.',
         'Interactive Practice Checklist: Fitur pencatatan progres praktik pengguna langsung di browser berbasis sessionStorage per artikel dengan tombol reset instan.',
         'Smart Viewport Scrollspy: Navigasi daftar isi aktif yang melacak posisi pembacaan secara real-time pada desktop dan mobile.',
