@@ -558,7 +558,7 @@ export default function PortfolioPage() {
     >
       {/* Ambient Emerald Aura (Soft & Modern) */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[500px] w-[850px] -translate-x-1/2 rounded-full opacity-20 blur-[130px]"
+        className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[650px] w-[1100px] xl:w-[1450px] -translate-x-1/2 rounded-full opacity-20 blur-[140px]"
         style={{
           background:
             'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 80%)',
@@ -580,7 +580,7 @@ export default function PortfolioPage() {
 
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-zinc-800/80 bg-[#0A0A0C]/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] items-center justify-between px-6 sm:px-8 lg:px-12 py-4">
           <a
             href="#top"
             className="flex items-center gap-2.5 text-base font-semibold tracking-tight text-zinc-100 hover:opacity-90 transition"
@@ -682,12 +682,12 @@ export default function PortfolioPage() {
         )}
       </header>
 
-      <main className="mx-auto max-w-6xl px-6">
+      <main className="mx-auto max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] px-6 sm:px-8 lg:px-12">
         {/* HERO SECTION */}
-        <section className="py-16 md:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-12">
+        <section className="py-16 md:py-24 lg:py-28">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             {/* Left Column */}
-            <div className="space-y-6 lg:col-span-8">
+            <div className="space-y-6 lg:col-span-7 xl:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5">
                 <div className="inline-flex items-center gap-2.5 rounded-full border border-zinc-800/80 bg-zinc-900/70 px-3.5 py-1 text-xs text-zinc-300 backdrop-blur-sm transition hover:border-zinc-700">
                   <span className="relative flex h-2 w-2">
@@ -701,11 +701,11 @@ export default function PortfolioPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl font-bold tracking-tight text-zinc-50 sm:text-5xl lg:leading-[1.15]">
+              <h1 className="text-4xl font-bold tracking-tight text-zinc-50 sm:text-5xl lg:text-5xl xl:text-6xl lg:leading-[1.15] xl:leading-[1.12]">
                 Membangun perangkat lunak yang cepat, otomasi cerdas, dan sistem yang langsung siap pakai.
               </h1>
 
-              <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+              <p className="max-w-3xl text-base leading-relaxed text-zinc-400 sm:text-lg lg:text-xl">
                 Halo! Saya{' '}
                 <strong className="font-medium text-zinc-100">
                   Edvan Nuriana Putra Septia, S.Kom.
@@ -738,25 +738,25 @@ export default function PortfolioPage() {
               </div>
 
               {/* Key Highlights Bar */}
-              <div className="grid grid-cols-3 gap-3 border-t border-zinc-800/80 pt-8 sm:max-w-lg">
-                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <p className="font-mono text-2xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
+              <div className="grid grid-cols-3 gap-3.5 border-t border-zinc-800/80 pt-8 sm:max-w-xl xl:max-w-2xl">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     3.53
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
                     IPK S1 Sistem Komputer
                   </p>
                 </div>
-                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <p className="font-mono text-2xl font-semibold tabular-nums text-emerald-400">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-emerald-400">
                     08
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
                     Dokumentasi Proyek
                   </p>
                 </div>
-                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <p className="font-mono text-2xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     02
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
@@ -767,15 +767,15 @@ export default function PortfolioPage() {
             </div>
 
             {/* Right Column: Profile Card */}
-            <div className="lg:col-span-4">
-              <div className="group relative mx-auto max-w-xs rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-3.5 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.15)]">
+            <div className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end">
+              <div className="group relative w-full max-w-xs sm:max-w-sm xl:max-w-[360px] rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-4 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.15)]">
                 <div className="pointer-events-none absolute -inset-0.5 -z-10 rounded-2xl bg-gradient-to-b from-emerald-500/10 to-transparent opacity-0 blur-lg transition duration-300 group-hover:opacity-100" />
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/profile.jpeg"
                     alt="Edvan Nuriana Putra Septia, S.Kom."
                     fill
-                    sizes="(max-width: 768px) 240px, 320px"
+                    sizes="(max-width: 768px) 280px, (max-width: 1280px) 360px, 420px"
                     className="object-cover transition duration-500 group-hover:scale-105"
                     priority
                   />
@@ -807,7 +807,7 @@ export default function PortfolioPage() {
           id="about"
           className="scroll-mt-20 border-t border-zinc-800/80 py-16 md:py-20"
         >
-          <div className="grid gap-10 lg:grid-cols-12">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             <div className="lg:col-span-4">
               <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
                 <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'about' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
@@ -838,7 +838,7 @@ export default function PortfolioPage() {
               </p>
 
               {/* 3 Engineering Pillars */}
-              <div className="grid gap-4 pt-3 sm:grid-cols-3">
+              <div className="grid gap-4.5 pt-4 sm:grid-cols-3 lg:gap-5">
                 <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs text-emerald-400">
@@ -913,7 +913,7 @@ export default function PortfolioPage() {
 
           {/* Bento Row 1: Featured Software Applications */}
           {filteredApps.length > 0 && (
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 lg:gap-7">
               {filteredApps.map((app) => (
                 <article
                   key={app.id}
@@ -1013,7 +1013,7 @@ export default function PortfolioPage() {
 
           {/* Bento Row 2: Research, Computer Vision & Journal Publications */}
           {filteredResearch.length > 0 && (
-            <div className="mt-6 grid gap-6 md:grid-cols-3">
+            <div className="mt-7 grid gap-6 md:grid-cols-3 lg:gap-7">
               {filteredResearch.map((project) => (
                 <article
                   key={project.id}
@@ -1109,7 +1109,7 @@ export default function PortfolioPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
             {SKILLS_DATA.map((skill) => (
               <div
                 key={skill.title}
@@ -1158,7 +1158,7 @@ export default function PortfolioPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3 lg:gap-7">
             {/* Pendidikan */}
             <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -1240,7 +1240,7 @@ export default function PortfolioPage() {
           id="contact"
           className="scroll-mt-20 border-t border-zinc-800/80 py-16 md:py-20"
         >
-          <div className="grid gap-10 lg:grid-cols-12">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             {/* Kontak Langsung */}
             <div className="space-y-6 lg:col-span-6">
               <div>
@@ -1395,7 +1395,7 @@ export default function PortfolioPage() {
 
       {/* FOOTER */}
       <footer className="border-t border-zinc-800/80 bg-[#0A0A0C] py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-xs text-zinc-500 sm:flex-row">
+        <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] flex-col items-center justify-between gap-4 px-6 sm:px-8 lg:px-12 text-xs text-zinc-500 sm:flex-row">
           <p>© 2026 Edvan Nuriana Putra Septia · Portofolio Pribadi</p>
           <a
             href="#top"
