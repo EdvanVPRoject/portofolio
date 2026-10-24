@@ -71,7 +71,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/enclip-icon.png',
     description:
-      'Aplikasi desktop Windows yang mengotomatiskan pemotongan video berdurasi panjang menjadi klip vertikal siap unggah (Shorts, Reels, TikTok) lengkap dengan subtitle dinamis. Dirancang dengan arsitektur multithreading (QThread) agar antarmuka tetap responsif saat menjalankan pipeline berat: transkripsi offline via Faster-Whisper (CTranslate2), analisis sorotan konteks via LLM Lokal (Qwen-2.5 GGUF) maupun Gemini API, serta rendering FFmpeg.',
+      'Aplikasi desktop Windows yang praktis buat kreator konten dan video editor untuk memotong video panjang menjadi klip vertikal siap posting (Shorts, Reels, TikTok) plus subtitle otomatis. Dibangun dengan arsitektur multithreading PyQt6 supaya antarmuka tetap mulus anti-freeze saat memproses transkripsi offline (Faster-Whisper), analisis sorotan video via LLM (Qwen-2.5 GGUF & Gemini API), dan rendering FFmpeg.',
     highlights: [
       'Inferensi AI Hibrida (Offline GGUF & Cloud API)',
       'GUI Anti-Freeze dengan Asynchronous Worker Thread',
@@ -121,7 +121,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/encross-logo.png',
     description:
-      'Aplikasi berbagi berkas berukuran besar dan screen mirroring lintas-platform (Windows & Android) yang beroperasi 100% di jaringan lokal (LAN/Wi-Fi) tanpa kuota internet dan tanpa server penyimpanan perantara. Memanfaatkan WebRTC DataChannel dan MediaStream API untuk transmisi real-time berkecepatan tinggi dengan latensi rendah serta penemuan perangkat otomatis.',
+      'Aplikasi berbagi berkas besar dan screen mirroring lintas-platform (Windows & Android) yang bekerja langsung di jaringan lokal (Wi-Fi/LAN) tanpa kuota internet. Memanfaatkan protokol WebRTC DataChannel dan MediaStream API untuk transmisi data real-time berkecepatan tinggi, chunking memori 64KB, serta penemuan perangkat otomatis tanpa server penyimpanan perantara.',
     highlights: [
       'Arsitektur Zero-Server P2P (Privasi & Kecepatan Maksimal)',
       'Satu Basis Kode Modern (React 19, Electron, & Capacitor)',
@@ -157,7 +157,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/eninformasi-icon.svg',
     description:
-      'Platform web modern yang menyajikan 177 katalog terkurasi, terbagi atas 65 tutorial praktis hands-on dan 112 analisis mendalam tren AI & teknologi komputasi. Dilengkapi dual segmented language switcher real-time (100% ID & EN tanpa refresh), interactive reading progress bar, scrollspy table of contents, serta practice checklist dengan status tersimpan otomatis.',
+      'Portal media teknologi dan edukasi interaktif yang menyajikan lebih dari 150 katalog artikel terstruktur seputar rekayasa software, arsitektur AI, dan tutorial hands-on. Dibangun dengan Next.js App Router dan di-deploy ke edge Cloudflare Pages, dilengkapi fitur dual-language real-time (100% ID & EN tanpa refresh), reading progress bar, scrollspy table of contents, serta checklist praktik interaktif.',
     highlights: [
       '177 Katalog Terstruktur (65 Hands-on Guide & 112 Deep-Dive Trends)',
       'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
@@ -207,7 +207,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/endoclens-icon.svg',
     description:
-      'Perangkat produktivitas dokumen dan PDF terlengkap berbasis 100% client-side yang beroperasi murni di browser tanpa upload ke server. Dilengkapi 16 modul alat: scanner dokumen berteknologi perspective warp setara Microsoft Lens, optical character recognition (Tesseract.js), compiler multi-halaman (A4/F4/Letter), enkripsi dokumen, konversi format, serta asisten AI Copilot cerdas.',
+      'Suite produktivitas dokumen dan alat PDF terlengkap yang berjalan 100% di browser tanpa pernah mengunggah data ke server luar demi privasi mutlak. Dilengkapi 16 modul terpadu: scanner dokumen berteknologi perspective warp setara Microsoft Lens, ekstraksi teks OCR (Tesseract.js), compiler multi-halaman (A4/F4/Letter), enkripsi, konversi format, serta asisten AI Copilot cerdas.',
     highlights: [
       '16 Modul Produktivitas Dokumen & 100% Client-Side Privacy',
       'Auto-Perspective Warp (Setara M365 Lens) & OCR Tesseract.js',
@@ -258,7 +258,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/enlife-icon.svg',
     description:
-      'Aplikasi asisten produktivitas dan utilitas sehari-hari terlengkap berbasis Flutter (Dart Native) dengan tema Tactile Obsidian dan arsitektur 100% Offline-First. Mengintegrasikan 4 modul inti: Smart Expense Tracker & visualisasi anggaran fl_chart, Habit Tracker dengan penghitung streak & timer fokus Pomodoro, Brankas ID/Dokumen terenkripsi lokal dengan deteksi masa kedaluwarsa kartu, serta utilitas kalkulator Split Bill dan diskon belanja.',
+      'Aplikasi asisten produktivitas harian all-in-one berbasis Flutter (Dart Native) dengan konsep 100% offline-first dan tampilan Tactile Obsidian. Menghadirkan 4 modul esensial dalam satu genggaman: pencatatan keuangan cepat dengan grafik anggaran fl_chart, habit tracker dengan penghitung streak & timer Pomodoro, brankas dokumen terenkripsi lokal, serta kalkulator split bill yang siap dipakai kapan saja.',
     highlights: [
       'Arsitektur 100% Offline-First & Privasi Total (Zero-Cloud Storage)',
       '4 Modul Esensial (Keuangan, Habit/Pomodoro, ID Vault, Quick Tools)',
@@ -298,7 +298,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['iot-cv'],
     image: '/parking-process-blurred.png',
     description:
-      'Sistem keamanan gerbang parkir otomatis dengan verifikasi ganda (Two-Factor Physical Authentication) yang menggabungkan pembacaan UID e-KTP dan pengenalan pelat nomor kendaraan secara real-time menggunakan YOLOv8 Nano, OCR CNN (TensorFlow), dan ESP32.',
+      'Sistem keamanan gerbang parkir otomatis dengan verifikasi ganda (Two-Factor Authentication). Menggabungkan pembacaan UID e-KTP berbasis RFID RC522 dan deteksi pelat nomor kendaraan secara real-time dari kamera menggunakan model YOLOv8 Nano (mAP@0.50 98,51%), OCR CNN TensorFlow (akurasi 88,07%), serta mikrokontroler ESP32 yang tersinkronisasi ke Firebase.',
     highlights: [
       'Autentikasi Ganda (RFID e-KTP + Deteksi Pelat YOLOv8)',
       'Integrasi Edge-IoT & Sinkronisasi SQLite + Firebase',
@@ -330,7 +330,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['publication'],
     image: '/journal-liver.jpg',
     description:
-      'Penelitian ilmiah terpublikasi yang mengevaluasi ketahanan algoritma Random Forest, SVM, dan Logistic Regression dalam memprediksi risiko penyakit liver dari rekam medis klinis, mencakup tahapan preprocessing dan penanganan ketimpangan kelas data.',
+      'Riset ilmiah terpublikasi yang mengevaluasi komparasi performa algoritma Random Forest, Support Vector Machine (SVM), dan Logistic Regression dalam mendeteksi risiko penyakit liver sedini mungkin dari rekam medis pasien. Terbit resmi di Jurnal Nasional Komputika dengan model Random Forest mencapai kecocokan prediksi 98%.',
     highlights: [
       'Terbit di Jurnal Nasional Komputika (DOI Terindeks)',
       'Optimasi Pipeline Klasifikasi dengan Scikit-Learn',
@@ -361,7 +361,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['iot-cv', 'publication'],
     image: '/journal-pos.jpg',
     description:
-      'Solusi perangkat keras timbangan digital yang terhubung langsung ke aplikasi kasir berbasis web untuk menghilangkan kesalahan input manual transaksi UMKM. Menggunakan ESP32 dan sensor Load Cell HX711 terkalibrasi secara matematis.',
+      'Solusi timbangan digital yang terhubung langsung ke antarmuka aplikasi kasir web secara otomatis untuk menghilangkan kesalahan input manual produk curah bagi pelaku UMKM. Memanfaatkan mikrokontroler ESP32 dan modul load cell HX711 terkalibrasi presisi dengan akurasi di atas 98%. Diterbitkan resmi di Jurnal Ilmiah Biner.',
     highlights: [
       'Terbit di Jurnal Ilmiah Biner',
       'Otomatisasi Hardware-ke-Web Real-Time untuk UMKM',
@@ -389,26 +389,41 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
 const SKILLS_DATA = [
   {
     index: '01',
-    title: 'Rekayasa AI, LLM & Media',
+    title: 'Rekayasa Software, Desktop & Web',
     description:
-      'Membangun pipeline AI generatif, transkripsi presisi tinggi, dan pemrosesan audio-video otomatis yang berjalan secara offline di perangkat lokal maupun via cloud API.',
+      'Membangun aplikasi desktop native yang gesit dengan PyQt6 multithreading, hingga web app modern berbasis Next.js, React, dan TypeScript yang responsif di berbagai perangkat.',
     badges: [
-      'Faster-Whisper',
-      'Qwen-2.5 GGUF',
-      'Gemini API',
-      'FFmpeg CLI',
-      'MoviePy',
-      'CTranslate2',
+      'Python',
+      'Next.js 14/15',
+      'React 19',
+      'PyQt6 (QThread)',
+      'TypeScript',
+      'Tailwind CSS',
+      'FastAPI',
     ],
   },
   {
     index: '02',
+    title: 'Otomasi AI, LLM & Media Processing',
+    description:
+      'Menerapkan pipeline AI lokal offline (Whisper STT & Qwen GGUF) serta Cloud API (Gemini) untuk pemotongan video otomatis, transkripsi cepat, dan pengolahan media via FFmpeg.',
+    badges: [
+      'Faster-Whisper',
+      'Qwen 2.5 GGUF',
+      'Gemini API',
+      'FFmpeg CLI',
+      'CTranslate2',
+      'Tesseract.js OCR',
+    ],
+  },
+  {
+    index: '03',
     title: 'Computer Vision & Machine Learning',
     description:
-      'Merancang model deteksi objek real-time, pengenalan karakter optik (OCR), dan analisis prediktif terstruktur dari tahap kurasi dataset hingga deployment.',
+      'Melatih dan men-deploy model deteksi objek (YOLOv8), klasifikasi citra CNN TensorFlow, hingga riset komparasi algoritma prediktif (Random Forest, SVM, Logistic Regression).',
     badges: [
-      'YOLOv8',
-      'CNN (TensorFlow/Keras)',
+      'YOLOv8 Nano',
+      'TensorFlow / CNN',
       'OpenCV',
       'Scikit-Learn',
       'Random Forest',
@@ -417,60 +432,46 @@ const SKILLS_DATA = [
     ],
   },
   {
-    index: '03',
-    title: 'Komunikasi Jaringan P2P & Real-Time',
-    description:
-      'Mengembangkan arsitektur pertukaran berkas dan streaming layar berkecepatan tinggi secara langsung antar-perangkat (zero-server P2P) dengan latensi minimal.',
-    badges: [
-      'WebRTC DataChannel',
-      'MediaStream API',
-      'mDNS Discovery',
-      'UDP Broadcast',
-      'STUN/TURN',
-      'P2P Security',
-    ],
-  },
-  {
     index: '04',
-    title: 'Pengembangan Aplikasi Desktop & Web',
+    title: 'Basis Data, Cloud & Linux Server',
     description:
-      'Menciptakan aplikasi desktop native berkinerja tinggi dengan manajemen multithreading yang stabil serta antarmuka web dan lintas-platform yang responsif.',
+      'Mengelola database relasional (PostgreSQL, MySQL, SQLite) dan cloud NoSQL (Firebase), administrasi VPS Linux via SSH, container Docker, serta deployment edge di Cloudflare.',
     badges: [
-      'PyQt6 (QThread)',
-      'Python 3.11',
-      'Electron.js',
-      'React 19',
-      'Next.js',
-      'TypeScript',
-      'Tailwind CSS',
+      'PostgreSQL',
+      'MySQL',
+      'SQLite',
+      'Firebase RTDB',
+      'Linux Server / VPS',
+      'Docker',
+      'Cloudflare Pages',
     ],
   },
   {
     index: '05',
-    title: 'Sistem Tertanam (Embedded) & IoT',
+    title: 'Jaringan Komputer & P2P Real-Time',
     description:
-      'Mengintegrasikan mikrokontroler, kalibrasi sensor presisi secara matematis, dan protokol komunikasi perangkat keras dengan basis data cloud real-time.',
+      'Mengimplementasikan transfer data peer-to-peer tanpa server via WebRTC DataChannel, konfigurasi jaringan TCP/IP & VPN berstandar Cisco CCNA, serta pemantauan koneksi.',
     badges: [
-      'ESP32 (C/C++)',
-      'RFID RC522 (e-KTP)',
-      'Load Cell & HX711',
-      'Firebase RTDB',
-      'I2C / UART',
-      'Sensor Calibration',
+      'WebRTC P2P',
+      'Cisco CCNA',
+      'TCP/IP & Subnetting',
+      'SSH & VPN',
+      'Socket.IO',
+      'Network Monitoring',
     ],
   },
   {
     index: '06',
-    title: 'Alur Kerja Rekayasa & Publikasi',
+    title: 'Edge IoT, Embedded & Publikasi Ilmiah',
     description:
-      'Mengelola siklus rilis perangkat lunak melalui kontrol versi modern, distribusi installer siap pakai, serta penyusunan dokumentasi berstandar jurnal ilmiah.',
+      'Menghubungkan mikrokontroler ESP32, sensor beban (Load Cell), dan RFID e-KTP ke aplikasi web real-time yang teruji secara empiris lewat artikel di jurnal nasional.',
     badges: [
+      'ESP32 (C/C++)',
+      'RFID RC522 (e-KTP)',
+      'Load Cell & HX711',
+      'Jurnal Komputika',
+      'Jurnal Biner',
       'Git & GitHub',
-      'VS Code',
-      'Postman',
-      'Vercel CI/CD',
-      'SQLite',
-      'Publikasi Ilmiah',
     ],
   },
 ];
@@ -696,25 +697,20 @@ export default function PortfolioPage() {
                   <span>Sumedang, Indonesia · UNIKOM 2026</span>
                 </div>
                 <span className="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 font-mono text-xs text-emerald-300">
-                  Software, Applied AI & Embedded Engineer
+                  Software Engineer · Applied AI & IoT Specialist
                 </span>
               </div>
 
               <h1 className="text-4xl font-bold tracking-tight text-zinc-50 sm:text-5xl lg:leading-[1.15]">
-                Merancang perangkat lunak cerdas, visi komputer, dan sistem
-                terdistribusi yang siap pakai.
+                Membangun perangkat lunak yang cepat, otomasi cerdas, dan sistem yang langsung siap pakai.
               </h1>
 
-              <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-                Saya{' '}
+              <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg text-justify hyphens-auto">
+                Halo! Saya{' '}
                 <strong className="font-medium text-zinc-100">
                   Edvan Nuriana Putra Septia, S.Kom.
                 </strong>
-                , lulusan Sistem Komputer UNIKOM (IPK 3.53). Berfokus mengubah
-                riset algoritma AI dan sistem tertanam (IoT) menjadi aplikasi
-                desktop, web, dan lintas-platform yang cepat, mandiri, serta
-                teruji secara empiris melalui rilis produk dan publikasi jurnal
-                ilmiah nasional.
+                , lulusan S1 Sistem Komputer UNIKOM (IPK 3.53). Saya suka merancang teknologi dari hulu ke hilir—mulai dari otomasi script Python, aplikasi desktop native, platform web modern, hingga integrasi model AI offline dan mikrokontroler IoT. Berbekal sertifikasi Cisco CCNA dan riset jurnal nasional terakreditasi, semua karya saya dibangun dengan prinsip efisiensi, respons cepat, dan siap pakai di dunia nyata.
               </p>
 
               {/* CTA Group */}
@@ -818,8 +814,7 @@ export default function PortfolioPage() {
                 <span>01 / Tentang Saya</span>
               </div>
               <h2 className="mt-3 text-2xl font-semibold leading-snug text-zinc-100 sm:text-3xl">
-                Menjembatani arsitektur perangkat lunak modern dengan komputasi
-                AI dan perangkat keras cerdas.
+                Menghubungkan kode perangkat lunak modern, kecerdasan AI terapan, dan sistem komputasi nyata.
               </h2>
               <div className="mt-6">
                 <a
@@ -835,36 +830,11 @@ export default function PortfolioPage() {
             </div>
 
             <div className="space-y-5 text-zinc-400 lg:col-span-8">
-              <p className="leading-relaxed">
-                Sebagai lulusan S1 Sistem Komputer Universitas Komputer
-                Indonesia (UNIKOM) dengan IPK 3.53, saya memiliki fokus kuat
-                pada pengembangan teknologi{' '}
-                <strong className="font-medium text-zinc-200">
-                  end-to-end
-                </strong>
-                —mulai dari perancangan logika sistem di level perangkat keras
-                hingga antarmuka aplikasi yang digunakan langsung oleh pengguna
-                akhir. Saya terbiasa membangun solusi dari nol hingga tahap
-                distribusi nyata, baik dalam bentuk aplikasi instalasi mandiri (
-                <code className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-xs text-emerald-300">
-                  .exe
-                </code>{' '}
-                & lintas-platform) maupun riset yang tervalidasi di jurnal
-                ilmiah nasional.
+              <p className="leading-relaxed text-justify hyphens-auto">
+                Bagi saya, rekayasa perangkat lunak bukan cuma soal mengetik baris kode, melainkan bagaimana menghadirkan solusi yang praktis dan langsung terasa manfaatnya. Lulus dari S1 Sistem Komputer Universitas Komputer Indonesia (UNIKOM) dengan IPK 3.53, saya terbiasa menangani siklus pembuatan sistem secara utuh—mulai dari manajemen basis data (PostgreSQL, MySQL, SQLite), administrasi Linux server dan cloud, otomasi Python, hingga perancangan antarmuka pengguna yang bersih dan interaktif di platform desktop maupun web.
               </p>
-              <p className="leading-relaxed">
-                Dalam merancang sistem, saya memprioritaskan{' '}
-                <strong className="font-medium text-zinc-200">
-                  efisiensi sumber daya, kecepatan respons antarmuka, dan
-                  keandalan arsitektur
-                </strong>
-                . Pendekatan ini saya terapkan saat mengintegrasikan inferensi
-                LLM dan Speech-to-Text lokal agar berjalan mulus di aplikasi
-                desktop berbasis multithreading, membangun komunikasi
-                peer-to-peer (P2P) lokal berkecepatan tinggi tanpa ketergantungan
-                server, hingga menggabungkan model Computer Vision (YOLOv8 &
-                CNN) dengan mikrokontroler ESP32 untuk otomasi sistem fisik
-                secara real-time.
+              <p className="leading-relaxed text-justify hyphens-auto">
+                Di era kecerdasan buatan saat ini, saya fokus membangun sistem yang mandiri, aman, dan hemat sumber daya komputasi. Saya suka mengintegrasikan inferensi model lokal seperti Whisper STT dan LLM GGUF agar aplikasi desktop bisa berjalan lancar tanpa koneksi internet, merancang arsitektur transfer P2P langsung via WebRTC tanpa server perantara, hingga menggabungkan model Computer Vision (YOLOv8 &amp; CNN) dengan mikrokontroler ESP32 untuk otomasi perangkat fisik secara real-time.
               </p>
 
               {/* 3 Engineering Pillars */}
@@ -872,31 +842,28 @@ export default function PortfolioPage() {
                 <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs text-emerald-400">
-                    01 · Native & Cross-Platform
+                    01 · Software & Fullstack Engineering
                   </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
-                    Aplikasi desktop dan web responsif dengan manajemen thread
-                    asinkron dan komunikasi real-time.
-                  </p>
-                </div>
-                <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <p className="font-mono text-xs text-emerald-400">
-                    02 · Applied AI & Vision
-                  </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
-                    Integrasi model LLM GGUF, Faster-Whisper, YOLOv8, dan CNN
-                    untuk otomasi media serta verifikasi visual.
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                    Aplikasi desktop native (PyQt6 multithreading) dan web modern (Next.js & React) yang responsif, terstruktur, serta memiliki kecepatan respons kilat.
                   </p>
                 </div>
                 <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs text-emerald-400">
-                    03 · Edge IoT & Riset
+                    02 · Applied AI & Computer Vision
                   </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
-                    Instrumentasi ESP32, kalibrasi sensor presisi, serta
-                    pengujian ilmiah berstandar publikasi jurnal.
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                    Integrasi model bahasa lokal (Qwen GGUF), speech-to-text (Faster-Whisper), OCR, serta deteksi objek visual (YOLOv8 & CNN) untuk otomasi alur kerja.
+                  </p>
+                </div>
+                <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <p className="font-mono text-xs text-emerald-400">
+                    03 · Edge IoT & Riset Teruji
+                  </p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                    Instrumentasi mikrokontroler ESP32, kalibrasi sensor presisi, dan koneksi cloud real-time yang tervalidasi lewat publikasi di jurnal ilmiah nasional.
                   </p>
                 </div>
               </div>
@@ -985,7 +952,7 @@ export default function PortfolioPage() {
                       {app.title}
                     </h3>
 
-                    <p className="mt-2.5 text-sm leading-relaxed text-zinc-400">
+                    <p className="mt-2.5 text-sm leading-relaxed text-zinc-400 text-justify hyphens-auto">
                       {app.description}
                     </p>
 
@@ -1076,7 +1043,7 @@ export default function PortfolioPage() {
                         {project.title}
                       </h3>
 
-                      <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                      <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
                         {project.description}
                       </p>
 
@@ -1156,7 +1123,7 @@ export default function PortfolioPage() {
                   <h3 className="mt-1.5 text-base font-semibold text-zinc-100">
                     {skill.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-zinc-400">
+                  <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
                     {skill.description}
                   </p>
                 </div>
@@ -1202,8 +1169,11 @@ export default function PortfolioPage() {
               <p className="mt-1 text-sm text-zinc-400">
                 Universitas Komputer Indonesia (UNIKOM)
               </p>
+              <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                Fokus pada integrasi sistem komputasi, rekayasa software, arsitektur basis data, serta riset terapan kecerdasan buatan dan IoT.
+              </p>
               <p className="mt-4 inline-block rounded border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs text-emerald-300">
-                IPK: 3,53 / 4,00
+                IPK: 3,53 / 4,00 · Lulus 2026
               </p>
             </div>
 
@@ -1249,10 +1219,16 @@ export default function PortfolioPage() {
               </h3>
               <ul className="mt-4 space-y-2 text-xs text-zinc-300">
                 <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2">
-                  Google Gemini Certified Student — University
+                  <div className="flex items-center justify-between">
+                    <span>Google Gemini Certified Student — University</span>
+                    <span className="font-mono text-[10px] text-emerald-400">2026—2029</span>
+                  </div>
                 </li>
                 <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2">
-                  Cisco CCNA: Introduction to Networks
+                  <div className="flex items-center justify-between">
+                    <span>Cisco CCNA: Introduction to Networks</span>
+                    <span className="font-mono text-[10px] text-emerald-400">2025—2028</span>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -1275,15 +1251,8 @@ export default function PortfolioPage() {
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
                   Hubungi Saya
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-                  Saat ini saya terbuka untuk peluang karier penuh waktu
-                  (Full-Time), proyek pengembangan sistem, maupun kolaborasi
-                  riset di bidang{' '}
-                  <strong className="font-medium text-zinc-200">
-                    Software Engineering (Python / React / Desktop), AI &
-                    Computer Vision Engineering, serta IoT & Embedded Systems
-                  </strong>
-                  .
+                <p className="mt-3 text-sm leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                  Tertarik berkolaborasi atau ingin berdiskusi santai seputar pengembangan software, otomasi AI, basis data, maupun sistem IoT? Saat ini saya terbuka untuk peluang karier penuh waktu (Full-Time), proyek pengembangan lepas (freelance), maupun riset bersama. Jangan ragu menghubungi saya via WhatsApp, email, atau tinggalkan pesan di form di samping!
                 </p>
               </div>
 
@@ -1480,7 +1449,7 @@ export default function PortfolioPage() {
                 </h3>
               </div>
 
-              <p className="text-sm text-zinc-300 leading-relaxed text-justify font-light">
+              <p className="text-sm text-zinc-300 leading-relaxed text-justify hyphens-auto font-light">
                 {activeModalProject.modalDetails?.summary || activeModalProject.description}
               </p>
 
@@ -1493,7 +1462,7 @@ export default function PortfolioPage() {
                     {activeModalProject.modalDetails.bullets.map((bullet, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
                         <span className="text-emerald-400 font-mono text-[11px] mt-0.5">•</span>
-                        <span className="leading-relaxed text-justify">{bullet}</span>
+                        <span className="leading-relaxed text-justify hyphens-auto">{bullet}</span>
                       </li>
                     ))}
                   </ul>
@@ -1501,7 +1470,7 @@ export default function PortfolioPage() {
               )}
 
               {activeModalProject.modalDetails?.results && (
-                <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-4 text-xs text-emerald-200 leading-relaxed">
+                <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-4 text-xs text-emerald-200 leading-relaxed text-justify hyphens-auto">
                   <span className="font-medium text-emerald-300 block mb-1">
                     Hasil & Capaian Kinerja:
                   </span>
