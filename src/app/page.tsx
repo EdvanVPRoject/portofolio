@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Menu, X, ArrowUpRight, ArrowUp } from 'lucide-react';
 
@@ -486,6 +486,18 @@ export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>('about');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const isNavClickRef = useRef(false);
+  const navClickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    isNavClickRef.current = true;
+    if (navClickTimeoutRef.current) clearTimeout(navClickTimeoutRef.current);
+    navClickTimeoutRef.current = setTimeout(() => {
+      isNavClickRef.current = false;
+    }, 800);
+  };
+
   const handleOpenModal = (project: FeaturedApp | ResearchProject) => {
     setIsClosingModal(false);
     setActiveModalProject(project);
@@ -524,6 +536,7 @@ export default function PortfolioPage() {
     const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
+      if (isNavClickRef.current) return;
       const scrollPosition = window.scrollY + 220;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const id = sectionIds[i];
@@ -537,7 +550,10 @@ export default function PortfolioPage() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (navClickTimeoutRef.current) clearTimeout(navClickTimeoutRef.current);
+    };
   }, []);
 
   const [guestName, setGuestName] = useState('');
@@ -645,24 +661,21 @@ export default function PortfolioPage() {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  onClick={() => setActiveSection(item.id)}
-                  className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-all ${
+                  onClick={() => handleNavClick(item.id)}
+                  className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors duration-150 ${
                     isActive
                       ? 'border border-emerald-500/40 bg-emerald-500/15 text-white font-semibold shadow-sm shadow-emerald-950/40'
                       : 'border border-transparent text-zinc-400 hover:border-zinc-800 hover:bg-zinc-900/60 hover:text-zinc-200'
                   }`}
                 >
-                  {isActive && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  )}
                   {item.label}
                 </a>
               );
             })}
             <a
               href="#feedback"
-              onClick={() => setActiveSection('feedback')}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+              onClick={() => handleNavClick('feedback')}
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors duration-150 ${
                 activeSection === 'feedback'
                   ? 'border border-emerald-400 bg-emerald-500/25 text-white font-semibold shadow-sm shadow-emerald-950/40'
                   : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:border-emerald-500/50 hover:bg-emerald-500/15'
@@ -693,18 +706,15 @@ export default function PortfolioPage() {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={() => {
-                    setActiveSection(item.id);
+                    handleNavClick(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`flex items-center gap-2 rounded-lg px-3 py-2 transition ${
+                  className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-150 ${
                     isActive
                       ? 'border border-emerald-500/40 bg-emerald-500/15 text-white font-semibold'
                       : 'border border-transparent text-zinc-300 hover:text-emerald-300'
                   }`}
                 >
-                  {isActive && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  )}
                   {item.label}
                 </a>
               );
@@ -712,10 +722,10 @@ export default function PortfolioPage() {
             <a
               href="#feedback"
               onClick={() => {
-                setActiveSection('feedback');
+                handleNavClick('feedback');
                 setMobileMenuOpen(false);
               }}
-              className={`block rounded-lg px-3 py-2 text-sm font-semibold transition ${
+              className={`block rounded-lg px-3 py-2 text-sm font-semibold transition-colors duration-150 ${
                 activeSection === 'feedback'
                   ? 'border border-emerald-400 bg-emerald-500/25 text-white'
                   : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
