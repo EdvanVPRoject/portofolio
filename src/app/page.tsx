@@ -701,11 +701,11 @@ export default function PortfolioPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl font-bold tracking-tight text-zinc-50 sm:text-5xl lg:text-5xl xl:text-6xl lg:leading-[1.15] xl:leading-[1.12]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-zinc-50 lg:leading-[1.15] xl:leading-[1.12]">
                 Membangun perangkat lunak yang cepat, otomasi cerdas, dan sistem yang langsung siap pakai.
               </h1>
 
-              <p className="max-w-3xl text-base leading-relaxed text-zinc-400 sm:text-lg lg:text-xl">
+              <p className="max-w-3xl text-base leading-relaxed text-zinc-400 sm:text-lg lg:text-xl text-justify hyphens-auto">
                 Halo! Saya{' '}
                 <strong className="font-medium text-zinc-100">
                   Edvan Nuriana Putra Septia, S.Kom.
@@ -738,28 +738,28 @@ export default function PortfolioPage() {
               </div>
 
               {/* Key Highlights Bar */}
-              <div className="grid grid-cols-3 gap-3.5 border-t border-zinc-800/80 pt-8 sm:max-w-xl xl:max-w-2xl">
-                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <p className="font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3.5 border-t border-zinc-800/80 pt-8 sm:max-w-xl xl:max-w-2xl">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-xl sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     3.53
                   </p>
-                  <p className="mt-1 text-xs text-zinc-500">
+                  <p className="mt-1 text-[10px] sm:text-xs text-zinc-500">
                     IPK S1 Sistem Komputer
                   </p>
                 </div>
-                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <p className="font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-emerald-400">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-xl sm:text-2xl lg:text-3xl font-semibold tabular-nums text-emerald-400">
                     08
                   </p>
-                  <p className="mt-1 text-xs text-zinc-500">
+                  <p className="mt-1 text-[10px] sm:text-xs text-zinc-500">
                     Dokumentasi Proyek
                   </p>
                 </div>
-                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <p className="font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-xl sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     02
                   </p>
-                  <p className="mt-1 text-xs text-zinc-500">
+                  <p className="mt-1 text-[10px] sm:text-xs text-zinc-500">
                     Publikasi Jurnal
                   </p>
                 </div>
@@ -1013,7 +1013,7 @@ export default function PortfolioPage() {
 
           {/* Bento Row 2: Research, Computer Vision & Journal Publications */}
           {filteredResearch.length > 0 && (
-            <div className="mt-7 grid gap-6 md:grid-cols-3 lg:gap-7">
+            <div className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
               {filteredResearch.map((project) => (
                 <article
                   key={project.id}
@@ -1158,7 +1158,7 @@ export default function PortfolioPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3 lg:gap-7">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
             {/* Pendidikan */}
             <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

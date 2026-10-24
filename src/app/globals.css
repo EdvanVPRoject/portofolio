@@ -63,3 +63,11 @@ body {
 .delay-300 {
   animation-delay: 300ms;
 }
+
+/* Polished typographic justification across all screen ratios */
+.text-justify {
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+}
+
