@@ -71,7 +71,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/enclip-icon.png',
     description:
-      'Aplikasi desktop Windows yang praktis buat kreator konten dan video editor untuk memotong video panjang menjadi klip vertikal siap posting (Shorts, Reels, TikTok) plus subtitle otomatis. Dibangun dengan arsitektur multithreading PyQt6 supaya antarmuka tetap mulus anti-freeze saat memproses transkripsi offline (Faster-Whisper), analisis sorotan video via LLM (Qwen-2.5 GGUF & Gemini API), dan rendering FFmpeg.',
+      'Aplikasi desktop Windows untuk otomasi pemotongan video panjang menjadi klip vertikal siap posting (Shorts/Reels/TikTok) dengan transkripsi AI dan subtitle dinamis.',
     highlights: [
       'Inferensi AI Hibrida (Offline GGUF & Cloud API)',
       'GUI Anti-Freeze dengan Asynchronous Worker Thread',
@@ -121,7 +121,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/encross-logo.png',
     description:
-      'Aplikasi berbagi berkas besar dan screen mirroring lintas-platform (Windows & Android) yang bekerja langsung di jaringan lokal (Wi-Fi/LAN) tanpa kuota internet. Memanfaatkan protokol WebRTC DataChannel dan MediaStream API untuk transmisi data real-time berkecepatan tinggi, chunking memori 64KB, serta penemuan perangkat otomatis tanpa server penyimpanan perantara.',
+      'Aplikasi transfer berkas besar dan screen sharing lintas-perangkat (Windows & Android) berkecepatan tinggi via WebRTC P2P lokal tanpa kuota internet dan server perantara.',
     highlights: [
       'Arsitektur Zero-Server P2P (Privasi & Kecepatan Maksimal)',
       'Satu Basis Kode Modern (React 19, Electron, & Capacitor)',
@@ -157,7 +157,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/eninformasi-icon.svg',
     description:
-      'Portal media teknologi dan edukasi interaktif yang menyajikan lebih dari 150 katalog artikel terstruktur seputar rekayasa software, arsitektur AI, dan tutorial hands-on. Dibangun dengan Next.js App Router dan di-deploy ke edge Cloudflare Pages, dilengkapi fitur dual-language real-time (100% ID & EN tanpa refresh), reading progress bar, scrollspy table of contents, serta checklist praktik interaktif.',
+      'Portal media teknologi bilingual (ID/EN) yang menyajikan lebih dari 150 katalog rekayasa software dan AI dengan Skor Lighthouse 100/100 di Cloudflare Pages.',
     highlights: [
       '177 Katalog Terstruktur (65 Hands-on Guide & 112 Deep-Dive Trends)',
       'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
@@ -207,7 +207,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/endoclens-icon.svg',
     description:
-      'Suite produktivitas dokumen dan alat PDF terlengkap yang berjalan 100% di browser tanpa pernah mengunggah data ke server luar demi privasi mutlak. Dilengkapi 16 modul terpadu: scanner dokumen berteknologi perspective warp setara Microsoft Lens, ekstraksi teks OCR (Tesseract.js), compiler multi-halaman (A4/F4/Letter), enkripsi, konversi format, serta asisten AI Copilot cerdas.',
+      'Suite produktivitas dokumen 100% client-side di browser dengan 16 modul alat PDF, pemindai perspective warp setara MS Lens, ekstraksi OCR, dan AI Copilot.',
     highlights: [
       '16 Modul Produktivitas Dokumen & 100% Client-Side Privacy',
       'Auto-Perspective Warp (Setara M365 Lens) & OCR Tesseract.js',
@@ -258,7 +258,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/enlife-icon.svg',
     description:
-      'Aplikasi asisten produktivitas harian all-in-one berbasis Flutter (Dart Native) dengan konsep 100% offline-first dan tampilan Tactile Obsidian. Menghadirkan 4 modul esensial dalam satu genggaman: pencatatan keuangan cepat dengan grafik anggaran fl_chart, habit tracker dengan penghitung streak & timer Pomodoro, brankas dokumen terenkripsi lokal, serta kalkulator split bill yang siap dipakai kapan saja.',
+      'Aplikasi asisten produktivitas harian berbasis Flutter offline-first dengan modul pencatatan keuangan fl_chart, habit tracker, Pomodoro, dan brankas dokumen terenkripsi.',
     highlights: [
       'Arsitektur 100% Offline-First & Privasi Total (Zero-Cloud Storage)',
       '4 Modul Esensial (Keuangan, Habit/Pomodoro, ID Vault, Quick Tools)',
@@ -298,7 +298,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['iot-cv'],
     image: '/parking-process-blurred.png',
     description:
-      'Sistem keamanan gerbang parkir otomatis dengan verifikasi ganda (Two-Factor Authentication). Menggabungkan pembacaan UID e-KTP berbasis RFID RC522 dan deteksi pelat nomor kendaraan secara real-time dari kamera menggunakan model YOLOv8 Nano (mAP@0.50 98,51%), OCR CNN TensorFlow (akurasi 88,07%), serta mikrokontroler ESP32 yang tersinkronisasi ke Firebase.',
+      'Sistem gerbang parkir otomatis dengan validasi ganda berbasis RFID e-KTP dan computer vision (YOLOv8 & CNN) real-time terintegrasi ESP32 ke Firebase.',
     highlights: [
       'Autentikasi Ganda (RFID e-KTP + Deteksi Pelat YOLOv8)',
       'Integrasi Edge-IoT & Sinkronisasi SQLite + Firebase',
@@ -330,7 +330,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['publication'],
     image: '/journal-liver.jpg',
     description:
-      'Riset ilmiah terpublikasi yang mengevaluasi komparasi performa algoritma Random Forest, Support Vector Machine (SVM), dan Logistic Regression dalam mendeteksi risiko penyakit liver sedini mungkin dari rekam medis pasien. Terbit resmi di Jurnal Nasional Komputika dengan model Random Forest mencapai kecocokan prediksi 98%.',
+      'Studi komparasi machine learning (Random Forest, SVM, Logistic Regression) untuk deteksi risiko penyakit liver terpublikasi di Jurnal Nasional Komputika.',
     highlights: [
       'Terbit di Jurnal Nasional Komputika (DOI Terindeks)',
       'Optimasi Pipeline Klasifikasi dengan Scikit-Learn',
@@ -361,7 +361,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['iot-cv', 'publication'],
     image: '/journal-pos.jpg',
     description:
-      'Solusi timbangan digital yang terhubung langsung ke antarmuka aplikasi kasir web secara otomatis untuk menghilangkan kesalahan input manual produk curah bagi pelaku UMKM. Memanfaatkan mikrokontroler ESP32 dan modul load cell HX711 terkalibrasi presisi dengan akurasi di atas 98%. Diterbitkan resmi di Jurnal Ilmiah Biner.',
+      'Timbangan digital terhubung langsung ke aplikasi kasir web otomatis berbasis ESP32 dan Load Cell HX711 untuk UMKM terbit di Jurnal Ilmiah Biner.',
     highlights: [
       'Terbit di Jurnal Ilmiah Biner',
       'Otomatisasi Hardware-ke-Web Real-Time untuk UMKM',
@@ -885,6 +885,9 @@ export default function PortfolioPage() {
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
                 Proyek yang Saya Kerjakan
               </h2>
+              <p className="mt-1 text-xs text-zinc-400">
+                Tap kartu mana saja untuk melihat dokumentasi dan arsitektur teknis lengkap.
+              </p>
             </div>
 
             {/* Category Filter Buttons */}
@@ -917,7 +920,8 @@ export default function PortfolioPage() {
               {filteredApps.map((app) => (
                 <article
                   key={app.id}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.12)]"
+                  onClick={() => setActiveModalProject(app)}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.14)] cursor-pointer"
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div>
@@ -952,8 +956,11 @@ export default function PortfolioPage() {
                       {app.title}
                     </h3>
 
-                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                      {app.description}
+                    <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                      {app.description}{' '}
+                      <span className="inline-flex items-center gap-0.5 text-emerald-400 font-medium group-hover:underline">
+                        ...lihat selengkapnya ↗
+                      </span>
                     </p>
 
                     {/* Architectural Highlights */}
@@ -979,23 +986,20 @@ export default function PortfolioPage() {
                   </div>
 
                   {/* Card Footer Links */}
-                  <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-800/80 pt-4">
-                    <button
-                      type="button"
-                      onClick={() => setActiveModalProject(app)}
-                      className="text-xs font-medium text-zinc-400 hover:text-emerald-400 hover:underline inline-flex items-center gap-1 transition"
-                    >
-                      Rincian <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                    </button>
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-3">
+                    <span className="text-[11px] font-mono text-zinc-500 group-hover:text-emerald-400/90 transition inline-flex items-center gap-1">
+                      Tap untuk detail ↗
+                    </span>
 
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-1.5">
                       {app.links.map((link) => (
                         <a
                           key={link.label}
                           href={link.url}
                           target="_blank"
                           rel="noreferrer"
-                          className={`rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                          onClick={(e) => e.stopPropagation()}
+                          className={`rounded-lg px-2.5 py-1 text-xs font-medium transition ${
                             link.primary
                               ? 'bg-zinc-100 text-zinc-950 hover:bg-emerald-400'
                               : 'border border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100'
@@ -1017,7 +1021,8 @@ export default function PortfolioPage() {
               {filteredResearch.map((project) => (
                 <article
                   key={project.id}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.12)]"
+                  onClick={() => setActiveModalProject(project)}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.14)] cursor-pointer"
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div>
@@ -1044,7 +1049,10 @@ export default function PortfolioPage() {
                       </h3>
 
                       <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                        {project.description}
+                        {project.description}{' '}
+                        <span className="inline-flex items-center gap-0.5 text-emerald-400 font-medium group-hover:underline">
+                          ...lihat selengkapnya ↗
+                        </span>
                       </p>
 
                       <ul className="mt-3.5 space-y-1 border-l-2 border-emerald-500/50 pl-2.5">
@@ -1070,18 +1078,15 @@ export default function PortfolioPage() {
                     </div>
 
                     <div className="flex items-center justify-between border-t border-zinc-800/80 pt-3">
-                      <button
-                        type="button"
-                        onClick={() => setActiveModalProject(project)}
-                        className="group/btn text-xs font-medium text-zinc-400 hover:text-emerald-400 hover:underline inline-flex items-center gap-1 transition"
-                      >
-                        Rincian <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
-                      </button>
+                      <span className="text-[11px] font-mono text-zinc-500 group-hover:text-emerald-400/90 transition inline-flex items-center gap-1">
+                        Tap untuk detail ↗
+                      </span>
 
                       <a
                         href={project.link.url}
                         target="_blank"
                         rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center text-xs font-medium text-emerald-400 transition hover:text-emerald-300"
                       >
                         {project.link.label}
