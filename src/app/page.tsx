@@ -638,7 +638,7 @@ export default function PortfolioPage() {
                   onClick={() => setActiveSection(item.id)}
                   className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-all ${
                     isActive
-                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 font-semibold shadow-sm shadow-emerald-950/40'
+                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-white font-semibold shadow-sm shadow-emerald-950/40'
                       : 'border border-transparent text-zinc-400 hover:border-zinc-800 hover:bg-zinc-900/60 hover:text-zinc-200'
                   }`}
                 >
@@ -654,7 +654,7 @@ export default function PortfolioPage() {
               onClick={() => setActiveSection('feedback')}
               className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
                 activeSection === 'feedback'
-                  ? 'border border-emerald-400 bg-emerald-500/25 text-emerald-200 font-semibold shadow-sm shadow-emerald-950/40'
+                  ? 'border border-emerald-400 bg-emerald-500/25 text-white font-semibold shadow-sm shadow-emerald-950/40'
                   : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:border-emerald-500/50 hover:bg-emerald-500/15'
               }`}
             >
@@ -688,7 +688,7 @@ export default function PortfolioPage() {
                   }}
                   className={`flex items-center gap-2 rounded-lg px-3 py-2 transition ${
                     isActive
-                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 font-semibold'
+                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-white font-semibold'
                       : 'border border-transparent text-zinc-300 hover:text-emerald-300'
                   }`}
                 >
@@ -707,7 +707,7 @@ export default function PortfolioPage() {
               }}
               className={`block rounded-lg px-3 py-2 text-sm font-semibold transition ${
                 activeSection === 'feedback'
-                  ? 'border border-emerald-400 bg-emerald-500/25 text-emerald-200'
+                  ? 'border border-emerald-400 bg-emerald-500/25 text-white'
                   : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
               }`}
             >
@@ -934,7 +934,7 @@ export default function PortfolioPage() {
                   onClick={() => setActiveFilter(tab.id as ProjectCategory)}
                   className={`rounded-lg px-3.5 py-1.5 text-xs font-medium transition ${
                     activeFilter === tab.id
-                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-emerald-300'
+                      ? 'border border-emerald-500/40 bg-emerald-500/15 text-white font-semibold'
                       : 'border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                   }`}
                 >
