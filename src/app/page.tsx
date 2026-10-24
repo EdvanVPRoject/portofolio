@@ -783,7 +783,7 @@ export default function PortfolioPage() {
                   </p>
                 </div>
                 <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-                  <p className="font-mono text-xl sm:text-2xl lg:text-3xl font-semibold tabular-nums text-emerald-400">
+                  <p className="font-mono text-xl sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     08
                   </p>
                   <p className="mt-1 text-[10px] sm:text-xs text-zinc-500">
