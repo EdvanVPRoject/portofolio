@@ -618,8 +618,18 @@ export default function PortfolioPage() {
         <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] items-center justify-between px-6 sm:px-8 lg:px-12 py-4">
           <a
             href="#top"
-            className="flex items-center gap-2.5 text-base font-semibold tracking-tight text-zinc-100 hover:opacity-90 transition"
+            className="group flex items-center gap-2.5 text-base font-semibold tracking-tight text-zinc-100 hover:opacity-90 transition"
           >
+            <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full border border-zinc-700/80 bg-zinc-900 shadow-sm transition group-hover:border-emerald-400">
+              <Image
+                src="/github-avatar.png"
+                alt="Logo Edvan"
+                width={28}
+                height={28}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
             <span>
               Edvan Nuriana<span className="text-emerald-500">.</span>
             </span>
