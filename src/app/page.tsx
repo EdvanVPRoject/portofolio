@@ -993,7 +993,7 @@ export default function PortfolioPage() {
 
                     <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
                       {app.description}{' '}
-                      <span className="inline-flex items-center gap-0.5 text-emerald-400 font-medium group-hover:underline">
+                      <span className="inline-flex items-center gap-0.5 text-white font-medium group-hover:underline">
                         ...lihat selengkapnya ↗
                       </span>
                     </p>
@@ -1085,7 +1085,7 @@ export default function PortfolioPage() {
 
                       <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
                         {project.description}{' '}
-                        <span className="inline-flex items-center gap-0.5 text-emerald-400 font-medium group-hover:underline">
+                        <span className="inline-flex items-center gap-0.5 text-white font-medium group-hover:underline">
                           ...lihat selengkapnya ↗
                         </span>
                       </p>
