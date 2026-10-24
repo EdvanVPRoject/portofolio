@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ArrowUp } from 'lucide-react';
 
 const NAV_ITEMS = [
   { id: 'about', label: 'Tentang' },
@@ -482,10 +482,12 @@ export default function PortfolioPage() {
     FeaturedApp | ResearchProject | null
   >(null);
   const [activeSection, setActiveSection] = useState<string>('about');
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
     const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
       const scrollPosition = window.scrollY + 220;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const id = sectionIds[i];
@@ -553,6 +555,15 @@ export default function PortfolioPage() {
       id="top"
       className="relative min-h-screen bg-[#0A0A0C] text-zinc-100 antialiased selection:bg-emerald-500/25 selection:text-emerald-200"
     >
+      {/* Ambient Emerald Aura (Soft & Modern) */}
+      <div
+        className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[500px] w-[850px] -translate-x-1/2 rounded-full opacity-20 blur-[130px]"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 80%)',
+        }}
+      />
+
       {/* Subtle Architectural Dot-Matrix Grid (Bukan Glowing Blobs AI) */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] opacity-25"
@@ -677,8 +688,11 @@ export default function PortfolioPage() {
             {/* Left Column */}
             <div className="space-y-6 lg:col-span-8">
               <div className="flex flex-wrap items-center gap-2.5">
-                <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/90 px-3 py-1 text-xs text-zinc-300">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-zinc-800/80 bg-zinc-900/70 px-3.5 py-1 text-xs text-zinc-300 backdrop-blur-sm transition hover:border-zinc-700">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
                   <span>Sumedang, Indonesia · UNIKOM 2026</span>
                 </div>
                 <span className="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 font-mono text-xs text-emerald-300">
@@ -707,7 +721,7 @@ export default function PortfolioPage() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="#projects"
-                  className="rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition hover:bg-emerald-400"
+                  className="rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_4px_20px_rgba(52,211,153,0.25)]"
                 >
                   Eksplorasi Proyek
                 </a>
@@ -715,7 +729,7 @@ export default function PortfolioPage() {
                   href="/cv-edvan.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-emerald-500/40 hover:text-emerald-300"
+                  className="rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:text-emerald-300"
                 >
                   Unduh CV ↗
                 </a>
@@ -728,29 +742,29 @@ export default function PortfolioPage() {
               </div>
 
               {/* Key Highlights Bar */}
-              <div className="grid grid-cols-3 gap-6 border-t border-zinc-800/80 pt-8 sm:max-w-lg">
-                <div>
-                  <p className="font-mono text-2xl font-semibold tabular-nums text-zinc-100">
+              <div className="grid grid-cols-3 gap-3 border-t border-zinc-800/80 pt-8 sm:max-w-lg">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-2xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     3.53
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
                     IPK S1 Sistem Komputer
                   </p>
                 </div>
-                <div>
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
                   <p className="font-mono text-2xl font-semibold tabular-nums text-emerald-400">
                     08
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
-                    Dokumentasi Proyek Lengkap
+                    Dokumentasi Proyek
                   </p>
                 </div>
-                <div>
-                  <p className="font-mono text-2xl font-semibold tabular-nums text-zinc-100">
+                <div className="group rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <p className="font-mono text-2xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     02
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
-                    Publikasi Jurnal Nasional
+                    Publikasi Jurnal
                   </p>
                 </div>
               </div>
@@ -758,20 +772,25 @@ export default function PortfolioPage() {
 
             {/* Right Column: Profile Card */}
             <div className="lg:col-span-4">
-              <div className="mx-auto max-w-xs rounded-xl border border-zinc-800 bg-zinc-900/40 p-3.5 transition hover:border-zinc-700">
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-zinc-900">
+              <div className="group relative mx-auto max-w-xs rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-3.5 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.15)]">
+                <div className="pointer-events-none absolute -inset-0.5 -z-10 rounded-2xl bg-gradient-to-b from-emerald-500/10 to-transparent opacity-0 blur-lg transition duration-300 group-hover:opacity-100" />
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/profile.jpeg"
                     alt="Edvan Nuriana Putra Septia, S.Kom."
                     fill
                     sizes="(max-width: 768px) 240px, 320px"
-                    className="object-cover"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                     priority
                   />
+                  <div className="absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-zinc-950/80 px-2.5 py-0.5 text-[10px] font-medium text-emerald-300 backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Open to Work
+                  </div>
                 </div>
                 <div className="mt-3.5 flex items-center justify-between px-1">
                   <div>
-                    <p className="text-sm font-medium text-zinc-100">
+                    <p className="text-sm font-medium text-zinc-100 group-hover:text-emerald-200 transition-colors">
                       Edvan Nuriana Putra Septia, S.Kom.
                     </p>
                     <p className="mt-0.5 font-mono text-xs text-zinc-500">
@@ -850,7 +869,8 @@ export default function PortfolioPage() {
 
               {/* 3 Engineering Pillars */}
               <div className="grid gap-4 pt-3 sm:grid-cols-3">
-                <div className="rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4">
+                <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs text-emerald-400">
                     01 · Native & Cross-Platform
                   </p>
@@ -859,7 +879,8 @@ export default function PortfolioPage() {
                     asinkron dan komunikasi real-time.
                   </p>
                 </div>
-                <div className="rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4">
+                <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs text-emerald-400">
                     02 · Applied AI & Vision
                   </p>
@@ -868,7 +889,8 @@ export default function PortfolioPage() {
                     untuk otomasi media serta verifikasi visual.
                   </p>
                 </div>
-                <div className="rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4">
+                <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs text-emerald-400">
                     03 · Edge IoT & Riset
                   </p>
@@ -928,8 +950,9 @@ export default function PortfolioPage() {
               {filteredApps.map((app) => (
                 <article
                   key={app.id}
-                  className="group flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition hover:border-emerald-500/35 hover:bg-zinc-900/60"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.12)]"
                 >
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div>
                     <div className="mb-5 flex items-start justify-between gap-4">
                       <div className="flex items-center gap-4">
@@ -995,7 +1018,7 @@ export default function PortfolioPage() {
                       onClick={() => setActiveModalProject(app)}
                       className="text-xs font-medium text-zinc-400 hover:text-emerald-400 hover:underline inline-flex items-center gap-1 transition"
                     >
-                      Rincian <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
+                      Rincian <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                     </button>
 
                     <div className="flex flex-wrap items-center gap-2">
@@ -1027,8 +1050,9 @@ export default function PortfolioPage() {
               {filteredResearch.map((project) => (
                 <article
                   key={project.id}
-                  className="group flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition hover:border-emerald-500/35 hover:bg-zinc-900/60"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.12)]"
                 >
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div>
                     <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
                       <Image
@@ -1082,7 +1106,7 @@ export default function PortfolioPage() {
                       <button
                         type="button"
                         onClick={() => setActiveModalProject(project)}
-                        className="text-xs font-medium text-zinc-400 hover:text-emerald-400 hover:underline inline-flex items-center gap-1 transition"
+                        className="group/btn text-xs font-medium text-zinc-400 hover:text-emerald-400 hover:underline inline-flex items-center gap-1 transition"
                       >
                         Rincian <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
                       </button>
@@ -1122,8 +1146,9 @@ export default function PortfolioPage() {
             {SKILLS_DATA.map((skill) => (
               <div
                 key={skill.title}
-                className="flex flex-col justify-between rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition hover:border-zinc-700"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50 hover:shadow-[0_8px_25px_-10px_rgba(16,185,129,0.1)]"
               >
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div>
                   <span className="font-mono text-xs font-medium text-emerald-500">
                     {skill.index}
@@ -1168,7 +1193,8 @@ export default function PortfolioPage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {/* Pendidikan */}
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <p className="font-mono text-xs text-emerald-400">2022—2026</p>
               <h3 className="mt-2 text-lg font-semibold text-zinc-100">
                 S1 Sistem Komputer
@@ -1182,7 +1208,8 @@ export default function PortfolioPage() {
             </div>
 
             {/* Publikasi Nasional */}
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <p className="font-mono text-xs text-emerald-400">
                 Publikasi Nasional
               </p>
@@ -1212,7 +1239,8 @@ export default function PortfolioPage() {
             </div>
 
             {/* Sertifikasi Resmi */}
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <p className="font-mono text-xs text-emerald-400">
                 Sertifikasi Resmi
               </p>
@@ -1408,6 +1436,19 @@ export default function PortfolioPage() {
           </a>
         </div>
       </footer>
+
+      {/* Floating Back to Top Button */}
+      <a
+        href="#top"
+        aria-label="Kembali ke atas"
+        className={`fixed bottom-6 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700/80 bg-zinc-900/90 text-zinc-300 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 hover:-translate-y-0.5 ${
+          showScrollTop
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
+      >
+        <ArrowUp className="h-4 w-4" />
+      </a>
 
       {/* MODAL RINCIAN PROYEK */}
       {activeModalProject && (
