@@ -819,18 +819,13 @@ export default function PortfolioPage() {
                     Open to Work
                   </div>
                 </div>
-                <div className="mt-3.5 flex items-center justify-between px-1">
-                  <div>
-                    <p className="text-sm font-medium text-zinc-100 group-hover:text-emerald-200 transition-colors">
-                      Edvan Nuriana Putra Septia, S.Kom.
-                    </p>
-                    <p className="mt-0.5 font-mono text-xs text-zinc-500">
-                      S1 Sistem Komputer UNIKOM
-                    </p>
-                  </div>
-                  <span className="rounded border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-medium text-emerald-300">
-                    3.53
-                  </span>
+                <div className="mt-3.5 px-1">
+                  <p className="text-base font-semibold text-zinc-100 group-hover:text-emerald-300 transition-colors">
+                    Edvan Nuriana Putra Septia, S.Kom.
+                  </p>
+                  <p className="mt-1 font-mono text-xs text-zinc-400">
+                    S1 Sistem Komputer UNIKOM
+                  </p>
                 </div>
               </div>
             </div>
