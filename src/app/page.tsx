@@ -839,8 +839,8 @@ export default function PortfolioPage() {
         >
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             <div className="lg:col-span-4">
-              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-                <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'about' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
+              <div className="inline-flex items-center gap-2.5 font-mono text-sm uppercase tracking-wider text-emerald-400 font-semibold">
+                <span className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${activeSection === 'about' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
                 <span>01 / Tentang Saya</span>
               </div>
               <h2 className="mt-3 text-2xl font-semibold leading-snug text-zinc-100 sm:text-3xl">
@@ -908,8 +908,8 @@ export default function PortfolioPage() {
         >
           <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-                <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'projects' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
+              <div className="inline-flex items-center gap-2.5 font-mono text-sm uppercase tracking-wider text-emerald-400 font-semibold">
+                <span className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${activeSection === 'projects' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
                 <span>02 / Proyek & Riset</span>
               </div>
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
@@ -1135,8 +1135,8 @@ export default function PortfolioPage() {
           className="scroll-mt-20 border-t border-zinc-800/80 py-16 md:py-20"
         >
           <div className="mb-10">
-            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-              <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'skills' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
+            <div className="inline-flex items-center gap-2.5 font-mono text-sm uppercase tracking-wider text-emerald-400 font-semibold">
+              <span className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${activeSection === 'skills' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
               <span>03 / Keahlian Teknis</span>
             </div>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
@@ -1184,8 +1184,8 @@ export default function PortfolioPage() {
           className="scroll-mt-20 border-t border-zinc-800/80 py-16 md:py-20"
         >
           <div className="mb-10">
-            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-              <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'academic' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
+            <div className="inline-flex items-center gap-2.5 font-mono text-sm uppercase tracking-wider text-emerald-400 font-semibold">
+              <span className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${activeSection === 'academic' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
               <span>04 / Akademik & Publikasi</span>
             </div>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
@@ -1279,8 +1279,8 @@ export default function PortfolioPage() {
             {/* Kontak Langsung */}
             <div className="space-y-6 lg:col-span-6">
               <div>
-                <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-emerald-500">
-                  <span className={`h-2 w-2 rounded-full transition-all duration-300 ${activeSection === 'contact' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
+                <div className="inline-flex items-center gap-2.5 font-mono text-sm uppercase tracking-wider text-emerald-400 font-semibold">
+                  <span className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${activeSection === 'contact' ? 'bg-emerald-400 ring-4 ring-emerald-500/25 scale-110' : 'bg-zinc-600'}`} />
                   <span>05 / Kontak & Ulasan</span>
                 </div>
                 <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
