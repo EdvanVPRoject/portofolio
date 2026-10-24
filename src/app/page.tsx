@@ -710,7 +710,7 @@ export default function PortfolioPage() {
                 <strong className="font-medium text-zinc-100">
                   Edvan Nuriana Putra Septia, S.Kom.
                 </strong>
-                , lulusan S1 Sistem Komputer UNIKOM dengan IPK 3.53. Saya aktif mengembangkan solusi perangkat lunak—mulai dari otomasi Python, aplikasi desktop native, web modern, hingga integrasi model AI lokal dan mikrokontroler IoT. Berbekal sertifikasi Cisco CCNA dan publikasi jurnal terakreditasi, saya selalu mengutamakan sistem yang cepat, efisien, dan siap digunakan di dunia nyata.
+                , lulusan S1 Sistem Komputer UNIKOM dengan IPK 3.53. Saya aktif mengembangkan solusi perangkat lunak, mulai dari otomasi Python, aplikasi desktop native, web modern, hingga integrasi model AI lokal dan mikrokontroler IoT. Berbekal sertifikasi Cisco CCNA dan publikasi jurnal terakreditasi, saya selalu mengutamakan sistem yang cepat, efisien, dan siap digunakan di dunia nyata.
               </p>
 
               {/* CTA Group */}
