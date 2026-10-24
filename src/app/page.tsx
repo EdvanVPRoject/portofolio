@@ -705,12 +705,12 @@ export default function PortfolioPage() {
                 Membangun perangkat lunak yang cepat, otomasi cerdas, dan sistem yang langsung siap pakai.
               </h1>
 
-              <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg text-justify hyphens-auto">
+              <p className="max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
                 Halo! Saya{' '}
                 <strong className="font-medium text-zinc-100">
                   Edvan Nuriana Putra Septia, S.Kom.
                 </strong>
-                , lulusan S1 Sistem Komputer UNIKOM (IPK 3.53). Saya suka merancang teknologi dari hulu ke hilir—mulai dari otomasi script Python, aplikasi desktop native, platform web modern, hingga integrasi model AI offline dan mikrokontroler IoT. Berbekal sertifikasi Cisco CCNA dan riset jurnal nasional terakreditasi, semua karya saya dibangun dengan prinsip efisiensi, respons cepat, dan siap pakai di dunia nyata.
+                , lulusan S1 Sistem Komputer UNIKOM dengan IPK 3.53. Saya aktif mengembangkan solusi perangkat lunak—mulai dari otomasi Python, aplikasi desktop native, web modern, hingga integrasi model AI lokal dan mikrokontroler IoT. Berbekal sertifikasi Cisco CCNA dan publikasi jurnal terakreditasi, saya selalu mengutamakan sistem yang cepat, efisien, dan siap digunakan di dunia nyata.
               </p>
 
               {/* CTA Group */}
