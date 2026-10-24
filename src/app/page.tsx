@@ -614,7 +614,7 @@ export default function PortfolioPage() {
       />
 
       {/* NAVBAR */}
-      <header className="sticky top-0 z-50 border-b border-zinc-800/80 bg-[#0A0A0C]/85 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-zinc-800/50 bg-[#0A0A0C]/60 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] items-center justify-between px-6 sm:px-8 lg:px-12 py-4">
           <a
             href="#top"
@@ -675,7 +675,7 @@ export default function PortfolioPage() {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-800 bg-[#0A0A0C]/95 px-6 py-4 space-y-2 text-sm font-medium backdrop-blur-lg">
+          <div className="md:hidden border-b border-zinc-800/80 bg-[#0A0A0C]/80 px-6 py-4 space-y-2 text-sm font-medium backdrop-blur-xl">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
               return (
