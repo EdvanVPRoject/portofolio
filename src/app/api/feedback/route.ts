@@ -64,7 +64,7 @@ export async function POST(request: Request) {
     if (!tgData.ok) {
       console.error('Telegram API error:', tgData);
       return NextResponse.json(
-        { error: tgData.description || 'Gagal mengirim ke Telegram.' },
+        { error: tgData.description || 'Gagal mengirim pesan.' },
         { status: 502 }
       );
     }

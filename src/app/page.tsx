@@ -711,7 +711,7 @@ export default function PortfolioPage() {
                   : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
               }`}
             >
-              Kirim Ulasan Telegram ↗
+              Kirim Pesan & Ulasan ↗
             </a>
           </div>
         )}
@@ -1363,8 +1363,7 @@ export default function PortfolioPage() {
                   Kesan & Catatan Pengunjung
                 </h3>
                 <p className="mt-1 text-xs text-zinc-400">
-                  Pesan Anda akan langsung diteruskan secara instan ke bot
-                  Telegram pribadi saya.
+                  Pesan Anda akan langsung terkirim secara instan kepada saya.
                 </p>
 
                 <form
@@ -1412,13 +1411,13 @@ export default function PortfolioPage() {
                     className="w-full rounded-lg bg-zinc-100 px-5 py-2.5 text-xs font-semibold text-zinc-950 transition hover:bg-emerald-400 disabled:opacity-50"
                   >
                     {isSubmitting
-                      ? 'Mengirim ke Telegram...'
+                      ? 'Mengirim pesan...'
                       : 'Kirim Pesan Instant ↗'}
                   </button>
 
                   {submitStatus === 'success' && (
                     <p className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-center text-xs text-emerald-300">
-                      Terima kasih! Pesan Anda telah diteruskan ke Telegram saya.
+                      Terima kasih! Pesan Anda telah berhasil terkirim.
                     </p>
                   )}
                   {submitStatus === 'error' && (
