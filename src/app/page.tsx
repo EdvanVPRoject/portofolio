@@ -482,8 +482,43 @@ export default function PortfolioPage() {
   const [activeModalProject, setActiveModalProject] = useState<
     FeaturedApp | ResearchProject | null
   >(null);
+  const [isClosingModal, setIsClosingModal] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('about');
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  const handleOpenModal = (project: FeaturedApp | ResearchProject) => {
+    setIsClosingModal(false);
+    setActiveModalProject(project);
+  };
+
+  const handleCloseModal = () => {
+    setIsClosingModal(true);
+    setTimeout(() => {
+      setActiveModalProject(null);
+      setIsClosingModal(false);
+    }, 200);
+  };
+
+  useEffect(() => {
+    if (activeModalProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeModalProject]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && activeModalProject && !isClosingModal) {
+        handleCloseModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeModalProject, isClosingModal]);
 
   useEffect(() => {
     const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
@@ -920,7 +955,7 @@ export default function PortfolioPage() {
               {filteredApps.map((app) => (
                 <article
                   key={app.id}
-                  onClick={() => setActiveModalProject(app)}
+                  onClick={() => handleOpenModal(app)}
                   className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.14)] cursor-pointer"
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -1021,7 +1056,7 @@ export default function PortfolioPage() {
               {filteredResearch.map((project) => (
                 <article
                   key={project.id}
-                  onClick={() => setActiveModalProject(project)}
+                  onClick={() => handleOpenModal(project)}
                   className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.14)] cursor-pointer"
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -1429,15 +1464,21 @@ export default function PortfolioPage() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-150"
-          onClick={() => setActiveModalProject(null)}
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ease-out ${
+            isClosingModal ? 'opacity-0 pointer-events-none' : 'opacity-100 animate-backdrop-in'
+          }`}
+          onClick={handleCloseModal}
         >
           <div
-            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-zinc-800 bg-[#0E0E11] p-6 sm:p-8 shadow-2xl text-left"
+            className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-zinc-800 bg-[#0E0E11] p-6 sm:p-8 shadow-2xl text-left transition-all duration-200 ease-out ${
+              isClosingModal
+                ? 'opacity-0 scale-95 translate-y-3'
+                : 'opacity-100 scale-100 translate-y-0 animate-modal-in'
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setActiveModalProject(null)}
+              onClick={handleCloseModal}
               className="absolute top-5 right-5 p-2 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition"
               aria-label="Tutup"
             >
@@ -1491,7 +1532,7 @@ export default function PortfolioPage() {
 
               <div className="pt-4 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-3">
                 <button
-                  onClick={() => setActiveModalProject(null)}
+                  onClick={handleCloseModal}
                   className="px-4 py-2 rounded-lg text-xs font-medium text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition"
                 >
                   Tutup
