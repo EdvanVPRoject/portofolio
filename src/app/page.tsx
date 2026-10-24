@@ -697,7 +697,7 @@ export default function PortfolioPage() {
                   <span>Sumedang, Indonesia · UNIKOM 2026</span>
                 </div>
                 <span className="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 font-mono text-xs text-emerald-300">
-                  Software Engineer · Applied AI & IoT Specialist
+                  Fullstack Developer · Software Engineer · Applied AI & IoT Specialist
                 </span>
               </div>
 
