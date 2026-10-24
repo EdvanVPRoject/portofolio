@@ -1207,7 +1207,7 @@ export default function PortfolioPage() {
               <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
                 Fokus pada integrasi sistem komputasi, rekayasa software, arsitektur basis data, serta riset terapan kecerdasan buatan dan IoT.
               </p>
-              <p className="mt-4 inline-block rounded border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs text-emerald-300">
+              <p className="mt-4 inline-block rounded border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs text-white">
                 IPK: 3,53 / 4,00 · Lulus 2026
               </p>
             </div>
