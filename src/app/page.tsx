@@ -913,31 +913,31 @@ export default function PortfolioPage() {
 
           {/* Bento Row 1: Featured Software Applications */}
           {filteredApps.length > 0 && (
-            <div className="grid gap-6 md:grid-cols-2 lg:gap-7">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:gap-7">
               {filteredApps.map((app) => (
                 <article
                   key={app.id}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.12)]"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.12)]"
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div>
-                    <div className="mb-5 flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-2">
+                    <div className="mb-4 sm:mb-5 flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3.5">
+                        <div className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-2">
                           <Image
                             src={app.image}
                             alt={app.title}
-                            width={40}
-                            height={40}
+                            width={36}
+                            height={36}
                             className="object-contain"
                           />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="rounded border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[11px] text-emerald-300">
+                            <span className="rounded border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] sm:text-[11px] text-emerald-300">
                               {app.badge}
                             </span>
-                            <span className="font-mono text-xs text-zinc-500">
+                            <span className="font-mono text-[11px] sm:text-xs text-zinc-500">
                               {app.year}
                             </span>
                           </div>
@@ -948,29 +948,29 @@ export default function PortfolioPage() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-semibold text-zinc-100 transition group-hover:text-emerald-300">
+                    <h3 className="text-base sm:text-lg font-semibold text-zinc-100 transition group-hover:text-emerald-300">
                       {app.title}
                     </h3>
 
-                    <p className="mt-2.5 text-sm leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-zinc-400 text-justify hyphens-auto">
                       {app.description}
                     </p>
 
                     {/* Architectural Highlights */}
-                    <ul className="mt-4 space-y-1.5 border-l-2 border-emerald-500/50 pl-3">
+                    <ul className="mt-3.5 space-y-1.5 border-l-2 border-emerald-500/50 pl-3">
                       {app.highlights.map((item) => (
-                        <li key={item} className="text-xs text-zinc-300">
+                        <li key={item} className="text-[11px] sm:text-xs text-zinc-300">
                           {item}
                         </li>
                       ))}
                     </ul>
 
                     {/* Tech Stack Pills */}
-                    <div className="mt-5 flex flex-wrap gap-1.5">
+                    <div className="mt-4 flex flex-wrap gap-1.5">
                       {app.tech.map((t) => (
                         <span
                           key={t}
-                          className="rounded border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-300"
+                          className="rounded border border-zinc-800 bg-zinc-950 px-2 py-0.5 font-mono text-[10px] sm:text-[11px] text-zinc-300"
                         >
                           {t}
                         </span>
@@ -979,7 +979,7 @@ export default function PortfolioPage() {
                   </div>
 
                   {/* Card Footer Links */}
-                  <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-800/80 pt-4">
+                  <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-800/80 pt-4">
                     <button
                       type="button"
                       onClick={() => setActiveModalProject(app)}
@@ -995,7 +995,7 @@ export default function PortfolioPage() {
                           href={link.url}
                           target="_blank"
                           rel="noreferrer"
-                          className={`rounded-lg px-3.5 py-2 text-xs font-medium transition ${
+                          className={`rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                             link.primary
                               ? 'bg-zinc-100 text-zinc-950 hover:bg-emerald-400'
                               : 'border border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100'
