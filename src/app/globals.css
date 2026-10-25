@@ -64,11 +64,18 @@ body {
   animation-delay: 300ms;
 }
 
-/* Polished typographic justification across all screen ratios */
+/* Polished typographic justification across all screen ratios (natural left-align on mobile to prevent river gaps) */
 .text-justify {
   text-align: justify;
   text-align-last: left;
   text-justify: inter-word;
+}
+
+@media (max-width: 640px) {
+  .text-justify {
+    text-align: left;
+    text-align-last: left;
+  }
 }
 
 /* Modal Open & Close Animations */
