@@ -232,16 +232,16 @@ const FEATURED_APPS: FeaturedApp[] = [
   },
   {
     id: 'eninformasi',
-    title: 'EnInformasi Hub — Portal Wawasan AI, Komputasi & Tutorial Praktis',
+    title: 'EnInformasi Hub — Portal 195 Tutorial, Gaming & Tren Teknologi Terkini',
     tagline: 'Platform Edukasi & Publikasi Web · Bilingual ID/EN',
     year: '2026',
     badge: 'Next.js & Cloudflare',
     category: ['software'],
     image: '/eninformasi-icon.svg',
     description:
-      'Portal media teknologi bilingual (ID/EN) yang menyajikan lebih dari 150 katalog rekayasa software dan AI dengan Skor Lighthouse 100/100 di Cloudflare Pages.',
+      'Portal media teknologi bilingual (ID/EN) yang menyajikan 195 modul tutorial, gaming, dan tren teknologi terkini dengan Skor Lighthouse 100/100 di Cloudflare Workers/Pages.',
     highlights: [
-      '195 Katalog Terstruktur (65 Hands-on Guide & 130 Deep-Dive Trends)',
+      '195 Katalog Terstruktur (Tutorial Praktis, Gaming & Deep-Dive Trends)',
       'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
     ],
     tech: [
@@ -249,13 +249,13 @@ const FEATURED_APPS: FeaturedApp[] = [
       'TypeScript',
       'Tailwind CSS',
       'OpenNext',
-      'Cloudflare Pages',
+      'Cloudflare Pages / Workers',
       'Lucide React',
     ],
     links: [
       {
         label: 'Kunjungi Website ↗',
-        url: 'https://github.com/EdvanVPRoject/eninformasi-hub',
+        url: 'https://eninformasi-hub.entehchin.workers.dev/',
         primary: true,
       },
       {
