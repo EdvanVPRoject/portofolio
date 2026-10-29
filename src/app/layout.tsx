@@ -13,13 +13,13 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Edvan Nuriana — Sistem Komputer",
-  description: "Portofolio Edvan Nuriana Putra Septia, lulusan Sistem Komputer dengan pengalaman proyek di bidang pemrograman, computer vision, IoT, dan aplikasi web.",
-  keywords: ["Edvan Nuriana", "Sistem Komputer", "Portofolio", "Computer Vision", "IoT", "Next.js", "WebRTC", "YOLOv8"],
-  authors: [{ name: "Edvan Nuriana Putra Septia" }],
+  title: "Edvan Nuriana, S.Kom. — Fullstack & Mobile Software Engineer",
+  description: "Portofolio Edvan Nuriana Putra Septia, S.Kom. Lulusan S1 Sistem Komputer UNIKOM. Berfokus pada Fullstack Web (Next.js/React 19), Mobile Development (Flutter/Android), dan protokol P2P real-time (WebRTC).",
+  keywords: ["Edvan Nuriana", "Fullstack Developer", "Mobile Developer", "Flutter", "Next.js", "React 19", "WebRTC", "TypeScript", "Sistem Komputer", "Cisco CCNA", "UNIKOM"],
+  authors: [{ name: "Edvan Nuriana Putra Septia, S.Kom." }],
   openGraph: {
-    title: "Edvan Nuriana — Sistem Komputer",
-    description: "Portofolio Edvan Nuriana Putra Septia, lulusan Sistem Komputer UNIKOM.",
+    title: "Edvan Nuriana, S.Kom. — Fullstack & Mobile Software Engineer",
+    description: "Portofolio Edvan Nuriana Putra Septia, S.Kom. Lulusan S1 Sistem Komputer UNIKOM (IPK 3.53). Fullstack Web, Flutter Mobile, dan Sistem Terdistribusi.",
     type: "website",
     locale: "id_ID",
   },
