@@ -592,7 +592,7 @@ export default function PortfolioPage() {
     setTimeout(() => {
       setActiveModalProject(null);
       setIsClosingModal(false);
-    }, 200);
+    }, 240);
   };
 
   const handleOpenCertModal = (cert: CertificateCredential) => {
@@ -605,7 +605,7 @@ export default function PortfolioPage() {
     setTimeout(() => {
       setActiveCert(null);
       setIsClosingCertModal(false);
-    }, 200);
+    }, 240);
   };
 
   useEffect(() => {
@@ -1809,16 +1809,21 @@ export default function PortfolioPage() {
         <div
           role="dialog"
           aria-modal="true"
-          className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ease-out ${
-            isClosingModal ? 'opacity-0 pointer-events-none' : 'opacity-100 animate-backdrop-in'
-          }`}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
           onClick={handleCloseModal}
         >
+          {/* Backdrop */}
           <div
-            className={`relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-zinc-800 bg-[#0E0E11] p-4 sm:p-6 md:p-8 shadow-2xl text-left transition-all duration-200 ease-out ${
+            className={`absolute inset-0 bg-black/80 backdrop-blur-md ${
+              isClosingModal ? 'animate-backdrop-out pointer-events-none' : 'animate-backdrop-in'
+            }`}
+          />
+
+          <div
+            className={`relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-zinc-800 bg-[#0E0E11] p-4 sm:p-6 md:p-8 shadow-2xl text-left ${
               isClosingModal
-                ? 'opacity-0 scale-95 translate-y-3'
-                : 'opacity-100 scale-100 translate-y-0 animate-modal-in'
+                ? 'animate-modal-out pointer-events-none'
+                : 'animate-modal-in'
             }`}
             onClick={(e) => e.stopPropagation()}
           >
@@ -1920,20 +1925,22 @@ export default function PortfolioPage() {
       {/* CERTIFICATE LIGHTBOX MODAL */}
       {activeCert && (
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 transition-all duration-200 ${
-            isClosingCertModal ? 'opacity-0' : 'opacity-100'
-          }`}
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
         >
           {/* Backdrop */}
           <div
             onClick={handleCloseCertModal}
-            className="absolute inset-0 bg-black/85 backdrop-blur-md"
+            className={`absolute inset-0 bg-black/85 backdrop-blur-md ${
+              isClosingCertModal ? 'animate-backdrop-out pointer-events-none' : 'animate-backdrop-in'
+            }`}
           />
 
           {/* Modal Container */}
           <div
-            className={`relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl transition-all duration-200 ${
-              isClosingCertModal ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
+            className={`relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl ${
+              isClosingCertModal ? 'animate-modal-out pointer-events-none' : 'animate-modal-in'
             }`}
           >
             {/* Header */}
