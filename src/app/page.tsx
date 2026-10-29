@@ -159,7 +159,7 @@ const FEATURED_APPS: FeaturedApp[] = [
     description:
       'Portal media teknologi bilingual (ID/EN) yang menyajikan lebih dari 150 katalog rekayasa software dan AI dengan Skor Lighthouse 100/100 di Cloudflare Pages.',
     highlights: [
-      '192 Katalog Terstruktur (65 Hands-on Guide & 127 Deep-Dive Trends)',
+      '195 Katalog Terstruktur (65 Hands-on Guide & 130 Deep-Dive Trends)',
       'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
     ],
     tech: [
@@ -187,7 +187,7 @@ const FEATURED_APPS: FeaturedApp[] = [
       summary:
         'Platform web modern yang memisahkan secara tegas antara Tutorial Praktis (Hands-on Guide) dan EnInformasi (Deep-Dive Insight & Trends), dirancang dengan fokus pada kecepatan akses, tipografi editorial yang nyaman dibaca, dan modularitas konten bilingual penuh.',
       bullets: [
-        'Katalog Konten Terkurasi: Memuat 192 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
+        'Katalog Konten Terkurasi: Memuat 195 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
         'Sistem Bilingual Real-Time: Switcher bahasa terisolasi yang mengalihkan 100% judul, ringkasan, teks artikel, dan daftar isi secara instan tanpa re-render halaman penuh.',
         'Interactive Practice Checklist: Fitur pencatatan progres praktik pengguna langsung di browser berbasis sessionStorage per artikel dengan tombol reset instan.',
         'Smart Viewport Scrollspy: Navigasi daftar isi aktif yang melacak posisi pembacaan secara real-time pada desktop dan mobile.',
