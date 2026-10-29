@@ -752,7 +752,7 @@ export default function PortfolioPage() {
                   <span>Sumedang, Indonesia · UNIKOM 2026</span>
                 </div>
                 <span className="rounded-xl sm:rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] sm:text-xs text-emerald-300 leading-relaxed">
-                  Fullstack Developer · Software Engineer · Applied AI & IoT Specialist
+                  Fullstack Developer · AI Engineer · Software Engineer · Applied AI & IoT Specialist
                 </span>
               </div>
 
@@ -1273,16 +1273,95 @@ export default function PortfolioPage() {
                 Kredensial Industri
               </h3>
               <ul className="mt-4 space-y-2 text-xs text-zinc-300">
-                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2">
+                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
                   <div className="flex items-center justify-between">
-                    <span>Google Gemini Certified Student — University</span>
-                    <span className="font-mono text-[10px] text-emerald-400">2026—2029</span>
+                    <span className="font-medium text-zinc-200">Action AI Startup University: AI Essentials</span>
+                    <span className="font-mono text-[10px] text-emerald-400">2026</span>
+                  </div>
+                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
+                    <span>underdogs. & UNIKOM · ID: UDI-202610-twv1n6 (OpenBadge 3.0)</span>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="/cert-action-ai.pdf"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                      >
+                        PDF ↗
+                      </a>
+                      <a
+                        href="https://udimpact.kolleges.net/en/achievements"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                      >
+                        Verifikasi ↗
+                      </a>
+                    </div>
+                  </div>
+                  <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
+                    Fokus: AI Literacy & Prototyping (Gemini & Lovable), Prompt Writing, Problem Definition, dan MVP Planning.
+                  </p>
+                </li>
+                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-zinc-200">Coursera: Microsoft Excel: Learn with Projects</span>
+                    <span className="font-mono text-[10px] text-emerald-400">2026</span>
+                  </div>
+                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
+                    <span>Specialization (8 Courses)</span>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="/cert-coursera-excel.pdf"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                      >
+                        PDF ↗
+                      </a>
+                      <a
+                        href="https://coursera.org/verify/specialization/V32873K6COVJ"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                      >
+                        Verifikasi ↗
+                      </a>
+                    </div>
                   </div>
                 </li>
-                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2">
+                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
                   <div className="flex items-center justify-between">
-                    <span>Cisco CCNA: Introduction to Networks</span>
+                    <span className="font-medium text-zinc-200">Google Gemini Certified Student — University</span>
+                    <span className="font-mono text-[10px] text-emerald-400">2026—2029</span>
+                  </div>
+                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
+                    <span>Google for Education</span>
+                    <a
+                      href="/cert-gemini.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                    >
+                      PDF ↗
+                    </a>
+                  </div>
+                </li>
+                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-zinc-200">Cisco CCNA: Introduction to Networks</span>
                     <span className="font-mono text-[10px] text-emerald-400">2025—2028</span>
+                  </div>
+                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
+                    <span>Cisco Networking Academy · UNIKOM</span>
+                    <a
+                      href="/cert-ccna.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                    >
+                      PDF ↗
+                    </a>
                   </div>
                 </li>
               </ul>
