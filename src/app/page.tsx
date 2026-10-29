@@ -17,30 +17,7 @@ import {
   Eye,
   Copy,
   Check,
-  RefreshCw,
-  Terminal,
-  User,
-  Code2,
 } from 'lucide-react';
-
-const HERO_ACTIVITIES = [
-  {
-    tag: 'Fokus Riset & Rilis',
-    text: 'Menyiapkan rilis ENCross v2 (WebRTC P2P tanpa relay cloud)',
-  },
-  {
-    tag: 'Arsitektur Stack',
-    text: 'Next.js 16 App Router, TypeScript, dan Flutter cross-platform',
-  },
-  {
-    tag: 'Hardware & IoT',
-    text: 'Firmware mikrokontroler ESP32, sensor terdistribusi & analitik jaringan',
-  },
-  {
-    tag: 'Status Rekayasa',
-    text: 'Terbuka untuk posisi Fullstack Web & Mobile Software Engineer',
-  },
-];
 
 function getTechTagStyle(tech?: string): string {
   void tech;
@@ -196,6 +173,45 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
       'Modul 15: Application Layer (Web/HTTP, DNS, DHCP, File Sharing)',
       'Modul 16: Network Security Fundamentals & Attack Mitigations',
       'Modul 17: Build a Small Network, Host Commands & Troubleshooting Scenarios',
+    ],
+  },
+  {
+    id: 'cert-cisco-networking-basics',
+    title: 'Cisco: Networking Basics',
+    issuer: 'Cisco Networking Academy',
+    period: '2026',
+    category: 'Computer Networking',
+    credentialId: '49cdedf9-0768-42cd-8b3a-82ac8e44a95a',
+    pdfUrl: '/cert-cisco-networking-basics.pdf',
+    imageUrl: '/cert-cisco-networking-basics.png',
+    description:
+      'Sertifikasi resmi Cisco Networking Academy yang memvalidasi penguasaan fundamental komunikasi data, komponen & topologi jaringan, konfigurasi wireless home router, pemodelan Ethernet, skema pengalamatan IPv4/IPv6, DHCP, NAT, serta simulasi lab hands-on Cisco Packet Tracer.',
+    skills: [
+      'Network Architecture & Topologies',
+      'IPv4 & IPv6 Addressing Formats',
+      'Wireless & Mobile Networks',
+      'DHCP & NAT Configuration',
+      'Cisco Packet Tracer Simulations',
+      'Network Testing & Diagnostics',
+    ],
+    modules: [
+      'Modul 01: Communication in a Connected World (Network Types, Data Transmission & Bandwidth)',
+      'Modul 02: Network Components, Types, and Connections (Clients, Servers & ISP Options)',
+      'Modul 03: Wireless and Mobile Networks (Wireless Topologies & Mobile Connectivity)',
+      'Modul 04: Build a Home Network (Wireless Standards & Home Router Setup)',
+      'Modul 05: Communication Principles (Protocols, Standards Organizations & Models)',
+      'Modul 06: Network Media (Copper, Fiber-Optic & Wireless Media Types)',
+      'Modul 07: The Access Layer (Encapsulation, Ethernet Frames & Access Functions)',
+      'Modul 08: The Internet Protocol (IPv4 Addressing Structure & Characteristics)',
+      'Modul 09: IPv4 and Network Segmentation (Unicast, Broadcast, Multicast & Subnetting)',
+      'Modul 10: IPv6 Addressing Formats and Rules (IPv4 Issues & IPv6 Addressing)',
+      'Modul 11: Dynamic Addressing with DHCP (Static vs Dynamic & DHCPv4 Router Config)',
+      'Modul 12: Gateways to Other Networks (Network Boundaries & NAT Translation)',
+      'Modul 13: The ARP Process (MAC & IP Resolution & Broadcast Containment)',
+      'Modul 14: Routing Between Networks (Need for Routing, Routing Tables & LAN Creation)',
+      'Modul 15: TCP and UDP (Transport Protocols, Port Numbers & Reliability)',
+      'Modul 16: Application Layer Services (Client-Server, DNS, Web, FTP, SSH & Email)',
+      'Modul 17: Network Testing Utilities (ipconfig, ping & Troubleshooting Commands)',
     ],
   },
 ];
@@ -463,16 +479,16 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
   },
   {
     id: 'liver-ml',
-    title: 'Klasifikasi Risiko Penyakit Liver (Studi Komparasi ML)',
-    tagline: 'Publikasi Jurnal Komputika · Data Science',
-    year: '2025—2026',
+    title: 'Prediksi Penyakit Liver dengan Model Perbandingan Logistic Regression, SVM, dan Random Forest',
+    tagline: 'Publikasi Jurnal Komputika · Vol. 15 No. 1 (2026) Hal. 83–94',
+    year: '2026',
     category: ['publication'],
     image: '/journal-liver.jpg',
     description:
-      'Studi komparasi machine learning (Random Forest, SVM, Logistic Regression) untuk deteksi risiko penyakit liver terpublikasi di Jurnal Nasional Komputika.',
+      'Studi komparasi machine learning (Random Forest, SVM, Logistic Regression) untuk deteksi risiko penyakit liver pada 579 rekam medis terpublikasi di Jurnal Nasional Komputika (DOI: 10.34010/komputika.v15i1.19799).',
     highlights: [
-      'Terbit di Jurnal Nasional Komputika (DOI Terindeks)',
-      'Optimasi Pipeline Klasifikasi dengan Scikit-Learn',
+      'Terbit di Komputika: Jurnal Sistem Komputer (Vol. 15, No. 1, 2026)',
+      'Optimasi Pipeline Klasifikasi & Komparasi Metrik F1-Score dan MCC',
     ],
     tech: ['Random Forest', 'SVM', 'Logistic Regression', 'Scikit-Learn'],
     link: {
@@ -480,9 +496,9 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
       url: 'https://doi.org/10.34010/komputika.v15i1.19799',
     },
     modalDetails: {
-      kicker: 'Publikasi Ilmiah · Jurnal Komputika',
+      kicker: 'Publikasi Ilmiah Terakreditasi · Jurnal Komputika (2026)',
       summary:
-        'Studi komparasi performa algoritma klasifikasi pada 579 data rekam medis pasien guna memprediksi kecenderungan penyakit liver sedini mungkin.',
+        'Penelitian bersama Fajar Wicaksono, Yudis Jalu, Sandy Maulana, dan Edvan Nuriana Putra Septia. Membandingkan performa algoritma klasifikasi pada 579 data rekam medis pasien guna memprediksi kecenderungan penyakit liver sedini mungkin.',
       bullets: [
         'Pembersihan data medis, penanganan missing values, dan standarisasi variabel klinis.',
         'Pengujian berbagai skenario pembagian data latih dan data uji (70:30, 80:20, 90:10).',
@@ -494,26 +510,26 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
   },
   {
     id: 'smart-pos',
-    title: 'Sistem Point of Sale (POS) Pintar Berbasis ESP32 & Load Cell',
-    tagline: 'Publikasi Jurnal Biner · Embedded Systems',
-    year: '2024—2025',
+    title: 'Implementasi Sistem Point of Sale pada UMKM Berbasis ESP32 dan Sensor Load Cell',
+    tagline: 'Publikasi Jurnal Biner · Vol. 5 No. 1 (2026) Hal. 1–9',
+    year: '2026',
     category: ['iot-cv', 'publication'],
     image: '/journal-pos.jpg',
     description:
-      'Timbangan digital terhubung langsung ke aplikasi kasir web otomatis berbasis ESP32 dan Load Cell HX711 untuk UMKM terbit di Jurnal Ilmiah Biner.',
+      'Timbangan digital terhubung langsung ke aplikasi kasir web otomatis berbasis ESP32 dan Load Cell HX711 untuk UMKM terbit di Jurnal Ilmiah Biner (DOI: 10.32699/biner.v5i1.10201).',
     highlights: [
-      'Terbit di Jurnal Ilmiah Biner',
-      'Otomatisasi Hardware-ke-Web Real-Time untuk UMKM',
+      'Terbit di Biner: Jurnal Ilmiah Informatika dan Komputer (Vol. 5, No. 1, 2026)',
+      'Otomatisasi Hardware Timbangan ke Web Real-Time untuk UMKM',
     ],
-    tech: ['ESP32', 'Sensor Load Cell HX711', 'Web Application'],
+    tech: ['ESP32', 'Sensor Load Cell HX711', 'Web Application', 'SQLite'],
     link: {
       label: 'Publikasi Jurnal Biner ↗',
       url: 'https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/',
     },
     modalDetails: {
-      kicker: 'Proyek Akademik · Jurnal Biner',
+      kicker: 'Publikasi Ilmiah Terakreditasi · Jurnal Biner (2026)',
       summary:
-        'Perancangan prototipe perangkat kasir pintar yang menghubungkan sensor timbangan digital langsung ke sistem pencatatan transaksi kasir.',
+        'Penelitian oleh Edvan Nuriana Putra Septia bersama Abdan Rafi, Akyas Maulana, Syahrul Gunawan, dan Hidayat. Perancangan perangkat kasir pintar yang menghubungkan sensor timbangan digital langsung ke sistem pencatatan transaksi kasir.',
       bullets: [
         'Integrasi mikrokontroler ESP32 dengan modul ADC sensor Load Cell HX711.',
         'Pengiriman nilai bobot timbangan secara langsung ke sistem POS untuk eliminasi kesalahan input manual.',
@@ -532,14 +548,14 @@ const SKILLS_DATA = [
     description:
       'Membangun antarmuka web reaktif berkinerja tinggi dengan Next.js App Router, React 19, dan TypeScript. Dioptimasi untuk edge deployment di Cloudflare Pages/Workers dengan skor Web Vitals sempurna.',
     badges: [
-      'Next.js 15/16',
+      'Next.js 15',
       'React 19',
-      'TypeScript',
-      'Tailwind CSS v4',
-      'Cloudflare Pages / Workers',
-      'WebSockets',
-      'REST APIs',
-      'Vite',
+      'TypeScript & JS',
+      'Tailwind CSS 4',
+      'FastAPI & Node.js',
+      'Cloudflare Workers',
+      'Electron & Vite',
+      'OpenNext',
     ],
   },
   {
@@ -562,16 +578,16 @@ const SKILLS_DATA = [
     index: '03',
     title: 'Jaringan Komputer, P2P & Backend Architecture',
     description:
-      'Merancang arsitektur transfer data P2P langsung via WebRTC DataChannels tanpa cloud relay. Didukung sertifikasi Cisco CCNA untuk routing, switching, TCP/IP, dan pengelolaan database relasional.',
+      'Merancang arsitektur transfer data P2P langsung via WebRTC DataChannels tanpa cloud relay. Didukung sertifikasi Cisco CCNA & Networking Basics untuk routing, switching, TCP/IP, dan basis data relasional.',
     badges: [
-      'Cisco CCNA Certified',
+      'Cisco CCNA & NetBasics',
       'WebRTC P2P DataChannels',
-      'TCP/IP & Subnetting',
-      'Node.js & Express',
-      'PostgreSQL & SQLite',
-      'Supabase & Firebase',
+      'TCP/IP, IPv4/IPv6 & NAT',
+      'SQLite, MySQL, PostgreSQL',
+      'Firebase Realtime DB',
+      'Docker & Postman',
+      'Socket.IO & P2P Stream',
       'Linux Server / SSH',
-      'Docker',
     ],
   },
   {
@@ -580,13 +596,13 @@ const SKILLS_DATA = [
     description:
       'Membangun aplikasi desktop native dengan PyQt6 multithreading asynchronous, integrasi inferensi AI lokal (Whisper STT & Qwen GGUF) tanpa kuota internet, serta otomasi FFmpeg akselerasi GPU.',
     badges: [
-      'Python',
-      'PyQt6 (QThread Workers)',
+      'Python, C++, C',
+      'PyQt6 Multithreading',
       'Faster-Whisper STT',
-      'FFmpeg CLI (NVENC)',
-      'Qwen 2.5 GGUF',
-      'Tesseract.js OCR',
+      'FFmpeg GPU Pipeline',
+      'Qwen 2.5 GGUF Local LLM',
       'Google Gemini API',
+      'Tesseract.js OCR',
     ],
   },
   {
@@ -595,12 +611,12 @@ const SKILLS_DATA = [
     description:
       'Melatih dan men-deploy model deteksi objek visual (YOLOv8 Nano mAP 98.5%) dan CNN karakter, diintegrasikan dengan mikrokontroler ESP32, sensor load cell, dan RFID e-KTP secara real-time.',
     badges: [
-      'YOLOv8 Nano',
-      'TensorFlow / CNN',
+      'YOLOv8 Nano (mAP 98.5%)',
+      'TensorFlow CNN (88.07%)',
       'ESP32 (C/C++)',
       'RFID RC522 (e-KTP)',
       'Sensor Load Cell & HX711',
-      'OpenCV',
+      'OpenCV Image Processing',
     ],
   },
   {
@@ -611,10 +627,12 @@ const SKILLS_DATA = [
     badges: [
       'Jurnal Nasional Komputika',
       'Jurnal Ilmiah Biner',
-      'Scikit-Learn (RF, SVM)',
+      'Komparasi ML (RF, SVM, LR)',
       'Evaluasi Metrik F1 & MCC',
-      'Metodologi Riset Empiris',
-      'Git & GitHub',
+      'Bahasa: ID (Native)',
+      'Bahasa: EN (Intermediate)',
+      'Microsoft Excel Advanced',
+      'Git & GitHub Versioning',
     ],
   },
 ];
@@ -631,14 +649,7 @@ export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>('about');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Playful & Tactile Interactive States
-  const [activityIndex, setActivityIndex] = useState(0);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [heroCardTab, setHeroCardTab] = useState<'profile' | 'terminal' | 'quirks'>('profile');
-
-  const handleCycleActivity = () => {
-    setActivityIndex((prev) => (prev + 1) % HERO_ACTIVITIES.length);
-  };
 
   const handleCopyEmail = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -924,40 +935,25 @@ export default function PortfolioPage() {
             {/* Left Column */}
             <div className="space-y-6 lg:col-span-7 xl:col-span-8">
               {/* Role Indicator Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 font-mono text-xs text-emerald-300">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Fullstack &amp; Mobile Software Engineer</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-xs font-medium text-zinc-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <span>Fullstack Developer · AI &amp; Software Engineer</span>
               </div>
 
               {/* Main Personal Headline */}
               <div>
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-100 leading-[1.12]">
-                  Edvan Nuriana, S.Kom.
+                  Edvan Nuriana Putra Septia, S.Kom.
                 </h1>
                 <p className="mt-3 text-lg sm:text-xl lg:text-2xl font-medium text-zinc-300 leading-snug">
-                  Membangun arsitektur web modern, ekosistem mobile, dan sistem data terdistribusi.
+                  Suka ngulik web modern, aplikasi mobile, sampai arsitektur sistem jaringan.
                 </p>
               </div>
 
-              {/* Focused, Crisp Bio */}
+              {/* Focused, Friendly & Casual Bio */}
               <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-400">
-                Lulusan S1 Sistem Komputer UNIKOM (IPK 3.53, Cisco CCNA Certified). Berfokus pada perancangan antarmuka web modern reaktif (Next.js, React 19), aplikasi mobile lintas-platform native-performance (Flutter), dan protokol komunikasi data lokal P2P (WebRTC).
+                Halo! Saya lulusan S1 Sistem Komputer UNIKOM yang suka merancang aplikasi web modern (Next.js &amp; React), ngebangun aplikasi mobile pakai Flutter, sampai eksperimen transfer data P2P real-time via WebRTC. Selalu antusias bikin sistem yang gesit, rapi, dan nyaman dipakai di dunia nyata.
               </p>
-
-              {/* Interactive Status Ticker */}
-              <div>
-                <button
-                  type="button"
-                  onClick={handleCycleActivity}
-                  title="Klik untuk rotasi status aktivitas"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900/60 px-3.5 py-1.5 font-mono text-xs text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-900 cursor-pointer shadow-sm"
-                >
-                  <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="font-mono text-zinc-400">{HERO_ACTIVITIES[activityIndex].tag}:</span>
-                  <span className="text-zinc-200">{HERO_ACTIVITIES[activityIndex].text}</span>
-                  <RefreshCw className="h-3 w-3 text-zinc-500 transition-transform duration-300 group-hover:rotate-180 group-hover:text-zinc-300" />
-                </button>
-              </div>
 
               {/* CTA Group */}
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
@@ -971,14 +967,14 @@ export default function PortfolioPage() {
                   href="/cv-edvan.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 sm:flex-none text-center rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:text-emerald-300 active:scale-95"
+                  className="flex-1 sm:flex-none text-center rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95"
                 >
                   Unduh CV ↗
                 </a>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:text-emerald-300 active:scale-95 cursor-pointer"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 cursor-pointer"
                 >
                   {copiedEmail ? (
                     <>
@@ -996,7 +992,7 @@ export default function PortfolioPage() {
 
               {/* Key Highlights Bar */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 border-t border-zinc-800/80 pt-6 sm:pt-8 sm:max-w-xl xl:max-w-2xl">
-                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
                   <p className="font-mono text-lg sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     3.53
                   </p>
@@ -1004,7 +1000,7 @@ export default function PortfolioPage() {
                     IPK S1 Komputer
                   </p>
                 </div>
-                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
                   <p className="font-mono text-lg sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     100%
                   </p>
@@ -1012,7 +1008,7 @@ export default function PortfolioPage() {
                     Lighthouse Vitals
                   </p>
                 </div>
-                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
                   <p className="font-mono text-lg sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     02
                   </p>
@@ -1020,165 +1016,36 @@ export default function PortfolioPage() {
                     Publikasi Jurnal
                   </p>
                 </div>
-                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/50">
+                <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
                   <p className="font-mono text-lg sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
-                    CCNA
+                    05+
                   </p>
                   <p className="mt-1 text-[10px] sm:text-xs text-zinc-500 leading-tight">
-                    Cisco Certified Net
+                    Proyek Mandiri
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Interactive Profile & Dev Terminal Card */}
+            {/* Right Column: Clean Portrait */}
             <div className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end">
-              <div className="group relative w-full max-w-xs sm:max-w-sm xl:max-w-[370px] rounded-2xl border border-zinc-800/80 bg-zinc-900/50 p-4 shadow-xl transition-all duration-300 hover:border-emerald-500/30 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.15)]">
-                <div className="pointer-events-none absolute -inset-0.5 -z-10 rounded-2xl bg-gradient-to-b from-emerald-500/10 to-transparent opacity-0 blur-lg transition duration-300 group-hover:opacity-100" />
+              <div className="group relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-2xl transition-all duration-300 hover:border-zinc-700">
+                <Image
+                  src="/profile.jpeg"
+                  alt="Edvan Nuriana Putra Septia, S.Kom."
+                  fill
+                  sizes="(max-width: 768px) 280px, (max-width: 1280px) 320px, 340px"
+                  className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                  priority
+                />
+                {/* Subtle vignette for high-end depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent pointer-events-none" />
 
-                {/* Interactive Tab Switcher */}
-                <div className="flex items-center justify-between border-b border-zinc-800/80 pb-3 mb-3">
-                  <div className="flex items-center gap-1 bg-zinc-950 p-1 rounded-lg border border-zinc-800/80">
-                    <button
-                      type="button"
-                      onClick={() => setHeroCardTab('profile')}
-                      className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all duration-150 cursor-pointer inline-flex items-center gap-1.5 ${
-                        heroCardTab === 'profile'
-                          ? 'bg-zinc-800 text-zinc-100 font-medium border border-zinc-700/80 shadow-sm'
-                          : 'text-zinc-400 hover:text-zinc-200 border border-transparent'
-                      }`}
-                    >
-                      <User className="h-3 w-3" />
-                      <span>Profil</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setHeroCardTab('terminal')}
-                      className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all duration-150 cursor-pointer inline-flex items-center gap-1.5 ${
-                        heroCardTab === 'terminal'
-                          ? 'bg-zinc-800 text-zinc-100 font-medium border border-zinc-700/80 shadow-sm'
-                          : 'text-zinc-400 hover:text-zinc-200 border border-transparent'
-                      }`}
-                    >
-                      <Code2 className="h-3 w-3" />
-                      <span>edvan.ts</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setHeroCardTab('quirks')}
-                      className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all duration-150 cursor-pointer inline-flex items-center gap-1.5 ${
-                        heroCardTab === 'quirks'
-                          ? 'bg-zinc-800 text-zinc-100 font-medium border border-zinc-700/80 shadow-sm'
-                          : 'text-zinc-400 hover:text-zinc-200 border border-transparent'
-                      }`}
-                    >
-                      <Terminal className="h-3 w-3" />
-                      <span>Catatan Lab</span>
-                    </button>
-                  </div>
-                  <span className="font-mono text-[10px] text-zinc-500 hidden sm:inline">interactive</span>
+                {/* Clean Status Pill */}
+                <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/60 bg-zinc-950/80 px-2.5 py-1 text-[11px] font-medium text-zinc-300 backdrop-blur-md shadow-md">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span>Open to Work</span>
                 </div>
-
-                {/* Tab 1: Profile View */}
-                {heroCardTab === 'profile' && (
-                  <div>
-                    <div className="relative aspect-[4/4.8] w-full overflow-hidden rounded-xl bg-zinc-950 border border-zinc-800/80">
-                      <Image
-                        src="/profile.jpeg"
-                        alt="Edvan Nuriana Putra Septia, S.Kom."
-                        fill
-                        sizes="(max-width: 768px) 280px, (max-width: 1280px) 360px, 420px"
-                        className="object-cover object-top transition duration-500 group-hover:scale-105"
-                        priority
-                      />
-                      {/* Dark Gradient Vignette to seamlessly blend the bright blue background into dark mode */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/25 to-transparent opacity-85" />
-
-                      {/* Open to Work Badge */}
-                      <div className="absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-zinc-950/85 px-2.5 py-0.5 text-[10px] font-medium text-emerald-300 backdrop-blur-md shadow-md">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        Open to Work
-                      </div>
-
-                      {/* Floating Identity Card inside photo */}
-                      <div className="absolute bottom-2.5 inset-x-2.5 p-2.5 rounded-lg bg-zinc-950/90 border border-zinc-800/80 backdrop-blur-md">
-                        <p className="text-xs font-semibold text-zinc-100 truncate">
-                          Edvan Nuriana Putra Septia, S.Kom.
-                        </p>
-                        <p className="text-[10px] font-mono text-zinc-400 mt-0.5">
-                          S1 Sistem Komputer UNIKOM · IPK 3.53
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-3 px-0.5">
-                      <div className="flex flex-wrap gap-1">
-                        {['Next.js', 'Flutter', 'React 19', 'WebRTC', 'TypeScript'].map((t) => (
-                          <span
-                            key={t}
-                            className={`rounded border px-2 py-0.5 font-mono text-[10px] ${getTechTagStyle(t)}`}
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Tab 2: Developer Spec Terminal */}
-                {heroCardTab === 'terminal' && (
-                  <div className="space-y-2 py-1">
-                    <div className="flex items-center gap-1.5 px-1">
-                      <span className="h-2 w-2 rounded-full bg-rose-500" />
-                      <span className="h-2 w-2 rounded-full bg-amber-500" />
-                      <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                      <span className="font-mono text-[10px] text-zinc-500 ml-1">~/edvan.config.ts</span>
-                    </div>
-                    <div className="font-mono text-[11px] leading-relaxed text-zinc-300 p-3.5 rounded-xl bg-zinc-950 border border-zinc-800/80 overflow-x-auto space-y-1">
-                      <p className="text-zinc-500">&#47;&#47; Source of Truth</p>
-                      <p><span className="text-purple-400">const</span> <span className="text-sky-300">engineer</span> = &#123;</p>
-                      <p className="pl-3"><span className="text-zinc-400">name:</span> <span className="text-emerald-300">&quot;Edvan Nuriana, S.Kom.&quot;</span>,</p>
-                      <p className="pl-3"><span className="text-zinc-400">almaMater:</span> <span className="text-emerald-300">&quot;S1 Sistem Komputer UNIKOM&quot;</span>,</p>
-                      <p className="pl-3"><span className="text-zinc-400">ipk:</span> <span className="text-amber-300">3.53</span>,</p>
-                      <p className="pl-3"><span className="text-zinc-400">coreStack:</span> [</p>
-                      <p className="pl-6"><span className="text-sky-300">&quot;Next.js 16&quot;</span>, <span className="text-cyan-300">&quot;Flutter&quot;</span>,</p>
-                      <p className="pl-6"><span className="text-emerald-300">&quot;WebRTC P2P&quot;</span>, <span className="text-purple-300">&quot;TypeScript&quot;</span></p>
-                      <p className="pl-3">],</p>
-                      <p className="pl-3"><span className="text-zinc-400">networking:</span> <span className="text-purple-300">&quot;Cisco CCNA Certified&quot;</span>,</p>
-                      <p className="pl-3"><span className="text-zinc-400">status:</span> <span className="text-emerald-400">&quot;Ready for hire&quot;</span></p>
-                      <p>&#125;;</p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Tab 3: Engineering & Systems Notes */}
-                {heroCardTab === 'quirks' && (
-                  <div className="space-y-2 py-1">
-                    <div className="flex items-center gap-1.5 px-1">
-                      <Terminal className="h-3 w-3 text-amber-400" />
-                      <span className="font-mono text-[10px] text-zinc-500">~/catatan-rekayasa.log</span>
-                    </div>
-                    <div className="space-y-2.5 p-3.5 font-mono text-[11px] rounded-xl bg-zinc-950 border border-zinc-800/80 text-zinc-300">
-                      <div className="flex items-start gap-2.5">
-                        <span className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400 shrink-0">IOT</span>
-                        <span className="leading-relaxed text-zinc-300"><strong className="text-zinc-100 font-medium">Perangkat Keras:</strong> Integrasi firmware ESP32, sensor digital HX711/RFID, dan kalibrasi sinyal ADC.</span>
-                      </div>
-                      <div className="flex items-start gap-2.5">
-                        <span className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400 shrink-0">P2P</span>
-                        <span className="leading-relaxed text-zinc-300"><strong className="text-zinc-100 font-medium">Prinsip Arsitektur:</strong> Mengutamakan arsitektur local-first dan WebRTC P2P sebelum memanfaatkan cloud relay.</span>
-                      </div>
-                      <div className="flex items-start gap-2.5">
-                        <span className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400 shrink-0">NET</span>
-                        <span className="leading-relaxed text-zinc-300"><strong className="text-zinc-100 font-medium">Analisis Protokol:</strong> Validasi alur paket, latency, dan throughput transmisi menggunakan Wireshark.</span>
-                      </div>
-                      <div className="flex items-start gap-2.5">
-                        <span className="rounded border border-zinc-800 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400 shrink-0">DEV</span>
-                        <span className="leading-relaxed text-zinc-300"><strong className="text-zinc-100 font-medium">Pipeline Fullstack:</strong> TypeScript end-to-end, Next.js modern, dan performa native Flutter.</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -1222,7 +1089,6 @@ export default function PortfolioPage() {
               {/* 3 Engineering Pillars */}
               <div className="grid gap-4.5 pt-4 sm:grid-cols-3 lg:gap-5">
                 <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="text-emerald-400/90 font-semibold">01</span>
                     <span className="text-zinc-600">·</span>
@@ -1233,7 +1099,6 @@ export default function PortfolioPage() {
                   </p>
                 </div>
                 <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="text-emerald-400/90 font-semibold">02</span>
                     <span className="text-zinc-600">·</span>
@@ -1244,7 +1109,6 @@ export default function PortfolioPage() {
                   </p>
                 </div>
                 <div className="group relative overflow-hidden rounded-xl border border-zinc-800/90 bg-zinc-900/30 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <p className="font-mono text-xs mb-1.5 flex items-center gap-1.5">
                     <span className="text-emerald-400/90 font-semibold">03</span>
                     <span className="text-zinc-600">·</span>
@@ -1309,9 +1173,8 @@ export default function PortfolioPage() {
                 <article
                   key={app.id}
                   onClick={() => handleOpenModal(app)}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.14)] cursor-pointer"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900/60 cursor-pointer"
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div>
                     <div className="mb-4 sm:mb-5 flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3.5">
@@ -1410,9 +1273,8 @@ export default function PortfolioPage() {
                 <article
                   key={project.id}
                   onClick={() => handleOpenModal(project)}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.14)] cursor-pointer"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900/60 cursor-pointer"
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div>
                     <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
                       <Image
@@ -1506,9 +1368,8 @@ export default function PortfolioPage() {
             {SKILLS_DATA.map((skill) => (
               <div
                 key={skill.title}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50 hover:shadow-[0_8px_25px_-10px_rgba(16,185,129,0.1)]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900/50"
               >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div>
                   <span className="font-mono text-xs font-medium text-emerald-500">
                     {skill.index}
@@ -1562,69 +1423,105 @@ export default function PortfolioPage() {
                 const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-parking');
                 if (proj) handleOpenModal(proj);
               }}
-              className="lg:col-span-5 flex flex-col justify-between group/edu relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-7 transition-all duration-300 hover:border-emerald-500/40 hover:bg-zinc-900/60 cursor-pointer hover:-translate-y-1 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.15)] active:scale-[0.99]"
+              className="lg:col-span-5 flex flex-col justify-between group/edu relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-7 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/60 cursor-pointer hover:-translate-y-1 active:scale-[0.99]"
             >
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover/edu:opacity-100" />
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
-                    <GraduationCap className="h-4 w-4" />
+                  <div className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                    <GraduationCap className="h-4 w-4 text-emerald-400" />
                     <span>Pendidikan Formal</span>
                   </div>
                   <span className="font-mono text-xs text-zinc-500">2022—2026</span>
                 </div>
 
-                <h3 className="mt-3 text-xl font-bold text-zinc-100 group-hover/edu:text-emerald-300 transition-colors">
+                <h3 className="mt-3 text-xl font-bold text-zinc-100 group-hover/edu:text-white transition-colors">
                   S1 Sistem Komputer
                 </h3>
                 <p className="mt-1 text-sm font-medium text-zinc-300">
-                  Universitas Komputer Indonesia (UNIKOM)
+                  Universitas Komputer Indonesia (UNIKOM) · Bandung, Jawa Barat
                 </p>
 
-                <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 font-mono text-xs text-emerald-300">
+                <div className="mt-3.5 inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/80 px-3.5 py-1.5 text-xs text-zinc-200">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                  <span>IPK: 3,53 / 4,00 · Lulus 2026</span>
+                  <span>IPK: <strong className="text-white font-semibold">3.53</strong> / 4.00 · Lulus 2026</span>
                 </div>
 
-                <p className="mt-4 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                  Fokus pada integrasi arsitektur sistem komputasi terdistribusi, rekayasa perangkat lunak modern, pengolahan sinyal & citra digital, serta riset terapan kecerdasan buatan dan IoT.
+                <p className="mt-3 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                  Fokus pada integrasi arsitektur sistem komputasi terdistribusi, rekayasa perangkat lunak modern, pengolahan sinyal &amp; citra digital, serta riset terapan kecerdasan buatan dan IoT.
                 </p>
+
+                <div className="mt-2 text-[11px] font-mono text-zinc-500">
+                  <span>Pendidikan Menengah: SMAN 1 Tanjungsari (IPA · Sumedang, 2019—2022)</span>
+                </div>
+
+                {/* Sub-Card: Skripsi / Riset Terapan */}
+                <div className="mt-4 rounded-xl border border-zinc-800/80 bg-zinc-950/70 p-4 transition-colors hover:border-zinc-700">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                    <span className="rounded-md border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[10px] text-zinc-300 font-medium">
+                      Skripsi &amp; Riset Terapan
+                    </span>
+                    <span className="font-mono text-[10px] text-zinc-500">2025—2026</span>
+                  </div>
+                  <h4 className="text-sm font-semibold text-zinc-200 leading-snug group-hover/edu:text-white transition-colors">
+                    Sistem Parkir Pintar &amp; Deteksi Pelat Otomatis
+                  </h4>
+                  <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
+                    Sistem gerbang otomatis dual validasi RFID e-KTP dan computer vision (YOLOv8 + CNN) real-time berbasis edge IoT ESP32 &amp; Firebase.
+                  </p>
+                  <div className="mt-2.5 flex flex-wrap gap-1">
+                    {['YOLOv8 Nano', 'ESP32', 'TensorFlow CNN', 'Firebase'].map((t) => (
+                      <span key={t} className="rounded border border-zinc-800/80 bg-zinc-900 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between border-t border-zinc-900 pt-2.5 text-xs">
+                    <span className="inline-flex items-center gap-1.5 text-zinc-400 group-hover/edu:text-zinc-200 transition">
+                      <Eye className="h-3.5 w-3.5" />
+                      <span>Detail Riset ↗</span>
+                    </span>
+                    <a
+                      href="https://github.com/EdvanVPRoject/Sistem-parkir-pintar-berbasis-visi-komputer-berbasis-iot-menggunakan-metode-yolo"
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition"
+                    >
+                      <span>GitHub</span>
+                      <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-6 border-t border-zinc-800/80 pt-4">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
-                    Bidang Keahlian Studi:
-                  </p>
-                  <span className="text-[11px] font-mono text-emerald-400/90 group-hover/edu:translate-x-0.5 transition-transform inline-flex items-center gap-1">
-                    Detail Skripsi ↗
-                  </span>
-                </div>
+              <div className="mt-4 border-t border-zinc-800/80 pt-3.5">
+                <p className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
+                  Bidang Keahlian Studi:
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
-                    Computer Vision & Deep Learning
+                    Computer Vision &amp; Deep Learning
                   </span>
                   <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
-                    Embedded Systems & IoT
+                    Embedded Systems &amp; IoT
                   </span>
                   <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
-                    Jaringan Komputer & P2P
+                    Jaringan Komputer &amp; P2P
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Publikasi Nasional */}
-            <div className="lg:col-span-7 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-7 transition-all duration-300 hover:border-emerald-500/30 hover:bg-zinc-900/60">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="lg:col-span-7 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-7 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/60">
               <div>
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
-                    <BookOpen className="h-4 w-4" />
+                  <div className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                    <BookOpen className="h-4 w-4 text-emerald-400" />
                     <span>Publikasi Nasional</span>
                   </div>
-                  <span className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-0.5 text-[10px] font-mono text-zinc-400">
-                    2 Paper Terakreditasi
+                  <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-0.5 text-[11px] font-medium text-zinc-400">
+                    2 Paper Terakreditasi SINTA
                   </span>
                 </div>
 
@@ -1632,7 +1529,7 @@ export default function PortfolioPage() {
                   Artikel Jurnal Ilmiah
                 </h3>
                 <p className="mt-1 text-xs text-zinc-400">
-                  Klik di dalam kotak kartu mana saja untuk melihat info dan arsitektur riset lengkap.
+                  Dua publikasi penelitian peer-reviewed terakreditasi nasional di bidang Machine Learning dan IoT.
                 </p>
 
                 {/* Publications List */}
@@ -1643,31 +1540,31 @@ export default function PortfolioPage() {
                       const proj = RESEARCH_PROJECTS.find((p) => p.id === 'liver-ml');
                       if (proj) handleOpenModal(proj);
                     }}
-                    className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/50 hover:bg-zinc-900/70 hover:shadow-[0_8px_24px_-8px_rgba(16,185,129,0.2)] active:scale-[0.99]"
+                    className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 active:scale-[0.99]"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
-                      <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
-                        Jurnal Komputika · UNIKOM
+                      <span className="rounded-md border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] font-medium text-zinc-300">
+                        Jurnal Komputika · UNIKOM · Vol 15(1) 2026
                       </span>
-                      <span className="font-mono text-[10px] text-zinc-500">2025—2026</span>
+                      <span className="font-mono text-[10px] text-zinc-500">Hal. 83–94</span>
                     </div>
-                    <h4 className="text-sm font-semibold text-zinc-200 leading-snug group-hover/card:text-emerald-300 transition-colors">
-                      Klasifikasi Risiko Penyakit Liver Menggunakan Machine Learning
+                    <h4 className="text-sm font-semibold text-zinc-200 leading-snug group-hover/card:text-white transition-colors">
+                      Prediksi Penyakit Liver dengan Model Perbandingan Logistic Regression, SVM, dan Random Forest
                     </h4>
                     <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
-                      Studi komparasi Random Forest, SVM, dan Logistic Regression pada 579 rekam medis pasien dengan metrik F1-Score dan MCC.
+                      Studi komparasi machine learning pada 579 data rekam medis pasien dengan evaluasi metrik F1-Score dan MCC (DOI: 10.34010/komputika.v15i1.19799).
                     </p>
                     <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-900 pt-2.5">
-                      <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 group-hover/card:text-emerald-400 font-mono transition">
+                      <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 group-hover/card:text-zinc-200 transition">
                         <Eye className="h-3.5 w-3.5" />
-                        <span>Klik untuk Detail Riset ↗</span>
+                        <span>Detail Riset ↗</span>
                       </span>
                       <a
                         href="https://doi.org/10.34010/komputika.v15i1.19799"
                         target="_blank"
                         rel="noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition"
                       >
                         <span>Buka DOI Jurnal</span>
                         <ArrowUpRight className="h-3.5 w-3.5" />
@@ -1681,24 +1578,24 @@ export default function PortfolioPage() {
                       const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-pos');
                       if (proj) handleOpenModal(proj);
                     }}
-                    className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/50 hover:bg-zinc-900/70 hover:shadow-[0_8px_24px_-8px_rgba(16,185,129,0.2)] active:scale-[0.99]"
+                    className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/60 active:scale-[0.99]"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
-                      <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
-                        Jurnal Biner · UNSIQ
+                      <span className="rounded-md border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] font-medium text-zinc-300">
+                        Jurnal Biner · UNSIQ · Vol 5(1) 2026
                       </span>
-                      <span className="font-mono text-[10px] text-zinc-500">2024—2025</span>
+                      <span className="font-mono text-[10px] text-zinc-500">Hal. 1–9</span>
                     </div>
-                    <h4 className="text-sm font-semibold text-zinc-200 leading-snug group-hover/card:text-emerald-300 transition-colors">
-                      Sistem Point of Sale (POS) Terintegrasi Sensor Load Cell &amp; RFID Berbasis ESP32
+                    <h4 className="text-sm font-semibold text-zinc-200 leading-snug group-hover/card:text-white transition-colors">
+                      Implementasi Sistem Point of Sale pada UMKM Berbasis ESP32 dan Sensor Load Cell
                     </h4>
                     <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
-                      Perancangan hardware kasir pintar terhubung aplikasi web untuk otomatisasi timbangan digital UMKM berakurasi &gt;98%.
+                      Perancangan perangkat kasir pintar terhubung aplikasi web untuk otomatisasi timbangan digital UMKM berakurasi &gt;98% (DOI: 10.32699/biner.v5i1.10201).
                     </p>
                     <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-900 pt-2.5">
-                      <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 group-hover/card:text-emerald-400 font-mono transition">
+                      <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 group-hover/card:text-zinc-200 transition">
                         <Eye className="h-3.5 w-3.5" />
-                        <span>Klik untuk Detail Riset ↗</span>
+                        <span>Detail Riset ↗</span>
                       </span>
                       <a
                         href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
@@ -1733,19 +1630,17 @@ export default function PortfolioPage() {
                 </p>
               </div>
               <span className="self-start sm:self-auto font-mono text-xs text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full">
-                4 Sertifikat Terdaftar
+                {CERTIFICATIONS_DATA.length} Sertifikat Terdaftar
               </span>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {CERTIFICATIONS_DATA.map((cert) => (
                 <div
                   key={cert.id}
                   onClick={() => handleOpenCertModal(cert)}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.15)] cursor-pointer active:scale-[0.99]"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900/50 cursor-pointer active:scale-[0.99]"
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
                   {/* Certificate Image Preview Header */}
                   <div>
                     <div
@@ -1950,6 +1845,12 @@ export default function PortfolioPage() {
                     </span>
                   </div>
                 </a>
+
+                <div className="sm:col-span-2 flex items-center gap-2.5 rounded-xl border border-zinc-800/80 bg-zinc-950/60 px-4 py-3 text-xs text-zinc-400">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="text-zinc-500">Domisili:</span>
+                  <span className="text-zinc-200 font-medium">Sumedang, Jawa Barat, Indonesia</span>
+                </div>
               </div>
             </div>
 
