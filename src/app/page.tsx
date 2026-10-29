@@ -930,68 +930,67 @@ export default function PortfolioPage() {
 
       <main className="mx-auto max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] px-4 sm:px-6 lg:px-8">
         {/* HERO SECTION */}
-        <section className="py-10 sm:py-16 md:py-24 lg:py-28">
-          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+        <section className="py-10 sm:py-16 md:py-20 lg:py-24">
+          <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             {/* Left Column */}
-            <div className="space-y-6 lg:col-span-7 xl:col-span-8">
-              {/* Role Indicator Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-xs font-medium text-zinc-300">
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                <span>Fullstack Developer · AI &amp; Software Engineer</span>
-              </div>
+            <div className="space-y-6 lg:col-span-7 xl:col-span-8 flex flex-col justify-between">
+              <div className="space-y-5">
+                {/* Role Indicator Badge */}
+                <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-xs font-medium text-zinc-300">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span>Fullstack Developer · AI &amp; Software Engineer</span>
+                </div>
 
-              {/* Main Personal Headline */}
-              <div>
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-100 leading-[1.12]">
-                  Edvan Nuriana Putra Septia, S.Kom.
-                </h1>
-                <p className="mt-3 text-lg sm:text-xl lg:text-2xl font-medium text-zinc-300 leading-snug">
-                  Suka ngulik web modern, aplikasi mobile, sampai arsitektur sistem jaringan.
+                {/* Main Headline */}
+                <div>
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-100 leading-[1.16]">
+                    Suka ngulik web modern, aplikasi mobile, sampai arsitektur sistem jaringan.
+                  </h1>
+                </div>
+
+                {/* Focused, Friendly & Casual Bio */}
+                <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-400">
+                  Halo! Saya lulusan S1 Sistem Komputer UNIKOM yang suka merancang aplikasi web modern (Next.js &amp; React), ngebangun aplikasi mobile pakai Flutter, sampai eksperimen transfer data P2P real-time via WebRTC. Selalu antusias bikin sistem yang gesit, rapi, dan nyaman dipakai di dunia nyata.
                 </p>
-              </div>
 
-              {/* Focused, Friendly & Casual Bio */}
-              <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-400">
-                Halo! Saya lulusan S1 Sistem Komputer UNIKOM yang suka merancang aplikasi web modern (Next.js &amp; React), ngebangun aplikasi mobile pakai Flutter, sampai eksperimen transfer data P2P real-time via WebRTC. Selalu antusias bikin sistem yang gesit, rapi, dan nyaman dipakai di dunia nyata.
-              </p>
-
-              {/* CTA Group */}
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
-                <a
-                  href="#projects"
-                  className="w-full sm:w-auto text-center rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_4px_20px_rgba(52,211,153,0.25)] active:scale-95"
-                >
-                  Eksplorasi Proyek ↓
-                </a>
-                <a
-                  href="/cv-edvan.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 sm:flex-none text-center rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95"
-                >
-                  Unduh CV ↗
-                </a>
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 cursor-pointer"
-                >
-                  {copiedEmail ? (
-                    <>
-                      <Check className="h-4 w-4 text-emerald-400" />
-                      <span className="text-emerald-300 font-medium">Email Berhasil Disalin</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-3.5 w-3.5 text-zinc-400" />
-                      <span>Salin Email</span>
-                    </>
-                  )}
-                </button>
+                {/* CTA Group */}
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+                  <a
+                    href="#projects"
+                    className="w-full sm:w-auto text-center rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_4px_20px_rgba(52,211,153,0.25)] active:scale-95"
+                  >
+                    Eksplorasi Proyek ↓
+                  </a>
+                  <a
+                    href="/cv-edvan.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 sm:flex-none text-center rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95"
+                  >
+                    Unduh CV ↗
+                  </a>
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 cursor-pointer"
+                  >
+                    {copiedEmail ? (
+                      <>
+                        <Check className="h-4 w-4 text-emerald-400" />
+                        <span className="text-emerald-300 font-medium">Email Berhasil Disalin</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-3.5 w-3.5 text-zinc-400" />
+                        <span>Salin Email</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
 
               {/* Key Highlights Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 border-t border-zinc-800/80 pt-6 sm:pt-8 sm:max-w-xl xl:max-w-2xl">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 border-t border-zinc-800/80 pt-6 sm:max-w-xl xl:max-w-2xl">
                 <div className="group flex flex-col justify-between rounded-xl border border-zinc-800/60 bg-zinc-900/30 p-2.5 sm:p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/50">
                   <p className="font-mono text-lg sm:text-2xl lg:text-3xl font-semibold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
                     3.53
@@ -1027,9 +1026,9 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Right Column: Clean Portrait */}
-            <div className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end">
-              <div className="group relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-2xl transition-all duration-300 hover:border-zinc-700">
+            {/* Right Column: Clean Portrait & Identity */}
+            <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-end justify-between h-full">
+              <div className="group relative w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] flex-1 min-h-[350px] sm:min-h-[380px] xl:min-h-[400px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-2xl transition-all duration-300 hover:border-zinc-700">
                 <Image
                   src="/profile.jpeg"
                   alt="Edvan Nuriana Putra Septia, S.Kom."
@@ -1038,7 +1037,7 @@ export default function PortfolioPage() {
                   className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
                   priority
                 />
-                {/* Subtle vignette for high-end depth */}
+                {/* Subtle vignette for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent pointer-events-none" />
 
                 {/* Clean Status Pill */}
@@ -1046,6 +1045,16 @@ export default function PortfolioPage() {
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                   <span>Open to Work</span>
                 </div>
+              </div>
+
+              {/* Name & Title Below Photo */}
+              <div className="pt-3 sm:pt-4 w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] text-center">
+                <h2 className="text-lg sm:text-xl font-bold tracking-tight text-zinc-100">
+                  Edvan Nuriana Putra Septia, S.Kom.
+                </h2>
+                <p className="mt-1 text-xs text-zinc-400">
+                  Fullstack Developer · AI &amp; Software Engineer
+                </p>
               </div>
             </div>
           </div>
