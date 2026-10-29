@@ -2,7 +2,20 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Menu, X, ArrowUpRight, ArrowUp } from 'lucide-react';
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  ArrowUp,
+  GraduationCap,
+  BookOpen,
+  Award,
+  ExternalLink,
+  FileText,
+  CheckCircle2,
+  ZoomIn,
+  Eye,
+} from 'lucide-react';
 
 const NAV_ITEMS = [
   { id: 'about', label: 'Tentang' },
@@ -60,6 +73,75 @@ interface ResearchProject {
     note?: string;
   };
 }
+
+interface CertificateCredential {
+  id: string;
+  title: string;
+  issuer: string;
+  period: string;
+  category: string;
+  credentialId?: string;
+  verifyUrl?: string;
+  pdfUrl: string;
+  imageUrl: string;
+  description: string;
+  skills: string[];
+}
+
+const CERTIFICATIONS_DATA: CertificateCredential[] = [
+  {
+    id: 'cert-gemini',
+    title: 'Google Gemini Certified Student — University',
+    issuer: 'Google for Education',
+    period: '2026—2029',
+    category: 'Generative AI & LLM',
+    pdfUrl: '/cert-gemini.pdf',
+    imageUrl: '/cert-gemini.png',
+    description:
+      'Sertifikasi resmi Google for Education yang memvalidasi kompetensi pemanfaatan Google Gemini AI, prompt engineering tingkat lanjut, integrasi alur kerja AI dalam analisis data, dan etika kecerdasan buatan.',
+    skills: ['Prompt Engineering', 'Gemini AI', 'Data Analysis Workflow', 'AI Ethics'],
+  },
+  {
+    id: 'cert-action-ai',
+    title: 'Action AI Startup University: AI Essentials',
+    issuer: 'underdogs. & UNIKOM',
+    period: '2026',
+    category: 'AI Prototyping & MVP',
+    credentialId: 'UDI-202610-twv1n6 (OpenBadge 3.0)',
+    verifyUrl: 'https://udimpact.kolleges.net/en/achievements',
+    pdfUrl: '/cert-action-ai.pdf',
+    imageUrl: '/cert-action-ai.png',
+    description:
+      'Program intensif akselerasi startup AI oleh underdogs. & UNIKOM (Act-preneur Certified, W3C VC 2.0). Memvalidasi problem definition, prompt writing komprehensif, dan validasi prototipe menggunakan Gemini dan Lovable.',
+    skills: ['AI Prototyping', 'Lovable & Gemini', 'Problem Definition', 'MVP Planning'],
+  },
+  {
+    id: 'cert-coursera-excel',
+    title: 'Microsoft Excel: Learn with Projects',
+    issuer: 'Coursera Project Network',
+    period: '2026',
+    category: 'Data Analytics & Modeling',
+    credentialId: 'V32873K6COVJ (8 Kursus Spesialisasi)',
+    verifyUrl: 'https://coursera.org/verify/specialization/V32873K6COVJ',
+    pdfUrl: '/cert-coursera-excel.pdf',
+    imageUrl: '/cert-coursera-excel.png',
+    description:
+      'Spesialisasi 8 kursus hands-on Microsoft Excel dari Coursera mencakup pengolahan data tabular, rumus lanjutan (INDEX-MATCH, XLOOKUP), analisis data bisnis, Pivot Table, dan visualisasi dashboard interaktif.',
+    skills: ['Advanced Formulas', 'Pivot Tables & Charts', 'Business Modeling', 'Data Visualization'],
+  },
+  {
+    id: 'cert-ccna',
+    title: 'Cisco CCNA: Introduction to Networks',
+    issuer: 'Cisco Networking Academy · UNIKOM',
+    period: '2025—2028',
+    category: 'Computer Networking',
+    pdfUrl: '/cert-ccna.pdf',
+    imageUrl: '/cert-ccna.png',
+    description:
+      'Sertifikasi jaringan komputer dari Cisco Networking Academy yang memvalidasi pemahaman model OSI & protokol TCP/IP, pengalamatan IPv4/IPv6, subnetting, konfigurasi router & switch Cisco, serta dasar keamanan jaringan.',
+    skills: ['TCP/IP & OSI Model', 'IPv4/IPv6 Subnetting', 'Router & Switch Config', 'Network Troubleshooting'],
+  },
+];
 
 const FEATURED_APPS: FeaturedApp[] = [
   {
@@ -483,6 +565,8 @@ export default function PortfolioPage() {
     FeaturedApp | ResearchProject | null
   >(null);
   const [isClosingModal, setIsClosingModal] = useState(false);
+  const [activeCert, setActiveCert] = useState<CertificateCredential | null>(null);
+  const [isClosingCertModal, setIsClosingCertModal] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('about');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -511,8 +595,21 @@ export default function PortfolioPage() {
     }, 200);
   };
 
+  const handleOpenCertModal = (cert: CertificateCredential) => {
+    setIsClosingCertModal(false);
+    setActiveCert(cert);
+  };
+
+  const handleCloseCertModal = () => {
+    setIsClosingCertModal(true);
+    setTimeout(() => {
+      setActiveCert(null);
+      setIsClosingCertModal(false);
+    }, 200);
+  };
+
   useEffect(() => {
-    if (activeModalProject) {
+    if (activeModalProject || activeCert) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -520,17 +617,22 @@ export default function PortfolioPage() {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [activeModalProject]);
+  }, [activeModalProject, activeCert]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && activeModalProject && !isClosingModal) {
-        handleCloseModal();
+      if (e.key === 'Escape') {
+        if (activeModalProject && !isClosingModal) {
+          handleCloseModal();
+        }
+        if (activeCert && !isClosingCertModal) {
+          handleCloseCertModal();
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeModalProject, isClosingModal]);
+  }, [activeModalProject, isClosingModal, activeCert, isClosingCertModal]);
 
   useEffect(() => {
     const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
@@ -1209,162 +1311,283 @@ export default function PortfolioPage() {
               <span>04 / Akademik & Publikasi</span>
             </div>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-100">
-              Kualifikasi Akademik & Sertifikasi
+              Kualifikasi Akademik & Kredensial Industri
             </h2>
+            <p className="mt-2 max-w-2xl text-sm text-zinc-400">
+              Fondasi akademik sarjana sistem komputer, riset ilmiah terpublikasi secara nasional, serta sertifikasi keahlian industri terverifikasi.
+            </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
-            {/* Pendidikan */}
-            <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <p className="font-mono text-xs text-emerald-400">2022—2026</p>
-              <h3 className="mt-2 text-lg font-semibold text-zinc-100">
-                S1 Sistem Komputer
-              </h3>
-              <p className="mt-1 text-sm text-zinc-400">
-                Universitas Komputer Indonesia (UNIKOM)
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                Fokus pada integrasi sistem komputasi, rekayasa software, arsitektur basis data, serta riset terapan kecerdasan buatan dan IoT.
-              </p>
-              <p className="mt-4 inline-block rounded border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs text-white">
-                IPK: 3,53 / 4,00 · Lulus 2026
-              </p>
-            </div>
+          {/* Tier 1: Pendidikan & Publikasi Ilmiah */}
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-8 mb-12">
+            {/* Pendidikan Formal */}
+            <div className="lg:col-span-5 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-7 transition-all duration-300 hover:border-emerald-500/30 hover:bg-zinc-900/60">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+                    <GraduationCap className="h-4 w-4" />
+                    <span>Pendidikan Formal</span>
+                  </div>
+                  <span className="font-mono text-xs text-zinc-500">2022—2026</span>
+                </div>
 
-            {/* Publikasi Nasional */}
-            <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <p className="font-mono text-xs text-emerald-400">
-                Publikasi Nasional
-              </p>
-              <h3 className="mt-2 text-lg font-semibold text-zinc-100">
-                2 Artikel Jurnal Ilmiah
-              </h3>
-              <div className="mt-4 space-y-2 text-xs">
-                <a
-                  href="https://doi.org/10.34010/komputika.v15i1.19799"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-300 transition hover:border-emerald-500/40 hover:text-emerald-300"
-                >
-                  <span>Jurnal Komputika (Prediksi Liver)</span>
-                  <span>↗</span>
-                </a>
-                <a
-                  href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-300 transition hover:border-emerald-500/40 hover:text-emerald-300"
-                >
-                  <span>Jurnal Biner (POS ESP32)</span>
-                  <span>↗</span>
-                </a>
+                <h3 className="mt-3 text-xl font-bold text-zinc-100">
+                  S1 Sistem Komputer
+                </h3>
+                <p className="mt-1 text-sm font-medium text-zinc-300">
+                  Universitas Komputer Indonesia (UNIKOM)
+                </p>
+
+                <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 font-mono text-xs text-emerald-300">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <span>IPK: 3,53 / 4,00 · Lulus 2026</span>
+                </div>
+
+                <p className="mt-4 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                  Fokus pada integrasi arsitektur sistem komputasi terdistribusi, rekayasa perangkat lunak modern, pengolahan sinyal & citra digital, serta riset terapan kecerdasan buatan dan IoT.
+                </p>
+              </div>
+
+              <div className="mt-6 border-t border-zinc-800/80 pt-4">
+                <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-2">
+                  Bidang Keahlian Studi:
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
+                    Computer Vision & Deep Learning
+                  </span>
+                  <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
+                    Embedded Systems & IoT
+                  </span>
+                  <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
+                    Jaringan Komputer & P2P
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Sertifikasi Resmi */}
-            <div className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/50">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <p className="font-mono text-xs text-emerald-400">
-                Sertifikasi Resmi
-              </p>
-              <h3 className="mt-2 text-lg font-semibold text-zinc-100">
-                Kredensial Industri
-              </h3>
-              <ul className="mt-4 space-y-2 text-xs text-zinc-300">
-                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-zinc-200">Action AI Startup University: AI Essentials</span>
-                    <span className="font-mono text-[10px] text-emerald-400">2026</span>
+            {/* Publikasi Nasional */}
+            <div className="lg:col-span-7 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-7 transition-all duration-300 hover:border-emerald-500/30 hover:bg-zinc-900/60">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+                    <BookOpen className="h-4 w-4" />
+                    <span>Publikasi Nasional</span>
                   </div>
-                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
-                    <span>underdogs. & UNIKOM · ID: UDI-202610-twv1n6 (OpenBadge 3.0)</span>
-                    <div className="flex items-center gap-2">
+                  <span className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-0.5 text-[10px] font-mono text-zinc-400">
+                    2 Paper Terakreditasi
+                  </span>
+                </div>
+
+                <h3 className="mt-3 text-xl font-bold text-zinc-100">
+                  Artikel Jurnal Ilmiah
+                </h3>
+                <p className="mt-1 text-xs text-zinc-400">
+                  Hasil penelitian ilmiah dan eksperimen empiris yang dipublikasikan pada jurnal nasional terindeks.
+                </p>
+
+                {/* Publications List */}
+                <div className="mt-4 space-y-3">
+                  {/* Paper 1: Komputika */}
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-950/80 p-4 transition-all duration-200 hover:border-emerald-500/40">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                      <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                        Jurnal Komputika · UNIKOM
+                      </span>
+                      <span className="font-mono text-[10px] text-zinc-500">2025—2026</span>
+                    </div>
+                    <h4 className="text-sm font-semibold text-zinc-200 leading-snug">
+                      Klasifikasi Risiko Penyakit Liver Menggunakan Machine Learning
+                    </h4>
+                    <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
+                      Studi komparasi Random Forest, SVM, dan Logistic Regression pada 579 rekam medis pasien dengan metrik F1-Score dan MCC.
+                    </p>
+                    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-900 pt-2.5">
+                      <button
+                        onClick={() => {
+                          const proj = RESEARCH_PROJECTS.find((p) => p.id === 'liver-ml');
+                          if (proj) handleOpenModal(proj);
+                        }}
+                        className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-medium transition cursor-pointer"
+                      >
+                        <Eye className="h-3.5 w-3.5" />
+                        <span>Detail Riset</span>
+                      </button>
                       <a
-                        href="/cert-action-ai.pdf"
+                        href="https://doi.org/10.34010/komputika.v15i1.19799"
                         target="_blank"
                         rel="noreferrer"
-                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300 hover:border-emerald-500/40 hover:text-emerald-300 transition"
                       >
-                        PDF ↗
-                      </a>
-                      <a
-                        href="https://udimpact.kolleges.net/en/achievements"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
-                      >
-                        Verifikasi ↗
+                        <span>Buka DOI Jurnal</span>
+                        <ArrowUpRight className="h-3.5 w-3.5" />
                       </a>
                     </div>
                   </div>
-                  <p className="mt-1 text-[11px] leading-relaxed text-zinc-400">
-                    Fokus: AI Literacy & Prototyping (Gemini & Lovable), Prompt Writing, Problem Definition, dan MVP Planning.
-                  </p>
-                </li>
-                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-zinc-200">Coursera: Microsoft Excel: Learn with Projects</span>
-                    <span className="font-mono text-[10px] text-emerald-400">2026</span>
-                  </div>
-                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
-                    <span>Specialization (8 Courses)</span>
-                    <div className="flex items-center gap-2">
+
+                  {/* Paper 2: Jurnal Biner */}
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-950/80 p-4 transition-all duration-200 hover:border-emerald-500/40">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                      <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                        Jurnal Biner · UNSIQ
+                      </span>
+                      <span className="font-mono text-[10px] text-zinc-500">2024—2025</span>
+                    </div>
+                    <h4 className="text-sm font-semibold text-zinc-200 leading-snug">
+                      Sistem Point of Sale (POS) Terintegrasi Sensor Load Cell & RFID Berbasis ESP32
+                    </h4>
+                    <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
+                      Perancangan hardware kasir pintar terhubung aplikasi web untuk otomatisasi timbangan digital UMKM berakurasi &gt;98%.
+                    </p>
+                    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-900 pt-2.5">
+                      <button
+                        onClick={() => {
+                          const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-pos');
+                          if (proj) handleOpenModal(proj);
+                        }}
+                        className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-medium transition cursor-pointer"
+                      >
+                        <Eye className="h-3.5 w-3.5" />
+                        <span>Detail Riset</span>
+                      </button>
                       <a
-                        href="/cert-coursera-excel.pdf"
+                        href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
                         target="_blank"
                         rel="noreferrer"
-                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300 hover:border-emerald-500/40 hover:text-emerald-300 transition"
                       >
-                        PDF ↗
-                      </a>
-                      <a
-                        href="https://coursera.org/verify/specialization/V32873K6COVJ"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-emerald-400 hover:text-emerald-300 hover:underline"
-                      >
-                        Verifikasi ↗
+                        <span>Buka Artikel Jurnal</span>
+                        <ArrowUpRight className="h-3.5 w-3.5" />
                       </a>
                     </div>
                   </div>
-                </li>
-                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-zinc-200">Google Gemini Certified Student — University</span>
-                    <span className="font-mono text-[10px] text-emerald-400">2026—2029</span>
-                  </div>
-                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
-                    <span>Google for Education</span>
-                    <a
-                      href="/cert-gemini.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-emerald-400 hover:text-emerald-300 hover:underline"
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tier 2: Kredensial & Sertifikasi Industri */}
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-zinc-800/80 pb-4">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+                  <Award className="h-4 w-4" />
+                  <span>Sertifikasi Resmi</span>
+                </div>
+                <h3 className="mt-1 text-2xl font-bold tracking-tight text-zinc-100">
+                  Kredensial Industri Terverifikasi
+                </h3>
+                <p className="mt-1 text-xs text-zinc-400">
+                  Klik kartu untuk membuka pratinjau dokumen resolusi tinggi, detail keahlian, dan tautan verifikasi resmi.
+                </p>
+              </div>
+              <span className="self-start sm:self-auto font-mono text-xs text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full">
+                4 Sertifikat Terdaftar
+              </span>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {CERTIFICATIONS_DATA.map((cert) => (
+                <div
+                  key={cert.id}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/30 transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/40 hover:bg-zinc-900/60 hover:shadow-[0_12px_30px_-10px_rgba(16,185,129,0.15)]"
+                >
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  {/* Certificate Image Preview Header */}
+                  <div>
+                    <div
+                      onClick={() => handleOpenCertModal(cert)}
+                      className="relative aspect-[16/11] w-full cursor-pointer overflow-hidden bg-zinc-950 border-b border-zinc-800/80"
                     >
-                      PDF ↗
-                    </a>
+                      <Image
+                        src={cert.imageUrl}
+                        alt={cert.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+
+                      {/* Category Pill on top left */}
+                      <div className="absolute top-2.5 left-2.5">
+                        <span className="rounded border border-zinc-700/80 bg-zinc-900/90 px-2 py-0.5 font-mono text-[10px] text-zinc-300 backdrop-blur-sm">
+                          {cert.category}
+                        </span>
+                      </div>
+
+                      {/* Hover overlay hint */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-zinc-950/90 px-3 py-1.5 text-xs font-medium text-emerald-300 shadow-lg backdrop-blur-sm">
+                          <ZoomIn className="h-3.5 w-3.5" />
+                          <span>Pratinjau</span>
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Certificate Content */}
+                    <div className="p-4 sm:p-5">
+                      <div className="flex items-center justify-between gap-1 text-[11px] text-zinc-400">
+                        <span className="font-medium text-emerald-400 truncate">{cert.issuer}</span>
+                        <span className="font-mono text-[10px] text-zinc-500 shrink-0">{cert.period}</span>
+                      </div>
+
+                      <h4
+                        onClick={() => handleOpenCertModal(cert)}
+                        className="mt-2 text-sm font-semibold text-zinc-100 line-clamp-2 cursor-pointer hover:text-emerald-400 transition-colors"
+                      >
+                        {cert.title}
+                      </h4>
+
+                      {cert.credentialId && (
+                        <p className="mt-1 text-[10px] font-mono text-zinc-500 truncate">
+                          ID: {cert.credentialId}
+                        </p>
+                      )}
+
+                      <p className="mt-2 text-[11px] leading-relaxed text-zinc-400 line-clamp-2">
+                        {cert.description}
+                      </p>
+                    </div>
                   </div>
-                </li>
-                <li className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 transition hover:border-emerald-500/40">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium text-zinc-200">Cisco CCNA: Introduction to Networks</span>
-                    <span className="font-mono text-[10px] text-emerald-400">2025—2028</span>
+
+                  {/* Action Buttons Footer */}
+                  <div className="p-4 pt-0 sm:p-5 sm:pt-0">
+                    <div className="flex items-center gap-2 border-t border-zinc-800/80 pt-3">
+                      <button
+                        onClick={() => handleOpenCertModal(cert)}
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-950 py-2 text-xs font-medium text-zinc-300 transition hover:border-emerald-500/40 hover:text-emerald-300 cursor-pointer"
+                      >
+                        <Eye className="h-3.5 w-3.5" />
+                        <span>Pratinjau</span>
+                      </button>
+                      <a
+                        href={cert.pdfUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center gap-1 rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-2 text-xs font-medium text-zinc-300 transition hover:border-emerald-500/40 hover:text-emerald-300"
+                        title="Buka Berkas PDF"
+                      >
+                        <FileText className="h-3.5 w-3.5" />
+                        <span>PDF</span>
+                      </a>
+                      {cert.verifyUrl && (
+                        <a
+                          href={cert.verifyUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-2 text-xs font-medium text-emerald-300 transition hover:bg-emerald-500/20"
+                          title="Verifikasi Kredensial Resmi"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <div className="mt-1 flex items-center justify-between text-[11px] text-zinc-400">
-                    <span>Cisco Networking Academy · UNIKOM</span>
-                    <a
-                      href="/cert-ccna.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-emerald-400 hover:text-emerald-300 hover:underline"
-                    >
-                      PDF ↗
-                    </a>
-                  </div>
-                </li>
-              </ul>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -1688,6 +1911,137 @@ export default function PortfolioPage() {
                     </a>
                   )}
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CERTIFICATE LIGHTBOX MODAL */}
+      {activeCert && (
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 transition-all duration-200 ${
+            isClosingCertModal ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          {/* Backdrop */}
+          <div
+            onClick={handleCloseCertModal}
+            className="absolute inset-0 bg-black/85 backdrop-blur-md"
+          />
+
+          {/* Modal Container */}
+          <div
+            className={`relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl transition-all duration-200 ${
+              isClosingCertModal ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
+            }`}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-zinc-800/80 px-5 py-4">
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+                  <Award className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-[11px] text-emerald-400">
+                      {activeCert.issuer}
+                    </span>
+                    <span className="font-mono text-[11px] text-zinc-500">· {activeCert.period}</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-zinc-100 truncate">
+                    {activeCert.title}
+                  </h3>
+                </div>
+              </div>
+              <button
+                onClick={handleCloseCertModal}
+                className="rounded-lg p-2 text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
+                aria-label="Tutup Pratinjau Sertifikat"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Body */}
+            <div className="overflow-y-auto p-5 sm:p-6 space-y-5">
+              {/* Image Preview */}
+              <div className="relative aspect-[16/11] w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-inner">
+                <Image
+                  src={activeCert.imageUrl}
+                  alt={activeCert.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 900px"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Credential Details */}
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs text-emerald-300">
+                    {activeCert.category}
+                  </span>
+                  {activeCert.credentialId && (
+                    <span className="rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 font-mono text-xs text-zinc-300">
+                      ID Kredensial: {activeCert.credentialId}
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-xs sm:text-sm leading-relaxed text-zinc-300 text-justify hyphens-auto">
+                  {activeCert.description}
+                </p>
+
+                <div className="pt-2">
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-2">
+                    Keahlian & Kompetensi yang Divalidasi:
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {activeCert.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 font-mono text-xs text-zinc-300"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Actions */}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-800/80 px-5 py-4 bg-zinc-950/90">
+              <button
+                onClick={handleCloseCertModal}
+                className="rounded-lg px-4 py-2 text-xs font-medium text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
+              >
+                Tutup (Esc)
+              </button>
+
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href={activeCert.pdfUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-xs font-medium text-zinc-200 transition hover:border-emerald-500/40 hover:text-emerald-300"
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  <span>Buka Berkas Asli (PDF) ↗</span>
+                </a>
+                {activeCert.verifyUrl && (
+                  <a
+                    href={activeCert.verifyUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-500 px-4 py-2 text-xs font-medium text-zinc-950 transition hover:bg-emerald-400 font-semibold shadow-lg shadow-emerald-500/20"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    <span>Verifikasi Kredensial ↗</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
