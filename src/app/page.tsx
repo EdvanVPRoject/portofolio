@@ -1047,14 +1047,11 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Name & Title Below Photo */}
-              <div className="pt-3 sm:pt-4 w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] text-center">
+              {/* Name Below Photo */}
+              <div className="pt-3 sm:pt-3.5 w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] text-center">
                 <h2 className="text-lg sm:text-xl font-bold tracking-tight text-zinc-100">
                   Edvan Nuriana Putra Septia, S.Kom.
                 </h2>
-                <p className="mt-1 text-xs text-zinc-400">
-                  Fullstack Developer · AI &amp; Software Engineer
-                </p>
               </div>
             </div>
           </div>
