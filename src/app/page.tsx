@@ -634,6 +634,43 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
   },
 ];
 
+export type EngineeringPillarId = 'fullstack' | 'qa' | 'data';
+
+export interface EngineeringPillar {
+  id: EngineeringPillarId;
+  title: string;
+  description: string;
+  projectIds: string[];
+  ctaLabel: string;
+}
+
+const ENGINEERING_PILLARS: EngineeringPillar[] = [
+  {
+    id: 'fullstack',
+    title: 'Fullstack & Mobile',
+    description:
+      'Membangun aplikasi web & lintas-platform menggunakan ReactJS, Next.js 15, TypeScript, Node.js, REST API, dan Flutter yang responsif di semua perangkat.',
+    projectIds: ['eninformasi', 'endoclens-pdf', 'encross', 'enlife', 'smart-pos', 'enclip'],
+    ctaLabel: 'Lihat 6 Proyek Terkait',
+  },
+  {
+    id: 'qa',
+    title: 'Quality Assurance (QA)',
+    description:
+      'Memastikan aplikasi stabil dan bebas bug lewat Unit Testing, API Testing dengan Postman, User Acceptance Testing (UAT), dan optimasi Lighthouse 100%.',
+    projectIds: ['endoclens-pdf', 'eninformasi', 'encross', 'smart-parking'],
+    ctaLabel: 'Lihat 4 Proyek Terkait',
+  },
+  {
+    id: 'data',
+    title: 'Data Automation & IoT',
+    description:
+      'Mengolah alur data operasional menjadi dashboard real-time dan sistem Auto Report menggunakan Python, SQL, Tableau, Excel lanjutan, serta sensor IoT.',
+    projectIds: ['smart-parking', 'smart-pos', 'liver-ml', 'enclip', 'enlife'],
+    ctaLabel: 'Lihat 5 Proyek Terkait',
+  },
+];
+
 type SkillDomain = 'all' | 'fullstack' | 'qa' | 'data' | 'network-ai';
 
 interface ExpertiseItem {
@@ -860,6 +897,7 @@ export default function PortfolioPage() {
   const [isClosingExpertiseModal, setIsClosingExpertiseModal] = useState(false);
   const [activeCert, setActiveCert] = useState<CertificateCredential | null>(null);
   const [isClosingCertModal, setIsClosingCertModal] = useState(false);
+  const [activePillarFilter, setActivePillarFilter] = useState<EngineeringPillarId | null>(null);
   const [activeSection, setActiveSection] = useState<string>('about');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -922,6 +960,21 @@ export default function PortfolioPage() {
       setActiveCert(null);
       setIsClosingCertModal(false);
     }, 240);
+  };
+
+  const handleSelectPillar = (pillarId: EngineeringPillarId) => {
+    setActivePillarFilter((prev) => (prev === pillarId ? null : pillarId));
+    setActiveFilter('all');
+    if (typeof document !== 'undefined') {
+      const projectsEl = document.getElementById('projects');
+      if (projectsEl) {
+        projectsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
+  const handleResetPillarFilter = () => {
+    setActivePillarFilter(null);
   };
 
   useEffect(() => {
@@ -1035,7 +1088,7 @@ export default function PortfolioPage() {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [activeFilter, activeSkillTab, activeCertFilter]);
+  }, [activeFilter, activeSkillTab, activeCertFilter, activePillarFilter]);
 
   const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget;
@@ -1067,13 +1120,21 @@ export default function PortfolioPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const filteredApps = FEATURED_APPS.filter(
-    (app) => activeFilter === 'all' || app.category.includes(activeFilter)
-  );
+  const currentPillar = ENGINEERING_PILLARS.find((p) => p.id === activePillarFilter);
 
-  const filteredResearch = RESEARCH_PROJECTS.filter(
-    (item) => activeFilter === 'all' || item.category.includes(activeFilter)
-  );
+  const filteredApps = FEATURED_APPS.filter((app) => {
+    if (activePillarFilter && currentPillar) {
+      return currentPillar.projectIds.includes(app.id);
+    }
+    return activeFilter === 'all' || app.category.includes(activeFilter);
+  });
+
+  const filteredResearch = RESEARCH_PROJECTS.filter((item) => {
+    if (activePillarFilter && currentPillar) {
+      return currentPillar.projectIds.includes(item.id);
+    }
+    return activeFilter === 'all' || item.category.includes(activeFilter);
+  });
 
   async function handleFeedbackSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -1441,59 +1502,63 @@ export default function PortfolioPage() {
                 Selain pengembangan aplikasi, saya memiliki ketertarikan kuat pada otomasi sistem dan analitik data operasional. Saya terbiasa memetakan data dari lapangan maupun database relasional (SQL / MySQL / PostgreSQL / Firebase) menjadi dashboard pemantauan real-time dan sistem laporan otomatis (Auto Report / ETL) menggunakan Python, Tableau, serta Microsoft Excel tingkat lanjut.
               </p>
 
-              {/* 3 Engineering Pillars */}
+              {/* 3 Engineering Pillars (Interactive - Tap to View Connected Projects) */}
               <div className="grid gap-3.5 sm:gap-4.5 pt-3 sm:pt-4 sm:grid-cols-3 lg:gap-5">
-                <div
-                  onMouseMove={handleCardMouseMove}
-                  onMouseLeave={handleCardMouseLeave}
-                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:border-zinc-700"
-                >
-                  <div className="relative z-10">
-                    <div className="mb-2 flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 transition-transform duration-300 group-hover:scale-150" />
-                      <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Fullstack &amp; Mobile
-                      </h3>
+                {ENGINEERING_PILLARS.map((pillar) => {
+                  const isActive = activePillarFilter === pillar.id;
+                  return (
+                    <div
+                      key={pillar.id}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => handleSelectPillar(pillar.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          handleSelectPillar(pillar.id);
+                        }
+                      }}
+                      onMouseMove={handleCardMouseMove}
+                      onMouseLeave={handleCardMouseLeave}
+                      className={`spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border p-4 sm:p-5 cursor-pointer transition-all duration-300 ${
+                        isActive
+                          ? 'border-emerald-500/80 bg-emerald-950/25 shadow-[0_0_24px_rgba(16,185,129,0.18)]'
+                          : 'border-zinc-800/90 hover:border-zinc-700 bg-zinc-950/40'
+                      }`}
+                    >
+                      <div className="relative z-10">
+                        <div className="mb-2 flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-2">
+                            <span
+                              className={`h-1.5 w-1.5 rounded-full transition-transform duration-300 group-hover:scale-150 ${
+                                isActive ? 'bg-emerald-300 scale-125' : 'bg-emerald-400'
+                              }`}
+                            />
+                            <h3 className="font-heading text-sm font-semibold text-zinc-100 group-hover:text-emerald-300 transition-colors">
+                              {pillar.title}
+                            </h3>
+                          </div>
+                          {isActive && (
+                            <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-mono text-emerald-300 border border-emerald-500/30">
+                              Aktif
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs leading-relaxed text-zinc-400 text-justify">
+                          {pillar.description}
+                        </p>
+                      </div>
+
+                      {/* Tactile Action Link to Projects */}
+                      <div className="relative z-10 mt-3.5 flex items-center justify-between border-t border-zinc-800/70 pt-2.5 text-[11px] font-mono text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                        <span>{pillar.ctaLabel}</span>
+                        <span className="transition-transform duration-200 group-hover:translate-x-1 group-hover:translate-y-0.5">
+                          ↓
+                        </span>
+                      </div>
                     </div>
-                    <p className="text-xs leading-relaxed text-zinc-400 text-justify">
-                      Membangun aplikasi web &amp; lintas-platform menggunakan ReactJS, Next.js 15, TypeScript, Node.js, REST API, dan Flutter yang responsif di semua perangkat.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  onMouseMove={handleCardMouseMove}
-                  onMouseLeave={handleCardMouseLeave}
-                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:border-zinc-700"
-                >
-                  <div className="relative z-10">
-                    <div className="mb-2 flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 transition-transform duration-300 group-hover:scale-150" />
-                      <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Quality Assurance (QA)
-                      </h3>
-                    </div>
-                    <p className="text-xs leading-relaxed text-zinc-400 text-justify">
-                      Memastikan aplikasi stabil dan bebas bug lewat Unit Testing, API Testing dengan Postman, User Acceptance Testing (UAT), dan optimasi Lighthouse 100%.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  onMouseMove={handleCardMouseMove}
-                  onMouseLeave={handleCardMouseLeave}
-                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:border-zinc-700"
-                >
-                  <div className="relative z-10">
-                    <div className="mb-2 flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 transition-transform duration-300 group-hover:scale-150" />
-                      <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Data Automation &amp; IoT
-                      </h3>
-                    </div>
-                    <p className="text-xs leading-relaxed text-zinc-400 text-justify">
-                      Mengolah alur data operasional menjadi dashboard real-time dan sistem Auto Report menggunakan Python, SQL, Tableau, Excel lanjutan, serta sensor IoT.
-                    </p>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -1529,9 +1594,12 @@ export default function PortfolioPage() {
                 <button
                   key={tab.id}
                   type="button"
-                  onClick={() => setActiveFilter(tab.id as ProjectCategory)}
+                  onClick={() => {
+                    setActiveFilter(tab.id as ProjectCategory);
+                    setActivePillarFilter(null);
+                  }}
                   className={`rounded-lg px-2.5 sm:px-3 py-2 sm:py-1.5 text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer text-center ${
-                    activeFilter === tab.id
+                    activeFilter === tab.id && !activePillarFilter
                       ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
                       : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200'
                   }`}
@@ -1541,6 +1609,29 @@ export default function PortfolioPage() {
               ))}
             </div>
           </div>
+
+          {/* Active Pillar Filter Indicator Banner */}
+          {activePillarFilter && currentPillar && (
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-emerald-500/40 bg-emerald-950/25 p-3.5 sm:p-4 text-xs sm:text-sm text-emerald-300 animate-fade-in-up">
+              <div className="flex items-center gap-2.5">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <span>
+                  Menampilkan <strong>{filteredApps.length + filteredResearch.length}</strong> proyek yang terhubung dengan pilar <strong className="text-zinc-100">{currentPillar.title}</strong>
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={handleResetPillarFilter}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/50 bg-zinc-950 px-3 py-1.5 text-xs font-medium text-emerald-300 hover:bg-emerald-400 hover:text-zinc-950 transition-all cursor-pointer shadow-sm"
+              >
+                <span>Reset (Tampilkan Semua Proyek)</span>
+                <span>✕</span>
+              </button>
+            </div>
+          )}
 
           {/* Bento Row 1: Featured Software Applications */}
           {filteredApps.length > 0 && (
@@ -1571,6 +1662,11 @@ export default function PortfolioPage() {
                             <span className="rounded border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] sm:text-[11px] text-emerald-300">
                               {app.badge}
                             </span>
+                            {activePillarFilter && currentPillar && (
+                              <span className="rounded border border-emerald-500/40 bg-emerald-500/15 px-2 py-0.5 font-mono text-[10px] sm:text-[11px] text-emerald-300">
+                                Terhubung
+                              </span>
+                            )}
                             <span className="font-mono text-[11px] sm:text-xs text-zinc-500">
                               {app.year}
                             </span>
@@ -1671,9 +1767,16 @@ export default function PortfolioPage() {
 
                     <div className="p-4 sm:p-5">
                       <div className="flex items-center justify-between gap-2 font-mono text-[11px] sm:text-xs">
-                        <span className="text-emerald-400/90 truncate">
-                          {project.tagline.split('·')[0]}
-                        </span>
+                        <div className="flex items-center gap-2 truncate">
+                          <span className="text-emerald-400/90 truncate">
+                            {project.tagline.split('·')[0]}
+                          </span>
+                          {activePillarFilter && currentPillar && (
+                            <span className="rounded border border-emerald-500/40 bg-emerald-500/15 px-1.5 py-0.5 font-mono text-[10px] text-emerald-300 shrink-0">
+                              Terhubung
+                            </span>
+                          )}
+                        </div>
                         <span className="text-zinc-500 shrink-0">{project.year}</span>
                       </div>
 
