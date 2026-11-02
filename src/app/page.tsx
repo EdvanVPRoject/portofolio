@@ -34,7 +34,6 @@ const NAV_ITEMS = [
   { id: 'projects', label: 'Proyek' },
   { id: 'skills', label: 'Keahlian' },
   { id: 'academic', label: 'Akademik' },
-  { id: 'contact', label: 'Kontak' },
 ];
 
 type ProjectCategory = 'all' | 'software' | 'iot-cv' | 'publication';
@@ -1244,18 +1243,41 @@ export default function PortfolioPage() {
                 </a>
               );
             })}
-            <a
-              href="#feedback"
-              onClick={() => handleNavClick('feedback')}
-              className={`group rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-200 inline-flex items-center gap-1 ${
-                activeSection === 'feedback'
-                  ? 'border border-emerald-400/50 bg-emerald-500/20 text-white font-semibold'
-                  : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:border-emerald-500/50 hover:bg-emerald-500/15'
+            {/* Unified Contact & Feedback Outer Box Marker */}
+            <div
+              className={`flex items-center rounded-lg border p-0.5 transition-all duration-200 ${
+                activeSection === 'contact' || activeSection === 'feedback'
+                  ? 'border-emerald-400/60 bg-emerald-500/15 shadow-[0_0_12px_rgba(16,185,129,0.15)]'
+                  : 'border-emerald-500/35 bg-emerald-500/10 hover:border-emerald-500/55 hover:bg-emerald-500/15'
               }`}
             >
-              <span>Ulasan</span>
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-            </a>
+              <a
+                href="#contact"
+                onClick={() => handleNavClick('contact')}
+                className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all duration-200 ${
+                  activeSection === 'contact'
+                    ? 'bg-emerald-500 text-zinc-950 font-semibold shadow-sm'
+                    : 'text-emerald-300 hover:text-white hover:bg-emerald-500/20'
+                }`}
+              >
+                Kontak
+              </a>
+              <span className="h-3 w-px bg-emerald-500/30 mx-0.5" />
+              <a
+                href="#feedback"
+                onClick={() => handleNavClick('feedback')}
+                className={`group rounded-md px-2.5 py-1 text-xs font-medium transition-all duration-200 inline-flex items-center gap-1 ${
+                  activeSection === 'feedback'
+                    ? 'bg-emerald-500 text-zinc-950 font-semibold shadow-sm'
+                    : 'text-emerald-300 hover:text-white hover:bg-emerald-500/20'
+                }`}
+              >
+                <span>Ulasan</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  ↗
+                </span>
+              </a>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -1292,20 +1314,38 @@ export default function PortfolioPage() {
                 </a>
               );
             })}
-            <a
-              href="#feedback"
-              onClick={() => {
-                handleNavClick('feedback');
-                setMobileMenuOpen(false);
-              }}
-              className={`block rounded-lg px-3 py-2 text-sm font-semibold transition-colors duration-150 ${
-                activeSection === 'feedback'
-                  ? 'border border-emerald-400 bg-emerald-500/25 text-white'
-                  : 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
-              }`}
-            >
-              Kirim Pesan & Ulasan ↗
-            </a>
+            {/* Unified Contact & Feedback Box on Mobile */}
+            <div className="grid grid-cols-2 gap-1.5 rounded-lg border border-emerald-500/35 bg-emerald-500/10 p-1">
+              <a
+                href="#contact"
+                onClick={() => {
+                  handleNavClick('contact');
+                  setMobileMenuOpen(false);
+                }}
+                className={`rounded-md py-2 text-center text-xs font-semibold transition ${
+                  activeSection === 'contact'
+                    ? 'bg-emerald-500 text-zinc-950 shadow-sm'
+                    : 'text-emerald-300 hover:bg-emerald-500/20 hover:text-white'
+                }`}
+              >
+                Kontak
+              </a>
+              <a
+                href="#feedback"
+                onClick={() => {
+                  handleNavClick('feedback');
+                  setMobileMenuOpen(false);
+                }}
+                className={`rounded-md py-2 text-center text-xs font-semibold transition inline-flex items-center justify-center gap-1 ${
+                  activeSection === 'feedback'
+                    ? 'bg-emerald-500 text-zinc-950 shadow-sm'
+                    : 'text-emerald-300 hover:bg-emerald-500/20 hover:text-white'
+                }`}
+              >
+                <span>Ulasan</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
         )}
       </header>
