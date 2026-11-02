@@ -98,6 +98,45 @@ interface CertificateCredential {
 
 const CERTIFICATIONS_DATA: CertificateCredential[] = [
   {
+    id: 'cert-hackerrank-react',
+    title: 'Frontend Developer (React)',
+    issuer: 'HackerRank',
+    period: '2026',
+    category: 'Frontend Engineering',
+    credentialId: '14E9FE830A72',
+    verifyUrl: 'https://www.hackerrank.com/certificates/14e9fe830a72',
+    pdfUrl: '/cert-hackerrank-react.pdf',
+    imageUrl: '/cert-hackerrank-react.png',
+    description:
+      'Sertifikasi peran (Role Certification) dari HackerRank yang menguji kemampuan praktis membangun aplikasi web menggunakan React—mulai dari arsitektur komponen, pengelolaan state & props, siklus hidup komponen, hingga interaksi antarmuka yang responsif.',
+    skills: [
+      'React Component Architecture',
+      'State & Props Management',
+      'Frontend Routing & DOM',
+      'Interactive UI Logic',
+    ],
+  },
+  {
+    id: 'cert-cisco-data-analytics',
+    title: 'Cisco: Data Analytics Essentials',
+    issuer: 'Cisco Networking Academy',
+    period: '2026',
+    category: 'Data Analytics & SQL',
+    credentialId: 'a8434aa9-95b4-42e1-ac53-c578d599d1ad',
+    pdfUrl: '/cert-cisco-data-analytics.pdf',
+    imageUrl: '/cert-cisco-data-analytics.png',
+    description:
+      'Sertifikasi resmi Cisco Networking Academy yang berfokus pada alur kerja analisis data menyeluruh—mulai dari pengumpulan, pembersihan, dan transformasi data menggunakan Excel serta kueri SQL relasional, hingga pembuatan dashboard visual di Tableau.',
+    skills: [
+      'Data Preparation & Cleaning',
+      'Relational SQL Queries',
+      'Tableau Visualization',
+      'Exploratory Data Analysis',
+      'Excel Data Transformation',
+      'Data Storytelling',
+    ],
+  },
+  {
     id: 'cert-gemini',
     title: 'Google Gemini Certified Student — University',
     issuer: 'Google for Education',
@@ -106,36 +145,8 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     pdfUrl: '/cert-gemini.pdf',
     imageUrl: '/cert-gemini.png',
     description:
-      'Sertifikasi resmi Google for Education yang memvalidasi kompetensi pemanfaatan Google Gemini AI, prompt engineering tingkat lanjut, integrasi alur kerja AI dalam analisis data, dan etika kecerdasan buatan.',
+      'Sertifikasi resmi dari Google for Education yang memvalidasi pemanfaatan praktis Google Gemini AI, penyusunan prompt yang efektif, otomatisasi alur kerja analisis data, serta penerapan prinsip kecerdasan buatan yang bertanggung jawab.',
     skills: ['Prompt Engineering', 'Gemini AI', 'Data Analysis Workflow', 'AI Ethics'],
-  },
-  {
-    id: 'cert-action-ai',
-    title: 'Action AI Startup University: AI Essentials',
-    issuer: 'underdogs. & UNIKOM',
-    period: '2026',
-    category: 'AI Prototyping & MVP',
-    credentialId: 'UDI-202610-twv1n6 (OpenBadge 3.0)',
-    verifyUrl: 'https://udimpact.kolleges.net/en/achievements',
-    pdfUrl: '/cert-action-ai.pdf',
-    imageUrl: '/cert-action-ai.png',
-    description:
-      'Program intensif akselerasi startup AI oleh underdogs. & UNIKOM (Act-preneur Certified, W3C VC 2.0). Memvalidasi problem definition, prompt writing komprehensif, dan validasi prototipe menggunakan Gemini dan Lovable.',
-    skills: ['AI Prototyping', 'Lovable & Gemini', 'Problem Definition', 'MVP Planning'],
-  },
-  {
-    id: 'cert-coursera-excel',
-    title: 'Microsoft Excel: Learn with Projects',
-    issuer: 'Coursera Project Network',
-    period: '2026',
-    category: 'Data Analytics & Modeling',
-    credentialId: 'V32873K6COVJ (8 Kursus Spesialisasi)',
-    verifyUrl: 'https://coursera.org/verify/specialization/V32873K6COVJ',
-    pdfUrl: '/cert-coursera-excel.pdf',
-    imageUrl: '/cert-coursera-excel.png',
-    description:
-      'Spesialisasi 8 kursus hands-on Microsoft Excel dari Coursera mencakup pengolahan data tabular, rumus lanjutan (INDEX-MATCH, XLOOKUP), analisis data bisnis, Pivot Table, dan visualisasi dashboard interaktif.',
-    skills: ['Advanced Formulas', 'Pivot Tables & Charts', 'Business Modeling', 'Data Visualization'],
   },
   {
     id: 'cert-ccna',
@@ -146,7 +157,7 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     pdfUrl: '/cert-ccna.pdf',
     imageUrl: '/cert-ccna.png',
     description:
-      'Kredensial resmi Cisco Networking Academy yang mencakup 17 modul kompetensi mendalam: perancangan arsitektur LAN, navigasi & konfigurasi Cisco IOS pada router & switch, pemodelan OSI & TCP/IP, segmentasi jaringan & subnetting VLSM IPv4/IPv6, serta metodologi troubleshooting dan mitigasi keamanan perangkat.',
+      'Sertifikasi Cisco Networking Academy yang mencakup 17 modul fundamental jaringan: perancangan topologi LAN, konfigurasi perangkat router dan switch berbasis Cisco IOS, pemodelan OSI & TCP/IP, subnetting VLSM IPv4/IPv6, hingga teknik dasar keamanan dan troubleshooting jaringan.',
     skills: [
       'TCP/IP & OSI Reference Models',
       'IPv4 & IPv6 Subnetting (VLSM)',
@@ -185,7 +196,7 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     pdfUrl: '/cert-cisco-networking-basics.pdf',
     imageUrl: '/cert-cisco-networking-basics.png',
     description:
-      'Sertifikasi resmi Cisco Networking Academy yang memvalidasi penguasaan fundamental komunikasi data, komponen & topologi jaringan, konfigurasi wireless home router, pemodelan Ethernet, skema pengalamatan IPv4/IPv6, DHCP, NAT, serta simulasi lab hands-on Cisco Packet Tracer.',
+      'Sertifikasi dari Cisco Networking Academy yang menguatkan pemahaman konsep komunikasi data, komponen & topologi jaringan, konfigurasi wireless home router, skema pengalamatan IPv4/IPv6, layanan DHCP & NAT, serta simulasi lab Cisco Packet Tracer.',
     skills: [
       'Network Architecture & Topologies',
       'IPv4 & IPv6 Addressing Formats',
@@ -214,6 +225,57 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
       'Modul 17: Network Testing Utilities (ipconfig, ping & Troubleshooting Commands)',
     ],
   },
+  {
+    id: 'cert-coursera-excel',
+    title: 'Microsoft Excel: Learn with Projects',
+    issuer: 'Coursera Project Network',
+    period: '2026',
+    category: 'Data Analytics & Modeling',
+    credentialId: 'V32873K6COVJ (8 Kursus Spesialisasi)',
+    verifyUrl: 'https://coursera.org/verify/specialization/V32873K6COVJ',
+    pdfUrl: '/cert-coursera-excel.pdf',
+    imageUrl: '/cert-coursera-excel.png',
+    description:
+      'Spesialisasi 8 kursus berbasis proyek (12 guided projects) di Coursera yang mempraktikkan pengolahan data spreadsheet, rumus lanjutan (SUMIF, VLOOKUP, XLOOKUP, INDEX-MATCH), penyusunan PivotTable, hingga pembuatan dashboard pelacakan proyek.',
+    skills: [
+      'Advanced Formulas (XLOOKUP/INDEX-MATCH)',
+      'PivotTables & Charts',
+      'Dashboard Assembly',
+      'AI-Assisted Data Workflows',
+    ],
+  },
+  {
+    id: 'cert-action-ai',
+    title: 'Action AI Startup University: AI Essentials',
+    issuer: 'underdogs. & UNIKOM',
+    period: '2026',
+    category: 'AI Prototyping & MVP',
+    credentialId: 'UDI-202610-twv1n6 (OpenBadge 3.0)',
+    verifyUrl: 'https://udimpact.kolleges.net/en/achievements',
+    pdfUrl: '/cert-action-ai.pdf',
+    imageUrl: '/cert-action-ai.png',
+    description:
+      'Program intensif pengembangan produk berbasis AI dari underdogs. & UNIKOM (Act-preneur Certified, W3C VC 2.0) yang berfokus pada perumusan masalah pengguna, penyusunan prompt, hingga pembuatan prototipe MVP menggunakan Gemini dan Lovable.',
+    skills: ['AI Prototyping', 'Lovable & Gemini', 'Problem Definition', 'MVP Planning'],
+  },
+  {
+    id: 'cert-unikom-mendeley',
+    title: 'Literasi Informasi: Manajemen Referensi & Sitasi Ilmiah (Mendeley)',
+    issuer: 'Perpustakaan & Prodi Sistem Komputer UNIKOM',
+    period: '2026',
+    category: 'Academic Research',
+    credentialId: '003/SR/TR/PERPUS-UNIKOM/I/2026',
+    pdfUrl: '/cert-unikom-mendeley.pdf',
+    imageUrl: '/cert-unikom-mendeley.png',
+    description:
+      'Pelatihan penelusuran literatur ilmiah, pengelolaan basis data referensi riset, serta otomatisasi sitasi dan daftar pustaka terstandar menggunakan aplikasi Mendeley untuk menunjang penulisan karya ilmiah dan publikasi jurnal.',
+    skills: [
+      'Mendeley Reference Manager',
+      'Scientific Literature Search',
+      'Academic Citation Standards',
+      'Research Documentation',
+    ],
+  },
 ];
 
 const FEATURED_APPS: FeaturedApp[] = [
@@ -226,10 +288,10 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/enclip-icon.png',
     description:
-      'Aplikasi desktop Windows untuk otomasi pemotongan video panjang menjadi klip vertikal siap posting (Shorts/Reels/TikTok) dengan transkripsi AI dan subtitle dinamis.',
+      'Aplikasi desktop Windows untuk memotong video berdurasi panjang menjadi klip vertikal siap unggah (Shorts/Reels/TikTok) lengkap dengan transkripsi AI dan subtitle dinamis.',
     highlights: [
-      'Inferensi AI Hibrida (Offline GGUF & Cloud API)',
-      'GUI Anti-Freeze dengan Asynchronous Worker Thread',
+      'Mode AI Fleksibel (Bisa 100% Offline via GGUF atau Cloud API)',
+      'Antarmuka Tetap Responsif saat Render Video (Asynchronous Worker)',
     ],
     tech: [
       'Python',
@@ -254,17 +316,17 @@ const FEATURED_APPS: FeaturedApp[] = [
     modalDetails: {
       kicker: 'Aplikasi Desktop Native · 2026',
       summary:
-        'Aplikasi desktop Windows yang dirancang untuk mempermudah kreator konten dan editor video dalam memotong video berdurasi panjang menjadi klip highlight vertikal secara otomatis dengan transkripsi AI dan pembuatan subtitle dinamis tanpa biaya langganan cloud.',
+        'Aplikasi desktop Windows yang dirancang untuk mempermudah kreator konten dan editor video dalam memotong video panjang menjadi klip highlight vertikal secara otomatis, lengkap dengan transkripsi AI dan pembuatan subtitle dinamis tanpa biaya langganan bulanan.',
       bullets: [
-        'Dukungan Hybrid AI: Mendukung model lokal 100% offline (Faster-Whisper & Qwen 2.5 GGUF) untuk privasi data penuh, serta integrasi Cloud via Google Gemini 3.8 Flash.',
-        'Deteksi Momen Cerdas: Algoritma AI mendeteksi hook video, reaksi streamer, punchline humor, dan materi penting secara otomatis.',
-        'Format & Auto-Framing Fleksibel: Menghasilkan rasio 9:16 (Shorts/TikTok), 16:9, 1:1, dan 4:3 dengan fitur smart background blur.',
-        'Styling Subtitle Dinamis (Hardsub): 7+ preset gaya subtitle (Karaoke, Neon, Highlight, Box) dengan posisi teks yang dapat diseret bebas pada preview video.',
-        'Akselerasi GPU & Render Cepat: Memanfaatkan encoder perangkat keras (Nvidia NVENC, Intel QSV, AMD AMF) untuk pemrosesan video ultra-cepat tanpa pop-up terminal CMD.',
+        'Dukungan Hybrid AI: Bisa berjalan 100% offline menggunakan model lokal (Faster-Whisper & Qwen 2.5 GGUF) untuk privasi penuh, maupun terhubung ke Cloud via Google Gemini API.',
+        'Deteksi Momen Penting: Membantu menemukan bagian pembuka yang menarik (hook), momen reaksi, atau poin pembicaraan utama secara otomatis.',
+        'Format & Auto-Framing Fleksibel: Mendukung rasio 9:16 (Shorts/TikTok), 16:9, 1:1, dan 4:3 lengkap dengan efek smart background blur.',
+        'Kustomisasi Subtitle Dinamis (Hardsub): Tersedia lebih dari 7 gaya subtitle (Karaoke, Neon, Highlight, Box) dengan posisi teks yang bisa digeser langsung di layar pratinjau.',
+        'Akselerasi GPU: Memanfaatkan encoder hardware (Nvidia NVENC, Intel QSV, AMD AMF) agar proses render berjalan cepat di latar belakang.',
       ],
       results:
-        'Mampu mentranskripsi dan merender klip video vertikal siap unggah dalam hitungan menit secara offline tanpa watermark dan tanpa biaya langganan.',
-      note: 'Source code dan installer Windows (.exe) tersedia publik di GitHub Releases.',
+        'Memangkas waktu pengeditan klip vertikal dari berjam-jam menjadi hitungan menit secara offline, bebas watermark, dan tanpa biaya berlangganan.',
+      note: 'Source code dan installer Windows (.exe) tersedia di halaman GitHub Releases.',
     },
   },
   {
@@ -276,10 +338,10 @@ const FEATURED_APPS: FeaturedApp[] = [
     category: ['software'],
     image: '/encross-logo.png',
     description:
-      'Aplikasi transfer berkas besar dan screen sharing lintas-perangkat (Windows & Android) berkecepatan tinggi via WebRTC P2P lokal tanpa kuota internet dan server perantara.',
+      'Aplikasi berbagi file ukuran besar dan screen sharing lintas perangkat (Windows & Android) lewat jaringan Wi-Fi lokal menggunakan WebRTC P2P tanpa memakan kuota internet.',
     highlights: [
-      'Arsitektur Zero-Server P2P (Privasi & Kecepatan Maksimal)',
-      'Satu Basis Kode Modern (React 19, Electron, & Capacitor)',
+      'Transfer Langsung Antar-Perangkat Tanpa Server Perantara',
+      'Satu Basis Kode untuk Desktop & Mobile (React 19, Electron & Capacitor)',
     ],
     tech: ['React 19', 'WebRTC', 'Electron', 'Capacitor', 'Tailwind CSS'],
     links: [
@@ -292,30 +354,30 @@ const FEATURED_APPS: FeaturedApp[] = [
     modalDetails: {
       kicker: 'Aplikasi Cross-Platform · 2026',
       summary:
-        'Aplikasi transfer berkas dan screen sharing antar-perangkat lokal (Windows, Android, dan Browser) berkecepatan tinggi tanpa kuota internet dan tanpa server perantara pihak ketiga.',
+        'Solusi praktis untuk mengirim file berukuran besar dan membagikan layar antar-perangkat (Windows, Android, dan Browser) di jaringan lokal yang sama dengan cepat tanpa perlu kuota internet atau unggah ke cloud.',
       bullets: [
-        'Direct P2P DataChannel: Berkas dialirkan langsung antar-memori perangkat via WebRTC dengan pembagian chunk 64KB dan mekanisme flow control buffer.',
-        'Zero Cloud Storage: Data tidak pernah melewati server publik, menjamin privasi penuh dan throughput maksimal jaringan lokal.',
-        'Pairing Cepat QR Code: Perangkat host menampilkan QR Code IP lokal, perangkat kedua memindai dan langsung tersambung otomatis.',
-        'Screen Share Real-Time: Berbagi layar monitor secara langsung dengan latensi ultra-rendah melalui WebRTC MediaStream.',
+        'Direct P2P DataChannel: File dikirim langsung dari perangkat ke perangkat melalui WebRTC dengan pembagian chunk 64KB dan pengaturan alur memori yang stabil.',
+        'Privasi Terjaga Tanpa Cloud: File tidak pernah mampir ke server pihak ketiga sehingga jauh lebih aman dan kecepatannya mengikuti kapasitas Wi-Fi lokal.',
+        'Koneksi Instan via QR Code: Cukup pindai QR Code yang tampil di layar perangkat utama untuk langsung terhubung tanpa repot mengetik alamat IP.',
+        'Screen Share Real-Time: Menampilkan layar perangkat secara langsung dengan jeda (latency) yang sangat rendah menggunakan WebRTC MediaStream.',
       ],
       results:
-        'Mencapai kecepatan transfer mendekati batas fisik throughput Wi-Fi lokal tanpa konsumsi kuota internet.',
+        'Memudahkan pengiriman file lintas ekosistem (PC ke HP maupun sebaliknya) dengan kecepatan penuh jaringan Wi-Fi lokal.',
     },
   },
   {
     id: 'eninformasi',
-    title: 'EnInformasi Hub — Portal 207 Tutorial, Gaming & Tren Teknologi Terkini',
+    title: 'EnInformasi Hub — Portal 207 Tutorial, Gaming & Tren Teknologi',
     tagline: 'Platform Edukasi & Publikasi Web · Bilingual ID/EN',
     year: '2026',
     badge: 'Next.js & Cloudflare',
     category: ['software'],
     image: '/eninformasi-icon.svg',
     description:
-      'Portal media teknologi bilingual (ID/EN) yang menyajikan 207 modul tutorial, gaming, dan tren teknologi terkini dengan Skor Lighthouse 100/100 di Cloudflare Workers/Pages.',
+      'Portal web teknologi dua bahasa (Indonesia & Inggris) yang memuat 207 artikel tutorial praktis, pembahasan gaming, dan ulasan tren teknologi di atas infrastruktur Cloudflare Workers.',
     highlights: [
-      '207 Katalog Terstruktur (Tutorial Praktis, Gaming & Deep-Dive Trends)',
-      'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
+      '207 Materi Terstruktur (Tutorial Praktis, Gaming & Ulasan Teknologi)',
+      'Fitur Ganti Bahasa Instan (ID/EN) & Checklist Praktik Interaktif',
     ],
     tech: [
       'Next.js 15',
@@ -340,32 +402,32 @@ const FEATURED_APPS: FeaturedApp[] = [
     modalDetails: {
       kicker: 'Platform Web & Portal Teknologi · 2026',
       summary:
-        'Platform web modern yang memisahkan secara tegas antara Tutorial Praktis (Hands-on Guide) dan EnInformasi (Deep-Dive Insight & Trends), dirancang dengan fokus pada kecepatan akses, tipografi editorial yang nyaman dibaca, dan modularitas konten bilingual penuh.',
+        'Platform bacaan teknologi modern yang memisahkan kategori Tutorial Praktis (panduan langkah demi langkah) dan EnInformasi (ulasan mendalam & tren industri). Dirancang agar ringan dibuka, nyaman dibaca di HP maupun PC, dan mendukung dua bahasa secara penuh.',
       bullets: [
-        'Katalog Konten Terkurasi: Memuat 207 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
-        'Sistem Bilingual Real-Time: Switcher bahasa terisolasi yang mengalihkan 100% judul, ringkasan, teks artikel, dan daftar isi secara instan tanpa re-render halaman penuh.',
-        'Interactive Practice Checklist: Fitur pencatatan progres praktik pengguna langsung di browser berbasis sessionStorage per artikel dengan tombol reset instan.',
-        'Smart Viewport Scrollspy: Navigasi daftar isi aktif yang melacak posisi pembacaan secara real-time pada desktop dan mobile.',
-        'Arsitektur Edge Delivery: Dibangun dengan Next.js App Router dan dioptimasi via OpenNext untuk deployment edge berlatensi rendah pada Cloudflare Pages.',
+        '207 Artikel Terkurasi: Membahas pengembangan software, pemanfaatan AI/LLM, cloud computing, sistem IoT, hingga perkembangan dunia teknologi dan gaming.',
+        'Bilingual Real-Time: Tombol pengubah bahasa yang langsung menerjemahkan judul, ringkasan, isi artikel, dan daftar isi tanpa perlu memuat ulang halaman.',
+        'Checklist Praktik Interaktif: Pembaca bisa mencentang langkah-langkah tutorial yang sudah dipraktikkan langsung di browser.',
+        'Navigasi Daftar Isi Otomatis: Penanda posisi bacaan aktif yang mengikuti guliran layar di desktop maupun perangkat mobile.',
+        'Performa Edge Computing: Dibangun dengan Next.js App Router dan di-deploy ke jaringan Cloudflare melalui OpenNext untuk waktu muat yang instan.',
       ],
       results:
-        'Menyediakan platform dokumentasi dan tutorial komputasi berperforma tinggi dengan skor Core Web Vitals optimal dan pengalaman pengguna interaktif.',
-      note: 'Source code dan dokumentasi arsitektur dapat diakses publik pada repositori GitHub.',
+        'Menghadirkan pengalaman membaca dokumentasi dan tutorial yang bersih, responsif, dan meraih skor performa Lighthouse 100/100.',
+      note: 'Website dapat diakses langsung dan seluruh kode sumbernya terbuka di GitHub.',
     },
   },
   {
     id: 'endoclens-pdf',
-    title: 'ENDocLens-PDF — Perangkat Dokumen, Scanner OCR & AI Copilot',
+    title: 'ENDocLens-PDF — Scanner Dokumen, OCR & 16 Alat PDF di Browser',
     tagline: 'Client-Side Web Suite · 16 Modul PDF & Tooling Dokumen',
     year: '2026',
     badge: 'Web Suite & OCR',
     category: ['software'],
     image: '/endoclens-icon.svg',
     description:
-      'Suite produktivitas dokumen 100% client-side di browser dengan 16 modul alat PDF, pemindai dokumen perspective warp, ekstraksi OCR, dan AI Copilot.',
+      'Aplikasi web pengolahan dokumen dengan 16 fitur PDF, pemindai kamera otomatis (perspective warp), dan pembaca teks OCR yang berjalan 100% langsung di browser tanpa unggah ke server.',
     highlights: [
-      '16 Modul Produktivitas Dokumen & 100% Client-Side Privacy',
-      'Auto-Perspective Warp & Ekstraksi OCR Tesseract.js',
+      '16 Alat PDF Terpadu & Privasi Penuh (Diproses Langsung di Browser)',
+      'Pelurus Foto Dokumen Otomatis & Ekstraksi Teks OCR (Tesseract.js)',
     ],
     tech: [
       'React 19',
@@ -391,32 +453,32 @@ const FEATURED_APPS: FeaturedApp[] = [
     modalDetails: {
       kicker: 'Web Productivity Suite · 2026',
       summary:
-        'Aplikasi web produktivitas dokumen modern yang mengintegrasikan 16 modul pemrosesan PDF dan berkas secara komprehensif. Seluruh komputasi pemindaian, manipulasi dokumen, ekstraksi OCR, dan enkripsi dieksekusi murni di sisi klien (client-side di browser) sehingga menjamin privasi dokumen sensitif tanpa ketergantungan server perantara.',
+        'Kumpulan 16 alat pengolahan PDF dan pemindai dokumen berbasis web. Semua proses—mulai dari meluruskan foto kertas, menggabungkan PDF, membaca teks lewat OCR, hingga memberi kata sandi—dijalankan langsung di perangkat pengguna (client-side), sehingga dokumen pribadi tetap aman.',
       bullets: [
-        'Scanner Dokumen Tingkat Lanjut: Algoritma deteksi sudut otomatis (corner detection) dan perspective warp yang meluruskan foto miring, dilengkapi filter Magic Color untuk menghilangkan bayangan dan memutihkan latar belakang kertas.',
-        '16 Modul Terpadu: Menggabungkan merge/split PDF, kompresi, enkripsi sandi, watermarking, konversi PDF ke gambar/Word, ekstraksi halaman, hingga penandatanganan digital.',
-        'OCR & AI Copilot di Browser: Ekstraksi teks dari gambar pindaian menggunakan Tesseract.js secara offline di browser serta integrasi bantuan ringkasan dokumen cerdas.',
-        'Compiler Multi-Halaman Fleksibel: Mendukung ukuran standar Indonesia (F4/Folio) dan internasional (A4, Letter) dengan kontrol margin, DPI cetak presisi, dan drag-and-drop reordering.',
-        'Zero Server Upload: Seluruh proses perenderan menggunakan pdf-lib, pdfjs-dist, dan canvas native menjamin kecepatan instan tanpa latensi jaringan dan bebas risiko kebocoran data.',
+        'Smart Document Scanner: Mendeteksi sudut kertas dan meluruskan hasil foto yang miring secara otomatis, dilengkapi filter pembersih bayangan agar siap cetak.',
+        '16 Fitur dalam Satu Web: Gabung (merge), pisah (split), kompres ukuran PDF, kunci dengan password, tambah watermark, konversi gambar ke PDF, hingga tanda tangan digital.',
+        'OCR & Bantuan AI: Mengekstrak teks dari gambar pindaian menggunakan Tesseract.js langsung di browser untuk memudahkan penyalinan isi dokumen.',
+        'Dukungan Ukuran Kertas Lokal: Mendukung format kertas F4/Folio yang umum dipakai di Indonesia selain ukuran A4 dan Letter.',
+        'Tanpa Upload Server: Menggunakan pdf-lib dan pemrosesan canvas lokal sehingga prosesnya cepat dan bebas risiko kebocoran dokumen.',
       ],
       results:
-        'Mampu memproses pemindaian multi-halaman dan kompilasi dokumen PDF beresolusi tinggi dalam hitungan detik langsung di browser tanpa batas ukuran server.',
-      note: 'Website live dapat dicoba di doclens-pdf.vercel.app dan kode sumber tersedia terbuka di GitHub.',
+        'Memungkinkan pengguna memindai dan merapikan dokumen PDF langsung dari browser HP atau laptop kapan saja tanpa perlu menginstal aplikasi tambahan.',
+      note: 'Dapat dicoba langsung di doclens-pdf.vercel.app dan kode sumbernya tersedia di GitHub.',
     },
   },
   {
     id: 'enlife',
-    title: 'ENLife — All-in-One Daily Life & Productivity Hub',
+    title: 'ENLife — Aplikasi Produktivitas & Manajemen Aktivitas Harian',
     tagline: 'Mobile & Desktop App · Flutter Offline-First',
     year: '2026',
     badge: 'Flutter & Dart',
     category: ['software'],
     image: '/enlife-icon.svg',
     description:
-      'Aplikasi asisten produktivitas harian berbasis Flutter offline-first dengan modul pencatatan keuangan fl_chart, habit tracker, Pomodoro, dan brankas dokumen terenkripsi.',
+      'Aplikasi pendamping produktivitas harian berbasis Flutter yang menggabungkan pencatatan keuangan (fl_chart), pelacak kebiasaan (habit tracker), timer Pomodoro, dan penyimpan data penting.',
     highlights: [
-      'Arsitektur 100% Offline-First & Privasi Total (Zero-Cloud Storage)',
-      '4 Modul Esensial (Keuangan, Habit/Pomodoro, ID Vault, Quick Tools)',
+      'Berjalan 100% Offline dengan Penyimpanan Lokal yang Cepat & Aman',
+      '4 Fitur Utama (Catatan Keuangan, Habit/Pomodoro, ID Vault, Kalkulator Praktis)',
     ],
     tech: ['Flutter', 'Dart', 'Provider', 'fl_chart', 'SharedPreferences', 'Material 3'],
     links: [
@@ -429,17 +491,17 @@ const FEATURED_APPS: FeaturedApp[] = [
     modalDetails: {
       kicker: 'Aplikasi Mobile & Desktop · 2026',
       summary:
-        'Aplikasi asisten produktivitas dan manajemen kehidupan sehari-hari yang dikembangkan secara native dengan Flutter. Beroperasi sepenuhnya secara offline (local persistence) untuk menjamin kecepatan respons instan dan privasi data mutlak tanpa dependensi server pihak ketiga.',
+        'Aplikasi manajemen aktivitas sehari-hari yang dibangun menggunakan Flutter. Dirancang dengan pendekatan offline-first agar bisa diandalkan kapan saja tanpa bergantung pada sinyal internet, sekaligus menjaga seluruh data pribadi tetap tersimpan di perangkat sendiri.',
       bullets: [
-        'Smart Expense & Budgeting: Pencatatan kilat pemasukan dan pengeluaran dalam format Rupiah (Rp) dilengkapi grafik pai dinamis (fl_chart) berdasarkan kategori pengeluaran.',
-        'Habit Tracker & Pomodoro Timer: Sistem pelacak kebiasaan harian dengan streak counter berturut-turut, manajemen to-do list berprioritas, serta timer siklus fokus Pomodoro 25/5 menit.',
-        'Brankas Identitas & Dokumen (ID Vault): Penyimpanan nomor identitas penting (KTP, SIM, Rekening, BPJS) secara terenkripsi lokal dengan fitur salin 1-klik dan peringatan visual saat masa berlaku mendekati 30 hari.',
-        'Utilitas Cepat Sehari-hari: Kalkulator Split Bill presisi per orang beserta pajak/service fee, dan kalkulator diskon belanja instan.',
-        'Desain Tactile Obsidian: UI modern bernuansa gelap ergonomis (#0B0D11, #12151C) dengan aksen warna mikro semantik untuk kenyamanan penggunaan jangka panjang.',
+        'Catatan Keuangan & Grafik: Mencatat pemasukan dan pengeluaran harian dalam format Rupiah lengkap dengan visualisasi grafik kategori menggunakan fl_chart.',
+        'Habit Tracker & Pomodoro: Membantu membangun rutinitas positif lewat perhitungan streak harian, daftar tugas (to-do list), dan timer fokus Pomodoro 25/5 menit.',
+        'Penyimpan Nomor Penting (ID Vault): Menyimpan nomor identitas atau dokumen penting secara lokal dengan tombol salin cepat dan pengingat masa berlaku.',
+        'Kalkulator Harian Praktis: Dilengkapi fitur hitung patungan (split bill) beserta pajak/layanan dan penghitung diskon belanja.',
+        'Tampilan Dark Mode Nyaman: Mengusung antarmuka gelap yang bersih dan ramah di mata untuk pemakaian harian.',
       ],
       results:
-        'Menghadirkan ekosistem produktivitas personal terintegrasi yang ultra-ringan, responsif, dan bebas kuota internet dengan waktu muat 0 detik.',
-      note: 'Kode sumber lengkap dan panduan kompilasi multiplatform (Android/Windows/Web) tersedia di GitHub.',
+        'Menyatukan empat kebutuhan produktivitas harian ke dalam satu aplikasi yang ringan, instan ketika dibuka, dan sepenuhnya bebas iklan.',
+      note: 'Kode sumber lengkap beserta panduan build (Android/Windows/Web) tersedia di GitHub.',
     },
   },
 ];
@@ -453,10 +515,10 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['iot-cv'],
     image: '/parking-process-blurred.png',
     description:
-      'Sistem gerbang parkir otomatis dengan validasi ganda berbasis RFID e-KTP dan computer vision (YOLOv8 & CNN) real-time terintegrasi ESP32 ke Firebase.',
+      'Rancang bangun sistem palang parkir otomatis dengan verifikasi ganda menggunakan tap RFID e-KTP dan deteksi pelat nomor kendaraan (YOLOv8 & CNN) yang terhubung ke mikrokontroler ESP32.',
     highlights: [
-      'Autentikasi Ganda (RFID e-KTP + Deteksi Pelat YOLOv8)',
-      'Integrasi Edge-IoT & Sinkronisasi SQLite + Firebase',
+      'Verifikasi Ganda (Kartu RFID e-KTP + Kamera Deteksi Pelat YOLOv8)',
+      'Integrasi Mikrokontroler ESP32, Database Lokal SQLite & Firebase',
     ],
     tech: ['YOLOv8 Nano', 'TensorFlow CNN', 'ESP32', 'SQLite', 'Firebase'],
     link: {
@@ -466,29 +528,29 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     modalDetails: {
       kicker: 'Skripsi & Riset Terapan · 2025—2026',
       summary:
-        'Penelitian perancangan sistem parkir cerdas dengan validasi ganda. UID e-KTP memvalidasi identitas pengguna, sedangkan visi komputer memastikan kesesuaian pelat nomor kendaraan yang terdaftar.',
+        'Penelitian tugas akhir yang merancang sistem keamanan parkir dengan pencocokan berlapis. Kartu e-KTP digunakan untuk mengenali identitas pengendara, sementara kamera computer vision secara otomatis membaca dan memastikan pelat nomor kendaraan sesuai saat keluar.',
       bullets: [
-        'RFID RC522 membaca UID e-KTP melalui mikrokontroler ESP32 di gerbang masuk.',
-        'YOLOv8 Nano melokalisasi area pelat nomor kendaraan secara real-time dari tangkapan kamera.',
-        'Model CNN berbasis TensorFlow mengidentifikasi karakter huruf dan angka pelat.',
-        'Basis data SQLite mengelola transaksi lokal, sementara Firebase Realtime Database memfasilitasi pemantauan jarak jauh.',
+        'Modul RFID RC522 pada mikrokontroler ESP32 membaca UID e-KTP pengendara di gerbang parkir.',
+        'Model YOLOv8 Nano mendeteksi posisi pelat nomor kendaraan secara real-time melalui tangkapan kamera.',
+        'Model CNN berbasis TensorFlow mengenali susunan huruf dan angka pada citra pelat nomor.',
+        'Data transaksi disimpan secara lokal di SQLite dan disinkronkan ke Firebase untuk pemantauan.',
       ],
       results:
-        'Pembacaan RFID berhasil 100% (55 dari 55 pengujian). Model YOLOv8 Nano mencapai mAP@0.50 sebesar 98,51% dan mAP@0.50:0.95 sebesar 92,99%. Model pengenalan karakter CNN meraih akurasi validasi 88,07%.',
+        'Pengujian pembacaan RFID berjalan 100% sukses (55 dari 55 uji coba). Deteksi lokasi pelat dengan YOLOv8 Nano mencapai mAP@0.50 sebesar 98,51%, dan pengenalan karakter CNN meraih akurasi validasi 88,07%.',
     },
   },
   {
     id: 'liver-ml',
-    title: 'Prediksi Penyakit Liver dengan Model Perbandingan Logistic Regression, SVM, dan Random Forest',
+    title: 'Prediksi Penyakit Liver dengan Perbandingan Logistic Regression, SVM, dan Random Forest',
     tagline: 'Publikasi Jurnal Komputika · Vol. 15 No. 1 (2026) Hal. 83–94',
     year: '2026',
     category: ['publication'],
     image: '/journal-liver.jpg',
     description:
-      'Studi komparasi machine learning (Random Forest, SVM, Logistic Regression) untuk deteksi risiko penyakit liver pada 579 rekam medis terpublikasi di Jurnal Nasional Komputika (DOI: 10.34010/komputika.v15i1.19799).',
+      'Penelitian komparasi algoritma machine learning (Random Forest, SVM, dan Logistic Regression) pada 579 data rekam medis pasien yang terbit di Jurnal Ilmiah Komputika UNIKOM.',
     highlights: [
       'Terbit di Komputika: Jurnal Sistem Komputer (Vol. 15, No. 1, 2026)',
-      'Optimasi Pipeline Klasifikasi & Komparasi Metrik F1-Score dan MCC',
+      'Evaluasi Performa Klasifikasi Menggunakan Metrik F1-Score & MCC',
     ],
     tech: ['Random Forest', 'SVM', 'Logistic Regression', 'Scikit-Learn'],
     link: {
@@ -498,28 +560,28 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     modalDetails: {
       kicker: 'Publikasi Ilmiah Terakreditasi · Jurnal Komputika (2026)',
       summary:
-        'Penelitian bersama Fajar Wicaksono, Yudis Jalu, Sandy Maulana, dan Edvan Nuriana Putra Septia. Membandingkan performa algoritma klasifikasi pada 579 data rekam medis pasien guna memprediksi kecenderungan penyakit liver sedini mungkin.',
+        'Penelitian kolaboratif bersama Fajar Wicaksono, Yudis Jalu, Sandy Maulana, dan Edvan Nuriana Putra Septia. Studi ini membandingkan tiga algoritma klasifikasi machine learning pada 579 data klinis pasien untuk membantu deteksi dini risiko penyakit liver.',
       bullets: [
-        'Pembersihan data medis, penanganan missing values, dan standarisasi variabel klinis.',
-        'Pengujian berbagai skenario pembagian data latih dan data uji (70:30, 80:20, 90:10).',
-        'Evaluasi model menggunakan metrik Accuracy, F1-Score, dan Matthews Correlation Coefficient (MCC).',
+        'Tahap pra-pemrosesan data meliputi pembersihan nilai kosong (missing values) dan normalisasi atribut medis.',
+        'Pengujian model pada beberapa skenario rasio data latih dan data uji (70:30, 80:20, serta 90:10).',
+        'Pengukuran performa secara menyeluruh menggunakan Accuracy, F1-Score, dan Matthews Correlation Coefficient (MCC).',
       ],
       results:
-        'Random Forest mencatatkan performa terbaik pada rasio data 80% dengan F1-Score 0,696 dan MCC 0,203, serta mencapai kesesuaian prediksi 98% pada pengujian sampel data baru.',
+        'Algoritma Random Forest memberikan hasil paling stabil pada rasio data 80:20 dengan nilai F1-Score 0,696 dan MCC 0,203, serta ketepatan prediksi 98% pada pengujian sampel uji.',
     },
   },
   {
     id: 'smart-pos',
-    title: 'Implementasi Sistem Point of Sale pada UMKM Berbasis ESP32 dan Sensor Load Cell',
+    title: 'Implementasi Sistem Point of Sale UMKM Berbasis ESP32 dan Sensor Load Cell',
     tagline: 'Publikasi Jurnal Biner · Vol. 5 No. 1 (2026) Hal. 1–9',
     year: '2026',
     category: ['iot-cv', 'publication'],
     image: '/journal-pos.jpg',
     description:
-      'Timbangan digital terhubung langsung ke aplikasi kasir web otomatis berbasis ESP32 dan Load Cell HX711 untuk UMKM terbit di Jurnal Ilmiah Biner (DOI: 10.32699/biner.v5i1.10201).',
+      'Integrasi timbangan digital berbasis mikrokontroler ESP32 dan sensor Load Cell HX711 yang langsung terhubung ke aplikasi kasir web untuk membantu transaksi UMKM, terbit di Jurnal Biner.',
     highlights: [
       'Terbit di Biner: Jurnal Ilmiah Informatika dan Komputer (Vol. 5, No. 1, 2026)',
-      'Otomatisasi Hardware Timbangan ke Web Real-Time untuk UMKM',
+      'Otomatisasi Pembacaan Berat Timbangan Langsung ke Aplikasi Kasir Web',
     ],
     tech: ['ESP32', 'Sensor Load Cell HX711', 'Web Application', 'SQLite'],
     link: {
@@ -529,14 +591,14 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     modalDetails: {
       kicker: 'Publikasi Ilmiah Terakreditasi · Jurnal Biner (2026)',
       summary:
-        'Penelitian oleh Edvan Nuriana Putra Septia bersama Abdan Rafi, Akyas Maulana, Syahrul Gunawan, dan Hidayat. Perancangan perangkat kasir pintar yang menghubungkan sensor timbangan digital langsung ke sistem pencatatan transaksi kasir.',
+        'Penelitian oleh Edvan Nuriana Putra Septia bersama Abdan Rafi, Akyas Maulana, Syahrul Gunawan, dan Hidayat. Merancang sistem kasir pintar yang menghubungkan timbangan digital langsung ke aplikasi web POS agar kasir tidak perlu mengetik berat barang secara manual.',
       bullets: [
-        'Integrasi mikrokontroler ESP32 dengan modul ADC sensor Load Cell HX711.',
-        'Pengiriman nilai bobot timbangan secara langsung ke sistem POS untuk eliminasi kesalahan input manual.',
-        'Penyusunan antarmuka web kasir untuk transaksi dan manajemen inventaris produk curah.',
+        'Perancangan rangkaian mikrokontroler ESP32 dengan sensor berat Load Cell dan modul penguat sinyal HX711.',
+        'Pengiriman data berat barang secara real-time ke aplikasi web kasir untuk langsung menghitung total harga otomatis.',
+        'Pembuatan antarmuka kasir berbasis web untuk mengelola daftar produk, riwayat transaksi, dan stok barang.',
       ],
       results:
-        'Prototipe timbangan menghasilkan akurasi pengukuran di atas 98%, mempercepat alur transaksi kasir, dan meniadakan selisih hitung manual.',
+        'Alat timbangan mencapai tingkat akurasi pengukuran di atas 98%, mempercepat proses pelayanan di meja kasir, dan meminimalkan kesalahan input harga.',
     },
   },
 ];
@@ -544,25 +606,25 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
 const SKILLS_DATA = [
   {
     index: '01',
-    title: 'Rekayasa Web Fullstack & Edge Architecture',
+    title: 'Frontend & Fullstack Web Development',
     description:
-      'Membangun antarmuka web reaktif berkinerja tinggi dengan Next.js App Router, React 19, dan TypeScript. Dioptimasi untuk edge deployment di Cloudflare Pages/Workers dengan skor Web Vitals sempurna.',
+      'Membangun aplikasi web modern yang cepat dan responsif menggunakan ekosistem React 19, Next.js App Router, dan TypeScript. Teruji melalui sertifikasi peran Frontend Developer (React) dari HackerRank.',
     badges: [
-      'Next.js 15',
-      'React 19',
-      'TypeScript & JS',
+      'React 19 (HackerRank Certified)',
+      'Next.js 15 App Router',
+      'TypeScript & JavaScript',
       'Tailwind CSS 4',
-      'FastAPI & Node.js',
+      'Node.js & FastAPI',
       'Cloudflare Workers',
       'Electron & Vite',
-      'OpenNext',
+      'REST API & WebSockets',
     ],
   },
   {
     index: '02',
     title: 'Mobile App Development (Flutter & Android)',
     description:
-      'Mengembangkan aplikasi mobile lintas-platform native-performance dengan Flutter & Dart. Berarsitektur offline-first, manajemen state terstruktur (Riverpod/Provider), dan visualisasi data fl_chart.',
+      'Mengembangkan aplikasi mobile lintas-platform dengan Flutter & Dart yang nyaman digunakan sehari-hari, mendukung penyimpanan lokal (offline-first), manajemen state yang rapi, dan visualisasi grafik.',
     badges: [
       'Flutter',
       'Dart SDK',
@@ -570,33 +632,48 @@ const SKILLS_DATA = [
       'Riverpod & Provider',
       'Offline-First (SQLite)',
       'fl_chart Visualization',
-      'Material 3',
+      'Material Design 3',
       'Capacitor',
     ],
   },
   {
     index: '03',
-    title: 'Jaringan Komputer, P2P & Backend Architecture',
+    title: 'Jaringan Komputer & Protokol P2P',
     description:
-      'Merancang arsitektur transfer data P2P langsung via WebRTC DataChannels tanpa cloud relay. Didukung sertifikasi Cisco CCNA & Networking Basics untuk routing, switching, TCP/IP, dan basis data relasional.',
+      'Merancang komunikasi data peer-to-peer langsung via WebRTC tanpa server perantara, didukung pemahaman arsitektur jaringan, routing, switching, dan manajemen IP berstandar Cisco CCNA.',
     badges: [
-      'Cisco CCNA & NetBasics',
+      'Cisco CCNA (ITN)',
+      'Cisco Networking Basics',
       'WebRTC P2P DataChannels',
-      'TCP/IP, IPv4/IPv6 & NAT',
-      'SQLite, MySQL, PostgreSQL',
-      'Firebase Realtime DB',
-      'Docker & Postman',
-      'Socket.IO & P2P Stream',
-      'Linux Server / SSH',
+      'TCP/IP, IPv4/IPv6 & VLSM',
+      'DHCP, NAT & Routing',
+      'Cisco Packet Tracer',
+      'Socket.IO & Streaming',
+      'Linux & Docker Basics',
     ],
   },
   {
     index: '04',
-    title: 'Sistem Desktop, Media Pipeline & Otomasi AI',
+    title: 'Data Analytics, SQL & Business Modeling',
     description:
-      'Membangun aplikasi desktop native dengan PyQt6 multithreading asynchronous, integrasi inferensi AI lokal (Whisper STT & Qwen GGUF) tanpa kuota internet, serta otomasi FFmpeg akselerasi GPU.',
+      'Mengolah, membersihkan, dan menganalisis dataset menggunakan SQL relasional, Microsoft Excel tingkat lanjut, serta menyusun dashboard visual interaktif menggunakan Tableau untuk mendukung pengambilan keputusan.',
     badges: [
-      'Python, C++, C',
+      'Cisco Data Analytics',
+      'SQL (MySQL, PostgreSQL, SQLite)',
+      'Microsoft Excel Advanced',
+      'XLOOKUP & PivotTables',
+      'Tableau Dashboarding',
+      'Firebase Realtime DB',
+      'Exploratory Data Analysis',
+    ],
+  },
+  {
+    index: '05',
+    title: 'Aplikasi Desktop, Otomasi Media & AI',
+    description:
+      'Membuat aplikasi desktop menggunakan Python (PyQt6) dengan pemrosesan latar belakang yang mulus, mengintegrasikan model AI lokal (Whisper & Qwen GGUF) maupun Gemini API, serta otomasi video FFmpeg.',
+    badges: [
+      'Python, C++ & C',
       'PyQt6 Multithreading',
       'Faster-Whisper STT',
       'FFmpeg GPU Pipeline',
@@ -606,33 +683,18 @@ const SKILLS_DATA = [
     ],
   },
   {
-    index: '05',
-    title: 'Computer Vision, IoT & Sistem Tertanam',
+    index: '06',
+    title: 'Computer Vision, IoT & Riset Ilmiah',
     description:
-      'Melatih dan men-deploy model deteksi objek visual (YOLOv8 Nano mAP 98.5%) dan CNN karakter, diintegrasikan dengan mikrokontroler ESP32, sensor load cell, dan RFID e-KTP secara real-time.',
+      'Melatih model deteksi objek (YOLOv8 & CNN), merakit sistem mikrokontroler ESP32 beserta sensor fisik, dan menuliskan hasil eksperimen ke dalam publikasi jurnal ilmiah terakreditasi.',
     badges: [
       'YOLOv8 Nano (mAP 98.5%)',
-      'TensorFlow CNN (88.07%)',
-      'ESP32 (C/C++)',
-      'RFID RC522 (e-KTP)',
-      'Sensor Load Cell & HX711',
-      'OpenCV Image Processing',
-    ],
-  },
-  {
-    index: '06',
-    title: 'Publikasi Riset Ilmiah & Validasi Empiris',
-    description:
-      'Melakukan studi komparasi algoritma prediktif machine learning dan instrumentasi perangkat keras yang berhasil terbit pada jurnal ilmiah nasional terakreditasi (Komputika & Biner).',
-    badges: [
-      'Jurnal Nasional Komputika',
-      'Jurnal Ilmiah Biner',
-      'Komparasi ML (RF, SVM, LR)',
-      'Evaluasi Metrik F1 & MCC',
-      'Bahasa: ID (Native)',
-      'Bahasa: EN (Intermediate)',
-      'Microsoft Excel Advanced',
-      'Git & GitHub Versioning',
+      'TensorFlow CNN',
+      'ESP32 & Sensor IoT',
+      'Scikit-Learn (RF, SVM, LR)',
+      'Jurnal Komputika & Biner',
+      'Mendeley Reference Manager',
+      'Git & GitHub Workflow',
     ],
   },
 ];
@@ -966,34 +1028,34 @@ export default function PortfolioPage() {
 
       <main className="mx-auto max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] px-4 sm:px-6 lg:px-8">
         {/* HERO SECTION */}
-        <section className="py-10 sm:py-16 md:py-20 lg:py-24">
-          <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+        <section className="py-8 sm:py-14 md:py-20 lg:py-24">
+          <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             {/* Left Column */}
             <div className="space-y-6 lg:col-span-7 xl:col-span-8 flex flex-col justify-between">
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {/* Role Indicator Badge */}
-                <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-xs font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
                   <span>Fullstack Developer · AI &amp; Software Engineer</span>
                 </div>
 
                 {/* Main Headline */}
                 <div className="animate-fade-in-up delay-75">
-                  <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-100 leading-[1.15]">
-                    Suka ngulik web modern, aplikasi mobile, sampai arsitektur sistem jaringan.
+                  <h1 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-100 leading-[1.18] sm:leading-[1.15]">
+                    Merancang aplikasi web modern, mobile lintas-platform, hingga sistem jaringan.
                   </h1>
                 </div>
 
-                {/* Focused, Friendly & Casual Bio */}
+                {/* Professional yet Relaxed Bio */}
                 <p className="animate-fade-in-up delay-150 max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-400">
-                  Halo! Saya lulusan S1 Sistem Komputer UNIKOM yang suka merancang aplikasi web modern (Next.js &amp; React), ngebangun aplikasi mobile pakai Flutter, sampai eksperimen transfer data P2P real-time via WebRTC. Selalu antusias bikin sistem yang gesit, rapi, dan nyaman dipakai di dunia nyata.
+                  Halo! Saya lulusan S1 Sistem Komputer UNIKOM yang fokus mengembangkan aplikasi web modern (Next.js &amp; React), aplikasi mobile berbasis Flutter, serta sistem komunikasi P2P real-time dengan WebRTC. Saya senang menerjemahkan kebutuhan teknis yang kompleks menjadi produk digital yang cepat, rapi, dan nyaman digunakan sehari-hari.
                 </p>
 
-                {/* CTA Group */}
-                <div className="animate-fade-in-up delay-225 flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+                {/* CTA Group (Symmetrical 2-column grid on mobile, inline flex on sm+) */}
+                <div className="animate-fade-in-up delay-225 grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
                   <a
                     href="#projects"
-                    className="group w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_6px_24px_rgba(52,211,153,0.25)] active:scale-95"
+                    className="group col-span-2 sm:col-span-1 sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_6px_24px_rgba(52,211,153,0.25)] active:scale-95"
                   >
                     <span>Eksplorasi Proyek</span>
                     <span className="transition-transform duration-200 group-hover:translate-y-0.5">↓</span>
@@ -1002,7 +1064,7 @@ export default function PortfolioPage() {
                     href="/cv-edvan.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-2.5 text-sm font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95"
+                    className="group inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 whitespace-nowrap"
                   >
                     <span>Unduh CV</span>
                     <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
@@ -1010,16 +1072,16 @@ export default function PortfolioPage() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-4 py-2.5 text-sm font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 cursor-pointer"
+                    className="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 cursor-pointer whitespace-nowrap"
                   >
                     {copiedEmail ? (
                       <>
-                        <Check className="h-4 w-4 text-emerald-400" />
-                        <span className="text-emerald-300 font-medium">Email Berhasil Disalin</span>
+                        <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-400 shrink-0" />
+                        <span className="text-emerald-300 font-medium">Email Tersalin</span>
                       </>
                     ) : (
                       <>
-                        <Copy className="h-3.5 w-3.5 text-zinc-400" />
+                        <Copy className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
                         <span>Salin Email</span>
                       </>
                     )}
@@ -1028,7 +1090,7 @@ export default function PortfolioPage() {
               </div>
 
               {/* Key Highlights Bar */}
-              <div className="animate-fade-in-up delay-300 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 border-t border-zinc-800/80 pt-6 sm:max-w-xl xl:max-w-2xl">
+              <div className="animate-fade-in-up delay-300 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 border-t border-zinc-800/80 pt-5 sm:pt-6 sm:max-w-xl xl:max-w-2xl">
                 <div
                   onMouseMove={handleCardMouseMove}
                   className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:-translate-y-0.5 hover:border-zinc-700"
@@ -1078,12 +1140,12 @@ export default function PortfolioPage() {
 
             {/* Right Column: Clean Portrait & Identity */}
             <div className="animate-fade-in-up delay-150 lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-end justify-between h-full">
-              <div className="group relative w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] flex-1 min-h-[350px] sm:min-h-[380px] xl:min-h-[400px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-500 hover:border-zinc-700 hover:-translate-y-1">
+              <div className="group relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] aspect-[4/5] lg:aspect-auto lg:flex-1 lg:min-h-[390px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-500 hover:border-zinc-700 hover:-translate-y-1">
                 <Image
                   src="/profile.jpeg"
                   alt="Edvan Nuriana Putra Septia, S.Kom."
                   fill
-                  sizes="(max-width: 768px) 280px, (max-width: 1280px) 320px, 340px"
+                  sizes="(max-width: 768px) 250px, (max-width: 1280px) 300px, 340px"
                   className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.03]"
                   priority
                 />
@@ -1098,8 +1160,8 @@ export default function PortfolioPage() {
               </div>
 
               {/* Name Below Photo */}
-              <div className="pt-3 sm:pt-3.5 w-full max-w-[280px] sm:max-w-[320px] xl:max-w-[340px] text-center">
-                <h2 className="font-heading text-lg sm:text-xl font-bold tracking-tight text-zinc-100">
+              <div className="pt-3 sm:pt-3.5 w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] text-center">
+                <h2 className="font-heading text-base sm:text-xl font-bold tracking-tight text-zinc-100">
                   Edvan Nuriana Putra Septia, S.Kom.
                 </h2>
               </div>
@@ -1110,18 +1172,18 @@ export default function PortfolioPage() {
         {/* TENTANG SAYA */}
         <section
           id="about"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-12 sm:py-16 md:py-20"
+          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
         >
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+          <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             <div data-reveal className="lg:col-span-4">
               <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
                 <span className="h-px w-6 bg-emerald-500/80" />
                 <span>Tentang Saya</span>
               </div>
-              <h2 className="font-heading mt-3 text-2xl font-bold leading-snug tracking-tight text-zinc-100 sm:text-3xl">
-                Menggabungkan arsitektur web modern, rekayasa mobile lintas-platform, dan keandalan sistem jaringan.
+              <h2 className="font-heading mt-3 text-xl sm:text-3xl font-bold leading-snug tracking-tight text-zinc-100">
+                Berangkat dari fondasi sistem komputer, fokus membangun perangkat lunak yang andal dan nyaman digunakan.
               </h2>
-              <div className="mt-6">
+              <div className="mt-5 sm:mt-6">
                 <a
                   href="https://www.linkedin.com/in/edvannuriana"
                   target="_blank"
@@ -1134,16 +1196,16 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            <div data-reveal data-delay="1" className="space-y-5 text-zinc-400 lg:col-span-8">
-              <p className="leading-relaxed text-justify hyphens-auto">
-                Sebagai sarjana Sistem Komputer (S1 UNIKOM, IPK 3.53), saya memadukan pemahaman mendalam tentang arsitektur perangkat keras dan jaringan komputer dengan rekayasa perangkat lunak modern. Di sisi web, saya terbiasa membangun antarmuka reaktif berkinerja tinggi menggunakan Next.js App Router, React 19, TypeScript, dan Tailwind CSS, serta mengoptimalkan distribusi edge melalui Cloudflare Workers dengan skor Lighthouse 100/100.
+            <div data-reveal data-delay="1" className="space-y-4 sm:space-y-5 text-sm sm:text-base text-zinc-400 lg:col-span-8">
+              <p className="leading-relaxed text-justify">
+                Latar belakang saya di S1 Sistem Komputer UNIKOM (IPK 3.53) memberi perspektif yang utuh—mulai dari memahami cara kerja perangkat keras dan jaringan komputer, hingga merancang aplikasi modern. Di ranah web, saya terbiasa membangun antarmuka yang cepat dan responsif menggunakan Next.js App Router, React 19, TypeScript, serta Tailwind CSS, sekaligus mengoptimalkan performanya di Cloudflare Workers.
               </p>
-              <p className="leading-relaxed text-justify hyphens-auto">
-                Di sisi mobile, saya mengembangkan aplikasi lintas-platform berbasis Flutter dan Dart dengan pendekatan offline-first, manajemen state terstruktur (Riverpod/Provider), dan persistensi lokal terenkripsi (SQLite). Selain itu, saya merancang protokol transfer berkas real-time berbasis WebRTC DataChannels tanpa ketergantungan server cloud perantara, serta mengintegrasikan otomasi media dan model inferensi cerdas langsung pada perangkat pengguna.
+              <p className="leading-relaxed text-justify">
+                Untuk platform mobile dan desktop, saya mengembangkan aplikasi dengan Flutter dan Python (PyQt6) yang tetap lancar digunakan secara offline. Saya juga gemar mengeksplorasi komunikasi data P2P langsung antar-perangkat lewat WebRTC, pengolahan data &amp; analitik menggunakan SQL dan Excel, hingga penerapan model AI dan computer vision langsung di perangkat pengguna.
               </p>
 
               {/* 3 Engineering Pillars */}
-              <div className="grid gap-4.5 pt-4 sm:grid-cols-3 lg:gap-5">
+              <div className="grid gap-3.5 sm:gap-4.5 pt-3 sm:pt-4 sm:grid-cols-3 lg:gap-5">
                 <div
                   onMouseMove={handleCardMouseMove}
                   className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:-translate-y-1 hover:border-zinc-700"
@@ -1152,11 +1214,11 @@ export default function PortfolioPage() {
                     <div className="mb-2 flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Web Architecture
+                        Web &amp; Frontend
                       </h3>
                     </div>
-                    <p className="text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                      Antarmuka reaktif berbasis Next.js App Router &amp; React 19, TypeScript type-safety, API modular, integrasi WebSockets, dan optimasi Core Web Vitals.
+                    <p className="text-xs leading-relaxed text-zinc-400 text-justify">
+                      Membangun aplikasi web modern dengan Next.js, React 19, dan TypeScript yang cepat, rapi, serta nyaman diakses di layar HP maupun desktop.
                     </p>
                   </div>
                 </div>
@@ -1168,11 +1230,11 @@ export default function PortfolioPage() {
                     <div className="mb-2 flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Mobile Development
+                        Mobile &amp; Desktop
                       </h3>
                     </div>
-                    <p className="text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                      Aplikasi mobile Android &amp; multiplatform Flutter, arsitektur offline-first (SQLite), manajemen state Riverpod, dan visualisasi data fl_chart reaktif.
+                    <p className="text-xs leading-relaxed text-zinc-400 text-justify">
+                      Mengembangkan aplikasi lintas-platform menggunakan Flutter dan Python (PyQt6) dengan penyimpanan lokal (SQLite) yang tetap andal tanpa internet.
                     </p>
                   </div>
                 </div>
@@ -1184,11 +1246,11 @@ export default function PortfolioPage() {
                     <div className="mb-2 flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Systems &amp; Network
+                        Network, Data &amp; AI
                       </h3>
                     </div>
-                    <p className="text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                      Protokol P2P WebRTC tanpa cloud relay, Cisco CCNA networking (routing &amp; TCP/IP), otomasi FFmpeg GPU, serta inferensi model AI lokal (Whisper &amp; YOLOv8).
+                    <p className="text-xs leading-relaxed text-zinc-400 text-justify">
+                      Merancang transfer P2P WebRTC, arsitektur jaringan berstandar Cisco CCNA, pengolahan analitik data, hingga integrasi AI dan computer vision.
                     </p>
                   </div>
                 </div>
@@ -1200,24 +1262,24 @@ export default function PortfolioPage() {
         {/* PROYEK & RISET */}
         <section
           id="projects"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-12 sm:py-16 md:py-20"
+          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
         >
-          <div data-reveal className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div data-reveal className="mb-7 sm:mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
                 <span className="h-px w-6 bg-emerald-500/80" />
                 <span>Proyek &amp; Riset</span>
               </div>
-              <h2 className="font-heading mt-2 text-3xl font-bold tracking-tight text-zinc-100">
-                Proyek yang Saya Kerjakan
+              <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+                Proyek Pilihan &amp; Riset Terapan
               </h2>
               <p className="mt-1 text-xs text-zinc-400">
-                Pilih kartu mana saja untuk melihat dokumentasi dan arsitektur teknis lengkap.
+                Ketuk kartu mana saja untuk melihat latar belakang pembuatan, fitur utama, dan detail teknisnya.
               </p>
             </div>
 
-            {/* Category Filter Buttons */}
-            <div className="flex flex-wrap gap-1.5 sm:gap-2 rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-1.5">
+            {/* Category Filter Buttons (Symmetrical 2x2 grid on mobile, inline on sm+) */}
+            <div className="grid grid-cols-2 sm:inline-flex sm:flex-wrap w-full sm:w-auto gap-1.5 rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-1.5">
               {[
                 { id: 'all', label: 'Semua (7)' },
                 { id: 'software', label: 'Aplikasi & AI (4)' },
@@ -1228,7 +1290,7 @@ export default function PortfolioPage() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveFilter(tab.id as ProjectCategory)}
-                  className={`rounded-lg px-3 py-1.5 text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer ${
+                  className={`rounded-lg px-2.5 sm:px-3 py-2 sm:py-1.5 text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer text-center ${
                     activeFilter === tab.id
                       ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
                       : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200'
@@ -1242,7 +1304,7 @@ export default function PortfolioPage() {
 
           {/* Bento Row 1: Featured Software Applications */}
           {filteredApps.length > 0 && (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:gap-7">
+            <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-7">
               {filteredApps.map((app, idx) => (
                 <article
                   key={`${activeFilter}-${app.id}`}
@@ -1252,8 +1314,8 @@ export default function PortfolioPage() {
                   className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:-translate-y-1 hover:border-zinc-700 cursor-pointer"
                 >
                   <div className="relative z-10">
-                    <div className="mb-4 sm:mb-5 flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-3.5">
+                    <div className="mb-4 flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-3">
                         <div className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-transform duration-300 group-hover:scale-105 group-hover:border-zinc-700">
                           <Image
                             src={app.image}
@@ -1263,8 +1325,8 @@ export default function PortfolioPage() {
                             className="object-contain"
                           />
                         </div>
-                        <div>
-                          <div className="flex items-center gap-2">
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
                             <span className="rounded border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] sm:text-[11px] text-emerald-300">
                               {app.badge}
                             </span>
@@ -1272,28 +1334,28 @@ export default function PortfolioPage() {
                               {app.year}
                             </span>
                           </div>
-                          <p className="mt-1 text-xs text-zinc-500">
+                          <p className="mt-1 text-xs text-zinc-500 truncate">
                             {app.tagline}
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <h3 className="font-heading text-base sm:text-lg font-bold text-zinc-100 transition group-hover:text-emerald-300">
+                    <h3 className="font-heading text-base sm:text-lg font-bold text-zinc-100 transition group-hover:text-emerald-300 leading-snug">
                       {app.title}
                     </h3>
 
-                    <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                    <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify">
                       {app.description}{' '}
                       <span className="inline-flex items-center gap-0.5 text-zinc-300 font-mono text-[11px] group-hover:text-emerald-400 group-hover:underline transition-colors">
-                        ...rincian ↗
+                        ...selengkapnya ↗
                       </span>
                     </p>
 
                     {/* Architectural Highlights */}
                     <ul className="mt-3.5 space-y-1.5 border-l-2 border-emerald-500/50 pl-3">
                       {app.highlights.map((item) => (
-                        <li key={item} className="text-[11px] sm:text-xs text-zinc-300">
+                        <li key={item} className="text-[11px] sm:text-xs text-zinc-300 leading-snug">
                           {item}
                         </li>
                       ))}
@@ -1315,7 +1377,7 @@ export default function PortfolioPage() {
                   {/* Card Footer Links */}
                   <div className="relative z-10 mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-3">
                     <span className="text-[11px] font-mono text-zinc-500 group-hover:text-emerald-400/90 transition inline-flex items-center gap-1">
-                      <span>Lihat arsitektur</span>
+                      <span>Detail proyek</span>
                       <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                     </span>
 
@@ -1327,7 +1389,7 @@ export default function PortfolioPage() {
                           target="_blank"
                           rel="noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-all duration-200 ${
+                          className={`rounded-lg px-2.5 py-1 text-[11px] sm:text-xs font-medium transition-all duration-200 ${
                             link.primary
                               ? 'bg-zinc-100 text-zinc-950 hover:bg-emerald-400'
                               : 'border border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100'
@@ -1345,7 +1407,7 @@ export default function PortfolioPage() {
 
           {/* Bento Row 2: Research, Computer Vision & Journal Publications */}
           {filteredResearch.length > 0 && (
-            <div className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+            <div className="mt-6 sm:mt-7 grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
               {filteredResearch.map((project, idx) => (
                 <article
                   key={`${activeFilter}-${project.id}`}
@@ -1366,27 +1428,27 @@ export default function PortfolioPage() {
                     </div>
 
                     <div className="p-4 sm:p-5">
-                      <div className="flex items-center justify-between gap-2 font-mono text-xs">
-                        <span className="text-emerald-400/90">
+                      <div className="flex items-center justify-between gap-2 font-mono text-[11px] sm:text-xs">
+                        <span className="text-emerald-400/90 truncate">
                           {project.tagline.split('·')[0]}
                         </span>
-                        <span className="text-zinc-500">{project.year}</span>
+                        <span className="text-zinc-500 shrink-0">{project.year}</span>
                       </div>
 
-                      <h3 className="font-heading mt-2 text-base font-bold text-zinc-100 transition group-hover:text-emerald-300">
+                      <h3 className="font-heading mt-2 text-base font-bold text-zinc-100 transition group-hover:text-emerald-300 leading-snug">
                         {project.title}
                       </h3>
 
-                      <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                      <p className="mt-2 text-xs leading-relaxed text-zinc-400 text-justify">
                         {project.description}{' '}
                         <span className="inline-flex items-center gap-0.5 text-zinc-300 font-mono text-[11px] group-hover:text-emerald-400 group-hover:underline transition-colors">
-                          ...rincian ↗
+                          ...selengkapnya ↗
                         </span>
                       </p>
 
                       <ul className="mt-3.5 space-y-1 border-l-2 border-emerald-500/50 pl-2.5">
                         {project.highlights.map((h) => (
-                          <li key={h} className="text-[11px] text-zinc-300">
+                          <li key={h} className="text-[11px] text-zinc-300 leading-snug">
                             {h}
                           </li>
                         ))}
@@ -1399,16 +1461,16 @@ export default function PortfolioPage() {
                       {project.tech.map((t) => (
                         <span
                           key={t}
-                          className={`rounded border px-2 py-0.5 font-mono text-[11px] transition-colors ${getTechTagStyle(t)}`}
+                          className={`rounded border px-2 py-0.5 font-mono text-[10px] sm:text-[11px] transition-colors ${getTechTagStyle(t)}`}
                         >
                           {t}
                         </span>
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between border-t border-zinc-800/80 pt-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-3">
                       <span className="text-[11px] font-mono text-zinc-500 group-hover:text-emerald-400/90 transition inline-flex items-center gap-1">
-                        <span>Lihat studi</span>
+                        <span>Detail riset</span>
                         <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                       </span>
 
@@ -1432,44 +1494,47 @@ export default function PortfolioPage() {
         {/* KEAHLIAN TEKNIS */}
         <section
           id="skills"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-12 sm:py-16 md:py-20"
+          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
         >
-          <div data-reveal className="mb-10">
+          <div data-reveal className="mb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
               <span className="h-px w-6 bg-emerald-500/80" />
               <span>Keahlian Teknis</span>
             </div>
-            <h2 className="font-heading mt-2 text-3xl font-bold tracking-tight text-zinc-100">
-              Kompetensi Rekayasa Sistem
+            <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+              Teknologi &amp; Bidang Keahlian
             </h2>
+            <p className="mt-1.5 max-w-2xl text-xs sm:text-sm text-zinc-400">
+              Rangkaian bahasa pemrograman, framework, dan perangkat yang sehari-hari saya gunakan untuk merancang aplikasi hingga mengolah data.
+            </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+          <div className="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
             {SKILLS_DATA.map((skill, idx) => (
               <div
                 key={skill.title}
                 data-reveal
                 data-delay={String((idx % 3) + 1)}
                 onMouseMove={handleCardMouseMove}
-                className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-5 sm:p-6 hover:-translate-y-1 hover:border-zinc-700"
+                className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-6 hover:-translate-y-1 hover:border-zinc-700"
               >
                 <div className="relative z-10">
-                  <div className="mb-3 flex items-center gap-2.5">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400/90 transition-transform duration-300 group-hover:scale-125" />
+                  <div className="mb-2.5 sm:mb-3 flex items-center gap-2.5">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400/90 shrink-0 transition-transform duration-300 group-hover:scale-125" />
                     <h3 className="font-heading text-base font-bold text-zinc-100 group-hover:text-white transition-colors">
                       {skill.title}
                     </h3>
                   </div>
-                  <p className="text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
+                  <p className="text-xs leading-relaxed text-zinc-400 text-justify">
                     {skill.description}
                   </p>
                 </div>
 
-                <div className="relative z-10 mt-5 flex flex-wrap gap-1.5 border-t border-zinc-800/80 pt-4">
+                <div className="relative z-10 mt-4 sm:mt-5 flex flex-wrap gap-1.5 border-t border-zinc-800/80 pt-3.5 sm:pt-4">
                   {skill.badges.map((badge) => (
                     <span
                       key={badge}
-                      className="rounded border border-zinc-800 bg-zinc-950/90 px-2.5 py-1 font-mono text-[11px] text-zinc-300 transition-colors group-hover:border-zinc-700/80"
+                      className="rounded border border-zinc-800 bg-zinc-950/90 px-2 sm:px-2.5 py-1 font-mono text-[10px] sm:text-[11px] text-zinc-300 transition-colors group-hover:border-zinc-700/80"
                     >
                       {badge}
                     </span>
@@ -1483,23 +1548,23 @@ export default function PortfolioPage() {
         {/* AKADEMIK & PUBLIKASI */}
         <section
           id="academic"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-12 sm:py-16 md:py-20"
+          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
         >
-          <div data-reveal className="mb-10">
+          <div data-reveal className="mb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
               <span className="h-px w-6 bg-emerald-500/80" />
-              <span>Akademik &amp; Publikasi</span>
+              <span>Akademik &amp; Kredensial</span>
             </div>
-            <h2 className="font-heading mt-2 text-3xl font-bold tracking-tight text-zinc-100">
-              Kualifikasi Akademik &amp; Kredensial Industri
+            <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+              Pendidikan, Publikasi &amp; Sertifikasi
             </h2>
-            <p className="mt-2 max-w-2xl text-sm text-zinc-400">
-              Fondasi akademik sarjana sistem komputer, riset ilmiah terpublikasi secara nasional, serta sertifikasi keahlian industri terverifikasi.
+            <p className="mt-1.5 max-w-2xl text-xs sm:text-sm text-zinc-400">
+              Perjalanan studi di bidang Sistem Komputer, publikasi riset ilmiah terakreditasi nasional, serta sertifikasi kompetensi yang telah terverifikasi.
             </p>
           </div>
 
           {/* Tier 1: Pendidikan & Publikasi Ilmiah */}
-          <div className="grid gap-6 lg:grid-cols-12 lg:gap-8 mb-12">
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-8 mb-10 sm:mb-12">
             {/* Pendidikan Formal */}
             <div
               data-reveal
@@ -1508,31 +1573,31 @@ export default function PortfolioPage() {
                 const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-parking');
                 if (proj) handleOpenModal(proj);
               }}
-              className="spotlight-card lg:col-span-5 flex flex-col justify-between group/edu relative overflow-hidden rounded-2xl border border-zinc-800/90 p-6 sm:p-7 hover:border-zinc-700 cursor-pointer hover:-translate-y-1 active:scale-[0.99]"
+              className="spotlight-card lg:col-span-5 flex flex-col justify-between group/edu relative overflow-hidden rounded-2xl border border-zinc-800/90 p-5 sm:p-7 hover:border-zinc-700 cursor-pointer hover:-translate-y-1 active:scale-[0.99]"
             >
               <div className="relative z-10">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 text-xs font-medium text-zinc-400">
-                    <GraduationCap className="h-4 w-4 text-emerald-400" />
+                    <GraduationCap className="h-4 w-4 text-emerald-400 shrink-0" />
                     <span>Pendidikan Formal</span>
                   </div>
                   <span className="font-mono text-xs text-zinc-500">2022—2026</span>
                 </div>
 
-                <h3 className="font-heading mt-3 text-xl font-bold text-zinc-100 group-hover/edu:text-white transition-colors">
+                <h3 className="font-heading mt-3 text-lg sm:text-xl font-bold text-zinc-100 group-hover/edu:text-white transition-colors">
                   S1 Sistem Komputer
                 </h3>
-                <p className="mt-1 text-sm font-medium text-zinc-300">
+                <p className="mt-1 text-xs sm:text-sm font-medium text-zinc-300">
                   Universitas Komputer Indonesia (UNIKOM) · Bandung, Jawa Barat
                 </p>
 
-                <div className="mt-3.5 inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/80 px-3.5 py-1.5 text-xs text-zinc-200">
+                <div className="mt-3.5 inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/80 px-3 sm:px-3.5 py-1.5 text-xs text-zinc-200">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
                   <span>IPK: <strong className="text-white font-semibold">3.53</strong> / 4.00 · Lulus 2026</span>
                 </div>
 
-                <p className="mt-3 text-xs leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                  Fokus pada integrasi arsitektur sistem komputasi terdistribusi, rekayasa perangkat lunak modern, pengolahan sinyal &amp; citra digital, serta riset terapan kecerdasan buatan dan IoT.
+                <p className="mt-3 text-xs leading-relaxed text-zinc-400 text-justify">
+                  Mempelajari integrasi sistem perangkat keras dan perangkat lunak modern, arsitektur jaringan komputer, pengolahan citra digital, serta penerapan kecerdasan buatan dan IoT.
                 </p>
 
                 <div className="mt-2 text-[11px] font-mono text-zinc-500">
@@ -1540,7 +1605,7 @@ export default function PortfolioPage() {
                 </div>
 
                 {/* Sub-Card: Skripsi / Riset Terapan */}
-                <div className="mt-4 rounded-xl border border-zinc-800/80 bg-zinc-950/70 p-4 transition-colors hover:border-zinc-700">
+                <div className="mt-4 rounded-xl border border-zinc-800/80 bg-zinc-950/70 p-3.5 sm:p-4 transition-colors hover:border-zinc-700">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                     <span className="rounded-md border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[10px] text-zinc-300 font-medium">
                       Skripsi &amp; Riset Terapan
@@ -1551,7 +1616,7 @@ export default function PortfolioPage() {
                     Sistem Parkir Pintar &amp; Deteksi Pelat Otomatis
                   </h4>
                   <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
-                    Sistem gerbang otomatis dual validasi RFID e-KTP dan computer vision (YOLOv8 + CNN) real-time berbasis edge IoT ESP32 &amp; Firebase.
+                    Sistem palang otomatis dengan verifikasi ganda RFID e-KTP dan deteksi pelat nomor kendaraan (YOLOv8 + CNN) berbasis ESP32 &amp; Firebase.
                   </p>
                   <div className="mt-2.5 flex flex-wrap gap-1">
                     {['YOLOv8 Nano', 'ESP32', 'TensorFlow CNN', 'Firebase'].map((t) => (
@@ -1581,7 +1646,7 @@ export default function PortfolioPage() {
 
               <div className="relative z-10 mt-4 border-t border-zinc-800/80 pt-3.5">
                 <p className="text-[11px] font-medium uppercase tracking-wider text-zinc-500 mb-2">
-                  Bidang Keahlian Studi:
+                  Bidang Fokus Studi:
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
@@ -1602,7 +1667,7 @@ export default function PortfolioPage() {
               data-reveal
               data-delay="1"
               onMouseMove={handleCardMouseMove}
-              className="spotlight-card lg:col-span-7 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800/90 p-6 sm:p-7 hover:border-zinc-700"
+              className="spotlight-card lg:col-span-7 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800/90 p-5 sm:p-7 hover:border-zinc-700"
             >
               <div className="relative z-10">
                 <div className="flex items-center justify-between gap-2">
@@ -1619,7 +1684,7 @@ export default function PortfolioPage() {
                   Artikel Jurnal Ilmiah
                 </h3>
                 <p className="mt-1 text-xs text-zinc-400">
-                  Dua publikasi penelitian peer-reviewed terakreditasi nasional di bidang Machine Learning dan IoT.
+                  Dua publikasi penelitian yang telah terbit di jurnal terakreditasi nasional seputar Machine Learning dan sistem IoT.
                 </p>
 
                 {/* Publications List */}
@@ -1642,7 +1707,7 @@ export default function PortfolioPage() {
                       Prediksi Penyakit Liver dengan Model Perbandingan Logistic Regression, SVM, dan Random Forest
                     </h4>
                     <p className="mt-1 text-xs text-zinc-400 leading-relaxed">
-                      Studi komparasi machine learning pada 579 data rekam medis pasien dengan evaluasi metrik F1-Score dan MCC (DOI: 10.34010/komputika.v15i1.19799).
+                      Studi komparasi model klasifikasi pada 579 data rekam medis pasien dengan evaluasi F1-Score dan MCC (DOI: 10.34010/komputika.v15i1.19799).
                     </p>
                     <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-900 pt-2.5">
                       <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 group-hover/card:text-zinc-200 transition">
@@ -1713,18 +1778,18 @@ export default function PortfolioPage() {
                   <span>Sertifikasi Resmi</span>
                 </div>
                 <h3 className="font-heading mt-1 text-2xl font-bold tracking-tight text-zinc-100">
-                  Kredensial Industri Terverifikasi
+                  Kredensial Industri &amp; Pelatihan Terverifikasi
                 </h3>
                 <p className="mt-1 text-xs text-zinc-400">
-                  Klik kartu untuk membuka pratinjau dokumen resolusi tinggi, detail keahlian, dan tautan verifikasi resmi.
+                  Ketuk kartu sertifikat untuk melihat pratinjau dokumen asli, rincian kompetensi, dan tautan verifikasi resmi.
                 </p>
               </div>
               <span className="self-start sm:self-auto font-mono text-xs text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full">
-                {CERTIFICATIONS_DATA.length} Sertifikat Terdaftar
+                {CERTIFICATIONS_DATA.length} Sertifikat Terverifikasi
               </span>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
               {CERTIFICATIONS_DATA.map((cert, idx) => (
                 <div
                   key={cert.id}
@@ -1766,7 +1831,7 @@ export default function PortfolioPage() {
 
                     {/* Certificate Content */}
                     <div className="p-4 sm:p-5">
-                      <div className="flex items-center justify-between gap-1 text-[11px] text-zinc-400">
+                      <div className="flex items-center justify-between gap-2 text-[11px] text-zinc-400">
                         <span className="font-medium text-zinc-300 truncate">{cert.issuer}</span>
                         <span className="font-mono text-[10px] text-zinc-500 shrink-0">{cert.period}</span>
                       </div>
@@ -1845,13 +1910,13 @@ export default function PortfolioPage() {
               <div>
                 <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
                   <span className="h-px w-6 bg-emerald-500/80" />
-                  <span>Kontak &amp; Ulasan</span>
+                  <span>Kontak &amp; Kolaborasi</span>
                 </div>
-                <h2 className="font-heading mt-2 text-3xl font-bold tracking-tight text-zinc-100">
-                  Hubungi Saya
+                <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+                  Mari Terhubung &amp; Berdiskusi
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-400 text-justify hyphens-auto">
-                  Tertarik berkolaborasi atau ingin berdiskusi santai seputar pengembangan software, otomasi AI, basis data, maupun sistem IoT? Saat ini saya terbuka untuk peluang karier penuh waktu (Full-Time), proyek pengembangan lepas (freelance), maupun riset bersama. Jangan ragu menghubungi saya via WhatsApp, email, atau tinggalkan pesan di form di samping!
+                <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                  Tertarik berkolaborasi atau sekadar ngobrol seputar pengembangan web, aplikasi mobile, integrasi AI, maupun sistem IoT? Saat ini saya terbuka untuk peluang karier <strong className="text-zinc-200 font-medium">Full-Time</strong>, proyek <strong className="text-zinc-200 font-medium">Freelance</strong>, maupun kolaborasi riset. Silakan hubungi saya langsung lewat WhatsApp, email, atau tinggalkan pesan di formulir sebelah.
                 </p>
               </div>
 
@@ -1944,7 +2009,7 @@ export default function PortfolioPage() {
                 </a>
 
                 <div className="sm:col-span-2 flex items-center gap-2.5 rounded-xl border border-zinc-800/80 bg-zinc-950/60 px-4 py-3 text-xs text-zinc-400">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
                   <span className="text-zinc-500">Domisili:</span>
                   <span className="text-zinc-200 font-medium">Sumedang, Jawa Barat, Indonesia</span>
                 </div>
@@ -1959,13 +2024,13 @@ export default function PortfolioPage() {
               >
                 <div className="relative z-10">
                   <p className="font-mono text-xs uppercase tracking-wider text-emerald-400">
-                    Buku Tamu &amp; Feedback
+                    Pesan Langsung
                   </p>
                   <h3 className="font-heading mt-1.5 text-lg font-bold text-zinc-100">
-                    Kesan &amp; Catatan Pengunjung
+                    Kirim Pesan atau Catatan
                   </h3>
                   <p className="mt-1 text-xs text-zinc-400">
-                    Pesan Anda akan langsung terkirim secara instan kepada saya.
+                    Tulis pesan singkat di bawah ini, dan notifikasinya akan langsung masuk ke saya.
                   </p>
 
                   <form
@@ -1994,7 +2059,7 @@ export default function PortfolioPage() {
                         htmlFor="guestMessage"
                         className="block text-xs font-medium text-zinc-300"
                       >
-                        Pesan atau Ulasan <span className="text-zinc-500">*</span>
+                        Pesan atau Masukan <span className="text-zinc-500">*</span>
                       </label>
                       <textarea
                         id="guestMessage"
@@ -2002,7 +2067,7 @@ export default function PortfolioPage() {
                         required
                         value={guestMessage}
                         onChange={(e) => setGuestMessage(e.target.value)}
-                        placeholder="Tulis kesan, masukan, atau ajakan diskusi proyek..."
+                        placeholder="Tulis pesan, masukan, atau ajakan diskusi proyek..."
                         className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-emerald-500/60"
                       />
                     </div>
@@ -2014,12 +2079,12 @@ export default function PortfolioPage() {
                     >
                       {isSubmitting
                         ? 'Mengirim pesan...'
-                        : 'Kirim Pesan Instant ↗'}
+                        : 'Kirim Pesan ↗'}
                     </button>
 
                     {submitStatus === 'success' && (
                       <p className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-center text-xs text-emerald-300">
-                        Terima kasih! Pesan Anda telah berhasil terkirim.
+                        Terima kasih! Pesan Anda sudah berhasil terkirim.
                       </p>
                     )}
                     {submitStatus === 'error' && (
@@ -2093,29 +2158,29 @@ export default function PortfolioPage() {
             </button>
 
             <div className="space-y-4">
-              <div>
+              <div className="pr-8">
                 <span className="font-mono text-xs uppercase tracking-wider text-emerald-500">
                   {activeModalProject.modalDetails?.kicker || 'Dokumentasi Teknis'}
                 </span>
-                <h3 className="font-heading text-xl sm:text-2xl font-semibold text-zinc-100 mt-1">
+                <h3 className="font-heading text-lg sm:text-2xl font-semibold text-zinc-100 mt-1">
                   {activeModalProject.title}
                 </h3>
               </div>
 
-              <p className="text-sm text-zinc-300 leading-relaxed text-justify hyphens-auto font-light">
+              <p className="text-sm text-zinc-300 leading-relaxed font-light">
                 {activeModalProject.modalDetails?.summary || activeModalProject.description}
               </p>
 
               {activeModalProject.modalDetails?.bullets && (
                 <div className="space-y-2 pt-2">
                   <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold">
-                    Implementasi & Arsitektur Utama
+                    Poin Teknis &amp; Arsitektur Utama
                   </p>
                   <ul className="space-y-2 text-xs text-zinc-300">
                     {activeModalProject.modalDetails.bullets.map((bullet, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
                         <span className="text-emerald-400 font-mono text-[11px] mt-0.5">•</span>
-                        <span className="leading-relaxed text-justify hyphens-auto">{bullet}</span>
+                        <span className="leading-relaxed">{bullet}</span>
                       </li>
                     ))}
                   </ul>
@@ -2123,9 +2188,9 @@ export default function PortfolioPage() {
               )}
 
               {activeModalProject.modalDetails?.results && (
-                <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-4 text-xs text-emerald-200 leading-relaxed text-justify hyphens-auto">
+                <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-4 text-xs text-emerald-200 leading-relaxed">
                   <span className="font-medium text-emerald-300 block mb-1">
-                    Hasil & Capaian Kinerja:
+                    Hasil &amp; Capaian Kinerja:
                   </span>
                   {activeModalProject.modalDetails.results}
                 </div>
@@ -2194,18 +2259,18 @@ export default function PortfolioPage() {
             }`}
           />
 
-          {/* Modal Container: Pas selayar di layar PC (md:flex-row, md:h-[84vh], md:max-h-[740px], max-w-5xl lg:max-w-6xl) tanpa dropdown/scroll */}
+          {/* Modal Container: Scroll menyatu di HP (overflow-y-auto), dan berdampingan rapi di layar PC (md:flex-row, md:overflow-hidden) */}
           <div
-            className={`relative z-10 flex w-full max-w-5xl lg:max-w-6xl flex-col md:flex-row overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl max-h-[92vh] md:h-[84vh] md:max-h-[740px] ${
+            className={`relative z-10 flex w-full max-w-5xl lg:max-w-6xl flex-col md:flex-row overflow-y-auto md:overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl max-h-[90vh] md:h-[84vh] md:max-h-[740px] ${
               isClosingCertModal ? 'animate-modal-out pointer-events-none' : 'animate-modal-in'
             }`}
           >
-            {/* Panel Kiri: Frame Gambar Sertifikat (Tampil maksimal dan fit penuh tanpa terpotong) */}
-            <div className="relative flex flex-col justify-between border-b border-zinc-800/80 bg-zinc-950 p-4 sm:p-5 md:w-7/12 md:border-b-0 md:border-r lg:w-3/5">
+            {/* Panel Kiri: Frame Gambar Sertifikat */}
+            <div className="relative flex flex-col justify-between border-b border-zinc-800/80 bg-zinc-950 p-4 sm:p-5 md:w-7/12 md:border-b-0 md:border-r lg:w-3/5 shrink-0">
               {/* Top Meta Bar */}
               <div className="flex items-center justify-between gap-2 pb-2">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
                     <Award className="h-4 w-4" />
                   </span>
                   <div className="min-w-0">
@@ -2214,13 +2279,22 @@ export default function PortfolioPage() {
                     </span>
                   </div>
                 </div>
-                <span className="rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 font-mono text-[10px] text-zinc-400 shrink-0">
-                  {activeCert.period}
-                </span>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
+                    {activeCert.period}
+                  </span>
+                  <button
+                    onClick={handleCloseCertModal}
+                    className="md:hidden rounded-lg border border-zinc-800 bg-zinc-900 p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 transition"
+                    aria-label="Tutup Pratinjau Sertifikat"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
 
               {/* Main Certificate Image Canvas */}
-              <div className="relative flex-1 w-full min-h-[240px] md:min-h-0 flex items-center justify-center py-2">
+              <div className="relative flex-1 w-full min-h-[200px] sm:min-h-[260px] md:min-h-0 flex items-center justify-center py-2">
                 <div className="relative h-full w-full aspect-[16/11] md:aspect-auto">
                   <Image
                     src={activeCert.imageUrl}
@@ -2251,7 +2325,7 @@ export default function PortfolioPage() {
             </div>
 
             {/* Panel Kanan: Rincian Kredensial & Tombol Aksi */}
-            <div className="flex flex-col justify-between bg-zinc-900/40 p-5 md:p-6 lg:w-2/5 md:w-5/12 overflow-y-auto md:overflow-y-auto">
+            <div className="flex flex-col justify-between bg-zinc-900/40 p-4 sm:p-5 md:p-6 lg:w-2/5 md:w-5/12 md:overflow-y-auto">
               <div>
                 {/* Header Kanan: Kategori & Tombol Tutup */}
                 <div className="flex items-start justify-between gap-3">
@@ -2260,7 +2334,7 @@ export default function PortfolioPage() {
                   </span>
                   <button
                     onClick={handleCloseCertModal}
-                    className="rounded-lg p-1.5 text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
+                    className="hidden md:inline-flex rounded-lg p-1.5 text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
                     aria-label="Tutup Pratinjau Sertifikat"
                   >
                     <X className="h-5 w-5" />
@@ -2268,20 +2342,20 @@ export default function PortfolioPage() {
                 </div>
 
                 {/* Judul Sertifikasi */}
-                <h3 className="mt-3 text-lg font-bold text-zinc-100 sm:text-xl leading-snug">
+                <h3 className="font-heading mt-3 text-base font-bold text-zinc-100 sm:text-xl leading-snug">
                   {activeCert.title}
                 </h3>
 
                 {/* Credential ID */}
                 {activeCert.credentialId && (
-                  <div className="mt-2.5 inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-400">
-                    <span className="text-zinc-500">ID Kredensial:</span>
-                    <span className="text-zinc-200 select-all font-semibold">{activeCert.credentialId}</span>
+                  <div className="mt-2.5 inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-400 max-w-full">
+                    <span className="text-zinc-500 shrink-0">ID Kredensial:</span>
+                    <span className="text-zinc-200 select-all font-semibold truncate">{activeCert.credentialId}</span>
                   </div>
                 )}
 
                 {/* Deskripsi */}
-                <p className="mt-3.5 text-xs sm:text-sm leading-relaxed text-zinc-300 text-justify hyphens-auto font-light">
+                <p className="mt-3.5 text-xs sm:text-sm leading-relaxed text-zinc-300 font-light">
                   {activeCert.description}
                 </p>
 
@@ -2342,14 +2416,14 @@ export default function PortfolioPage() {
                     className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 py-2 px-3 text-xs font-medium text-zinc-200 transition hover:border-emerald-500/40 hover:text-emerald-300"
                   >
                     <FileText className="h-4 w-4" />
-                    <span>Unduh Berkas Asli (PDF)</span>
+                    <span>Unduh PDF Asli</span>
                   </a>
 
                   <button
                     onClick={handleCloseCertModal}
                     className="rounded-lg border border-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
                   >
-                    Tutup (Esc)
+                    Tutup
                   </button>
                 </div>
               </div>
