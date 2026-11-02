@@ -966,10 +966,34 @@ export default function PortfolioPage() {
     isClosingCertModal,
   ]);
 
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [statProgress, setStatProgress] = useState(0);
+
+  useEffect(() => {
+    let rafId: number;
+    const start = performance.now();
+    const duration = 1150;
+    const tick = (now: number) => {
+      const elapsed = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - elapsed, 3);
+      setStatProgress(eased);
+      if (elapsed < 1) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   useEffect(() => {
     const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
+      const docHeight =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (docHeight > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)));
+      }
       if (isNavClickRef.current) return;
       const scrollPosition = window.scrollY + 220;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -1014,9 +1038,28 @@ export default function PortfolioPage() {
   }, [activeFilter, activeSkillTab, activeCertFilter]);
 
   const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    el.style.setProperty('--mouse-x', `${x}px`);
+    el.style.setProperty('--mouse-y', `${y}px`);
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -2.4;
+      const rotateY = ((x - centerX) / centerX) * 2.4;
+      el.setAttribute('data-tilting', 'true');
+      el.style.setProperty('--rx', `${rotateX.toFixed(2)}deg`);
+      el.style.setProperty('--ry', `${rotateY.toFixed(2)}deg`);
+    }
+  };
+
+  const handleCardMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    const el = e.currentTarget;
+    el.removeAttribute('data-tilting');
+    el.style.setProperty('--rx', '0deg');
+    el.style.setProperty('--ry', '0deg');
   };
 
   const [guestName, setGuestName] = useState('');
@@ -1094,6 +1137,11 @@ export default function PortfolioPage() {
 
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-zinc-800/60 bg-[#0A0A0C]/75 backdrop-blur-xl">
+        {/* Smooth Top Scroll Progress Indicator */}
+        <div
+          className="pointer-events-none absolute top-0 left-0 h-[2px] bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-300 transition-[width] duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
         <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
           <a
             href="#top"
@@ -1208,16 +1256,20 @@ export default function PortfolioPage() {
             {/* Left Column */}
             <div className="space-y-6 lg:col-span-7 xl:col-span-8 flex flex-col justify-between">
               <div className="space-y-4 sm:space-y-5">
-                {/* Role Indicator Badge */}
-                <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
+                {/* Role Indicator Badge with Live Radar Pulse */}
+                <div className="animate-fade-in-up inline-flex items-center gap-2.5 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  </span>
                   <span>Fullstack Developer · Data Automation &amp; QA Engineer</span>
                 </div>
 
-                {/* Main Headline */}
+                {/* Main Headline with Subtle Shimmer */}
                 <div className="animate-fade-in-up delay-75">
                   <h1 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-100 leading-[1.18] sm:leading-[1.15]">
-                    Membangun aplikasi fullstack, otomasi data real-time, hingga sistem yang teruji.
+                    Membangun aplikasi fullstack,{' '}
+                    <span className="text-gradient-shimmer">otomasi data real-time</span>, hingga sistem yang teruji.
                   </h1>
                 </div>
 
@@ -1230,7 +1282,7 @@ export default function PortfolioPage() {
                 <div className="animate-fade-in-up delay-225 grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
                   <a
                     href="#projects"
-                    className="group col-span-2 sm:col-span-1 sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-400 hover:shadow-[0_6px_24px_rgba(52,211,153,0.25)] active:scale-95"
+                    className="spring-pill group col-span-2 sm:col-span-1 sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 hover:bg-emerald-400"
                   >
                     <span>Eksplorasi Proyek</span>
                     <span className="transition-transform duration-200 group-hover:translate-y-0.5">↓</span>
@@ -1239,7 +1291,7 @@ export default function PortfolioPage() {
                     href="/cv-edvan.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="group inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 whitespace-nowrap"
+                    className="spring-pill group inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-zinc-700 hover:text-white whitespace-nowrap"
                   >
                     <span>Unduh CV</span>
                     <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
@@ -1247,7 +1299,7 @@ export default function PortfolioPage() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white active:scale-95 cursor-pointer whitespace-nowrap"
+                    className="spring-pill inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-zinc-700 hover:text-white cursor-pointer whitespace-nowrap"
                   >
                     {copiedEmail ? (
                       <>
@@ -1264,14 +1316,15 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Key Highlights Bar */}
+              {/* Key Highlights Bar with Animated Number Counters */}
               <div className="animate-fade-in-up delay-300 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 border-t border-zinc-800/80 pt-5 sm:pt-6 sm:max-w-xl xl:max-w-2xl">
                 <div
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:border-zinc-700"
                 >
-                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
-                    3.53
+                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 transition-transform duration-300 group-hover:scale-105 group-hover:text-emerald-400 origin-left">
+                    {(3.53 * statProgress).toFixed(2)}
                   </p>
                   <p className="relative z-10 mt-1 text-[11px] sm:text-xs text-zinc-400 leading-tight">
                     IPK S1 Komputer
@@ -1279,10 +1332,11 @@ export default function PortfolioPage() {
                 </div>
                 <div
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:border-zinc-700"
                 >
-                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
-                    100%
+                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 transition-transform duration-300 group-hover:scale-105 group-hover:text-emerald-400 origin-left">
+                    {Math.round(100 * statProgress)}%
                   </p>
                   <p className="relative z-10 mt-1 text-[11px] sm:text-xs text-zinc-400 leading-tight">
                     Lighthouse Vitals
@@ -1290,10 +1344,11 @@ export default function PortfolioPage() {
                 </div>
                 <div
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:border-zinc-700"
                 >
-                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
-                    02
+                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 transition-transform duration-300 group-hover:scale-105 group-hover:text-emerald-400 origin-left">
+                    0{Math.max(1, Math.round(2 * statProgress))}
                   </p>
                   <p className="relative z-10 mt-1 text-[11px] sm:text-xs text-zinc-400 leading-tight">
                     Publikasi Jurnal
@@ -1301,10 +1356,11 @@ export default function PortfolioPage() {
                 </div>
                 <div
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/80 p-3 sm:p-3.5 hover:border-zinc-700"
                 >
-                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 group-hover:text-emerald-400 transition-colors">
-                    05+
+                  <p className="relative z-10 font-heading text-xl sm:text-2xl lg:text-3xl font-bold tabular-nums text-zinc-100 transition-transform duration-300 group-hover:scale-105 group-hover:text-emerald-400 origin-left">
+                    0{Math.max(1, Math.round(5 * statProgress))}+
                   </p>
                   <p className="relative z-10 mt-1 text-[11px] sm:text-xs text-zinc-400 leading-tight">
                     Proyek Mandiri
@@ -1315,21 +1371,28 @@ export default function PortfolioPage() {
 
             {/* Right Column: Clean Portrait & Identity */}
             <div className="animate-fade-in-up delay-150 lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-end justify-between h-full">
-              <div className="group relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] aspect-[4/5] lg:aspect-auto lg:flex-1 lg:min-h-[390px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.1)] transition-all duration-500 hover:border-zinc-700 hover:-translate-y-1">
+              <div
+                onMouseMove={handleCardMouseMove}
+                onMouseLeave={handleCardMouseLeave}
+                className="spotlight-card group relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] aspect-[4/5] lg:aspect-auto lg:flex-1 lg:min-h-[390px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:border-zinc-700"
+              >
                 <Image
                   src="/profile.jpeg"
                   alt="Edvan Nuriana Putra Septia, S.Kom."
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1280px) 300px, 340px"
-                  className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.03]"
+                  className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
                   priority
                 />
                 {/* Subtle vignette for depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent pointer-events-none" />
 
-                {/* Clean Status Pill */}
-                <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/70 bg-zinc-950/85 px-2.5 py-1 text-[11px] font-medium text-zinc-200 backdrop-blur-md shadow-md">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                {/* Clean Status Pill with Live Radar Pulse */}
+                <div className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/70 bg-zinc-950/85 px-2.5 py-1 text-[11px] font-medium text-zinc-200 backdrop-blur-md shadow-md">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  </span>
                   <span>Open to Work</span>
                 </div>
               </div>
@@ -1383,11 +1446,12 @@ export default function PortfolioPage() {
               <div className="grid gap-3.5 sm:gap-4.5 pt-3 sm:pt-4 sm:grid-cols-3 lg:gap-5">
                 <div
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:-translate-y-1 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:border-zinc-700"
                 >
                   <div className="relative z-10">
                     <div className="mb-2 flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 transition-transform duration-300 group-hover:scale-150" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
                         Fullstack &amp; Mobile
                       </h3>
@@ -1399,11 +1463,12 @@ export default function PortfolioPage() {
                 </div>
                 <div
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:-translate-y-1 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:border-zinc-700"
                 >
                   <div className="relative z-10">
                     <div className="mb-2 flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 transition-transform duration-300 group-hover:scale-150" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
                         Quality Assurance (QA)
                       </h3>
@@ -1415,11 +1480,12 @@ export default function PortfolioPage() {
                 </div>
                 <div
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:-translate-y-1 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group relative overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:border-zinc-700"
                 >
                   <div className="relative z-10">
                     <div className="mb-2 flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 transition-transform duration-300 group-hover:scale-150" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
                         Data Automation &amp; IoT
                       </h3>
@@ -1485,13 +1551,14 @@ export default function PortfolioPage() {
                   key={`${activeFilter}-${app.id}`}
                   onClick={() => handleOpenModal(app)}
                   onMouseMove={handleCardMouseMove}
+                  onMouseLeave={handleCardMouseLeave}
                   style={{ animationDelay: `${idx * 65}ms` }}
-                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:-translate-y-1 hover:border-zinc-700 cursor-pointer"
+                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-5 hover:border-zinc-700 cursor-pointer"
                 >
                   <div className="relative z-10">
                     <div className="mb-4 flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-transform duration-300 group-hover:scale-105 group-hover:border-zinc-700">
+                        <div className="spring-icon relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] group-hover:border-emerald-500/40">
                           <Image
                             src={app.image}
                             alt={app.title}
@@ -1588,8 +1655,9 @@ export default function PortfolioPage() {
                   key={`${activeFilter}-${project.id}`}
                   onClick={() => handleOpenModal(project)}
                   onMouseMove={handleCardMouseMove}
+                  onMouseLeave={handleCardMouseLeave}
                   style={{ animationDelay: `${(filteredApps.length + idx) * 65}ms` }}
-                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:-translate-y-1 hover:border-zinc-700 cursor-pointer"
+                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:border-zinc-700 cursor-pointer"
                 >
                   <div className="relative z-10">
                     <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
@@ -1702,12 +1770,13 @@ export default function PortfolioPage() {
                   data-reveal
                   data-delay={String((idx % 4) + 1)}
                   onMouseMove={handleCardMouseMove}
+                  onMouseLeave={handleCardMouseLeave}
                   onClick={() => handleOpenExpertiseModal(item)}
-                  className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/40 cursor-pointer active:scale-[0.99]"
+                  className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-5 sm:p-6 hover:border-emerald-500/40 cursor-pointer active:scale-[0.99]"
                 >
                   <div className="relative z-10">
-                    {/* Top Icon Badge */}
-                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-emerald-400 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-all duration-300 group-hover:scale-110 group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10">
+                    {/* Top Icon Badge with Spring Pop & Tilt */}
+                    <div className="spring-icon mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-emerald-400 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10">
                       <IconComponent className="h-5 w-5" />
                     </div>
 
@@ -1741,7 +1810,7 @@ export default function PortfolioPage() {
                   <div className="relative z-10 mt-5 border-t border-zinc-800/80 pt-3.5">
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-200 transition-colors group-hover:text-emerald-400">
                       <span>Lihat detail &amp; keahlian</span>
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
                     </span>
                   </div>
                 </div>
@@ -1753,6 +1822,7 @@ export default function PortfolioPage() {
           <div
             data-reveal
             onMouseMove={handleCardMouseMove}
+            onMouseLeave={handleCardMouseLeave}
             className="spotlight-card mt-7 sm:mt-8 rounded-2xl border border-zinc-800/90 p-4 sm:p-6"
           >
             <div className="relative z-10">
@@ -1808,14 +1878,14 @@ export default function PortfolioPage() {
                       onClick={() => {
                         if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
                       }}
-                      className={`animate-card-enter group/pill inline-flex items-center gap-1.5 rounded-lg border px-2.5 sm:px-3 py-1.5 font-mono text-[11px] sm:text-xs transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
+                      className={`spring-pill animate-card-enter group/pill inline-flex items-center gap-1.5 rounded-lg border px-2.5 sm:px-3 py-1.5 font-mono text-[11px] sm:text-xs cursor-pointer ${
                         kw.highlight
                           ? 'border-zinc-700/90 bg-zinc-900/90 text-zinc-100 hover:border-emerald-500/50 hover:text-emerald-300'
                           : 'border-zinc-800/80 bg-zinc-950/80 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                       }`}
                     >
                       {kw.highlight && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80 transition-transform group-hover/pill:scale-125" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80 transition-transform duration-200 group-hover/pill:scale-150" />
                       )}
                       <span>{kw.name}</span>
                     </button>
@@ -1850,11 +1920,12 @@ export default function PortfolioPage() {
             <div
               data-reveal
               onMouseMove={handleCardMouseMove}
+              onMouseLeave={handleCardMouseLeave}
               onClick={() => {
                 const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-parking');
                 if (proj) handleOpenModal(proj);
               }}
-              className="spotlight-card lg:col-span-5 flex flex-col justify-between group/edu relative overflow-hidden rounded-2xl border border-zinc-800/90 p-5 sm:p-7 hover:border-zinc-700 cursor-pointer hover:-translate-y-1 active:scale-[0.99]"
+              className="spotlight-card lg:col-span-5 flex flex-col justify-between group/edu relative overflow-hidden rounded-2xl border border-zinc-800/90 p-5 sm:p-7 hover:border-zinc-700 cursor-pointer active:scale-[0.99]"
             >
               <div className="relative z-10">
                 <div className="flex items-center justify-between gap-2">
@@ -1951,6 +2022,7 @@ export default function PortfolioPage() {
               data-reveal
               data-delay="1"
               onMouseMove={handleCardMouseMove}
+              onMouseLeave={handleCardMouseLeave}
               className="spotlight-card lg:col-span-7 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800/90 p-5 sm:p-7 hover:border-zinc-700"
             >
               <div className="relative z-10">
@@ -2104,8 +2176,9 @@ export default function PortfolioPage() {
                   key={`${activeCertFilter}-${cert.id}`}
                   style={{ animationDelay: `${idx * 55}ms` }}
                   onMouseMove={handleCardMouseMove}
+                  onMouseLeave={handleCardMouseLeave}
                   onClick={() => handleOpenCertModal(cert)}
-                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:-translate-y-1 hover:border-zinc-700 cursor-pointer active:scale-[0.99]"
+                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:border-zinc-700 cursor-pointer active:scale-[0.99]"
                 >
                   {/* Certificate Image Preview Header */}
                   <div className="relative z-10">
@@ -2234,9 +2307,10 @@ export default function PortfolioPage() {
                   target="_blank"
                   rel="noreferrer"
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-emerald-400 group-hover:border-emerald-500/40 group-hover:scale-105 transition">
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-emerald-400 group-hover:border-emerald-500/40">
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31" />
                     </svg>
@@ -2254,9 +2328,10 @@ export default function PortfolioPage() {
                 <a
                   href="mailto:septiaedvan@gmail.com"
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-emerald-400 group-hover:border-emerald-500/40 group-hover:scale-105 transition">
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-emerald-400 group-hover:border-emerald-500/40">
                     <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect width="20" height="16" x="2" y="4" rx="2" />
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -2277,9 +2352,10 @@ export default function PortfolioPage() {
                   target="_blank"
                   rel="noreferrer"
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-zinc-400 group-hover:border-emerald-500/40 group-hover:text-white group-hover:scale-105 transition">
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-zinc-400 group-hover:border-emerald-500/40 group-hover:text-white">
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
                     </svg>
@@ -2299,9 +2375,10 @@ export default function PortfolioPage() {
                   target="_blank"
                   rel="noreferrer"
                   onMouseMove={handleCardMouseMove}
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:-translate-y-0.5 hover:border-zinc-700"
+                  onMouseLeave={handleCardMouseLeave}
+                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-zinc-400 group-hover:border-emerald-500/40 group-hover:text-[#0A66C2] group-hover:scale-105 transition">
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-zinc-400 group-hover:border-emerald-500/40 group-hover:text-[#0A66C2]">
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                     </svg>
