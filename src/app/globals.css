@@ -156,13 +156,16 @@ body {
 }
 
 .text-gradient-shimmer {
+  color: #f4f4f5;
   background: linear-gradient(
-    90deg,
-    #f4f4f5 0%,
-    #6ee7b7 35%,
+    105deg,
+    #ffffff 0%,
+    #e4e4e7 12%,
+    #a7f3d0 30%,
     #34d399 50%,
-    #a7f3d0 65%,
-    #f4f4f5 100%
+    #6ee7b7 70%,
+    #d1fae5 85%,
+    #ffffff 100%
   );
   background-size: 220% auto;
   -webkit-background-clip: text;

@@ -1265,11 +1265,10 @@ export default function PortfolioPage() {
                   <span>Fullstack Developer · Data Automation &amp; QA Engineer</span>
                 </div>
 
-                {/* Main Headline with Subtle Shimmer */}
+                {/* Main Headline with Full Gradient Shimmer */}
                 <div className="animate-fade-in-up delay-75">
-                  <h1 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-100 leading-[1.18] sm:leading-[1.15]">
-                    Membangun aplikasi fullstack,{' '}
-                    <span className="text-gradient-shimmer">otomasi data real-time</span>, hingga sistem yang teruji.
+                  <h1 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.18] sm:leading-[1.15] text-gradient-shimmer">
+                    Membangun aplikasi fullstack, otomasi data real-time, hingga sistem yang teruji.
                   </h1>
                 </div>
 
