@@ -7,6 +7,7 @@ import {
   X,
   ArrowUpRight,
   ArrowUp,
+  ArrowRight,
   GraduationCap,
   BookOpen,
   Award,
@@ -17,6 +18,10 @@ import {
   Eye,
   Copy,
   Check,
+  Code2,
+  ShieldCheck,
+  BarChart3,
+  Cpu,
 } from 'lucide-react';
 
 function getTechTagStyle(tech?: string): string {
@@ -87,10 +92,12 @@ interface CertificateCredential {
   issuer: string;
   period: string;
   category: string;
+  scope: 'industry' | 'academic';
   credentialId?: string;
   verifyUrl?: string;
   pdfUrl: string;
   imageUrl: string;
+  summary: string;
   description: string;
   skills: string[];
   modules?: string[];
@@ -103,17 +110,20 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     issuer: 'HackerRank',
     period: '2026',
     category: 'Frontend Engineering',
+    scope: 'industry',
     credentialId: '14E9FE830A72',
     verifyUrl: 'https://www.hackerrank.com/certificates/14e9fe830a72',
     pdfUrl: '/cert-hackerrank-react.pdf',
     imageUrl: '/cert-hackerrank-react.png',
+    summary:
+      'Validasi arsitektur komponen ReactJS, state & props management, routing, serta logika antarmuka interaktif.',
     description:
-      'Sertifikasi peran (Role Certification) dari HackerRank yang menguji kemampuan praktis membangun aplikasi web menggunakan React—mulai dari arsitektur komponen, pengelolaan state & props, siklus hidup komponen, hingga interaksi antarmuka yang responsif.',
+      'Sertifikasi uji kompetensi (Role Certification) dari HackerRank yang memvalidasi kemampuan praktis membangun aplikasi web menggunakan ReactJS—mencakup arsitektur komponen modular, pengelolaan state & props, siklus hidup komponen, hingga interaksi DOM yang responsif.',
     skills: [
-      'React Component Architecture',
+      'ReactJS Component Architecture',
       'State & Props Management',
       'Frontend Routing & DOM',
-      'Interactive UI Logic',
+      'Interactive UI Testing',
     ],
   },
   {
@@ -122,40 +132,56 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     issuer: 'Cisco Networking Academy',
     period: '2026',
     category: 'Data Analytics & SQL',
+    scope: 'industry',
     credentialId: 'a8434aa9-95b4-42e1-ac53-c578d599d1ad',
     pdfUrl: '/cert-cisco-data-analytics.pdf',
     imageUrl: '/cert-cisco-data-analytics.png',
+    summary:
+      'Kompetensi ETL, pembersihan data Excel, kueri database relasional SQL, serta pembuatan dashboard Tableau.',
     description:
-      'Sertifikasi resmi Cisco Networking Academy yang berfokus pada alur kerja analisis data menyeluruh—mulai dari pengumpulan, pembersihan, dan transformasi data menggunakan Excel serta kueri SQL relasional, hingga pembuatan dashboard visual di Tableau.',
+      'Sertifikasi resmi Cisco Networking Academy yang berfokus pada alur kerja analisis dan otomasi data menyeluruh—mulai dari pengumpulan, pembersihan, dan transformasi data (ETL) menggunakan Excel serta kueri SQL relasional, hingga penyusunan dashboard pelaporan visual di Tableau.',
     skills: [
-      'Data Preparation & Cleaning',
+      'Data Preparation & ETL',
       'Relational SQL Queries',
-      'Tableau Visualization',
+      'Tableau Dashboard Reporting',
       'Exploratory Data Analysis',
       'Excel Data Transformation',
       'Data Storytelling',
     ],
   },
   {
-    id: 'cert-gemini',
-    title: 'Google Gemini Certified Student — University',
-    issuer: 'Google for Education',
-    period: '2026—2029',
-    category: 'Generative AI & LLM',
-    pdfUrl: '/cert-gemini.pdf',
-    imageUrl: '/cert-gemini.png',
+    id: 'cert-coursera-excel',
+    title: 'Microsoft Excel: Learn with Projects',
+    issuer: 'Coursera Project Network',
+    period: '2026',
+    category: 'Data Automation & Reporting',
+    scope: 'industry',
+    credentialId: 'V32873K6COVJ (8 Kursus Spesialisasi)',
+    verifyUrl: 'https://coursera.org/verify/specialization/V32873K6COVJ',
+    pdfUrl: '/cert-coursera-excel.pdf',
+    imageUrl: '/cert-coursera-excel.png',
+    summary:
+      'Otomatisasi laporan operasional, rumus lanjutan (XLOOKUP, INDEX-MATCH), PivotTable, dan dashboard KPI.',
     description:
-      'Sertifikasi resmi dari Google for Education yang memvalidasi pemanfaatan praktis Google Gemini AI, penyusunan prompt yang efektif, otomatisasi alur kerja analisis data, serta penerapan prinsip kecerdasan buatan yang bertanggung jawab.',
-    skills: ['Prompt Engineering', 'Gemini AI', 'Data Analysis Workflow', 'AI Ethics'],
+      'Spesialisasi 8 kursus berbasis proyek (12 guided projects) di Coursera yang mempraktikkan otomatisasi pengolahan data operasional, rumus lanjutan (SUMIF, VLOOKUP, XLOOKUP, INDEX-MATCH), penyusunan PivotTable, hingga pembuatan dashboard pelacakan KPI.',
+    skills: [
+      'Advanced Formulas (XLOOKUP/INDEX-MATCH)',
+      'PivotTables & Auto Reporting',
+      'Operational Dashboarding',
+      'AI-Assisted Data Workflows',
+    ],
   },
   {
     id: 'cert-ccna',
     title: 'Cisco CCNA: Introduction to Networks (ITN)',
     issuer: 'Cisco Networking Academy · UNIKOM',
     period: '2025—2028',
-    category: 'Computer Networking',
+    category: 'Network Infrastructure',
+    scope: 'industry',
     pdfUrl: '/cert-ccna.pdf',
     imageUrl: '/cert-ccna.png',
+    summary:
+      'Perancangan topologi LAN, konfigurasi router & switch Cisco IOS, subnetting VLSM IPv4/IPv6, dan troubleshooting.',
     description:
       'Sertifikasi Cisco Networking Academy yang mencakup 17 modul fundamental jaringan: perancangan topologi LAN, konfigurasi perangkat router dan switch berbasis Cisco IOS, pemodelan OSI & TCP/IP, subnetting VLSM IPv4/IPv6, hingga teknik dasar keamanan dan troubleshooting jaringan.',
     skills: [
@@ -191,12 +217,15 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     title: 'Cisco: Networking Basics',
     issuer: 'Cisco Networking Academy',
     period: '2026',
-    category: 'Computer Networking',
+    category: 'Network Infrastructure',
+    scope: 'industry',
     credentialId: '49cdedf9-0768-42cd-8b3a-82ac8e44a95a',
     pdfUrl: '/cert-cisco-networking-basics.pdf',
     imageUrl: '/cert-cisco-networking-basics.png',
+    summary:
+      'Konfigurasi jaringan nirkabel, manajemen IPv4/IPv6, layanan DHCP & NAT, serta diagnostik jaringan di Packet Tracer.',
     description:
-      'Sertifikasi dari Cisco Networking Academy yang menguatkan pemahaman konsep komunikasi data, komponen & topologi jaringan, konfigurasi wireless home router, skema pengalamatan IPv4/IPv6, layanan DHCP & NAT, serta simulasi lab Cisco Packet Tracer.',
+      'Sertifikasi dari Cisco Networking Academy yang menguatkan pemahaman konsep komunikasi data, komponen & topologi jaringan, konfigurasi wireless router, skema pengalamatan IPv4/IPv6, layanan DHCP & NAT, serta simulasi lab Cisco Packet Tracer.',
     skills: [
       'Network Architecture & Topologies',
       'IPv4 & IPv6 Addressing Formats',
@@ -226,23 +255,19 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     ],
   },
   {
-    id: 'cert-coursera-excel',
-    title: 'Microsoft Excel: Learn with Projects',
-    issuer: 'Coursera Project Network',
-    period: '2026',
-    category: 'Data Analytics & Modeling',
-    credentialId: 'V32873K6COVJ (8 Kursus Spesialisasi)',
-    verifyUrl: 'https://coursera.org/verify/specialization/V32873K6COVJ',
-    pdfUrl: '/cert-coursera-excel.pdf',
-    imageUrl: '/cert-coursera-excel.png',
+    id: 'cert-gemini',
+    title: 'Google Gemini Certified Student — University',
+    issuer: 'Google for Education',
+    period: '2026—2029',
+    category: 'Generative AI & Automation',
+    scope: 'industry',
+    pdfUrl: '/cert-gemini.pdf',
+    imageUrl: '/cert-gemini.png',
+    summary:
+      'Pemanfaatan Google Gemini AI, rekayasa prompt terstruktur, dan otomatisasi alur kerja analisis data.',
     description:
-      'Spesialisasi 8 kursus berbasis proyek (12 guided projects) di Coursera yang mempraktikkan pengolahan data spreadsheet, rumus lanjutan (SUMIF, VLOOKUP, XLOOKUP, INDEX-MATCH), penyusunan PivotTable, hingga pembuatan dashboard pelacakan proyek.',
-    skills: [
-      'Advanced Formulas (XLOOKUP/INDEX-MATCH)',
-      'PivotTables & Charts',
-      'Dashboard Assembly',
-      'AI-Assisted Data Workflows',
-    ],
+      'Sertifikasi resmi dari Google for Education yang memvalidasi pemanfaatan praktis Google Gemini AI, penyusunan prompt yang efektif, otomatisasi alur kerja analisis data, serta penerapan prinsip kecerdasan buatan yang bertanggung jawab.',
+    skills: ['Prompt Engineering', 'Gemini AI Workflow', 'Data Automation', 'AI Ethics'],
   },
   {
     id: 'cert-action-ai',
@@ -250,23 +275,29 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     issuer: 'underdogs. & UNIKOM',
     period: '2026',
     category: 'AI Prototyping & MVP',
+    scope: 'industry',
     credentialId: 'UDI-202610-twv1n6 (OpenBadge 3.0)',
     verifyUrl: 'https://udimpact.kolleges.net/en/achievements',
     pdfUrl: '/cert-action-ai.pdf',
     imageUrl: '/cert-action-ai.png',
+    summary:
+      'Perancangan prototipe produk digital berbasis AI (MVP), validasi kebutuhan pengguna, dan pengujian fitur.',
     description:
       'Program intensif pengembangan produk berbasis AI dari underdogs. & UNIKOM (Act-preneur Certified, W3C VC 2.0) yang berfokus pada perumusan masalah pengguna, penyusunan prompt, hingga pembuatan prototipe MVP menggunakan Gemini dan Lovable.',
-    skills: ['AI Prototyping', 'Lovable & Gemini', 'Problem Definition', 'MVP Planning'],
+    skills: ['AI Prototyping', 'Lovable & Gemini', 'User Requirement Analysis', 'MVP Testing'],
   },
   {
     id: 'cert-unikom-mendeley',
-    title: 'Literasi Informasi: Manajemen Referensi & Sitasi Ilmiah (Mendeley)',
+    title: 'Literasi Informasi: Manajemen Referensi Ilmiah (Mendeley)',
     issuer: 'Perpustakaan & Prodi Sistem Komputer UNIKOM',
     period: '2026',
     category: 'Academic Research',
+    scope: 'academic',
     credentialId: '003/SR/TR/PERPUS-UNIKOM/I/2026',
     pdfUrl: '/cert-unikom-mendeley.pdf',
     imageUrl: '/cert-unikom-mendeley.png',
+    summary:
+      'Manajemen basis data literatur ilmiah dan otomatisasi sitasi terstandar untuk publikasi jurnal nasional.',
     description:
       'Pelatihan penelusuran literatur ilmiah, pengelolaan basis data referensi riset, serta otomatisasi sitasi dan daftar pustaka terstandar menggunakan aplikasi Mendeley untuk menunjang penulisan karya ilmiah dan publikasi jurnal.',
     skills: [
@@ -603,109 +634,230 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
   },
 ];
 
-const SKILLS_DATA = [
+type SkillDomain = 'all' | 'fullstack' | 'qa' | 'data' | 'network-ai';
+
+interface ExpertiseItem {
+  id: Exclude<SkillDomain, 'all'>;
+  title: string;
+  subtitle: string;
+  iconName: 'code' | 'shield' | 'chart' | 'cpu';
+  description: string;
+  previewTags: string[];
+  modalDetails: {
+    kicker: string;
+    summary: string;
+    competencies: string[];
+    tools: string[];
+    highlightMetric: string;
+    relatedProjectIds: string[];
+  };
+}
+
+const EXPERTISE_DATA: ExpertiseItem[] = [
   {
-    index: '01',
-    title: 'Frontend & Fullstack Web Development',
+    id: 'fullstack',
+    title: 'Fullstack Web & Cross-Platform App',
+    subtitle: 'Web, Mobile & Desktop Architecture',
+    iconName: 'code',
     description:
-      'Membangun aplikasi web modern yang cepat dan responsif menggunakan ekosistem React 19, Next.js App Router, dan TypeScript. Teruji melalui sertifikasi peran Frontend Developer (React) dari HackerRank.',
-    badges: [
-      'React 19 (HackerRank Certified)',
-      'Next.js 15 App Router',
-      'TypeScript & JavaScript',
-      'Tailwind CSS 4',
-      'Node.js & FastAPI',
-      'Cloudflare Workers',
-      'Electron & Vite',
-      'REST API & WebSockets',
-    ],
+      'Merancang dan membangun aplikasi web modern (ReactJS, Next.js 15, TypeScript, Node.js, REST API) serta aplikasi mobile dan desktop lintas-platform (Flutter & PyQt6) dengan arsitektur komponen yang modular dan responsif.',
+    previewTags: ['ReactJS / React 19', 'Next.js 15', 'TypeScript & JS', 'NodeJS & REST API', 'Flutter'],
+    modalDetails: {
+      kicker: 'Fullstack Software Engineering · Web, Mobile & Desktop',
+      summary:
+        'Berpengalaman mengembangkan aplikasi dari tahap perancangan antarmuka (UI/UX), pembuatan arsitektur komponen frontend, integrasi REST API & backend, hingga deployment ke cloud edge (Cloudflare Workers & Vercel) maupun kompilasi aplikasi native.',
+      competencies: [
+        'Pengembangan aplikasi web modern berbasis komponen menggunakan React 19 (HackerRank Certified) dan Next.js 15 App Router.',
+        'Integrasi layanan backend, pembuatan endpoint REST API dengan Node.js & FastAPI, serta komunikasi real-time menggunakan WebSockets.',
+        'Pembangunan aplikasi mobile Android/iOS dengan Flutter (Dart) berarsitektur Offline-First (SQLite) dan manajemen state Riverpod/Provider.',
+        'Pengembangan aplikasi desktop Windows mandiri menggunakan Python (PyQt6) dengan asynchronous worker agar UI bebas freeze.',
+      ],
+      tools: [
+        'JavaScript (ES6+)',
+        'TypeScript',
+        'ReactJS / React 19',
+        'Next.js 15',
+        'NodeJS',
+        'REST API',
+        'HTML5 & CSS3',
+        'Tailwind CSS 4',
+        'Flutter & Dart',
+        'Python (PyQt6)',
+        'Git & GitHub',
+        'Cloudflare Workers',
+      ],
+      highlightMetric:
+        'Melahirkan 4 aplikasi mandiri siap pakai (EnInformasi Hub, ENCross, ENLife, ENCLip) dengan waktu muat cepat dan antarmuka responsif di berbagai ukuran layar.',
+      relatedProjectIds: ['eninformasi', 'encross', 'enlife', 'enclip'],
+    },
   },
   {
-    index: '02',
-    title: 'Mobile App Development (Flutter & Android)',
+    id: 'qa',
+    title: 'Quality Engineering (QA) & Software Testing',
+    subtitle: 'Reliability, API Testing & Performance',
+    iconName: 'shield',
     description:
-      'Mengembangkan aplikasi mobile lintas-platform dengan Flutter & Dart yang nyaman digunakan sehari-hari, mendukung penyimpanan lokal (offline-first), manajemen state yang rapi, dan visualisasi grafik.',
-    badges: [
-      'Flutter',
-      'Dart SDK',
-      'Android Native (Kotlin/Java)',
-      'Riverpod & Provider',
-      'Offline-First (SQLite)',
-      'fl_chart Visualization',
-      'Material Design 3',
-      'Capacitor',
-    ],
+      'Menjaga kualitas, keandalan, dan keamanan aplikasi melalui pengujian terstruktur—mencakup Unit Testing, API Testing dengan Postman, User Acceptance Testing (UAT), debugging sistematis, dan optimasi performa.',
+    previewTags: ['Quality Assurance (QA)', 'API Testing (Postman)', 'Unit Testing', 'UAT', 'Lighthouse 100%'],
+    modalDetails: {
+      kicker: 'Quality Assurance (QA) & Software Testing',
+      summary:
+        'Menerapkan pengujian perangkat lunak secara menyeluruh di setiap siklus pengembangan untuk memastikan seluruh fitur berjalan sesuai spesifikasi bisnis, bebas regresi, aman dari kebocoran memori, dan memiliki performa tinggi.',
+      competencies: [
+        'Pengujian endpoint REST API menggunakan Postman (validasi status code, payload JSON, autentikasi, error handling, dan waktu respons).',
+        'Pelaksanaan Functional Testing, Unit Testing, Integration Testing, serta penyusunan skenario uji dan User Acceptance Testing (UAT).',
+        'Audit performa aplikasi web menggunakan Google Lighthouse & Chrome DevTools hingga mencapai skor Core Web Vitals 99–100/100.',
+        'Pengujian stabilitas memori dan proses latar belakang pada aplikasi desktop & web (menjaga jejak RAM <50MB pada pemrosesan dokumen besar).',
+      ],
+      tools: [
+        'Quality Assurance (QA)',
+        'Software Testing',
+        'API Testing (Postman)',
+        'Unit Testing',
+        'User Acceptance Testing (UAT)',
+        'ESLint & Static Analysis',
+        'Chrome DevTools Profiling',
+        'Lighthouse Performance Audit',
+        'Bug Tracking & Debugging',
+        'Cross-Browser & Responsive Testing',
+      ],
+      highlightMetric:
+        'Skor performa Google Lighthouse 99–100/100 pada portal web produksi dan efisiensi penggunaan memori <50MB pada pemrosesan PDF berbasis Web Worker.',
+      relatedProjectIds: ['eninformasi', 'endoclens', 'encross'],
+    },
   },
   {
-    index: '03',
-    title: 'Jaringan Komputer & Protokol P2P',
+    id: 'data',
+    title: 'Data Automation, SQL & Dashboard Reporting',
+    subtitle: 'Operational ETL, Database & Business BI',
+    iconName: 'chart',
     description:
-      'Merancang komunikasi data peer-to-peer langsung via WebRTC tanpa server perantara, didukung pemahaman arsitektur jaringan, routing, switching, dan manajemen IP berstandar Cisco CCNA.',
-    badges: [
-      'Cisco CCNA (ITN)',
-      'Cisco Networking Basics',
-      'WebRTC P2P DataChannels',
-      'TCP/IP, IPv4/IPv6 & VLSM',
-      'DHCP, NAT & Routing',
-      'Cisco Packet Tracer',
-      'Socket.IO & Streaming',
-      'Linux & Docker Basics',
-    ],
+      'Memetakan alur data operasional menjadi dashboard pemantauan real-time dan sistem laporan otomatis (Auto Report / ETL) menggunakan Python, SQL (MySQL, PostgreSQL, SQLite), Firebase, Tableau, dan Excel tingkat lanjut.',
+    previewTags: ['Data Automation / ETL', 'SQL / MySQL', 'Tableau Dashboard', 'Excel Advanced', 'Firebase DB'],
+    modalDetails: {
+      kicker: 'IT Systems, Data Automation & Business Intelligence',
+      summary:
+        'Mengotomatisasi proses pengumpulan, pembersihan, dan pengolahan data operasional (ETL) dari berbagai sumber menjadi laporan terstruktur dan dashboard visual interaktif untuk mempercepat pengambilan keputusan.',
+      competencies: [
+        'Perancangan skema database relasional dan penulisan kueri SQL (MySQL, PostgreSQL, SQLite) untuk agregasi, join kompleks, dan pelaporan data.',
+        'Otomatisasi pengolahan data dan pembuatan sistem Auto Report menggunakan skrip Python serta formula Microsoft Excel tingkat lanjut (XLOOKUP, INDEX-MATCH, PivotTable).',
+        'Visualisasi metrik operasional dan tren kinerja ke dalam dashboard interaktif menggunakan Tableau, Chart.js, dan fl_chart.',
+        'Sinkronisasi data operasional lapangan secara real-time menggunakan Firebase Realtime Database dan penyimpanan lokal terstruktur.',
+      ],
+      tools: [
+        'Data Analysis',
+        'Data Automation / ETL',
+        'Dashboard Reporting',
+        'Tableau',
+        'SQL / MySQL / PostgreSQL',
+        'Database Management',
+        'SQLite & Firebase Realtime DB',
+        'Microsoft Excel (XLOOKUP, PivotTable)',
+        'Python (Pandas, Scikit-Learn)',
+        'Exploratory Data Analysis (EDA)',
+      ],
+      highlightMetric:
+        'Tersertifikasi resmi Cisco Data Analytics Essentials & Spesialisasi 8 Kursus Microsoft Excel Coursera, serta publikasi riset analitik data medis di Jurnal Komputika.',
+      relatedProjectIds: ['liver-ml', 'smart-pos', 'enlife'],
+    },
   },
   {
-    index: '04',
-    title: 'Data Analytics, SQL & Business Modeling',
+    id: 'network-ai',
+    title: 'Network Infrastructure, IoT & Applied AI',
+    subtitle: 'Cisco CCNA, Field-to-Dashboard IoT & AI',
+    iconName: 'cpu',
     description:
-      'Mengolah, membersihkan, dan menganalisis dataset menggunakan SQL relasional, Microsoft Excel tingkat lanjut, serta menyusun dashboard visual interaktif menggunakan Tableau untuk mendukung pengambilan keputusan.',
-    badges: [
-      'Cisco Data Analytics',
-      'SQL (MySQL, PostgreSQL, SQLite)',
-      'Microsoft Excel Advanced',
-      'XLOOKUP & PivotTables',
-      'Tableau Dashboarding',
-      'Firebase Realtime DB',
-      'Exploratory Data Analysis',
-    ],
+      'Mengintegrasikan sensor dan mikrokontroler lapangan (ESP32, Load Cell, RFID) ke sistem pemantauan real-time, merancang jaringan berstandar Cisco CCNA & protokol P2P WebRTC, serta menerapkan model AI & Computer Vision.',
+    previewTags: ['Cisco CCNA', 'ESP32 & IoT POS', 'WebRTC P2P', 'YOLOv8 Vision', 'Local LLM & Gemini'],
+    modalDetails: {
+      kicker: 'Network Infrastructure, IoT Systems & Applied AI',
+      summary:
+        'Menggabungkan keahlian infrastruktur jaringan komputer (Cisco CCNA), integrasi perangkat keras IoT di lapangan, serta penerapan model kecerdasan buatan (Computer Vision & LLM) ke dalam sistem operasional yang terhubung penuh.',
+      competencies: [
+        'Konfigurasi infrastruktur jaringan LAN/WLAN, routing & switching Cisco IOS, subnetting VLSM IPv4/IPv6, DHCP, NAT, dan diagnostik jaringan.',
+        'Integrasi perangkat IoT berbasis ESP32 (sensor berat Load Cell HX711, RFID e-KTP, kamera) langsung ke aplikasi kasir (POS) dan dashboard monitoring real-time.',
+        'Implementasi protokol komunikasi langsung antar-perangkat (Peer-to-Peer) menggunakan WebRTC DataChannels tanpa server penyimpanan perantara.',
+        'Pelatihan dan deployment model deteksi objek YOLOv8 Nano & TensorFlow CNN serta integrasi model AI lokal (Whisper, Qwen GGUF) dan Google Gemini API.',
+      ],
+      tools: [
+        'Cisco CCNA (Routing & Switching)',
+        'TCP/IP, IPv4/IPv6 & Subnetting VLSM',
+        'DHCP, NAT & Cisco Packet Tracer',
+        'WebRTC P2P & Socket.IO',
+        'ESP32 & Sensor IoT (Load Cell, RFID)',
+        'YOLOv8 & TensorFlow CNN',
+        'Faster-Whisper & Qwen GGUF',
+        'Google Gemini API',
+        'FFmpeg GPU Pipeline',
+      ],
+      highlightMetric:
+        'Akurasi pembacaan timbangan digital POS >98% (terbit di Jurnal Biner) dan akurasi deteksi pelat nomor YOLOv8 mencapai mAP@50 98.51% dengan waktu respons <2 detik.',
+      relatedProjectIds: ['smart-parking', 'smart-pos', 'encross', 'enclip'],
+    },
   },
-  {
-    index: '05',
-    title: 'Aplikasi Desktop, Otomasi Media & AI',
-    description:
-      'Membuat aplikasi desktop menggunakan Python (PyQt6) dengan pemrosesan latar belakang yang mulus, mengintegrasikan model AI lokal (Whisper & Qwen GGUF) maupun Gemini API, serta otomasi video FFmpeg.',
-    badges: [
-      'Python, C++ & C',
-      'PyQt6 Multithreading',
-      'Faster-Whisper STT',
-      'FFmpeg GPU Pipeline',
-      'Qwen 2.5 GGUF Local LLM',
-      'Google Gemini API',
-      'Tesseract.js OCR',
-    ],
-  },
-  {
-    index: '06',
-    title: 'Computer Vision, IoT & Riset Ilmiah',
-    description:
-      'Melatih model deteksi objek (YOLOv8 & CNN), merakit sistem mikrokontroler ESP32 beserta sensor fisik, dan menuliskan hasil eksperimen ke dalam publikasi jurnal ilmiah terakreditasi.',
-    badges: [
-      'YOLOv8 Nano (mAP 98.5%)',
-      'TensorFlow CNN',
-      'ESP32 & Sensor IoT',
-      'Scikit-Learn (RF, SVM, LR)',
-      'Jurnal Komputika & Biner',
-      'Mendeley Reference Manager',
-      'Git & GitHub Workflow',
-    ],
-  },
+];
+
+interface SkillKeywordItem {
+  name: string;
+  domain: Exclude<SkillDomain, 'all'>;
+  highlight?: boolean;
+}
+
+const SKILL_KEYWORDS: SkillKeywordItem[] = [
+  // Fullstack & Web (Padepokan 79 Core)
+  { name: 'JavaScript (ES6+)', domain: 'fullstack', highlight: true },
+  { name: 'TypeScript', domain: 'fullstack', highlight: true },
+  { name: 'ReactJS / React 19', domain: 'fullstack', highlight: true },
+  { name: 'Next.js 15 App Router', domain: 'fullstack', highlight: true },
+  { name: 'NodeJS', domain: 'fullstack', highlight: true },
+  { name: 'REST API', domain: 'fullstack', highlight: true },
+  { name: 'HTML5 & CSS3', domain: 'fullstack' },
+  { name: 'Tailwind CSS', domain: 'fullstack' },
+  { name: 'Flutter & Dart', domain: 'fullstack', highlight: true },
+  { name: 'Python (PyQt6 & FastAPI)', domain: 'fullstack' },
+  { name: 'Git & GitHub Workflow', domain: 'fullstack' },
+
+  // QA & Software Testing (Padepokan 79 QA Focus)
+  { name: 'Quality Assurance (QA)', domain: 'qa', highlight: true },
+  { name: 'Software Testing', domain: 'qa', highlight: true },
+  { name: 'Unit Testing', domain: 'qa', highlight: true },
+  { name: 'API Testing (Postman)', domain: 'qa', highlight: true },
+  { name: 'User Acceptance Testing (UAT)', domain: 'qa', highlight: true },
+  { name: 'Functional & Regression Testing', domain: 'qa' },
+  { name: 'Lighthouse & Core Web Vitals Audit', domain: 'qa' },
+  { name: 'Debugging & Memory Profiling', domain: 'qa' },
+
+  // Data Automation & Database (Garudafood Core)
+  { name: 'Data Analysis', domain: 'data', highlight: true },
+  { name: 'Data Automation / ETL', domain: 'data', highlight: true },
+  { name: 'Tableau', domain: 'data', highlight: true },
+  { name: 'Dashboard Reporting', domain: 'data', highlight: true },
+  { name: 'Database Management', domain: 'data', highlight: true },
+  { name: 'SQL / MySQL / PostgreSQL', domain: 'data', highlight: true },
+  { name: 'SQLite & Firebase Realtime DB', domain: 'data', highlight: true },
+  { name: 'Microsoft Excel (XLOOKUP & PivotTable)', domain: 'data', highlight: true },
+  { name: 'Python (Pandas & Scikit-Learn)', domain: 'data' },
+
+  // Network, IoT & AI (System & Field Integration)
+  { name: 'Cisco CCNA (Routing & Switching)', domain: 'network-ai', highlight: true },
+  { name: 'TCP/IP, VLSM Subnetting & DHCP/NAT', domain: 'network-ai' },
+  { name: 'WebRTC P2P DataChannels', domain: 'network-ai', highlight: true },
+  { name: 'ESP32 & Sensor IoT (POS / RFID)', domain: 'network-ai', highlight: true },
+  { name: 'YOLOv8 & Computer Vision', domain: 'network-ai', highlight: true },
+  { name: 'Local LLM (Qwen GGUF) & Gemini API', domain: 'network-ai' },
 ];
 
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>('all');
+  const [activeSkillTab, setActiveSkillTab] = useState<SkillDomain>('all');
+  const [activeCertFilter, setActiveCertFilter] = useState<'all' | 'industry'>('all');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeModalProject, setActiveModalProject] = useState<
     FeaturedApp | ResearchProject | null
   >(null);
   const [isClosingModal, setIsClosingModal] = useState(false);
+  const [activeExpertise, setActiveExpertise] = useState<ExpertiseItem | null>(null);
+  const [isClosingExpertiseModal, setIsClosingExpertiseModal] = useState(false);
   const [activeCert, setActiveCert] = useState<CertificateCredential | null>(null);
   const [isClosingCertModal, setIsClosingCertModal] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('about');
@@ -746,6 +898,19 @@ export default function PortfolioPage() {
     }, 240);
   };
 
+  const handleOpenExpertiseModal = (item: ExpertiseItem) => {
+    setIsClosingExpertiseModal(false);
+    setActiveExpertise(item);
+  };
+
+  const handleCloseExpertiseModal = () => {
+    setIsClosingExpertiseModal(true);
+    setTimeout(() => {
+      setActiveExpertise(null);
+      setIsClosingExpertiseModal(false);
+    }, 240);
+  };
+
   const handleOpenCertModal = (cert: CertificateCredential) => {
     setIsClosingCertModal(false);
     setActiveCert(cert);
@@ -760,7 +925,7 @@ export default function PortfolioPage() {
   };
 
   useEffect(() => {
-    if (activeModalProject || activeCert) {
+    if (activeModalProject || activeCert || activeExpertise) {
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
       if (scrollbarWidth > 0) {
@@ -774,13 +939,16 @@ export default function PortfolioPage() {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
     };
-  }, [activeModalProject, activeCert]);
+  }, [activeModalProject, activeCert, activeExpertise]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (activeModalProject && !isClosingModal) {
           handleCloseModal();
+        }
+        if (activeExpertise && !isClosingExpertiseModal) {
+          handleCloseExpertiseModal();
         }
         if (activeCert && !isClosingCertModal) {
           handleCloseCertModal();
@@ -789,7 +957,14 @@ export default function PortfolioPage() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeModalProject, isClosingModal, activeCert, isClosingCertModal]);
+  }, [
+    activeModalProject,
+    isClosingModal,
+    activeExpertise,
+    isClosingExpertiseModal,
+    activeCert,
+    isClosingCertModal,
+  ]);
 
   useEffect(() => {
     const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
@@ -836,7 +1011,7 @@ export default function PortfolioPage() {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [activeFilter]);
+  }, [activeFilter, activeSkillTab, activeCertFilter]);
 
   const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -1036,19 +1211,19 @@ export default function PortfolioPage() {
                 {/* Role Indicator Badge */}
                 <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
-                  <span>Fullstack Developer · AI &amp; Software Engineer</span>
+                  <span>Fullstack Developer · Data Automation &amp; QA Engineer</span>
                 </div>
 
                 {/* Main Headline */}
                 <div className="animate-fade-in-up delay-75">
                   <h1 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-100 leading-[1.18] sm:leading-[1.15]">
-                    Merancang aplikasi web modern, mobile lintas-platform, hingga sistem jaringan.
+                    Membangun aplikasi fullstack, otomasi data real-time, hingga sistem yang teruji.
                   </h1>
                 </div>
 
                 {/* Professional yet Relaxed Bio */}
                 <p className="animate-fade-in-up delay-150 max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-400">
-                  Halo! Saya lulusan S1 Sistem Komputer UNIKOM yang fokus mengembangkan aplikasi web modern (Next.js &amp; React), aplikasi mobile berbasis Flutter, serta sistem komunikasi P2P real-time dengan WebRTC. Saya senang menerjemahkan kebutuhan teknis yang kompleks menjadi produk digital yang cepat, rapi, dan nyaman digunakan sehari-hari.
+                  Halo! Saya lulusan <strong className="text-zinc-200 font-medium">S1 Sistem Komputer (Rumpun Ilmu Komputer &amp; Informatika)</strong> UNIKOM yang fokus merancang aplikasi web &amp; mobile modern (ReactJS, Next.js, Node.js, Flutter), melakukan pengujian kualitas perangkat lunak (QA, Unit &amp; API Testing), serta mengolah alur data operasional menjadi dashboard real-time dan laporan otomatis dengan Python, SQL, Tableau, dan Excel.
                 </p>
 
                 {/* CTA Group (Symmetrical 2-column grid on mobile, inline flex on sm+) */}
@@ -1198,10 +1373,10 @@ export default function PortfolioPage() {
 
             <div data-reveal data-delay="1" className="space-y-4 sm:space-y-5 text-sm sm:text-base text-zinc-400 lg:col-span-8">
               <p className="leading-relaxed text-justify">
-                Latar belakang saya di S1 Sistem Komputer UNIKOM (IPK 3.53) memberi perspektif yang utuh—mulai dari memahami cara kerja perangkat keras dan jaringan komputer, hingga merancang aplikasi modern. Di ranah web, saya terbiasa membangun antarmuka yang cepat dan responsif menggunakan Next.js App Router, React 19, TypeScript, serta Tailwind CSS, sekaligus mengoptimalkan performanya di Cloudflare Workers.
+                Latar belakang saya di <strong className="text-zinc-200 font-medium">S1 Sistem Komputer (Rumpun Ilmu Komputer &amp; Informatika)</strong> UNIKOM (IPK 3.53) memberi perspektif yang utuh—mulai dari memahami arsitektur perangkat keras dan jaringan komputer, hingga merancang aplikasi modern dan menguji kualitas perangkat lunak (Quality Assurance). Di ranah web dan mobile, saya terbiasa membangun aplikasi menggunakan ReactJS, Next.js 15, TypeScript, Node.js, REST API, serta Flutter yang diuji secara menyeluruh dengan Postman dan Unit Testing.
               </p>
               <p className="leading-relaxed text-justify">
-                Untuk platform mobile dan desktop, saya mengembangkan aplikasi dengan Flutter dan Python (PyQt6) yang tetap lancar digunakan secara offline. Saya juga gemar mengeksplorasi komunikasi data P2P langsung antar-perangkat lewat WebRTC, pengolahan data &amp; analitik menggunakan SQL dan Excel, hingga penerapan model AI dan computer vision langsung di perangkat pengguna.
+                Selain pengembangan aplikasi, saya memiliki ketertarikan kuat pada otomasi sistem dan analitik data operasional. Saya terbiasa memetakan data dari lapangan maupun database relasional (SQL / MySQL / PostgreSQL / Firebase) menjadi dashboard pemantauan real-time dan sistem laporan otomatis (Auto Report / ETL) menggunakan Python, Tableau, serta Microsoft Excel tingkat lanjut.
               </p>
 
               {/* 3 Engineering Pillars */}
@@ -1214,11 +1389,11 @@ export default function PortfolioPage() {
                     <div className="mb-2 flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Web &amp; Frontend
+                        Fullstack &amp; Mobile
                       </h3>
                     </div>
                     <p className="text-xs leading-relaxed text-zinc-400 text-justify">
-                      Membangun aplikasi web modern dengan Next.js, React 19, dan TypeScript yang cepat, rapi, serta nyaman diakses di layar HP maupun desktop.
+                      Membangun aplikasi web &amp; lintas-platform menggunakan ReactJS, Next.js 15, TypeScript, Node.js, REST API, dan Flutter yang responsif di semua perangkat.
                     </p>
                   </div>
                 </div>
@@ -1230,11 +1405,11 @@ export default function PortfolioPage() {
                     <div className="mb-2 flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Mobile &amp; Desktop
+                        Quality Assurance (QA)
                       </h3>
                     </div>
                     <p className="text-xs leading-relaxed text-zinc-400 text-justify">
-                      Mengembangkan aplikasi lintas-platform menggunakan Flutter dan Python (PyQt6) dengan penyimpanan lokal (SQLite) yang tetap andal tanpa internet.
+                      Memastikan aplikasi stabil dan bebas bug lewat Unit Testing, API Testing dengan Postman, User Acceptance Testing (UAT), dan optimasi Lighthouse 100%.
                     </p>
                   </div>
                 </div>
@@ -1246,11 +1421,11 @@ export default function PortfolioPage() {
                     <div className="mb-2 flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       <h3 className="font-heading text-sm font-semibold text-zinc-100">
-                        Network, Data &amp; AI
+                        Data Automation &amp; IoT
                       </h3>
                     </div>
                     <p className="text-xs leading-relaxed text-zinc-400 text-justify">
-                      Merancang transfer P2P WebRTC, arsitektur jaringan berstandar Cisco CCNA, pengolahan analitik data, hingga integrasi AI dan computer vision.
+                      Mengolah alur data operasional menjadi dashboard real-time dan sistem Auto Report menggunakan Python, SQL, Tableau, Excel lanjutan, serta sensor IoT.
                     </p>
                   </div>
                 </div>
@@ -1491,57 +1666,163 @@ export default function PortfolioPage() {
           )}
         </section>
 
-        {/* KEAHLIAN TEKNIS */}
+        {/* KEAHLIAN TEKNIS & SPESIALISASI */}
         <section
           id="skills"
           className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
         >
-          <div data-reveal className="mb-8 sm:mb-10">
-            <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
-              <span className="h-px w-6 bg-emerald-500/80" />
-              <span>Keahlian Teknis</span>
-            </div>
-            <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
-              Teknologi &amp; Bidang Keahlian
+          {/* Centered Expertise Header (Inspired by Reference Layout) */}
+          <div data-reveal className="mx-auto max-w-2xl text-center mb-9 sm:mb-12">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-emerald-400">
+              What I Specialize In
+            </p>
+            <h2 className="font-heading mt-2 text-2xl sm:text-4xl font-bold tracking-tight text-zinc-100">
+              Bidang Spesialisasi &amp; Keahlian
             </h2>
-            <p className="mt-1.5 max-w-2xl text-xs sm:text-sm text-zinc-400">
-              Rangkaian bahasa pemrograman, framework, dan perangkat yang sehari-hari saya gunakan untuk merancang aplikasi hingga mengolah data.
+            <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-zinc-400">
+              Kombinasi keahlian teknis dan pengalaman praktis dalam membangun aplikasi fullstack, menjaga kualitas perangkat lunak (QA), mengotomatisasi alur data menjadi dashboard real-time, serta infrastruktur jaringan &amp; IoT.
             </p>
           </div>
 
-          <div className="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
-            {SKILLS_DATA.map((skill, idx) => (
-              <div
-                key={skill.title}
-                data-reveal
-                data-delay={String((idx % 3) + 1)}
-                onMouseMove={handleCardMouseMove}
-                className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-4 sm:p-6 hover:-translate-y-1 hover:border-zinc-700"
-              >
-                <div className="relative z-10">
-                  <div className="mb-2.5 sm:mb-3 flex items-center gap-2.5">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400/90 shrink-0 transition-transform duration-300 group-hover:scale-125" />
-                    <h3 className="font-heading text-base font-bold text-zinc-100 group-hover:text-white transition-colors">
-                      {skill.title}
+          {/* 4-Column Specialization Cards */}
+          <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {EXPERTISE_DATA.map((item, idx) => {
+              const IconComponent =
+                item.iconName === 'code'
+                  ? Code2
+                  : item.iconName === 'shield'
+                  ? ShieldCheck
+                  : item.iconName === 'chart'
+                  ? BarChart3
+                  : Cpu;
+
+              return (
+                <div
+                  key={item.id}
+                  data-reveal
+                  data-delay={String((idx % 4) + 1)}
+                  onMouseMove={handleCardMouseMove}
+                  onClick={() => handleOpenExpertiseModal(item)}
+                  className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/40 cursor-pointer active:scale-[0.99]"
+                >
+                  <div className="relative z-10">
+                    {/* Top Icon Badge */}
+                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-emerald-400 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-all duration-300 group-hover:scale-110 group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10">
+                      <IconComponent className="h-5 w-5" />
+                    </div>
+
+                    {/* Title & Subtitle */}
+                    <h3 className="font-heading text-base sm:text-lg font-bold text-zinc-100 leading-snug transition-colors group-hover:text-emerald-300">
+                      {item.title}
                     </h3>
+                    <p className="mt-1 font-mono text-[11px] text-zinc-500">
+                      {item.subtitle}
+                    </p>
+
+                    {/* Concise Practical Narrative */}
+                    <p className="mt-3 text-xs leading-relaxed text-zinc-400 text-justify">
+                      {item.description}
+                    </p>
+
+                    {/* Core Preview Pills */}
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {item.previewTags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded border border-zinc-800/90 bg-zinc-950/90 px-2 py-0.5 font-mono text-[10px] text-zinc-300 transition-colors group-hover:border-zinc-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <p className="text-xs leading-relaxed text-zinc-400 text-justify">
-                    {skill.description}
+
+                  {/* Interactive "Read more ->" Footer */}
+                  <div className="relative z-10 mt-5 border-t border-zinc-800/80 pt-3.5">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-200 transition-colors group-hover:text-emerald-400">
+                      <span>Lihat detail &amp; keahlian</span>
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Interactive Technical Keyword & Stack Explorer */}
+          <div
+            data-reveal
+            onMouseMove={handleCardMouseMove}
+            className="spotlight-card mt-7 sm:mt-8 rounded-2xl border border-zinc-800/90 p-4 sm:p-6"
+          >
+            <div className="relative z-10">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-zinc-800/80 pb-4">
+                <div>
+                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span>Eksplorasi Kata Kunci Teknis &amp; Tools</span>
+                  </div>
+                  <p className="mt-1 text-xs text-zinc-400">
+                    Filter berdasarkan bidang fokus atau klik tag keahlian mana saja untuk melihat rincian penerapannya.
                   </p>
                 </div>
 
-                <div className="relative z-10 mt-4 sm:mt-5 flex flex-wrap gap-1.5 border-t border-zinc-800/80 pt-3.5 sm:pt-4">
-                  {skill.badges.map((badge) => (
-                    <span
-                      key={badge}
-                      className="rounded border border-zinc-800 bg-zinc-950/90 px-2 sm:px-2.5 py-1 font-mono text-[10px] sm:text-[11px] text-zinc-300 transition-colors group-hover:border-zinc-700/80"
+                {/* Filter Tabs */}
+                <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1.5 rounded-xl border border-zinc-800/80 bg-zinc-950/80 p-1.5">
+                  {[
+                    { id: 'all', label: `Semua (${SKILL_KEYWORDS.length})` },
+                    { id: 'fullstack', label: 'Fullstack & Web' },
+                    { id: 'qa', label: 'QA & Testing' },
+                    { id: 'data', label: 'Data & Otomasi' },
+                    { id: 'network-ai', label: 'Jaringan, IoT & AI' },
+                  ].map((tab, idx) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setActiveSkillTab(tab.id as SkillDomain)}
+                      className={`${
+                        idx === 0 ? 'col-span-2 sm:col-span-1' : ''
+                      } rounded-lg px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer ${
+                        activeSkillTab === tab.id
+                          ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
+                          : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200'
+                      }`}
                     >
-                      {badge}
-                    </span>
+                      {tab.label}
+                    </button>
                   ))}
                 </div>
               </div>
-            ))}
+
+              {/* Interactive Skill Pills */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {SKILL_KEYWORDS.filter(
+                  (kw) => activeSkillTab === 'all' || kw.domain === activeSkillTab
+                ).map((kw, idx) => {
+                  const targetExpertise = EXPERTISE_DATA.find((e) => e.id === kw.domain);
+                  return (
+                    <button
+                      key={`${activeSkillTab}-${kw.name}`}
+                      type="button"
+                      style={{ animationDelay: `${(idx % 12) * 25}ms` }}
+                      onClick={() => {
+                        if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
+                      }}
+                      className={`animate-card-enter group/pill inline-flex items-center gap-1.5 rounded-lg border px-2.5 sm:px-3 py-1.5 font-mono text-[11px] sm:text-xs transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
+                        kw.highlight
+                          ? 'border-zinc-700/90 bg-zinc-900/90 text-zinc-100 hover:border-emerald-500/50 hover:text-emerald-300'
+                          : 'border-zinc-800/80 bg-zinc-950/80 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
+                      }`}
+                    >
+                      {kw.highlight && (
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80 transition-transform group-hover/pill:scale-125" />
+                      )}
+                      <span>{kw.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1559,7 +1840,7 @@ export default function PortfolioPage() {
               Pendidikan, Publikasi &amp; Sertifikasi
             </h2>
             <p className="mt-1.5 max-w-2xl text-xs sm:text-sm text-zinc-400">
-              Perjalanan studi di bidang Sistem Komputer, publikasi riset ilmiah terakreditasi nasional, serta sertifikasi kompetensi yang telah terverifikasi.
+              Perjalanan studi di bidang Sistem Komputer (Rumpun Ilmu Komputer &amp; Informatika), publikasi riset terakreditasi nasional, serta sertifikasi kompetensi yang telah terverifikasi.
             </p>
           </div>
 
@@ -1587,6 +1868,9 @@ export default function PortfolioPage() {
                 <h3 className="font-heading mt-3 text-lg sm:text-xl font-bold text-zinc-100 group-hover/edu:text-white transition-colors">
                   S1 Sistem Komputer
                 </h3>
+                <p className="mt-0.5 font-mono text-[11px] text-emerald-400">
+                  Rumpun Ilmu Komputer &amp; Informatika
+                </p>
                 <p className="mt-1 text-xs sm:text-sm font-medium text-zinc-300">
                   Universitas Komputer Indonesia (UNIKOM) · Bandung, Jawa Barat
                 </p>
@@ -1597,7 +1881,7 @@ export default function PortfolioPage() {
                 </div>
 
                 <p className="mt-3 text-xs leading-relaxed text-zinc-400 text-justify">
-                  Mempelajari integrasi sistem perangkat keras dan perangkat lunak modern, arsitektur jaringan komputer, pengolahan citra digital, serta penerapan kecerdasan buatan dan IoT.
+                  Mempelajari rekayasa perangkat lunak modern, manajemen basis data &amp; sistem informasi, arsitektur jaringan komputer, serta integrasi perangkat keras IoT dan kecerdasan buatan.
                 </p>
 
                 <div className="mt-2 text-[11px] font-mono text-zinc-500">
@@ -1650,10 +1934,10 @@ export default function PortfolioPage() {
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
-                    Computer Vision &amp; Deep Learning
+                    Software &amp; Data Engineering
                   </span>
                   <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
-                    Embedded Systems &amp; IoT
+                    Computer Vision &amp; IoT
                   </span>
                   <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
                     Jaringan Komputer &amp; P2P
@@ -1778,26 +2062,50 @@ export default function PortfolioPage() {
                   <span>Sertifikasi Resmi</span>
                 </div>
                 <h3 className="font-heading mt-1 text-2xl font-bold tracking-tight text-zinc-100">
-                  Kredensial Industri &amp; Pelatihan Terverifikasi
+                  Kredensial Industri &amp; Uji Kompetensi
                 </h3>
                 <p className="mt-1 text-xs text-zinc-400">
-                  Ketuk kartu sertifikat untuk melihat pratinjau dokumen asli, rincian kompetensi, dan tautan verifikasi resmi.
+                  Ringkasan poin kompetensi inti di setiap sertifikat. Ketuk kartu untuk pratinjau dokumen asli dan tautan verifikasi.
                 </p>
               </div>
-              <span className="self-start sm:self-auto font-mono text-xs text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full">
-                {CERTIFICATIONS_DATA.length} Sertifikat Terverifikasi
-              </span>
+
+              {/* Filter Sertifikat: Fokus Industri (7) vs Semua (8) */}
+              <div className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-800/80 bg-zinc-900/50 p-1 self-start sm:self-auto">
+                <button
+                  type="button"
+                  onClick={() => setActiveCertFilter('all')}
+                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition cursor-pointer ${
+                    activeCertFilter === 'all'
+                      ? 'bg-zinc-100 text-zinc-950 font-semibold'
+                      : 'text-zinc-400 hover:text-zinc-200'
+                  }`}
+                >
+                  Semua ({CERTIFICATIONS_DATA.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveCertFilter('industry')}
+                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition cursor-pointer ${
+                    activeCertFilter === 'industry'
+                      ? 'bg-zinc-100 text-zinc-950 font-semibold'
+                      : 'text-zinc-400 hover:text-zinc-200'
+                  }`}
+                >
+                  Fokus Industri (7)
+                </button>
+              </div>
             </div>
 
             <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-              {CERTIFICATIONS_DATA.map((cert, idx) => (
+              {CERTIFICATIONS_DATA.filter(
+                (cert) => activeCertFilter === 'all' || cert.scope === 'industry'
+              ).map((cert, idx) => (
                 <div
-                  key={cert.id}
-                  data-reveal
-                  data-delay={String((idx % 4) + 1)}
+                  key={`${activeCertFilter}-${cert.id}`}
+                  style={{ animationDelay: `${idx * 55}ms` }}
                   onMouseMove={handleCardMouseMove}
                   onClick={() => handleOpenCertModal(cert)}
-                  className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:-translate-y-1 hover:border-zinc-700 cursor-pointer active:scale-[0.99]"
+                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:-translate-y-1 hover:border-zinc-700 cursor-pointer active:scale-[0.99]"
                 >
                   {/* Certificate Image Preview Header */}
                   <div className="relative z-10">
@@ -1829,7 +2137,7 @@ export default function PortfolioPage() {
                       </div>
                     </div>
 
-                    {/* Certificate Content */}
+                    {/* Certificate Content (Concise 1-line Core Competency) */}
                     <div className="p-4 sm:p-5">
                       <div className="flex items-center justify-between gap-2 text-[11px] text-zinc-400">
                         <span className="font-medium text-zinc-300 truncate">{cert.issuer}</span>
@@ -1848,8 +2156,8 @@ export default function PortfolioPage() {
                         </p>
                       )}
 
-                      <p className="mt-2 text-[11px] leading-relaxed text-zinc-400 line-clamp-2">
-                        {cert.description}
+                      <p className="mt-2 text-[11px] leading-relaxed text-zinc-400">
+                        {cert.summary}
                       </p>
                     </div>
                   </div>
@@ -2238,6 +2546,136 @@ export default function PortfolioPage() {
                     </a>
                   )}
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL RINCIAN SPESIALISASI & KEAHLIAN */}
+      {activeExpertise && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
+          onClick={handleCloseExpertiseModal}
+        >
+          {/* Backdrop */}
+          <div
+            className={`absolute inset-0 bg-black/80 backdrop-blur-md ${
+              isClosingExpertiseModal
+                ? 'animate-backdrop-out pointer-events-none'
+                : 'animate-backdrop-in'
+            }`}
+          />
+
+          <div
+            className={`relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-zinc-800 bg-[#0E0E11] p-4 sm:p-6 md:p-8 shadow-2xl text-left ${
+              isClosingExpertiseModal
+                ? 'animate-modal-out pointer-events-none'
+                : 'animate-modal-in'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={handleCloseExpertiseModal}
+              className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition cursor-pointer"
+              aria-label="Tutup"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="space-y-4">
+              <div className="pr-8">
+                <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
+                  {activeExpertise.modalDetails.kicker}
+                </span>
+                <h3 className="font-heading text-lg sm:text-2xl font-bold text-zinc-100 mt-1">
+                  {activeExpertise.title}
+                </h3>
+              </div>
+
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
+                {activeExpertise.modalDetails.summary}
+              </p>
+
+              {/* Cakupan Kompetensi */}
+              <div className="space-y-2 pt-1">
+                <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold">
+                  Cakupan Kompetensi &amp; Implementasi:
+                </p>
+                <ul className="space-y-2 text-xs text-zinc-300">
+                  {activeExpertise.modalDetails.competencies.map((comp, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <span className="text-emerald-400 font-mono text-[11px] mt-0.5">•</span>
+                      <span className="leading-relaxed">{comp}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Tools & Kata Kunci Teknis */}
+              <div className="pt-2 border-t border-zinc-800/80">
+                <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold mb-2.5">
+                  Teknologi, Metode &amp; Tools Terkait:
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {activeExpertise.modalDetails.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-200"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Bukti & Metrik Capaian */}
+              <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-3.5 sm:p-4 text-xs text-emerald-200 leading-relaxed">
+                <span className="font-semibold text-emerald-300 block mb-1">
+                  Bukti &amp; Capaian Terukur:
+                </span>
+                {activeExpertise.modalDetails.highlightMetric}
+              </div>
+
+              {/* Proyek Terkait (Interaktif: Klik langsung buka modal proyek) */}
+              <div className="pt-2 border-t border-zinc-800/80">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 mb-2">
+                  Implementasi di Proyek &amp; Riset (Ketuk untuk melihat proyek):
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {activeExpertise.modalDetails.relatedProjectIds.map((projId) => {
+                    const foundProj =
+                      FEATURED_APPS.find((p) => p.id === projId) ||
+                      RESEARCH_PROJECTS.find((p) => p.id === projId);
+                    if (!foundProj) return null;
+                    return (
+                      <button
+                        key={projId}
+                        type="button"
+                        onClick={() => {
+                          setActiveExpertise(null);
+                          setIsClosingExpertiseModal(false);
+                          handleOpenModal(foundProj);
+                        }}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3 py-1.5 text-xs font-medium text-zinc-200 transition hover:border-emerald-500/40 hover:text-emerald-300 cursor-pointer"
+                      >
+                        <span>{foundProj.title.split('—')[0].trim()}</span>
+                        <ArrowUpRight className="h-3.5 w-3.5 text-emerald-400" />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-end">
+                <button
+                  onClick={handleCloseExpertiseModal}
+                  className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 text-xs font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition cursor-pointer"
+                >
+                  Tutup
+                </button>
               </div>
             </div>
           </div>
