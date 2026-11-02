@@ -1832,9 +1832,6 @@ export default function PortfolioPage() {
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                     <span>Eksplorasi Kata Kunci Teknis &amp; Tools</span>
                   </div>
-                  <p className="mt-1 text-xs text-zinc-400">
-                    Filter berdasarkan bidang fokus atau klik tag keahlian mana saja untuk melihat rincian penerapannya.
-                  </p>
                 </div>
 
                 {/* Filter Tabs */}
