@@ -305,16 +305,16 @@ const FEATURED_APPS: FeaturedApp[] = [
   },
   {
     id: 'eninformasi',
-    title: 'EnInformasi Hub — Portal 195 Tutorial, Gaming & Tren Teknologi Terkini',
+    title: 'EnInformasi Hub — Portal 207 Tutorial, Gaming & Tren Teknologi Terkini',
     tagline: 'Platform Edukasi & Publikasi Web · Bilingual ID/EN',
     year: '2026',
     badge: 'Next.js & Cloudflare',
     category: ['software'],
     image: '/eninformasi-icon.svg',
     description:
-      'Portal media teknologi bilingual (ID/EN) yang menyajikan 195 modul tutorial, gaming, dan tren teknologi terkini dengan Skor Lighthouse 100/100 di Cloudflare Workers/Pages.',
+      'Portal media teknologi bilingual (ID/EN) yang menyajikan 207 modul tutorial, gaming, dan tren teknologi terkini dengan Skor Lighthouse 100/100 di Cloudflare Workers/Pages.',
     highlights: [
-      '195 Katalog Terstruktur (Tutorial Praktis, Gaming & Deep-Dive Trends)',
+      '207 Katalog Terstruktur (Tutorial Praktis, Gaming & Deep-Dive Trends)',
       'Dual Language Switcher 100% Real-Time (ID / EN) & Interactive Checklist',
     ],
     tech: [
@@ -342,7 +342,7 @@ const FEATURED_APPS: FeaturedApp[] = [
       summary:
         'Platform web modern yang memisahkan secara tegas antara Tutorial Praktis (Hands-on Guide) dan EnInformasi (Deep-Dive Insight & Trends), dirancang dengan fokus pada kecepatan akses, tipografi editorial yang nyaman dibaca, dan modularitas konten bilingual penuh.',
       bullets: [
-        'Katalog Konten Terkurasi: Memuat 195 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
+        'Katalog Konten Terkurasi: Memuat 207 artikel komprehensif mencakup rekayasa perangkat lunak, arsitektur LLM otonom, komputasi awan, sistem tertanam, dan analisis industri teknologi terkini.',
         'Sistem Bilingual Real-Time: Switcher bahasa terisolasi yang mengalihkan 100% judul, ringkasan, teks artikel, dan daftar isi secara instan tanpa re-render halaman penuh.',
         'Interactive Practice Checklist: Fitur pencatatan progres praktik pengguna langsung di browser berbasis sessionStorage per artikel dengan tombol reset instan.',
         'Smart Viewport Scrollspy: Navigasi daftar isi aktif yang melacak posisi pembacaan secara real-time pada desktop dan mobile.',

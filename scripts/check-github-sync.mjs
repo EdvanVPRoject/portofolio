@@ -75,34 +75,42 @@ async function syncEnInformasiStats(shouldApply = false) {
   let hasChanges = false;
 
   // Regex pola highlight katalog EnInformasi:
-  // e.g. "150 Katalog Terstruktur (65 Hands-on Guide & 85 Deep-Dive Trends)"
-  const highlightRegex = /(\d+)\s+Katalog Terstruktur\s*\(\s*(\d+)\s+Hands-on Guide\s*&\s*(\d+)\s+Deep-Dive Trends\)/;
+  // e.g. "195 Katalog Terstruktur (Tutorial Praktis, Gaming & Deep-Dive Trends)" atau "(65 Hands-on Guide & 130 Deep-Dive Trends)"
+  const highlightRegex = /(\d+)\s+Katalog Terstruktur\s*\(([^)]+)\)/;
   const currentHighlightMatch = pageContent.match(highlightRegex);
-
-  const newHighlightStr = `${total} Katalog Terstruktur (${tutorials} Hands-on Guide & ${artikels} Deep-Dive Trends)`;
 
   if (currentHighlightMatch) {
     const currentTotal = parseInt(currentHighlightMatch[1], 10);
-    const currentTut = parseInt(currentHighlightMatch[2], 10);
-    const currentArt = parseInt(currentHighlightMatch[3], 10);
+    const subtext = currentHighlightMatch[2];
 
-    if (currentTotal !== total || currentTut !== tutorials || currentArt !== artikels) {
+    if (currentTotal !== total) {
       console.log(`\n🔄 Terdeteksi perubahan jumlah konten EnInformasi:`);
-      console.log(`   Lama : ${currentTotal} total (${currentTut} tut, ${currentArt} art)`);
+      console.log(`   Lama : ${currentTotal} total`);
       console.log(`   Baru : ${total} total (${tutorials} tut, ${artikels} art)`);
 
       // 1. Ganti highlight di array
+      const newHighlightStr = subtext.includes('Hands-on Guide')
+        ? `${total} Katalog Terstruktur (${tutorials} Hands-on Guide & ${artikels} Deep-Dive Trends)`
+        : `${total} Katalog Terstruktur (${subtext})`;
       pageContent = pageContent.replace(highlightRegex, newHighlightStr);
 
-      // 2. Ganti di deskripsi
-      // "menyajikan 150 katalog terkurasi, terbagi atas 65 tutorial praktis hands-on dan 85 analisis mendalam"
+      // 2. Ganti judul di card
+      pageContent = pageContent.replace(
+        /title:\s*'EnInformasi Hub — Portal \d+ Tutorial, Gaming & Tren Teknologi Terkini'/,
+        `title: 'EnInformasi Hub — Portal ${total} Tutorial, Gaming & Tren Teknologi Terkini'`
+      );
+
+      // 3. Ganti di deskripsi
+      pageContent = pageContent.replace(
+        /menyajikan \d+ modul tutorial, gaming, dan tren teknologi terkini/,
+        `menyajikan ${total} modul tutorial, gaming, dan tren teknologi terkini`
+      );
       pageContent = pageContent.replace(
         /menyajikan \d+ katalog terkurasi, terbagi atas \d+ tutorial praktis hands-on dan \d+ analisis mendalam/,
         `menyajikan ${total} katalog terkurasi, terbagi atas ${tutorials} tutorial praktis hands-on dan ${artikels} analisis mendalam`
       );
 
-      // 3. Ganti di modalDetails bullets
-      // "Memuat 150 artikel komprehensif"
+      // 4. Ganti di modalDetails bullets
       pageContent = pageContent.replace(
         /Memuat \d+ artikel komprehensif/,
         `Memuat ${total} artikel komprehensif`
@@ -112,6 +120,8 @@ async function syncEnInformasiStats(shouldApply = false) {
     } else {
       console.log(`   ✅ Statistik EnInformasi di portofolio sudah up-to-date (${total} katalog).`);
     }
+  } else {
+    console.warn(`   ⚠️ Pola highlight katalog EnInformasi tidak cocok dengan page.tsx.`);
   }
 
   if (hasChanges) {
@@ -123,7 +133,7 @@ async function syncEnInformasiStats(shouldApply = false) {
       execSync('npm.cmd run build', { cwd: PORTFOLIO_ROOT, stdio: 'inherit' });
 
       console.log('🚀 Melakukan commit dan push ke GitHub...');
-      execSync('git add src/app/page.tsx', { cwd: PORTFOLIO_ROOT, stdio: 'inherit' });
+      execSync('git add src/app/page.tsx scripts/check-github-sync.mjs', { cwd: PORTFOLIO_ROOT, stdio: 'inherit' });
       execSync(`git commit -m "docs(eninformasi): auto-sync daily catalog stats (${total} articles)"`, {
         cwd: PORTFOLIO_ROOT,
         stdio: 'inherit',
