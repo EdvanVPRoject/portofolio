@@ -15,6 +15,20 @@ import {
   Eye,
   Copy,
   Check,
+  UserRound,
+  FolderGit2,
+  Terminal,
+  GraduationCap,
+  Award,
+  BookOpen,
+  Mail,
+  Send,
+  SlidersHorizontal,
+  Code2,
+  ShieldCheck,
+  BarChart3,
+  Cpu,
+  Database,
 } from 'lucide-react';
 
 function getTechTagStyle(tech?: string): string {
@@ -906,49 +920,13 @@ function SectionKicker({
 }) {
   return (
     <div className={`inline-flex items-center gap-2.5 select-none group ${className}`}>
-      {/* Tactile 3D Dark Keycap with Multi-Color Vector Illustration */}
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-gradient-to-b from-zinc-800/95 to-zinc-900 shadow-[0_3px_10px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] transition-transform duration-300 group-hover:scale-105">
-        {icon === 'about' && (
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="3" width="18" height="18" rx="5" fill="#1E293B" stroke="#38BDF8" strokeWidth="1.5" />
-            <circle cx="12" cy="9.5" r="3" fill="#38BDF8" />
-            <path d="M7 18.5C7.8 15.8 9.7 14.5 12 14.5C14.3 14.5 16.2 15.8 17 18.5" stroke="#34D399" strokeWidth="2" strokeLinecap="round" />
-            <circle cx="17.5" cy="6.5" r="1.5" fill="#FBBF24" />
-          </svg>
-        )}
-        {icon === 'projects' && (
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-            <rect x="2.5" y="4" width="19" height="16" rx="3.5" fill="#1E1B4B" stroke="#818CF8" strokeWidth="1.5" />
-            <circle cx="6" cy="7.5" r="1" fill="#F87171" />
-            <circle cx="9" cy="7.5" r="1" fill="#FBBF24" />
-            <circle cx="12" cy="7.5" r="1" fill="#34D399" />
-            <path d="M8 13L10.5 15.5L8 18" stroke="#38BDF8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M13 17.5H16.5" stroke="#34D399" strokeWidth="1.8" strokeLinecap="round" />
-          </svg>
-        )}
-        {icon === 'skills' && (
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="3" width="8" height="8" rx="2" fill="#38BDF8" fillOpacity="0.25" stroke="#38BDF8" strokeWidth="1.5" />
-            <rect x="13" y="3" width="8" height="8" rx="2" fill="#FBBF24" fillOpacity="0.25" stroke="#FBBF24" strokeWidth="1.5" />
-            <rect x="3" y="13" width="8" height="8" rx="2" fill="#A78BFA" fillOpacity="0.25" stroke="#A78BFA" strokeWidth="1.5" />
-            <rect x="13" y="13" width="8" height="8" rx="2" fill="#34D399" fillOpacity="0.25" stroke="#34D399" strokeWidth="1.5" />
-          </svg>
-        )}
-        {icon === 'academic' && (
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-            <path d="M8.5 14.5L7 21L12 18.5L17 21L15.5 14.5" fill="#0284C7" stroke="#38BDF8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="12" cy="9.5" r="6" fill="#F59E0B" fillOpacity="0.25" stroke="#FBBF24" strokeWidth="1.6" />
-            <path d="M10 9.5L11.5 11L14.5 8" stroke="#34D399" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        )}
-        {icon === 'contact' && (
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-            <path d="M3 7.5C3 5.84315 4.34315 4.5 6 4.5H18C19.6569 4.5 21 5.84315 21 7.5V15.5C21 17.1569 19.6569 18.5 18 18.5H9L4.5 21V18.5C3.67157 18.5 3 17.8284 3 17V7.5Z" fill="#064E3B" stroke="#34D399" strokeWidth="1.5" strokeLinejoin="round" />
-            <circle cx="8.5" cy="11.5" r="1.25" fill="#FBBF24" />
-            <circle cx="12" cy="11.5" r="1.25" fill="#38BDF8" />
-            <circle cx="15.5" cy="11.5" r="1.25" fill="#A78BFA" />
-          </svg>
-        )}
+      {/* Clean Standard Open-Source Icon Badge */}
+      <div className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-emerald-400 shadow-sm transition-all duration-200 group-hover:scale-105 group-hover:border-zinc-700">
+        {icon === 'about' && <UserRound className="h-4 w-4" />}
+        {icon === 'projects' && <FolderGit2 className="h-4 w-4" />}
+        {icon === 'skills' && <Terminal className="h-4 w-4" />}
+        {icon === 'academic' && <GraduationCap className="h-4 w-4" />}
+        {icon === 'contact' && <Mail className="h-4 w-4" />}
       </div>
 
       {/* Crisp Editorial Title Case Label */}
@@ -1650,27 +1628,10 @@ export default function PortfolioPage() {
                       <div className="relative z-10">
                         <div className="mb-2.5 flex items-center justify-between gap-2">
                           <div className="flex items-center gap-2.5">
-                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-sm transition-transform duration-300 group-hover:scale-105">
-                              {pillar.id === 'fullstack' && (
-                                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                                  <rect x="2.5" y="4" width="14" height="11" rx="2" fill="#0F172A" stroke="#38BDF8" strokeWidth="1.6" />
-                                  <rect x="13.5" y="9" width="8" height="11" rx="1.8" fill="#1E1B4B" stroke="#A78BFA" strokeWidth="1.6" />
-                                  <circle cx="17.5" cy="17.5" r="0.9" fill="#34D399" />
-                                </svg>
-                              )}
-                              {pillar.id === 'qa' && (
-                                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                                  <path d="M12 3L19 6V11.5C19 16.2 15.9 20.1 12 21.5C8.1 20.1 5 16.2 5 11.5V6L12 3Z" fill="#064E3B" stroke="#34D399" strokeWidth="1.6" />
-                                  <path d="M9.2 12.2L11.2 14.2L15.2 10.2" stroke="#FBBF24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                              )}
-                              {pillar.id === 'data' && (
-                                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                                  <rect x="3.5" y="13" width="3.5" height="7" rx="1" fill="#38BDF8" />
-                                  <rect x="10.25" y="9" width="3.5" height="11" rx="1" fill="#FBBF24" />
-                                  <rect x="17" y="4.5" width="3.5" height="15.5" rx="1" fill="#34D399" />
-                                </svg>
-                              )}
+                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400 shadow-sm transition-transform duration-300 group-hover:scale-105">
+                              {pillar.id === 'fullstack' && <Code2 className="h-4 w-4" />}
+                              {pillar.id === 'qa' && <ShieldCheck className="h-4 w-4" />}
+                              {pillar.id === 'data' && <Database className="h-4 w-4" />}
                             </span>
                             <h3 className="font-heading text-sm font-semibold text-zinc-100 group-hover:text-white transition-colors">
                               {pillar.title}
@@ -2003,45 +1964,12 @@ export default function PortfolioPage() {
                   className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-5 sm:p-6 hover:border-zinc-700 cursor-pointer active:scale-[0.99]"
                 >
                   <div className="relative z-10">
-                    {/* Top Multi-Color Illustrated Badge with Tactile 3D Keycap */}
-                    <div className="spring-icon mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-zinc-700/80 bg-gradient-to-b from-zinc-800/95 to-zinc-950 shadow-[0_6px_16px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)] group-hover:border-zinc-600">
-                      {item.iconName === 'code' && (
-                        <svg className="h-6 w-6" viewBox="0 0 28 28" fill="none">
-                          <rect x="2.5" y="4" width="18" height="14" rx="2.5" fill="#0F172A" stroke="#38BDF8" strokeWidth="1.6" />
-                          <circle cx="5.5" cy="7" r="1" fill="#F87171" />
-                          <circle cx="8.2" cy="7" r="1" fill="#FBBF24" />
-                          <circle cx="10.9" cy="7" r="1" fill="#34D399" />
-                          <path d="M7.5 11.5L5.5 13.2L7.5 14.9" stroke="#38BDF8" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M12.5 11.5L14.5 13.2L12.5 14.9" stroke="#34D399" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                          <rect x="16.5" y="10" width="9" height="14" rx="2" fill="#1E1B4B" stroke="#A78BFA" strokeWidth="1.6" />
-                          <rect x="19.5" y="21" width="3" height="1.2" rx="0.6" fill="#34D399" />
-                        </svg>
-                      )}
-                      {item.iconName === 'shield' && (
-                        <svg className="h-6 w-6" viewBox="0 0 28 28" fill="none">
-                          <path d="M14 3L23 6.8V13.5C23 19.4 19.1 23.9 14 25.5C8.9 23.9 5 19.4 5 13.5V6.8L14 3Z" fill="#064E3B" stroke="#34D399" strokeWidth="1.6" strokeLinejoin="round" />
-                          <circle cx="14" cy="14" r="5" fill="#022C22" stroke="#38BDF8" strokeWidth="1.3" strokeDasharray="2.5 1.5" />
-                          <path d="M11.5 14.2L13.3 16L17 12.2" stroke="#FBBF24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      )}
-                      {item.iconName === 'chart' && (
-                        <svg className="h-6 w-6" viewBox="0 0 28 28" fill="none">
-                          <rect x="3" y="4" width="22" height="20" rx="3.5" fill="#0F172A" stroke="#64748B" strokeWidth="1.4" />
-                          <rect x="7" y="15" width="3.2" height="5.5" rx="1" fill="#38BDF8" />
-                          <rect x="12.4" y="11.5" width="3.2" height="9" rx="1" fill="#A78BFA" />
-                          <rect x="17.8" y="8" width="3.2" height="12.5" rx="1" fill="#34D399" />
-                          <path d="M7 11.5L12.5 8.5L16 10L20.5 6.5" stroke="#FBBF24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                          <circle cx="20.5" cy="6.5" r="1.6" fill="#FBBF24" />
-                        </svg>
-                      )}
-                      {item.iconName === 'cpu' && (
-                        <svg className="h-6 w-6" viewBox="0 0 28 28" fill="none">
-                          <path d="M14 3V6M9 3.5V6M19 3.5V6M14 22V25M9 22V24.5M19 22V24.5M3 14H6M3.5 9H6M3.5 19H6M22 14H25M22 9H24.5M22 19H24.5" stroke="#38BDF8" strokeWidth="1.6" strokeLinecap="round" />
-                          <rect x="6" y="6" width="16" height="16" rx="3.5" fill="#1E1B4B" stroke="#A78BFA" strokeWidth="1.6" />
-                          <rect x="10" y="10" width="8" height="8" rx="2" fill="#064E3B" stroke="#34D399" strokeWidth="1.5" />
-                          <circle cx="14" cy="14" r="1.8" fill="#FBBF24" />
-                        </svg>
-                      )}
+                    {/* Standard Open-Source Icon Badge */}
+                    <div className="spring-icon mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-emerald-400 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10">
+                      {item.iconName === 'code' && <Code2 className="h-5 w-5" />}
+                      {item.iconName === 'shield' && <ShieldCheck className="h-5 w-5" />}
+                      {item.iconName === 'chart' && <BarChart3 className="h-5 w-5" />}
+                      {item.iconName === 'cpu' && <Cpu className="h-5 w-5" />}
                     </div>
 
                     {/* Title & Subtitle */}
@@ -2092,12 +2020,8 @@ export default function PortfolioPage() {
             <div className="relative z-10">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-zinc-800/80 pb-4">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-sm">
-                    <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                      <path d="M4 7H20M7 12H17M10 17H14" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" />
-                      <circle cx="17" cy="7" r="2" fill="#FBBF24" />
-                      <circle cx="9" cy="12" r="2" fill="#34D399" />
-                    </svg>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                    <SlidersHorizontal className="h-3.5 w-3.5" />
                   </span>
                   <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
                     Eksplorasi Kata Kunci Teknis &amp; Tools
@@ -2195,13 +2119,8 @@ export default function PortfolioPage() {
               <div className="relative z-10">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-sm">
-                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 4L3 8.5L12 13L21 8.5L12 4Z" fill="#1E293B" stroke="#38BDF8" strokeWidth="1.5" strokeLinejoin="round" />
-                        <path d="M6.5 10.5V15.5C6.5 17.2 9 18.8 12 18.8C15 18.8 17.5 17.2 17.5 15.5V10.5" stroke="#34D399" strokeWidth="1.6" strokeLinecap="round" />
-                        <path d="M20 9V15.5" stroke="#FBBF24" strokeWidth="1.6" strokeLinecap="round" />
-                        <circle cx="20" cy="16" r="1.2" fill="#FBBF24" />
-                      </svg>
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                      <GraduationCap className="h-4 w-4" />
                     </span>
                     <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
                       Pendidikan Formal
@@ -2304,12 +2223,8 @@ export default function PortfolioPage() {
               <div className="relative z-10">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-sm">
-                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-                        <path d="M4 5.5C4 4.4 4.9 3.5 6 3.5H11C11.6 3.5 12 3.9 12 4.5V19.5C12 18.9 11.6 18.5 11 18.5H6C4.9 18.5 4 17.6 4 16.5V5.5Z" fill="#0F172A" stroke="#38BDF8" strokeWidth="1.5" />
-                        <path d="M20 5.5C20 4.4 19.1 3.5 18 3.5H13C12.4 3.5 12 3.9 12 4.5V19.5C12 18.9 12.4 18.5 13 18.5H18C19.1 18.5 20 17.6 20 16.5V5.5Z" fill="#1E1B4B" stroke="#A78BFA" strokeWidth="1.5" />
-                        <path d="M15.5 3.5V10L17 8.8L18.5 10V3.5" fill="#FBBF24" />
-                      </svg>
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                      <BookOpen className="h-4 w-4" />
                     </span>
                     <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
                       Publikasi Nasional
@@ -2414,12 +2329,8 @@ export default function PortfolioPage() {
             <div data-reveal className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-zinc-800/80 pb-4">
               <div>
                 <div className="inline-flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-gradient-to-b from-zinc-800/95 to-zinc-900 shadow-[0_3px_10px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.12)]">
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-                      <path d="M8.5 14L7 21L12 18.3L17 21L15.5 14" fill="#0284C7" stroke="#38BDF8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                      <circle cx="12" cy="9.5" r="6" fill="#78350F" stroke="#FBBF24" strokeWidth="1.6" />
-                      <path d="M9.8 9.6L11.3 11.1L14.4 8" stroke="#34D399" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                    <Award className="h-4 w-4" />
                   </span>
                   <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
                     Sertifikasi Resmi
@@ -2602,7 +2513,7 @@ export default function PortfolioPage() {
                   onMouseLeave={handleCardMouseLeave}
                   className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-950 text-[#25D366] shadow-sm group-hover:border-[#25D366]/50">
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#25D366] shadow-sm group-hover:border-[#25D366]/40">
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31" />
                     </svg>
@@ -2623,11 +2534,8 @@ export default function PortfolioPage() {
                   onMouseLeave={handleCardMouseLeave}
                   className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-950 shadow-sm group-hover:border-sky-500/40">
-                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                      <rect width="19" height="15" x="2.5" y="4.5" rx="2.5" fill="#0F172A" stroke="#38BDF8" strokeWidth="1.6" />
-                      <path d="M3.5 6.5L12 12.2L20.5 6.5" stroke="#FBBF24" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-emerald-400 shadow-sm group-hover:border-emerald-500/40">
+                    <Mail className="h-5 w-5" />
                   </div>
                   <div className="relative z-10 min-w-0 flex-1">
                     <span className="text-xs font-medium text-zinc-400 block">
@@ -2647,7 +2555,7 @@ export default function PortfolioPage() {
                   onMouseLeave={handleCardMouseLeave}
                   className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-950 text-zinc-200 shadow-sm group-hover:border-zinc-600 group-hover:text-white">
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-300 shadow-sm group-hover:border-zinc-700 group-hover:text-white">
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
                     </svg>
@@ -2670,7 +2578,7 @@ export default function PortfolioPage() {
                   onMouseLeave={handleCardMouseLeave}
                   className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
                 >
-                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-950 text-[#38BDF8] shadow-sm group-hover:border-[#0A66C2]/60">
+                  <div className="spring-icon relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#0A66C2] shadow-sm group-hover:border-[#0A66C2]/40">
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                     </svg>
@@ -2701,11 +2609,8 @@ export default function PortfolioPage() {
               >
                 <div className="relative z-10">
                   <div className="inline-flex items-center gap-2.5">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-sm">
-                      <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-                        <path d="M21 3L10 14" stroke="#FBBF24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M21 3L14.5 21L10 14L3 9.5L21 3Z" fill="#064E3B" stroke="#34D399" strokeWidth="1.6" strokeLinejoin="round" />
-                      </svg>
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                      <Send className="h-3.5 w-3.5" />
                     </span>
                     <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
                       Pesan Langsung
@@ -3085,12 +2990,8 @@ export default function PortfolioPage() {
               {/* Top Meta Bar */}
               <div className="flex items-center justify-between gap-2 pb-2">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-sm">
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-                      <path d="M8.5 14L7 21L12 18.3L17 21L15.5 14" fill="#0284C7" stroke="#38BDF8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                      <circle cx="12" cy="9.5" r="6" fill="#78350F" stroke="#FBBF24" strokeWidth="1.6" />
-                      <path d="M9.8 9.6L11.3 11.1L14.4 8" stroke="#34D399" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                    <Award className="h-4 w-4" />
                   </span>
                   <div className="min-w-0">
                     <span className="font-heading text-xs font-semibold text-zinc-200 block truncate">
