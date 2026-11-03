@@ -76,12 +76,13 @@ async function syncEnInformasiStats(shouldApply = false) {
 
   // Regex pola highlight katalog EnInformasi:
   // e.g. "195 Katalog Terstruktur (Tutorial Praktis, Gaming & Deep-Dive Trends)" atau "(65 Hands-on Guide & 130 Deep-Dive Trends)"
-  const highlightRegex = /(\d+)\s+Katalog Terstruktur\s*\(([^)]+)\)/;
+  const highlightRegex = /(\d+)\s+(Katalog|Materi) Terstruktur\s*\(([^)]+)\)/;
   const currentHighlightMatch = pageContent.match(highlightRegex);
 
   if (currentHighlightMatch) {
     const currentTotal = parseInt(currentHighlightMatch[1], 10);
-    const subtext = currentHighlightMatch[2];
+    const term = currentHighlightMatch[2];
+    const subtext = currentHighlightMatch[3];
 
     if (currentTotal !== total) {
       console.log(`\n🔄 Terdeteksi perubahan jumlah konten EnInformasi:`);
@@ -90,17 +91,21 @@ async function syncEnInformasiStats(shouldApply = false) {
 
       // 1. Ganti highlight di array
       const newHighlightStr = subtext.includes('Hands-on Guide')
-        ? `${total} Katalog Terstruktur (${tutorials} Hands-on Guide & ${artikels} Deep-Dive Trends)`
-        : `${total} Katalog Terstruktur (${subtext})`;
+        ? `${total} ${term} Terstruktur (${tutorials} Hands-on Guide & ${artikels} Deep-Dive Trends)`
+        : `${total} ${term} Terstruktur (${subtext})`;
       pageContent = pageContent.replace(highlightRegex, newHighlightStr);
 
       // 2. Ganti judul di card
       pageContent = pageContent.replace(
-        /title:\s*'EnInformasi Hub — Portal \d+ Tutorial, Gaming & Tren Teknologi Terkini'/,
-        `title: 'EnInformasi Hub — Portal ${total} Tutorial, Gaming & Tren Teknologi Terkini'`
+        /title:\s*'EnInformasi Hub — Portal \d+ Tutorial, Gaming & Tren Teknologi(?: Terkini)?'/,
+        `title: 'EnInformasi Hub — Portal ${total} Tutorial, Gaming & Tren Teknologi'`
       );
 
       // 3. Ganti di deskripsi
+      pageContent = pageContent.replace(
+        /(Portal (?:web|media) teknologi [^']+?(?:memuat|menyajikan)\s+)\d+(\s+(?:artikel|modul) tutorial)/,
+        `$1${total}$2`
+      );
       pageContent = pageContent.replace(
         /menyajikan \d+ modul tutorial, gaming, dan tren teknologi terkini/,
         `menyajikan ${total} modul tutorial, gaming, dan tren teknologi terkini`
@@ -111,6 +116,10 @@ async function syncEnInformasiStats(shouldApply = false) {
       );
 
       // 4. Ganti di modalDetails bullets
+      pageContent = pageContent.replace(
+        /\d+ Artikel Terkurasi:/,
+        `${total} Artikel Terkurasi:`
+      );
       pageContent = pageContent.replace(
         /Memuat \d+ artikel komprehensif/,
         `Memuat ${total} artikel komprehensif`
