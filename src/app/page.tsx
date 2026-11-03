@@ -883,6 +883,33 @@ const SKILL_KEYWORDS: SkillKeywordItem[] = [
   { name: 'Local LLM (Qwen GGUF) & Gemini API', domain: 'network-ai' },
 ];
 
+function SectionDivider({ className = '' }: { className?: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`relative flex w-full items-center justify-center py-2 sm:py-3 overflow-hidden pointer-events-none select-none ${className}`}
+    >
+      {/* Soft Ambient Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-8 w-72 sm:w-96 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.32)_0%,transparent_70%)] blur-md" />
+      {/* Fading Gradient Line */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-400/65 to-transparent" />
+      {/* Center Micro Pip */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-emerald-200 shadow-[0_0_10px_2px_rgba(52,211,153,0.85)]" />
+    </div>
+  );
+}
+
+function SectionKicker({ label, className = '' }: { label: string; className?: string }) {
+  return (
+    <div
+      className={`inline-flex items-center gap-2 rounded-full border border-emerald-500/35 bg-emerald-500/10 px-3.5 py-1 text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-[0.14em] text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.12)] transition-all duration-300 hover:border-emerald-500/60 hover:bg-emerald-500/15 select-none ${className}`}
+    >
+      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+      <span>{label}</span>
+    </div>
+  );
+}
+
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>('all');
   const [activeSkillTab, setActiveSkillTab] = useState<SkillDomain>('all');
@@ -1508,17 +1535,15 @@ export default function PortfolioPage() {
         </section>
 
         {/* TENTANG SAYA */}
+        <SectionDivider />
         <section
           id="about"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
+          className="scroll-mt-20 py-10 sm:py-16 md:py-20"
         >
           <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             <div data-reveal className="lg:col-span-4">
-              <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
-                <span className="h-px w-6 bg-emerald-500/80" />
-                <span>Tentang Saya</span>
-              </div>
-              <h2 className="font-heading mt-3 text-xl sm:text-3xl font-bold leading-snug tracking-tight text-zinc-100">
+              <SectionKicker label="Tentang Saya" />
+              <h2 className="font-heading mt-3.5 text-xl sm:text-3xl font-bold leading-snug tracking-tight text-zinc-100">
                 Berangkat dari fondasi sistem komputer, fokus membangun perangkat lunak yang andal dan nyaman digunakan.
               </h2>
               <div className="mt-5 sm:mt-6">
@@ -1605,17 +1630,15 @@ export default function PortfolioPage() {
         </section>
 
         {/* PROYEK & RISET */}
+        <SectionDivider />
         <section
           id="projects"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
+          className="scroll-mt-20 py-10 sm:py-16 md:py-20"
         >
           <div data-reveal className="mb-7 sm:mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
-                <span className="h-px w-6 bg-emerald-500/80" />
-                <span>Proyek &amp; Riset</span>
-              </div>
-              <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+              <SectionKicker label="Proyek & Riset" />
+              <h2 className="font-heading mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
                 Proyek Pilihan &amp; Riset Terapan
               </h2>
               <p className="mt-1 text-xs text-zinc-400">
@@ -1877,16 +1900,15 @@ export default function PortfolioPage() {
         </section>
 
         {/* KEAHLIAN TEKNIS & SPESIALISASI */}
+        <SectionDivider />
         <section
           id="skills"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
+          className="scroll-mt-20 py-10 sm:py-16 md:py-20"
         >
           {/* Centered Expertise Header (Inspired by Reference Layout) */}
           <div data-reveal className="mx-auto max-w-2xl text-center mb-9 sm:mb-12">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-emerald-400">
-              What I Specialize In
-            </p>
-            <h2 className="font-heading mt-2 text-2xl sm:text-4xl font-bold tracking-tight text-zinc-100">
+            <SectionKicker label="Spesialisasi & Keahlian" />
+            <h2 className="font-heading mt-3 text-2xl sm:text-4xl font-bold tracking-tight text-zinc-100">
               Bidang Spesialisasi &amp; Keahlian
             </h2>
             <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-zinc-400">
@@ -2036,16 +2058,14 @@ export default function PortfolioPage() {
         </section>
 
         {/* AKADEMIK & PUBLIKASI */}
+        <SectionDivider />
         <section
           id="academic"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-10 sm:py-16 md:py-20"
+          className="scroll-mt-20 py-10 sm:py-16 md:py-20"
         >
           <div data-reveal className="mb-8 sm:mb-10">
-            <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
-              <span className="h-px w-6 bg-emerald-500/80" />
-              <span>Akademik &amp; Kredensial</span>
-            </div>
-            <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+            <SectionKicker label="Akademik & Kredensial" />
+            <h2 className="font-heading mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
               Pendidikan, Publikasi &amp; Sertifikasi
             </h2>
             <p className="mt-1.5 max-w-2xl text-xs sm:text-sm text-zinc-400">
@@ -2420,19 +2440,17 @@ export default function PortfolioPage() {
         </section>
 
         {/* KONTAK & ULASAN */}
+        <SectionDivider />
         <section
           id="contact"
-          className="scroll-mt-20 border-t border-zinc-800/80 py-12 sm:py-16 md:py-20"
+          className="scroll-mt-20 py-12 sm:py-16 md:py-20"
         >
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
             {/* Kontak Langsung */}
             <div data-reveal className="space-y-6 lg:col-span-6">
               <div>
-                <div className="inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
-                  <span className="h-px w-6 bg-emerald-500/80" />
-                  <span>Kontak &amp; Kolaborasi</span>
-                </div>
-                <h2 className="font-heading mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+                <SectionKicker label="Kontak & Kolaborasi" />
+                <h2 className="font-heading mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
                   Mari Terhubung &amp; Berdiskusi
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-zinc-400">
