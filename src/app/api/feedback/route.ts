@@ -18,12 +18,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Komentar atau pesan wajib diisi.' }, { status: 400 });
     }
 
-    const { name, rating } = body;
+    const { name, rating, contact, category } = body;
     const comment = commentText;
 
     const ratingNum = Number(rating) || 5;
     const cleanRating = Math.max(1, Math.min(5, ratingNum));
     const cleanName = name && typeof name === 'string' && name.trim() ? name.trim() : 'Anonim';
+    const cleanContact =
+      contact && typeof contact === 'string' && contact.trim()
+        ? contact.trim()
+        : 'Tidak dicantumkan';
+    const cleanCategory =
+      category && typeof category === 'string' && category.trim()
+        ? category.trim()
+        : 'Pesan Umum / Kolaborasi';
     const stars = '★'.repeat(cleanRating) + '☆'.repeat(5 - cleanRating);
 
     const now = new Date();
@@ -41,10 +49,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Konfigurasi Telegram belum lengkap di server.' }, { status: 500 });
     }
 
-    const messageHtml = `🌟 <b>Feedback Baru dari Portofolio!</b>\n\n` +
-      `👤 <b>Nama:</b> ${escapeHtml(cleanName)}\n` +
+    const messageHtml =
+      `📩 <b>Pesan Baru dari Portofolio Web!</b>\n\n` +
+      `📌 <b>Kategori:</b> ${escapeHtml(cleanCategory)}\n` +
+      `👤 <b>Nama / Instansi:</b> ${escapeHtml(cleanName)}\n` +
+      `📞 <b>Kontak Balasan:</b> ${escapeHtml(cleanContact)}\n` +
       `⭐ <b>Rating:</b> ${stars} (${cleanRating}/5)\n` +
-      `💬 <b>Komentar:</b>\n<i>"${escapeHtml(comment.trim())}"</i>\n\n` +
+      `💬 <b>Pesan:</b>\n<i>"${escapeHtml(comment.trim())}"</i>\n\n` +
       `🕒 <b>Waktu:</b> ${formattedDate} WIB\n` +
       `🌐 <b>Sumber:</b> Portofolio Web Next.js`;
 
@@ -69,7 +80,7 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ success: true, message: 'Feedback berhasil dikirim!' });
+    return NextResponse.json({ success: true, message: 'Pesan berhasil dikirim!' });
   } catch (err: unknown) {
     console.error('API Error:', err);
     return NextResponse.json({ error: 'Terjadi kesalahan pada server.' }, { status: 500 });

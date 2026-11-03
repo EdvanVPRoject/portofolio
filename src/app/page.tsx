@@ -83,6 +83,7 @@ interface ResearchProject {
   highlights: string[];
   tech: string[];
   link: ProjectLink;
+  pdfUrl?: string;
   modalDetails?: {
     kicker: string;
     summary: string;
@@ -591,9 +592,10 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     ],
     tech: ['Random Forest', 'SVM', 'Logistic Regression', 'Scikit-Learn'],
     link: {
-      label: 'Publikasi Jurnal Komputika ↗',
+      label: 'DOI Jurnal ↗',
       url: 'https://doi.org/10.34010/komputika.v15i1.19799',
     },
+    pdfUrl: '/journal-komputika-liver.pdf',
     modalDetails: {
       kicker: 'Publikasi Ilmiah Terakreditasi · Jurnal Komputika (2026)',
       summary:
@@ -622,9 +624,10 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     ],
     tech: ['ESP32', 'Sensor Load Cell HX711', 'Web Application', 'SQLite'],
     link: {
-      label: 'Publikasi Jurnal Biner ↗',
+      label: 'Artikel Jurnal ↗',
       url: 'https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/',
     },
+    pdfUrl: '/journal-biner-pos.pdf',
     modalDetails: {
       kicker: 'Publikasi Ilmiah Terakreditasi · Jurnal Biner (2026)',
       summary:
@@ -1176,6 +1179,8 @@ export default function PortfolioPage() {
   };
 
   const [guestName, setGuestName] = useState('');
+  const [guestContact, setGuestContact] = useState('');
+  const [guestCategory, setGuestCategory] = useState('Rekrutmen / Full-Time');
   const [guestMessage, setGuestMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -1209,6 +1214,8 @@ export default function PortfolioPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: guestName.trim() || 'Anonim',
+          contact: guestContact.trim() || 'Tidak dicantumkan',
+          category: guestCategory,
           rating: 5,
           comment: guestMessage.trim(),
           message: guestMessage.trim(),
@@ -1218,6 +1225,7 @@ export default function PortfolioPage() {
       if (res.ok) {
         setSubmitStatus('success');
         setGuestName('');
+        setGuestContact('');
         setGuestMessage('');
       } else {
         setSubmitStatus('error');
@@ -1304,7 +1312,17 @@ export default function PortfolioPage() {
                 </a>
               );
             })}
-            {/* Unified Contact & Feedback Outer Box Marker */}
+            <a
+              href="/cv-edvan.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900/80 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition-all duration-200 hover:border-zinc-700 hover:text-white"
+              title="Unduh CV (PDF)"
+            >
+              <FileText className="h-3.5 w-3.5 text-emerald-400" />
+              <span>CV</span>
+            </a>
+            {/* Unified Contact & Inquiry Outer Box Marker */}
             <div
               className={`flex items-center rounded-lg border p-0.5 transition-all duration-200 ${
                 activeSection === 'contact' || activeSection === 'feedback'
@@ -1333,7 +1351,7 @@ export default function PortfolioPage() {
                     : 'text-emerald-300 hover:text-white hover:bg-emerald-500/20'
                 }`}
               >
-                <span>Ulasan</span>
+                <span>Pesan</span>
                 <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                   ↗
                 </span>
@@ -1375,7 +1393,20 @@ export default function PortfolioPage() {
                 </a>
               );
             })}
-            {/* Unified Contact & Feedback Box on Mobile */}
+            <a
+              href="/cv-edvan.pdf"
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/80 px-3 py-2 text-sm font-medium text-zinc-200 hover:border-zinc-700"
+            >
+              <span className="inline-flex items-center gap-2">
+                <FileText className="h-4 w-4 text-emerald-400" />
+                <span>Unduh CV (PDF)</span>
+              </span>
+              <span>↗</span>
+            </a>
+            {/* Unified Contact & Inquiry Box on Mobile */}
             <div className="grid grid-cols-2 gap-1.5 rounded-lg border border-emerald-500/35 bg-emerald-500/10 p-1">
               <a
                 href="#contact"
@@ -1403,7 +1434,7 @@ export default function PortfolioPage() {
                     : 'text-emerald-300 hover:bg-emerald-500/20 hover:text-white'
                 }`}
               >
-                <span>Ulasan</span>
+                <span>Kirim Pesan</span>
                 <span>↗</span>
               </a>
             </div>
@@ -1580,15 +1611,52 @@ export default function PortfolioPage() {
               <h2 className="font-heading mt-3.5 text-xl sm:text-3xl font-bold leading-snug tracking-tight text-zinc-100">
                 Berangkat dari fondasi sistem komputer, fokus membangun perangkat lunak yang andal dan nyaman digunakan.
               </h2>
-              <div className="mt-5 sm:mt-6">
+
+              {/* Ringkasan Kesiapan & Kolaborasi (HRD & Partner Quick-Scan) */}
+              <div className="mt-5 rounded-xl border border-zinc-800/90 bg-zinc-950/70 p-4 space-y-2.5 text-xs">
+                <div className="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+                    Kesiapan Kerja &amp; Kolaborasi
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    Immediate
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 gap-2 text-zinc-400">
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-zinc-500 shrink-0">Skema:</span>
+                    <span className="text-right font-medium text-zinc-200">Full-Time, Kontrak &amp; Proyek Freelance</span>
+                  </div>
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-zinc-500 shrink-0">Mobilitas:</span>
+                    <span className="text-right font-medium text-zinc-200">On-Site (Bandung / Jabodetabek), Hybrid &amp; Remote</span>
+                  </div>
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-zinc-500 shrink-0">Bahasa:</span>
+                    <span className="text-right font-medium text-zinc-200">Indonesia &amp; Inggris (Advanced · Skor 500)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-2.5">
                 <a
                   href="https://www.linkedin.com/in/edvannuriana"
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2 text-xs font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white"
+                  className="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2 text-xs font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-700 hover:text-white"
                 >
                   <span>Profil LinkedIn</span>
                   <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                </a>
+                <a
+                  href="/portofolio-proyek-edvan.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800/90 bg-zinc-950 px-3.5 py-2 text-xs font-medium text-zinc-300 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:text-emerald-300"
+                >
+                  <FileText className="h-3.5 w-3.5 text-emerald-400" />
+                  <span>Ringkasan Proyek (PDF)</span>
                 </a>
               </div>
             </div>
@@ -1916,15 +1984,29 @@ export default function PortfolioPage() {
                         <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
                       </span>
 
-                      <a
-                        href={project.link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center text-xs font-medium text-emerald-400 transition hover:text-emerald-300"
-                      >
-                        {project.link.label}
-                      </a>
+                      <div className="flex items-center gap-2">
+                        {project.pdfUrl && (
+                          <a
+                            href={project.pdfUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] font-medium text-zinc-300 transition hover:border-zinc-700 hover:text-white"
+                          >
+                            <FileText className="h-3 w-3 text-emerald-400" />
+                            <span>PDF Jurnal</span>
+                          </a>
+                        )}
+                        <a
+                          href={project.link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center text-xs font-medium text-emerald-400 transition hover:text-emerald-300"
+                        >
+                          {project.link.label}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -2269,16 +2351,28 @@ export default function PortfolioPage() {
                         <Eye className="h-3.5 w-3.5" />
                         <span>Detail Riset ↗</span>
                       </span>
-                      <a
-                        href="https://doi.org/10.34010/komputika.v15i1.19799"
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition"
-                      >
-                        <span>Buka DOI Jurnal</span>
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </a>
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <a
+                          href="/journal-komputika-liver.pdf"
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900/80 px-2.5 py-1 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-white transition"
+                        >
+                          <FileText className="h-3 w-3 text-emerald-400" />
+                          <span>PDF</span>
+                        </a>
+                        <a
+                          href="https://doi.org/10.34010/komputika.v15i1.19799"
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition"
+                        >
+                          <span>Buka DOI Jurnal</span>
+                          <ArrowUpRight className="h-3.5 w-3.5" />
+                        </a>
+                      </div>
                     </div>
                   </div>
 
@@ -2307,16 +2401,28 @@ export default function PortfolioPage() {
                         <Eye className="h-3.5 w-3.5" />
                         <span>Detail Riset ↗</span>
                       </span>
-                      <a
-                        href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition"
-                      >
-                        <span>Buka Artikel Jurnal</span>
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </a>
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <a
+                          href="/journal-biner-pos.pdf"
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900/80 px-2.5 py-1 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-white transition"
+                        >
+                          <FileText className="h-3 w-3 text-emerald-400" />
+                          <span>PDF</span>
+                        </a>
+                        <a
+                          href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition"
+                        >
+                          <span>Buka Artikel Jurnal</span>
+                          <ArrowUpRight className="h-3.5 w-3.5" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -2506,7 +2612,7 @@ export default function PortfolioPage() {
 
               <div className="grid gap-3 sm:grid-cols-2">
                 <a
-                  href="https://wa.me/6289630887748"
+                  href="https://wa.me/6289630887748?text=Halo%20Edvan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20ingin%20berdiskusi%20lebih%20lanjut."
                   target="_blank"
                   rel="noreferrer"
                   onMouseMove={handleCardMouseMove}
@@ -2520,7 +2626,7 @@ export default function PortfolioPage() {
                   </div>
                   <div className="relative z-10 min-w-0 flex-1">
                     <span className="text-xs font-medium text-zinc-400 block">
-                      WhatsApp
+                      WhatsApp (Respon Cepat)
                     </span>
                     <span className="mt-0.5 block truncate text-sm font-semibold text-zinc-100 group-hover:text-white">
                       +62 896-3088-7748
@@ -2593,10 +2699,39 @@ export default function PortfolioPage() {
                   </div>
                 </a>
 
-                <div className="sm:col-span-2 flex items-center gap-2.5 rounded-xl border border-zinc-800/80 bg-zinc-950/60 px-4 py-3 text-xs text-zinc-400">
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
-                  <span className="text-zinc-500">Domisili:</span>
-                  <span className="text-zinc-200 font-medium">Sumedang, Jawa Barat, Indonesia</span>
+                <div className="sm:col-span-2 rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-4 space-y-3 text-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
+                      <span className="text-zinc-400">Domisili &amp; Mobilitas:</span>
+                    </div>
+                    <span className="text-zinc-200 font-medium">
+                      Sumedang · Siap On-Site (Bandung / Jabodetabek), Hybrid &amp; Remote
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-2.5">
+                    <span className="text-zinc-500">Dokumen Rekrutmen &amp; Proyek:</span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <a
+                        href="/cv-edvan.pdf"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-200 hover:border-emerald-500/40 hover:text-emerald-300 transition"
+                      >
+                        <FileText className="h-3 w-3 text-emerald-400" />
+                        <span>Unduh CV (PDF)</span>
+                      </a>
+                      <a
+                        href="/portofolio-proyek-edvan.pdf"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-200 hover:border-emerald-500/40 hover:text-emerald-300 transition"
+                      >
+                        <FileText className="h-3 w-3 text-emerald-400" />
+                        <span>Ringkasan Proyek (PDF)</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2613,35 +2748,84 @@ export default function PortfolioPage() {
                       <Send className="h-3.5 w-3.5" />
                     </span>
                     <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
-                      Pesan Langsung
+                      Pesan Langsung &amp; Kolaborasi
                     </span>
                   </div>
                   <h3 className="font-heading mt-2.5 text-lg font-bold text-zinc-100">
-                    Kirim Pesan atau Catatan
+                    Kirim Pesan, Tawaran Rekrutmen, atau Diskusi Proyek
                   </h3>
                   <p className="mt-1 text-xs text-zinc-400">
-                    Tulis pesan singkat di bawah ini, dan notifikasinya akan langsung masuk ke saya.
+                    Pesan Anda akan diteruskan secara real-time ke Telegram saya beserta kontak balasan yang Anda cantumkan.
                   </p>
 
                   <form
                     onSubmit={handleFeedbackSubmit}
-                    className="mt-6 space-y-4"
+                    className="mt-5 space-y-4"
                   >
                     <div>
-                      <label
-                        htmlFor="guestName"
-                        className="block text-xs font-medium text-zinc-300"
-                      >
-                        Nama / Instansi
+                      <label className="block text-xs font-medium text-zinc-300 mb-1.5">
+                        Keperluan Diskusi
                       </label>
-                      <input
-                        id="guestName"
-                        type="text"
-                        value={guestName}
-                        onChange={(e) => setGuestName(e.target.value)}
-                        placeholder="Contoh: Budi — Tech Lead di PT XYZ"
-                        className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-emerald-500/60"
-                      />
+                      <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
+                        {[
+                          'Rekrutmen / Full-Time',
+                          'Proyek / Kerjasama',
+                          'Diskusi Riset / Teknis',
+                          'Sapaan / Masukan',
+                        ].map((cat) => {
+                          const active = guestCategory === cat;
+                          return (
+                            <button
+                              key={cat}
+                              type="button"
+                              onClick={() => setGuestCategory(cat)}
+                              className={`rounded-lg border px-2.5 py-1.5 text-[11px] font-medium transition cursor-pointer ${
+                                active
+                                  ? 'border-emerald-500/50 bg-emerald-500/15 text-emerald-300'
+                                  : 'border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
+                              }`}
+                            >
+                              {cat}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="grid gap-3.5 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="guestName"
+                          className="block text-xs font-medium text-zinc-300"
+                        >
+                          Nama / Instansi
+                        </label>
+                        <input
+                          id="guestName"
+                          type="text"
+                          value={guestName}
+                          onChange={(e) => setGuestName(e.target.value)}
+                          placeholder="Contoh: Budi — HRD / Tech Lead PT XYZ"
+                          className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-emerald-500/60"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="guestContact"
+                          className="block text-xs font-medium text-zinc-300"
+                        >
+                          Email / WhatsApp (Untuk Balasan)
+                        </label>
+                        <input
+                          id="guestContact"
+                          type="text"
+                          value={guestContact}
+                          onChange={(e) => setGuestContact(e.target.value)}
+                          placeholder="Contoh: budi@perusahaan.com / 0812xxx"
+                          className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-emerald-500/60"
+                        />
+                      </div>
                     </div>
 
                     <div>
@@ -2649,7 +2833,7 @@ export default function PortfolioPage() {
                         htmlFor="guestMessage"
                         className="block text-xs font-medium text-zinc-300"
                       >
-                        Pesan atau Masukan <span className="text-zinc-500">*</span>
+                        Pesan atau Detail Kebutuhan <span className="text-zinc-500">*</span>
                       </label>
                       <textarea
                         id="guestMessage"
@@ -2657,7 +2841,7 @@ export default function PortfolioPage() {
                         required
                         value={guestMessage}
                         onChange={(e) => setGuestMessage(e.target.value)}
-                        placeholder="Tulis pesan, masukan, atau ajakan diskusi proyek..."
+                        placeholder="Tulis informasi posisi, ruang lingkup proyek, atau jadwal diskusi..."
                         className="mt-1.5 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition focus:border-emerald-500/60"
                       />
                     </div>
@@ -2818,14 +3002,27 @@ export default function PortfolioPage() {
                       </a>
                     ))
                   ) : (
-                    <a
-                      href={activeModalProject.link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-4 py-2 rounded-lg text-xs font-medium bg-zinc-100 text-zinc-950 hover:bg-emerald-400 transition"
-                    >
-                      {activeModalProject.link.label}
-                    </a>
+                    <>
+                      {activeModalProject.pdfUrl && (
+                        <a
+                          href={activeModalProject.pdfUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium border border-zinc-800 bg-zinc-900 text-zinc-200 hover:border-zinc-700 hover:text-white transition"
+                        >
+                          <FileText className="h-3.5 w-3.5 text-emerald-400" />
+                          <span>Unduh PDF Jurnal</span>
+                        </a>
+                      )}
+                      <a
+                        href={activeModalProject.link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-4 py-2 rounded-lg text-xs font-medium bg-zinc-100 text-zinc-950 hover:bg-emerald-400 transition"
+                      >
+                        {activeModalProject.link.label}
+                      </a>
+                    </>
                   )}
                 </div>
               </div>
