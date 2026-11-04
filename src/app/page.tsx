@@ -1573,7 +1573,7 @@ export default function PortfolioPage() {
                   </div>
                   <div className="flex items-start justify-between gap-2">
                     <span className="text-zinc-500 shrink-0">Bahasa:</span>
-                    <span className="text-right font-medium text-zinc-200">Indonesia (Utama) &amp; Inggris (Dokumentasi Teknis)</span>
+                    <span className="text-right font-medium text-zinc-200">Indonesia (Utama) &amp; Dokumentasi Teknis</span>
                   </div>
                 </div>
               </div>
