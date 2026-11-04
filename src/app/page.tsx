@@ -1313,50 +1313,19 @@ export default function PortfolioPage() {
               );
             })}
             <a
-              href="/cv-edvan.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900/80 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition-all duration-200 hover:border-zinc-700 hover:text-white"
-              title="Unduh CV (PDF)"
-            >
-              <FileText className="h-3.5 w-3.5 text-emerald-400" />
-              <span>CV</span>
-            </a>
-            {/* Unified Contact & Inquiry Outer Box Marker */}
-            <div
-              className={`flex items-center rounded-lg border p-0.5 transition-all duration-200 ${
+              href="#contact"
+              onClick={() => handleNavClick('contact')}
+              className={`group inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
                 activeSection === 'contact' || activeSection === 'feedback'
-                  ? 'border-emerald-400/60 bg-emerald-500/15 shadow-[0_0_12px_rgba(16,185,129,0.15)]'
-                  : 'border-emerald-500/35 bg-emerald-500/10 hover:border-emerald-500/55 hover:bg-emerald-500/15'
+                  ? 'border-emerald-400 bg-emerald-500 text-zinc-950 font-semibold shadow-[0_0_12px_rgba(16,185,129,0.25)]'
+                  : 'border-emerald-500/35 bg-emerald-500/10 text-emerald-300 hover:border-emerald-500/55 hover:bg-emerald-500/20 hover:text-white'
               }`}
             >
-              <a
-                href="#contact"
-                onClick={() => handleNavClick('contact')}
-                className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all duration-200 ${
-                  activeSection === 'contact'
-                    ? 'bg-emerald-500 text-zinc-950 font-semibold shadow-sm'
-                    : 'text-emerald-300 hover:text-white hover:bg-emerald-500/20'
-                }`}
-              >
-                Kontak
-              </a>
-              <span className="h-3 w-px bg-emerald-500/30 mx-0.5" />
-              <a
-                href="#feedback"
-                onClick={() => handleNavClick('feedback')}
-                className={`group rounded-md px-2.5 py-1 text-xs font-medium transition-all duration-200 inline-flex items-center gap-1 ${
-                  activeSection === 'feedback'
-                    ? 'bg-emerald-500 text-zinc-950 font-semibold shadow-sm'
-                    : 'text-emerald-300 hover:text-white hover:bg-emerald-500/20'
-                }`}
-              >
-                <span>Pesan</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  ↗
-                </span>
-              </a>
-            </div>
+              <span>Kontak &amp; Pesan</span>
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                ↗
+              </span>
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -1394,50 +1363,20 @@ export default function PortfolioPage() {
               );
             })}
             <a
-              href="/cv-edvan.pdf"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/80 px-3 py-2 text-sm font-medium text-zinc-200 hover:border-zinc-700"
+              href="#contact"
+              onClick={() => {
+                handleNavClick('contact');
+                setMobileMenuOpen(false);
+              }}
+              className={`flex items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-semibold transition ${
+                activeSection === 'contact' || activeSection === 'feedback'
+                  ? 'border-emerald-400 bg-emerald-500 text-zinc-950 shadow-sm'
+                  : 'border-emerald-500/35 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/20 hover:text-white'
+              }`}
             >
-              <span className="inline-flex items-center gap-2">
-                <FileText className="h-4 w-4 text-emerald-400" />
-                <span>Unduh CV (PDF)</span>
-              </span>
+              <span>Kontak &amp; Pesan</span>
               <span>↗</span>
             </a>
-            {/* Unified Contact & Inquiry Box on Mobile */}
-            <div className="grid grid-cols-2 gap-1.5 rounded-lg border border-emerald-500/35 bg-emerald-500/10 p-1">
-              <a
-                href="#contact"
-                onClick={() => {
-                  handleNavClick('contact');
-                  setMobileMenuOpen(false);
-                }}
-                className={`rounded-md py-2 text-center text-xs font-semibold transition ${
-                  activeSection === 'contact'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-sm'
-                    : 'text-emerald-300 hover:bg-emerald-500/20 hover:text-white'
-                }`}
-              >
-                Kontak
-              </a>
-              <a
-                href="#feedback"
-                onClick={() => {
-                  handleNavClick('feedback');
-                  setMobileMenuOpen(false);
-                }}
-                className={`rounded-md py-2 text-center text-xs font-semibold transition inline-flex items-center justify-center gap-1 ${
-                  activeSection === 'feedback'
-                    ? 'bg-emerald-500 text-zinc-950 shadow-sm'
-                    : 'text-emerald-300 hover:bg-emerald-500/20 hover:text-white'
-                }`}
-              >
-                <span>Kirim Pesan</span>
-                <span>↗</span>
-              </a>
-            </div>
           </div>
         )}
       </header>
