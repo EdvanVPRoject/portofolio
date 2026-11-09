@@ -1116,7 +1116,11 @@ export default function PortfolioPage() {
       }
     };
     rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
+    const fallbackTimer = setTimeout(() => setStatProgress(1), duration + 50);
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   useEffect(() => {
