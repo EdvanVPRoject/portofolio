@@ -2039,19 +2039,14 @@ export default function PortfolioPage() {
           >
             <div className="relative z-10">
               {/* Matrix Header & Filter Bar */}
-              <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-zinc-800 pb-4 sm:pb-5">
-                <div className="flex items-start sm:items-center gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-zinc-900 text-emerald-400">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-zinc-900 text-emerald-400">
                     <SlidersHorizontal className="h-4 w-4" />
                   </span>
-                  <div>
-                    <h3 className="font-heading text-base sm:text-lg font-bold text-white">
-                      Matriks Tech Stack &amp; Tools Kerja
-                    </h3>
-                    <p className="text-xs sm:text-sm text-zinc-300 mt-0.5">
-                      Daftar teknologi beserta fungsinya — klik item mana pun untuk melihat bukti proyek &amp; studi kasus
-                    </p>
-                  </div>
+                  <h3 className="font-heading text-base sm:text-lg font-bold text-white">
+                    Tech Stack &amp; Tools
+                  </h3>
                 </div>
 
                 {/* Filter Tabs */}
@@ -2092,25 +2087,21 @@ export default function PortfolioPage() {
                     {
                       id: 'fullstack' as const,
                       title: 'Web & Fullstack Development',
-                      subtitle: 'Frontend, Backend, Mobile & Desktop',
                       icon: 'code' as const,
                     },
                     {
                       id: 'qa' as const,
                       title: 'QA & Software Testing',
-                      subtitle: 'Pengujian Mutu, API & Audit Performa',
                       icon: 'shield' as const,
                     },
                     {
                       id: 'data' as const,
                       title: 'Data, Database & Otomasi',
-                      subtitle: 'SQL, NoSQL, Pipeline ETL & Dashboard BI',
                       icon: 'chart' as const,
                     },
                     {
                       id: 'network-ai' as const,
                       title: 'Jaringan, IoT & Applied AI',
-                      subtitle: 'Infrastruktur CCNA, Mikrokontroler & AI',
                       icon: 'cpu' as const,
                     },
                   ] as const
@@ -2135,14 +2126,9 @@ export default function PortfolioPage() {
                               {cluster.icon === 'chart' && <BarChart3 className="h-4 w-4" />}
                               {cluster.icon === 'cpu' && <Cpu className="h-4 w-4" />}
                             </span>
-                            <div>
-                              <h4 className="font-heading text-sm sm:text-base font-bold text-white leading-tight">
-                                {cluster.title}
-                              </h4>
-                              <p className="text-[11px] sm:text-xs text-zinc-300">
-                                {cluster.subtitle}
-                              </p>
-                            </div>
+                            <h4 className="font-heading text-sm sm:text-base font-bold text-white">
+                              {cluster.title}
+                            </h4>
                           </div>
 
                           <button
