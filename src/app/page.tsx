@@ -1508,7 +1508,7 @@ export default function PortfolioPage() {
                 className="spotlight-card group relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] aspect-[4/5] lg:aspect-auto lg:flex-1 lg:min-h-[390px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:border-zinc-700"
               >
                 <Image
-                  src="/profile.jpeg"
+                  src="/profile-wisuda.jpg"
                   alt="Edvan Nuriana Putra Septia, S.Kom."
                   fill
                   sizes="(max-width: 768px) 250px, (max-width: 1280px) 300px, 340px"
