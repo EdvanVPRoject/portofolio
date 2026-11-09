@@ -1984,21 +1984,18 @@ export default function PortfolioPage() {
                   className="spotlight-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 p-5 sm:p-6 hover:border-zinc-700 cursor-pointer active:scale-[0.99]"
                 >
                   <div className="relative z-10">
-                    {/* Standard Open-Source Icon Badge */}
-                    <div className="spring-icon mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-emerald-400 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10">
-                      {item.iconName === 'code' && <Code2 className="h-5 w-5" />}
-                      {item.iconName === 'shield' && <ShieldCheck className="h-5 w-5" />}
-                      {item.iconName === 'chart' && <BarChart3 className="h-5 w-5" />}
-                      {item.iconName === 'cpu' && <Cpu className="h-5 w-5" />}
+                    {/* Icon & Title Inline Header */}
+                    <div className="mb-3.5 flex items-center gap-3">
+                      <div className="spring-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-emerald-400 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] group-hover:border-emerald-500/40 group-hover:bg-emerald-500/10">
+                        {item.iconName === 'code' && <Code2 className="h-5 w-5" />}
+                        {item.iconName === 'shield' && <ShieldCheck className="h-5 w-5" />}
+                        {item.iconName === 'chart' && <BarChart3 className="h-5 w-5" />}
+                        {item.iconName === 'cpu' && <Cpu className="h-5 w-5" />}
+                      </div>
+                      <h3 className="font-heading text-sm sm:text-base font-bold text-zinc-100 leading-snug transition-colors group-hover:text-white">
+                        {item.title}
+                      </h3>
                     </div>
-
-                    {/* Title & Subtitle */}
-                    <h3 className="font-heading text-base sm:text-lg font-bold text-zinc-100 leading-snug transition-colors group-hover:text-white">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 font-mono text-[11px] text-zinc-500">
-                      {item.subtitle}
-                    </p>
 
                     {/* Concise Practical Narrative */}
                     <p className="mt-3 text-xs leading-relaxed text-zinc-400 text-justify">
