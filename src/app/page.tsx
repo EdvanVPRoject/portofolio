@@ -1507,39 +1507,42 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Right Column: Clean Portrait & Identity */}
-            <div className="animate-fade-in-up delay-150 lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-end justify-between h-full">
+            {/* Right Column: Framed Portrait & Identity */}
+            <div className="animate-fade-in-up delay-150 lg:col-span-5 xl:col-span-4 flex flex-col items-center lg:items-end justify-center h-full">
               <div
                 onMouseMove={handleCardMouseMove}
                 onMouseLeave={handleCardMouseLeave}
-                className="spotlight-card group relative w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] aspect-[4/5] lg:aspect-auto lg:flex-1 lg:min-h-[390px] overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:border-zinc-700"
+                className="spotlight-card group relative flex w-full max-w-[260px] sm:max-w-[310px] lg:max-w-[350px] flex-col rounded-2xl border border-zinc-700/90 bg-zinc-900/80 p-2.5 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.65)] ring-1 ring-white/[0.06] transition-colors hover:border-zinc-600"
               >
-                <Image
-                  src="/profile-wisuda.jpg"
-                  alt="Edvan Nuriana Putra Septia, S.Kom."
-                  fill
-                  sizes="(max-width: 768px) 250px, (max-width: 1280px) 300px, 340px"
-                  className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
-                  priority
-                />
-                {/* Subtle vignette for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent pointer-events-none" />
+                {/* Inner Photo Frame */}
+                <div className="relative w-full aspect-[4/5] lg:min-h-[370px] overflow-hidden rounded-xl border border-zinc-700/70 bg-zinc-950">
+                  <Image
+                    src="/profile-wisuda.jpg"
+                    alt="Edvan Nuriana Putra Septia, S.Kom."
+                    fill
+                    sizes="(max-width: 768px) 260px, (max-width: 1280px) 310px, 350px"
+                    className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
+                    priority
+                  />
+                  {/* Subtle vignette for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/65 via-transparent to-transparent pointer-events-none" />
 
-                {/* Clean Status Pill with Live Radar Pulse */}
-                <div className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/70 bg-zinc-950/85 px-2.5 py-1 text-[11px] font-medium text-zinc-200 backdrop-blur-md shadow-md">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  </span>
-                  <span>Open to Work</span>
+                  {/* Clean Status Pill with Live Radar Pulse */}
+                  <div className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/80 bg-zinc-950/90 px-2.5 py-1 text-[11px] font-medium text-zinc-200 backdrop-blur-md shadow-md">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    </span>
+                    <span>Open to Work</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Name Below Photo */}
-              <div className="pt-3 sm:pt-3.5 w-full max-w-[250px] sm:max-w-[300px] lg:max-w-[340px] text-center">
-                <h2 className="font-heading text-base sm:text-xl font-bold tracking-tight text-zinc-100">
-                  Edvan Nuriana Putra Septia, S.Kom.
-                </h2>
+                {/* Framed Name Plate Below Photo */}
+                <div className="relative z-10 pt-2.5 pb-0.5 text-center">
+                  <h2 className="font-heading text-sm sm:text-base lg:text-lg font-bold tracking-tight text-zinc-100">
+                    Edvan Nuriana Putra Septia, S.Kom.
+                  </h2>
+                </div>
               </div>
             </div>
           </div>
