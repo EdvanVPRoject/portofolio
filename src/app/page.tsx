@@ -2032,22 +2032,22 @@ export default function PortfolioPage() {
             data-reveal
             onMouseMove={handleCardMouseMove}
             onMouseLeave={handleCardMouseLeave}
-            className="spotlight-card mt-7 sm:mt-8 rounded-2xl border border-zinc-800/90 p-4 sm:p-6"
+            className="spotlight-card mt-6 sm:mt-7 rounded-2xl border border-zinc-800/90 p-4 sm:p-5"
           >
             <div className="relative z-10">
               {/* Matrix Header & Filter Bar */}
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-zinc-800/80 pb-3.5">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-700/80 bg-zinc-900 text-emerald-400">
-                    <SlidersHorizontal className="h-4 w-4" />
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                    <SlidersHorizontal className="h-3.5 w-3.5" />
                   </span>
-                  <h3 className="font-heading text-base sm:text-lg font-bold text-white">
+                  <h3 className="font-heading text-sm sm:text-base font-semibold text-zinc-100">
                     Tech Stack &amp; Tools
                   </h3>
                 </div>
 
                 {/* Filter Tabs */}
-                <div className="grid grid-cols-2 sm:flex sm:flex-wrap lg:flex-nowrap shrink-0 gap-1.5 rounded-xl border border-zinc-800 bg-zinc-950 p-1.5">
+                <div className="grid grid-cols-2 sm:flex sm:flex-wrap lg:flex-nowrap shrink-0 gap-1 rounded-xl border border-zinc-800/80 bg-zinc-950/80 p-1">
                   {[
                     { id: 'all', label: `Semua (${SKILL_KEYWORDS.length})` },
                     { id: 'fullstack', label: 'Fullstack & Web' },
@@ -2061,10 +2061,10 @@ export default function PortfolioPage() {
                       onClick={() => setActiveSkillTab(tab.id as SkillDomain)}
                       className={`${
                         idx === 0 ? 'col-span-2 sm:col-span-1' : ''
-                      } whitespace-nowrap rounded-lg px-3 py-1.5 text-xs sm:text-[13px] font-semibold transition-all duration-200 cursor-pointer ${
+                      } whitespace-nowrap rounded-lg px-2.5 py-1 text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer ${
                         activeSkillTab === tab.id
-                          ? 'bg-zinc-100 text-zinc-950 shadow-sm'
-                          : 'text-zinc-200 hover:bg-zinc-800 hover:text-white'
+                          ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
+                          : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200'
                       }`}
                     >
                       {tab.label}
@@ -2073,9 +2073,9 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Matrix Content Area */}
+              {/* Compact 4-Cluster Matrix Grid */}
               <div
-                className={`mt-5 grid gap-4 sm:gap-5 ${
+                className={`mt-4 grid gap-3.5 ${
                   activeSkillTab === 'all' ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'
                 }`}
               >
@@ -2112,18 +2112,18 @@ export default function PortfolioPage() {
                     return (
                       <div
                         key={cluster.id}
-                        className="animate-card-enter flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-700/80 bg-zinc-950/90"
+                        className="animate-card-enter rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-3.5 sm:p-4"
                       >
-                        {/* Cluster Top Bar */}
-                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800 bg-zinc-900/90 px-4 py-3">
-                          <div className="flex items-center gap-2.5">
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-950 text-emerald-400">
-                              {cluster.icon === 'code' && <Code2 className="h-4 w-4" />}
-                              {cluster.icon === 'shield' && <ShieldCheck className="h-4 w-4" />}
-                              {cluster.icon === 'chart' && <BarChart3 className="h-4 w-4" />}
-                              {cluster.icon === 'cpu' && <Cpu className="h-4 w-4" />}
+                        {/* Compact Cluster Header */}
+                        <div className="mb-3 flex items-center justify-between gap-2 border-b border-zinc-800/70 pb-2.5">
+                          <div className="flex items-center gap-2">
+                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-zinc-800 bg-zinc-900 text-emerald-400">
+                              {cluster.icon === 'code' && <Code2 className="h-3.5 w-3.5" />}
+                              {cluster.icon === 'shield' && <ShieldCheck className="h-3.5 w-3.5" />}
+                              {cluster.icon === 'chart' && <BarChart3 className="h-3.5 w-3.5" />}
+                              {cluster.icon === 'cpu' && <Cpu className="h-3.5 w-3.5" />}
                             </span>
-                            <h4 className="font-heading text-sm sm:text-base font-bold text-white">
+                            <h4 className="font-heading text-xs sm:text-sm font-semibold text-zinc-100">
                               {cluster.title}
                             </h4>
                           </div>
@@ -2133,40 +2133,29 @@ export default function PortfolioPage() {
                             onClick={() => {
                               if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
                             }}
-                            className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-950 px-2.5 py-1.5 font-mono text-xs font-medium text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-900 hover:text-white cursor-pointer"
+                            className="inline-flex items-center gap-1 text-[11px] font-medium text-zinc-400 transition-colors hover:text-emerald-400 cursor-pointer"
                           >
-                            <span>Lihat Detail</span>
-                            <ArrowUpRight className="h-3.5 w-3.5 text-emerald-400" />
+                            <span>Detail</span>
+                            <ArrowUpRight className="h-3 w-3" />
                           </button>
                         </div>
 
-                        {/* Sub-groups inside Cluster */}
-                        <div
-                          className={`p-4 ${
-                            activeSkillTab !== 'all'
-                              ? 'grid grid-cols-1 lg:grid-cols-2 gap-5'
-                              : 'space-y-4'
-                          }`}
-                        >
+                        {/* Sub-groups Side-by-Side (2 Columns inside each Cluster) */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {subGroups.map((groupName) => {
                             const groupSkills = clusterItems.filter((kw) => kw.group === groupName);
                             return (
-                              <div key={groupName} className="flex flex-col">
-                                {/* High-Contrast Sub-Group Header */}
-                                <div className="mb-2.5 flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/80 px-3 py-1.5">
-                                  <div className="flex items-center gap-2">
-                                    <span className="h-3 w-1 rounded-full bg-emerald-400" />
-                                    <span className="font-heading text-xs sm:text-[13px] font-bold uppercase tracking-wide text-zinc-100">
-                                      {groupName}
-                                    </span>
-                                  </div>
-                                  <span className="font-mono text-[11px] font-semibold text-emerald-400">
-                                    {groupSkills.length} Item
-                                  </span>
+                              <div key={groupName}>
+                                <div className="mb-1.5 text-[11px] font-medium text-zinc-400">
+                                  {groupName}
                                 </div>
-
-                                {/* Uniform 2-Column Grid of High-Contrast Skill Cards */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div
+                                  className={
+                                    activeSkillTab !== 'all'
+                                      ? 'grid grid-cols-1 sm:grid-cols-2 gap-1.5'
+                                      : 'space-y-1.5'
+                                  }
+                                >
                                   {groupSkills.map((kw) => (
                                     <button
                                       key={kw.name}
@@ -2174,20 +2163,9 @@ export default function PortfolioPage() {
                                       onClick={() => {
                                         if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
                                       }}
-                                      className="group/item flex w-full items-center justify-between gap-2 rounded-lg border border-zinc-700/80 bg-zinc-900/95 px-3 py-2.5 text-left transition-all duration-150 hover:border-emerald-500/60 hover:bg-zinc-900 cursor-pointer"
+                                      className="flex w-full items-center justify-between gap-2 rounded-lg border border-zinc-800/80 bg-zinc-900/40 px-2.5 py-1.5 text-left font-mono text-[11px] sm:text-xs text-zinc-300 transition-colors hover:border-zinc-700 hover:bg-zinc-900 hover:text-zinc-100 cursor-pointer"
                                     >
-                                      <div className="min-w-0">
-                                        <div className="flex items-center gap-1.5">
-                                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
-                                          <span className="truncate font-mono text-xs sm:text-[13px] font-semibold text-white group-hover/item:text-emerald-300">
-                                            {kw.name}
-                                          </span>
-                                        </div>
-                                        <p className="mt-0.5 truncate pl-3 text-[11px] sm:text-xs text-zinc-300">
-                                          {kw.role}
-                                        </p>
-                                      </div>
-                                      <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-zinc-400 transition-transform duration-150 group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5 group-hover/item:text-emerald-400" />
+                                      <span className="truncate">{kw.name}</span>
                                     </button>
                                   ))}
                                 </div>
