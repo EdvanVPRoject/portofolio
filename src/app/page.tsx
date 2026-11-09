@@ -959,6 +959,8 @@ export default function PortfolioPage() {
   const [isClosingExpertiseModal, setIsClosingExpertiseModal] = useState(false);
   const [activeCert, setActiveCert] = useState<CertificateCredential | null>(null);
   const [isClosingCertModal, setIsClosingCertModal] = useState(false);
+  const [showCvModal, setShowCvModal] = useState(false);
+  const [isClosingCvModal, setIsClosingCvModal] = useState(false);
   const [activePillarFilter, setActivePillarFilter] = useState<EngineeringPillarId | null>(null);
   const [activeSection, setActiveSection] = useState<string>('about');
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -1024,6 +1026,19 @@ export default function PortfolioPage() {
     }, 240);
   };
 
+  const handleOpenCvModal = () => {
+    setIsClosingCvModal(false);
+    setShowCvModal(true);
+  };
+
+  const handleCloseCvModal = () => {
+    setIsClosingCvModal(true);
+    setTimeout(() => {
+      setShowCvModal(false);
+      setIsClosingCvModal(false);
+    }, 240);
+  };
+
   const handleSelectPillar = (pillarId: EngineeringPillarId) => {
     setActivePillarFilter((prev) => (prev === pillarId ? null : pillarId));
     setActiveFilter('all');
@@ -1040,7 +1055,7 @@ export default function PortfolioPage() {
   };
 
   useEffect(() => {
-    if (activeModalProject || activeCert || activeExpertise) {
+    if (activeModalProject || activeCert || activeExpertise || showCvModal) {
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
       if (scrollbarWidth > 0) {
@@ -1054,7 +1069,7 @@ export default function PortfolioPage() {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
     };
-  }, [activeModalProject, activeCert, activeExpertise]);
+  }, [activeModalProject, activeCert, activeExpertise, showCvModal]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -1068,6 +1083,9 @@ export default function PortfolioPage() {
         if (activeCert && !isClosingCertModal) {
           handleCloseCertModal();
         }
+        if (showCvModal && !isClosingCvModal) {
+          handleCloseCvModal();
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -1079,6 +1097,8 @@ export default function PortfolioPage() {
     isClosingExpertiseModal,
     activeCert,
     isClosingCertModal,
+    showCvModal,
+    isClosingCvModal,
   ]);
 
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -1417,15 +1437,14 @@ export default function PortfolioPage() {
                     <span>Eksplorasi Proyek</span>
                     <span className="transition-transform duration-200 group-hover:translate-y-0.5">↓</span>
                   </a>
-                  <a
-                    href="/cv-edvan.pdf"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="spring-pill group inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-zinc-700 hover:text-white whitespace-nowrap"
+                  <button
+                    type="button"
+                    onClick={handleOpenCvModal}
+                    className="spring-pill group inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-zinc-700 hover:text-white cursor-pointer whitespace-nowrap"
                   >
-                    <span>Unduh CV</span>
-                    <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
-                  </a>
+                    <Eye className="h-3.5 w-3.5 text-emerald-400" />
+                    <span>Lihat CV</span>
+                  </button>
                   <button
                     type="button"
                     onClick={handleCopyEmail}
@@ -2724,15 +2743,14 @@ export default function PortfolioPage() {
                   <div className="flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-2.5">
                     <span className="text-zinc-500">Dokumen Rekrutmen &amp; Proyek:</span>
                     <div className="flex flex-wrap items-center gap-2">
-                      <a
-                        href="/cv-edvan.pdf"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-200 hover:border-emerald-500/40 hover:text-emerald-300 transition"
+                      <button
+                        type="button"
+                        onClick={handleOpenCvModal}
+                        className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-200 hover:border-emerald-500/40 hover:text-emerald-300 transition cursor-pointer"
                       >
-                        <FileText className="h-3 w-3 text-emerald-400" />
-                        <span>Unduh CV (PDF)</span>
-                      </a>
+                        <Eye className="h-3 w-3 text-emerald-400" />
+                        <span>Lihat CV (PDF)</span>
+                      </button>
                       <a
                         href="/portofolio-proyek-edvan.pdf"
                         target="_blank"
@@ -3356,6 +3374,82 @@ export default function PortfolioPage() {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CV PREVIEW MODAL */}
+      {showCvModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5"
+          onClick={handleCloseCvModal}
+        >
+          {/* Backdrop */}
+          <div
+            className={`absolute inset-0 bg-black/85 backdrop-blur-md ${
+              isClosingCvModal ? 'animate-backdrop-out pointer-events-none' : 'animate-backdrop-in'
+            }`}
+          />
+
+          {/* Modal Container */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`relative z-10 flex h-[88vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl ${
+              isClosingCvModal ? 'animate-modal-out pointer-events-none' : 'animate-modal-in'
+            }`}
+          >
+            {/* Header Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 bg-zinc-900/80 px-4 py-3 sm:px-5">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-emerald-400">
+                  <FileText className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-heading text-xs sm:text-sm font-semibold text-zinc-100 truncate">
+                    Curriculum Vitae — Edvan Nuriana Putra Septia, S.Kom.
+                  </h3>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href="/cv-edvan.pdf"
+                  download="CV-Edvan-Nuriana-Putra-Septia.pdf"
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-100 px-3 py-1.5 text-xs font-semibold text-zinc-950 transition hover:bg-emerald-400"
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  <span>Unduh CV</span>
+                </a>
+                <a
+                  href="/cv-edvan.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition hover:border-zinc-700 hover:text-white"
+                >
+                  <span>Tab Baru</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+                <button
+                  type="button"
+                  onClick={handleCloseCvModal}
+                  className="rounded-lg border border-zinc-800 bg-zinc-900 p-1.5 text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
+                  aria-label="Tutup Pratinjau CV"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Embedded PDF Viewer */}
+            <div className="relative flex-1 bg-zinc-900">
+              <iframe
+                src="/cv-edvan.pdf#view=FitH"
+                title="Pratinjau CV Edvan Nuriana Putra Septia"
+                className="h-full w-full border-0"
+              />
             </div>
           </div>
         </div>
