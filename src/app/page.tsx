@@ -1101,7 +1101,6 @@ export default function PortfolioPage() {
     isClosingCvModal,
   ]);
 
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [statProgress, setStatProgress] = useState(0);
 
   useEffect(() => {
@@ -1124,11 +1123,6 @@ export default function PortfolioPage() {
     const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
-      const docHeight =
-        document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      if (docHeight > 0) {
-        setScrollProgress(Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)));
-      }
       if (isNavClickRef.current) return;
       const scrollPosition = window.scrollY + 220;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -1285,11 +1279,6 @@ export default function PortfolioPage() {
 
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-zinc-800/60 bg-[#0A0A0C]/75 backdrop-blur-xl">
-        {/* Smooth Top Scroll Progress Indicator */}
-        <div
-          className="pointer-events-none absolute top-0 left-0 h-[2px] bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-300 transition-[width] duration-150 ease-out"
-          style={{ width: `${scrollProgress}%` }}
-        />
         <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
           <a
             href="#top"
