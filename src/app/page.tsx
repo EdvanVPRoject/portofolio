@@ -846,51 +846,52 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
 interface SkillKeywordItem {
   name: string;
   domain: Exclude<SkillDomain, 'all'>;
+  group: string;
   highlight?: boolean;
 }
 
 const SKILL_KEYWORDS: SkillKeywordItem[] = [
   // Fullstack & Web (Padepokan 79 Core)
-  { name: 'JavaScript (ES6+)', domain: 'fullstack', highlight: true },
-  { name: 'TypeScript', domain: 'fullstack', highlight: true },
-  { name: 'ReactJS / React 19', domain: 'fullstack', highlight: true },
-  { name: 'Next.js 15 App Router', domain: 'fullstack', highlight: true },
-  { name: 'NodeJS', domain: 'fullstack', highlight: true },
-  { name: 'REST API', domain: 'fullstack', highlight: true },
-  { name: 'HTML5 & CSS3', domain: 'fullstack' },
-  { name: 'Tailwind CSS', domain: 'fullstack' },
-  { name: 'Flutter & Dart', domain: 'fullstack', highlight: true },
-  { name: 'Python (PyQt6 & FastAPI)', domain: 'fullstack' },
-  { name: 'Git & GitHub Workflow', domain: 'fullstack' },
+  { name: 'TypeScript', domain: 'fullstack', group: 'Bahasa Pemrograman', highlight: true },
+  { name: 'JavaScript (ES6+)', domain: 'fullstack', group: 'Bahasa Pemrograman', highlight: true },
+  { name: 'Python (FastAPI & PyQt6)', domain: 'fullstack', group: 'Bahasa Pemrograman' },
+  { name: 'ReactJS / React 19', domain: 'fullstack', group: 'Framework & UI', highlight: true },
+  { name: 'Next.js 15 App Router', domain: 'fullstack', group: 'Framework & UI', highlight: true },
+  { name: 'Flutter & Dart', domain: 'fullstack', group: 'Framework & UI', highlight: true },
+  { name: 'Tailwind CSS', domain: 'fullstack', group: 'Framework & UI' },
+  { name: 'HTML5 & CSS3', domain: 'fullstack', group: 'Framework & UI' },
+  { name: 'NodeJS', domain: 'fullstack', group: 'Backend & Alur Kerja', highlight: true },
+  { name: 'REST API', domain: 'fullstack', group: 'Backend & Alur Kerja', highlight: true },
+  { name: 'Git & GitHub Workflow', domain: 'fullstack', group: 'Backend & Alur Kerja' },
 
   // QA & Software Testing (Padepokan 79 QA Focus)
-  { name: 'Quality Assurance (QA)', domain: 'qa', highlight: true },
-  { name: 'Software Testing', domain: 'qa', highlight: true },
-  { name: 'Unit Testing', domain: 'qa', highlight: true },
-  { name: 'API Testing (Postman)', domain: 'qa', highlight: true },
-  { name: 'User Acceptance Testing (UAT)', domain: 'qa', highlight: true },
-  { name: 'Functional & Regression Testing', domain: 'qa' },
-  { name: 'Lighthouse & Core Web Vitals Audit', domain: 'qa' },
-  { name: 'Debugging & Memory Profiling', domain: 'qa' },
+  { name: 'Quality Assurance (QA)', domain: 'qa', group: 'Metode Pengujian', highlight: true },
+  { name: 'Software Testing', domain: 'qa', group: 'Metode Pengujian', highlight: true },
+  { name: 'Unit Testing', domain: 'qa', group: 'Metode Pengujian', highlight: true },
+  { name: 'User Acceptance Testing (UAT)', domain: 'qa', group: 'Metode Pengujian', highlight: true },
+  { name: 'Functional & Regression Testing', domain: 'qa', group: 'Metode Pengujian' },
+  { name: 'API Testing (Postman)', domain: 'qa', group: 'Tools & Audit Performa', highlight: true },
+  { name: 'Lighthouse & Core Web Vitals', domain: 'qa', group: 'Tools & Audit Performa' },
+  { name: 'Debugging & Memory Profiling', domain: 'qa', group: 'Tools & Audit Performa' },
 
   // Data Automation & Database (Garudafood Core)
-  { name: 'Data Analysis', domain: 'data', highlight: true },
-  { name: 'Data Automation / ETL', domain: 'data', highlight: true },
-  { name: 'Tableau', domain: 'data', highlight: true },
-  { name: 'Dashboard Reporting', domain: 'data', highlight: true },
-  { name: 'Database Management', domain: 'data', highlight: true },
-  { name: 'SQL / MySQL / PostgreSQL', domain: 'data', highlight: true },
-  { name: 'SQLite & Firebase Realtime DB', domain: 'data', highlight: true },
-  { name: 'Microsoft Excel (XLOOKUP & PivotTable)', domain: 'data', highlight: true },
-  { name: 'Python (Pandas & Scikit-Learn)', domain: 'data' },
+  { name: 'SQL / MySQL / PostgreSQL', domain: 'data', group: 'Database & Penyimpanan', highlight: true },
+  { name: 'SQLite & Firebase Realtime DB', domain: 'data', group: 'Database & Penyimpanan', highlight: true },
+  { name: 'Database Management', domain: 'data', group: 'Database & Penyimpanan', highlight: true },
+  { name: 'Data Automation / ETL', domain: 'data', group: 'Otomasi & Olah Data', highlight: true },
+  { name: 'Data Analysis', domain: 'data', group: 'Otomasi & Olah Data', highlight: true },
+  { name: 'Python (Pandas & Scikit-Learn)', domain: 'data', group: 'Otomasi & Olah Data' },
+  { name: 'Tableau', domain: 'data', group: 'Visualisasi & Pelaporan', highlight: true },
+  { name: 'Dashboard Reporting', domain: 'data', group: 'Visualisasi & Pelaporan', highlight: true },
+  { name: 'Excel (XLOOKUP & PivotTable)', domain: 'data', group: 'Visualisasi & Pelaporan', highlight: true },
 
   // Network, IoT & AI (System & Field Integration)
-  { name: 'Cisco CCNA (Routing & Switching)', domain: 'network-ai', highlight: true },
-  { name: 'TCP/IP, VLSM Subnetting & DHCP/NAT', domain: 'network-ai' },
-  { name: 'WebRTC P2P DataChannels', domain: 'network-ai', highlight: true },
-  { name: 'ESP32 & Sensor IoT (POS / RFID)', domain: 'network-ai', highlight: true },
-  { name: 'YOLOv8 & Computer Vision', domain: 'network-ai', highlight: true },
-  { name: 'Local LLM (Qwen GGUF) & Gemini API', domain: 'network-ai' },
+  { name: 'Cisco CCNA (Routing & Switching)', domain: 'network-ai', group: 'Jaringan & Protokol', highlight: true },
+  { name: 'WebRTC P2P DataChannels', domain: 'network-ai', group: 'Jaringan & Protokol', highlight: true },
+  { name: 'TCP/IP, VLSM & DHCP/NAT', domain: 'network-ai', group: 'Jaringan & Protokol' },
+  { name: 'ESP32 & Sensor IoT (POS / RFID)', domain: 'network-ai', group: 'Perangkat Keras & IoT', highlight: true },
+  { name: 'YOLOv8 & Computer Vision', domain: 'network-ai', group: 'Applied AI & Vision', highlight: true },
+  { name: 'Local LLM (Qwen GGUF) & Gemini API', domain: 'network-ai', group: 'Applied AI & Vision' },
 ];
 
 type SectionIconType = 'about' | 'projects' | 'skills' | 'academic' | 'contact';
@@ -2031,7 +2032,7 @@ export default function PortfolioPage() {
             })}
           </div>
 
-          {/* Interactive Technical Keyword & Stack Explorer */}
+          {/* Structured Technical Stack & Tools Matrix */}
           <div
             data-reveal
             onMouseMove={handleCardMouseMove}
@@ -2039,14 +2040,20 @@ export default function PortfolioPage() {
             className="spotlight-card mt-7 sm:mt-8 rounded-2xl border border-zinc-800/90 p-4 sm:p-6"
           >
             <div className="relative z-10">
+              {/* Matrix Header & Filter Bar */}
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-zinc-800/80 pb-4">
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
-                    <SlidersHorizontal className="h-3.5 w-3.5" />
+                <div className="flex items-start sm:items-center gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                    <SlidersHorizontal className="h-4 w-4" />
                   </span>
-                  <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
-                    Eksplorasi Kata Kunci Teknis &amp; Tools
-                  </span>
+                  <div>
+                    <h3 className="font-heading text-sm sm:text-base font-bold text-zinc-100">
+                      Matriks Tech Stack &amp; Tools Kerja
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-zinc-400 mt-0.5">
+                      Dikelompokkan per fungsi teknis agar mudah dipindai — klik item untuk melihat bukti proyek
+                    </p>
+                  </div>
                 </div>
 
                 {/* Filter Tabs */}
@@ -2076,33 +2083,135 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Interactive Skill Pills */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                {SKILL_KEYWORDS.filter(
-                  (kw) => activeSkillTab === 'all' || kw.domain === activeSkillTab
-                ).map((kw, idx) => {
-                  const targetExpertise = EXPERTISE_DATA.find((e) => e.id === kw.domain);
-                  return (
-                    <button
-                      key={`${activeSkillTab}-${kw.name}`}
-                      type="button"
-                      style={{ animationDelay: `${(idx % 12) * 25}ms` }}
-                      onClick={() => {
-                        if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
-                      }}
-                      className={`spring-pill animate-card-enter group/pill inline-flex items-center gap-1.5 rounded-lg border px-2.5 sm:px-3 py-1.5 font-mono text-[11px] sm:text-xs cursor-pointer ${
-                        kw.highlight
-                          ? 'border-zinc-700/90 bg-zinc-900/90 text-zinc-100 hover:border-emerald-500/50 hover:text-emerald-300'
-                          : 'border-zinc-800/80 bg-zinc-950/80 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
-                      }`}
-                    >
-                      {kw.highlight && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80 transition-transform duration-200 group-hover/pill:scale-150" />
-                      )}
-                      <span>{kw.name}</span>
-                    </button>
-                  );
-                })}
+              {/* 4-Cluster Categorized Matrix Grid */}
+              <div
+                className={`mt-5 grid gap-4 ${
+                  activeSkillTab === 'all' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'
+                }`}
+              >
+                {(
+                  [
+                    {
+                      id: 'fullstack' as const,
+                      title: 'Web & Fullstack Development',
+                      icon: 'code' as const,
+                    },
+                    {
+                      id: 'qa' as const,
+                      title: 'QA & Software Testing',
+                      icon: 'shield' as const,
+                    },
+                    {
+                      id: 'data' as const,
+                      title: 'Data, Database & Otomasi',
+                      icon: 'chart' as const,
+                    },
+                    {
+                      id: 'network-ai' as const,
+                      title: 'Jaringan, IoT & Applied AI',
+                      icon: 'cpu' as const,
+                    },
+                  ] as const
+                )
+                  .filter((cluster) => activeSkillTab === 'all' || cluster.id === activeSkillTab)
+                  .map((cluster) => {
+                    const clusterItems = SKILL_KEYWORDS.filter((kw) => kw.domain === cluster.id);
+                    const subGroups = Array.from(new Set(clusterItems.map((kw) => kw.group)));
+                    const targetExpertise = EXPERTISE_DATA.find((e) => e.id === cluster.id);
+
+                    return (
+                      <div
+                        key={cluster.id}
+                        className="animate-card-enter flex flex-col justify-between rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-4 sm:p-5 transition-colors hover:border-zinc-700/80"
+                      >
+                        <div>
+                          {/* Cluster Header */}
+                          <div className="flex items-center justify-between gap-2 border-b border-zinc-800/70 pb-3 mb-3.5">
+                            <div className="flex items-center gap-2.5">
+                              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                                {cluster.icon === 'code' && <Code2 className="h-3.5 w-3.5" />}
+                                {cluster.icon === 'shield' && <ShieldCheck className="h-3.5 w-3.5" />}
+                                {cluster.icon === 'chart' && <BarChart3 className="h-3.5 w-3.5" />}
+                                {cluster.icon === 'cpu' && <Cpu className="h-3.5 w-3.5" />}
+                              </span>
+                              <h4 className="font-heading text-xs sm:text-sm font-bold text-zinc-100">
+                                {cluster.title}
+                              </h4>
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
+                              }}
+                              className="inline-flex items-center gap-1 rounded-md border border-zinc-800/90 bg-zinc-900/70 px-2 py-0.5 font-mono text-[10px] text-zinc-400 transition-colors hover:border-emerald-500/40 hover:text-emerald-300 cursor-pointer"
+                            >
+                              <span>{clusterItems.length} Tools</span>
+                              <ArrowUpRight className="h-3 w-3" />
+                            </button>
+                          </div>
+
+                          {/* Sub-groups inside Cluster */}
+                          <div
+                            className={
+                              activeSkillTab !== 'all'
+                                ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
+                                : 'space-y-3'
+                            }
+                          >
+                            {subGroups.map((groupName) => {
+                              const groupSkills = clusterItems.filter((kw) => kw.group === groupName);
+                              return (
+                                <div key={groupName}>
+                                  <div className="mb-1.5 font-mono text-[10px] font-medium uppercase tracking-wider text-zinc-500">
+                                    {groupName}
+                                  </div>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {groupSkills.map((kw) => (
+                                      <button
+                                        key={kw.name}
+                                        type="button"
+                                        onClick={() => {
+                                          if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
+                                        }}
+                                        className={`spring-pill group/pill inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-[11px] sm:text-xs cursor-pointer ${
+                                          kw.highlight
+                                            ? 'border-zinc-700/90 bg-zinc-900/90 text-zinc-100 hover:border-emerald-500/50 hover:text-emerald-300'
+                                            : 'border-zinc-800/80 bg-zinc-950/80 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
+                                        }`}
+                                      >
+                                        {kw.highlight && (
+                                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400/90 transition-transform duration-200 group-hover/pill:scale-125" />
+                                        )}
+                                        <span>{kw.name}</span>
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              {/* Clear Legend Footer */}
+              <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-zinc-800/70 pt-3.5 text-[11px] text-zinc-400">
+                <div className="flex flex-wrap items-center gap-4 font-mono">
+                  <span className="inline-flex items-center gap-1.5 text-zinc-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span>Stack Utama (Core)</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-zinc-400">
+                    <span className="h-1.5 w-1.5 rounded-full border border-zinc-600 bg-zinc-900" />
+                    <span>Tools Pendukung &amp; Ekosistem</span>
+                  </span>
+                </div>
+                <span className="text-zinc-500">
+                  Klik salah satu item untuk membuka rincian kompetensi &amp; studi kasus
+                </span>
               </div>
             </div>
           </div>
