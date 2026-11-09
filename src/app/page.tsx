@@ -1279,7 +1279,7 @@ export default function PortfolioPage() {
 
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-zinc-800/60 bg-[#0A0A0C]/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
+        <div className="mx-auto flex max-w-[1240px] items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
           <a
             href="#top"
             className="group flex items-center gap-2.5 text-base font-semibold tracking-tight text-zinc-100 hover:opacity-90 transition"
@@ -1389,10 +1389,10 @@ export default function PortfolioPage() {
         )}
       </header>
 
-      <main className="mx-auto max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] px-4 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
         {/* HERO SECTION */}
         <section className="py-8 sm:py-14 md:py-20 lg:py-24">
-          <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+          <div className="grid items-stretch gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-12">
             {/* Left Column */}
             <div className="space-y-6 lg:col-span-7 xl:col-span-8 flex flex-col justify-between">
               <div className="space-y-4 sm:space-y-5">
@@ -1413,7 +1413,7 @@ export default function PortfolioPage() {
                 </div>
 
                 {/* Professional yet Relaxed Bio */}
-                <p className="animate-fade-in-up delay-150 max-w-2xl text-sm sm:text-base leading-relaxed text-zinc-400">
+                <p className="animate-fade-in-up delay-150 text-sm sm:text-base leading-relaxed text-zinc-400">
                   Halo! Saya lulusan <strong className="text-zinc-200 font-medium">S1 Sistem Komputer (Rumpun Ilmu Komputer &amp; Informatika)</strong> UNIKOM yang fokus merancang aplikasi web &amp; mobile modern (ReactJS, Next.js, Node.js, Flutter), melakukan pengujian kualitas perangkat lunak (QA, Unit &amp; API Testing), serta mengolah alur data operasional menjadi dashboard real-time dan laporan otomatis dengan Python, SQL, Tableau, dan Excel.
                 </p>
 
@@ -1455,7 +1455,7 @@ export default function PortfolioPage() {
               </div>
 
               {/* Key Highlights Bar with Animated Number Counters */}
-              <div className="animate-fade-in-up delay-300 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 border-t border-zinc-800/80 pt-5 sm:pt-6 sm:max-w-xl xl:max-w-2xl">
+              <div className="animate-fade-in-up delay-300 grid w-full grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 border-t border-zinc-800/80 pt-5 sm:pt-6">
                 <div
                   onMouseMove={handleCardMouseMove}
                   onMouseLeave={handleCardMouseLeave}
@@ -2898,7 +2898,7 @@ export default function PortfolioPage() {
 
       {/* FOOTER */}
       <footer className="border-t border-zinc-800/80 bg-[#0A0A0C] py-8">
-        <div className="mx-auto flex max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1536px] flex-col items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 text-xs text-zinc-500 sm:flex-row">
+        <div className="mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 text-xs text-zinc-500 sm:flex-row">
           <p>© 2026 Edvan Nuriana Putra Septia · Portofolio Pribadi</p>
           <a
             href="#top"
