@@ -733,7 +733,7 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'Cloudflare Workers',
       ],
       highlightMetric:
-        'Melahirkan 4 aplikasi mandiri siap pakai (EnInformasi Hub, ENCross, ENLife, ENCLip) dengan waktu muat cepat dan antarmuka responsif di berbagai ukuran layar.',
+        '4 aplikasi telah dibangun dan dipublikasikan (EnInformasi Hub, ENCross, ENLife, ENCLip) mencakup platform web, mobile Android, dan desktop Windows.',
       relatedProjectIds: ['eninformasi', 'encross', 'enlife', 'enclip'],
     },
   },
@@ -768,7 +768,7 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'Cross-Browser & Responsive Testing',
       ],
       highlightMetric:
-        'Skor performa Google Lighthouse 99–100/100 pada portal web produksi dan efisiensi penggunaan memori <50MB pada pemrosesan PDF berbasis Web Worker.',
+        'Skor pengujian Google Lighthouse 99–100/100 pada aplikasi web produksi serta penggunaan memori stabil <50MB pada pemrosesan dokumen PDF.',
       relatedProjectIds: ['eninformasi', 'endoclens', 'encross'],
     },
   },
@@ -803,7 +803,7 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'Exploratory Data Analysis (EDA)',
       ],
       highlightMetric:
-        'Tersertifikasi resmi Cisco Data Analytics Essentials & Spesialisasi 8 Kursus Microsoft Excel Coursera, serta publikasi riset analitik data medis di Jurnal Komputika.',
+        'Sertifikasi Cisco Data Analytics Essentials, Spesialisasi 8 Kursus Microsoft Excel (Coursera), dan publikasi jurnal riset klasifikasi data medis di Komputika.',
       relatedProjectIds: ['liver-ml', 'smart-pos', 'enlife'],
     },
   },
@@ -837,7 +837,7 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'FFmpeg GPU Pipeline',
       ],
       highlightMetric:
-        'Akurasi pembacaan timbangan digital POS >98% (terbit di Jurnal Biner) dan akurasi deteksi pelat nomor YOLOv8 mencapai mAP@50 98.51% dengan waktu respons <2 detik.',
+        'Akurasi pembacaan sensor timbangan digital POS >98% (Jurnal Biner) serta akurasi deteksi pelat nomor YOLOv8 sebesar 98,51% (mAP@50) dengan waktu proses <2 detik.',
       relatedProjectIds: ['smart-parking', 'smart-pos', 'encross', 'enclip'],
     },
   },
@@ -2071,7 +2071,7 @@ export default function PortfolioPage() {
                         idx === 0 ? 'col-span-2 sm:col-span-1' : ''
                       } whitespace-nowrap rounded-lg px-3 py-1.5 text-xs sm:text-[13px] font-semibold transition-all duration-200 cursor-pointer ${
                         activeSkillTab === tab.id
-                          ? 'bg-emerald-400 text-zinc-950 shadow-sm'
+                          ? 'bg-zinc-100 text-zinc-950 shadow-sm'
                           : 'text-zinc-200 hover:bg-zinc-800 hover:text-white'
                       }`}
                     >
@@ -2150,10 +2150,10 @@ export default function PortfolioPage() {
                             onClick={() => {
                               if (targetExpertise) handleOpenExpertiseModal(targetExpertise);
                             }}
-                            className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1.5 font-mono text-xs font-semibold text-emerald-300 transition-colors hover:border-emerald-400/60 hover:bg-emerald-500/20 cursor-pointer"
+                            className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-950 px-2.5 py-1.5 font-mono text-xs font-medium text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-900 hover:text-white cursor-pointer"
                           >
-                            <span>Rincian &amp; Bukti</span>
-                            <ArrowUpRight className="h-3.5 w-3.5" />
+                            <span>Lihat Detail</span>
+                            <ArrowUpRight className="h-3.5 w-3.5 text-emerald-400" />
                           </button>
                         </div>
 
@@ -2999,7 +2999,7 @@ export default function PortfolioPage() {
               {activeModalProject.modalDetails?.bullets && (
                 <div className="space-y-2 pt-2">
                   <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold">
-                    Poin Teknis &amp; Arsitektur Utama
+                    Rincian Teknis
                   </p>
                   <ul className="space-y-2 text-xs text-zinc-300">
                     {activeModalProject.modalDetails.bullets.map((bullet, idx) => (
@@ -3013,9 +3013,9 @@ export default function PortfolioPage() {
               )}
 
               {activeModalProject.modalDetails?.results && (
-                <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-4 text-xs text-emerald-200 leading-relaxed">
-                  <span className="font-medium text-emerald-300 block mb-1">
-                    Hasil &amp; Capaian Kinerja:
+                <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-xs sm:text-sm text-zinc-200 leading-relaxed">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block mb-1.5">
+                    Hasil Pengujian &amp; Implementasi
                   </span>
                   {activeModalProject.modalDetails.results}
                 </div>
@@ -3129,12 +3129,12 @@ export default function PortfolioPage() {
                 {activeExpertise.modalDetails.summary}
               </p>
 
-              {/* Cakupan Kompetensi */}
+              {/* Fokus Pekerjaan */}
               <div className="space-y-2 pt-1">
                 <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold">
-                  Cakupan Kompetensi &amp; Implementasi:
+                  Fokus Pekerjaan
                 </p>
-                <ul className="space-y-2 text-xs text-zinc-300">
+                <ul className="space-y-2 text-xs sm:text-sm text-zinc-300">
                   {activeExpertise.modalDetails.competencies.map((comp, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
                       <span className="text-emerald-400 font-mono text-[11px] mt-0.5">•</span>
@@ -3144,16 +3144,16 @@ export default function PortfolioPage() {
                 </ul>
               </div>
 
-              {/* Tools & Kata Kunci Teknis */}
-              <div className="pt-2 border-t border-zinc-800/80">
+              {/* Tech Stack & Tools */}
+              <div className="pt-3 border-t border-zinc-800/80">
                 <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold mb-2.5">
-                  Teknologi, Metode &amp; Tools Terkait:
+                  Tech Stack &amp; Tools
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {activeExpertise.modalDetails.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-200"
+                      className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-xs text-zinc-200"
                     >
                       {tool}
                     </span>
@@ -3161,18 +3161,18 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Bukti & Metrik Capaian */}
-              <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-3.5 sm:p-4 text-xs text-emerald-200 leading-relaxed">
-                <span className="font-semibold text-emerald-300 block mb-1">
-                  Bukti &amp; Capaian Terukur:
+              {/* Hasil & Kredensial */}
+              <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-3.5 sm:p-4 text-xs sm:text-sm text-zinc-200 leading-relaxed">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block mb-1.5">
+                  Hasil &amp; Kredensial Terkait
                 </span>
                 {activeExpertise.modalDetails.highlightMetric}
               </div>
 
-              {/* Proyek Terkait (Interaktif: Klik langsung buka modal proyek) */}
-              <div className="pt-2 border-t border-zinc-800/80">
-                <p className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 mb-2">
-                  Implementasi di Proyek &amp; Riset (Ketuk untuk melihat proyek):
+              {/* Proyek Terkait */}
+              <div className="pt-3 border-t border-zinc-800/80">
+                <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold mb-2.5">
+                  Proyek &amp; Riset Terkait
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {activeExpertise.modalDetails.relatedProjectIds.map((projId) => {
@@ -3189,7 +3189,7 @@ export default function PortfolioPage() {
                           setIsClosingExpertiseModal(false);
                           handleOpenModal(foundProj);
                         }}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3 py-1.5 text-xs font-medium text-zinc-200 transition hover:border-emerald-500/40 hover:text-emerald-300 cursor-pointer"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3 py-1.5 text-xs font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-800 hover:text-white cursor-pointer"
                       >
                         <span>{foundProj.title.split('—')[0].trim()}</span>
                         <ArrowUpRight className="h-3.5 w-3.5 text-emerald-400" />
