@@ -1163,7 +1163,7 @@ export default function PortfolioPage() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     );
 
     elements.forEach((el) => observer.observe(el));
