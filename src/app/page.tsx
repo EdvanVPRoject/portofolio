@@ -405,16 +405,16 @@ const FEATURED_APPS: FeaturedApp[] = [
   },
   {
     id: 'eninformasi',
-    title: 'EnInformasi Hub — Portal 234 Tutorial, Gaming & Tren Teknologi',
+    title: 'EnInformasi Hub — Portal 236 Tutorial, Gaming & Tren Teknologi',
     tagline: 'Platform Edukasi & Publikasi Web · Bilingual ID/EN',
     year: '2026',
     badge: 'Next.js & Cloudflare',
     category: ['software'],
     image: '/eninformasi-icon.svg',
     description:
-      'Portal web teknologi dua bahasa (Indonesia & Inggris) yang memuat 234 artikel tutorial praktis, pembahasan gaming, dan ulasan tren teknologi di atas infrastruktur Cloudflare Workers.',
+      'Portal web teknologi dua bahasa (Indonesia & Inggris) yang memuat 236 artikel tutorial praktis, pembahasan gaming, dan ulasan tren teknologi di atas infrastruktur Cloudflare Workers.',
     highlights: [
-      '234 Materi Terstruktur (Tutorial Praktis, Gaming & Ulasan Teknologi)',
+      '236 Materi Terstruktur (Tutorial Praktis, Gaming & Ulasan Teknologi)',
       'Fitur Ganti Bahasa Instan (ID/EN) & Checklist Praktik Interaktif',
     ],
     tech: [
@@ -442,7 +442,7 @@ const FEATURED_APPS: FeaturedApp[] = [
       summary:
         'Platform bacaan teknologi modern yang memisahkan kategori Tutorial Praktis (panduan langkah demi langkah) dan EnInformasi (ulasan mendalam & tren industri). Dirancang agar ringan dibuka, nyaman dibaca di HP maupun PC, dan mendukung dua bahasa secara penuh.',
       bullets: [
-        '234 Artikel Terkurasi: Membahas pengembangan software, pemanfaatan AI/LLM, cloud computing, sistem IoT, hingga perkembangan dunia teknologi dan gaming.',
+        '236 Artikel Terkurasi: Membahas pengembangan software, pemanfaatan AI/LLM, cloud computing, sistem IoT, hingga perkembangan dunia teknologi dan gaming.',
         'Bilingual Real-Time: Tombol pengubah bahasa yang langsung menerjemahkan judul, ringkasan, isi artikel, dan daftar isi tanpa perlu memuat ulang halaman.',
         'Checklist Praktik Interaktif: Pembaca bisa mencentang langkah-langkah tutorial yang sudah dipraktikkan langsung di browser.',
         'Navigasi Daftar Isi Otomatis: Penanda posisi bacaan aktif yang mengikuti guliran layar di desktop maupun perangkat mobile.',
