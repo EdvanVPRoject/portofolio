@@ -968,134 +968,21 @@ function getBentoSpanClass(idx: number, total: number): string {
 }
 
 function AppPreviewVisual({ app }: { app: FeaturedApp }) {
-  if (app.previewImage) {
-    return (
-      <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
-        <Image
-          src={app.previewImage}
-          alt={`Pratinjau antarmuka ${app.title}`}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 580px"
-          className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.03]"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0E0E11]/70 via-transparent to-transparent" />
-        <div className="pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/80 bg-zinc-950/90 px-2.5 py-0.5 text-[10px] font-mono text-emerald-300 backdrop-blur-md">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          <span>Live Web App</span>
-        </div>
-      </div>
-    );
-  }
+  if (!app.previewImage) return null;
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-[#0B0C10] p-3.5 sm:p-4 flex flex-col justify-between select-none">
-      {/* Subtle blueprint grid background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: 'radial-gradient(#3f3f46 1px, transparent 1px)',
-          backgroundSize: '16px 16px',
-        }}
+    <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
+      <Image
+        src={app.previewImage}
+        alt={`Pratinjau antarmuka ${app.title}`}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 580px"
+        className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.03]"
       />
-
-      {/* Top mini studio bar */}
-      <div className="relative z-10 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-zinc-700" />
-          <span className="h-2 w-2 rounded-full bg-zinc-700" />
-          <span className="h-2 w-2 rounded-full bg-emerald-500/70" />
-        </div>
-        <span className="rounded border border-zinc-800 bg-zinc-950/90 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
-          {app.badge}
-        </span>
-      </div>
-
-      {/* App-specific UI miniature schematic */}
-      {app.id === 'enclip' && (
-        <div className="relative z-10 my-auto grid grid-cols-12 gap-2.5 items-center pt-1">
-          <div className="col-span-7 space-y-2 rounded-lg border border-zinc-800/90 bg-zinc-950/90 p-2.5">
-            <div className="flex items-center gap-2">
-              <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 p-0.5">
-                <Image src={app.image} alt={app.title} fill sizes="24px" className="object-contain" />
-              </div>
-              <span className="font-mono text-[10px] font-semibold text-zinc-200 truncate">Hybrid AI Pipeline</span>
-            </div>
-            <div className="space-y-1">
-              <div className="flex items-center justify-between text-[9px] font-mono text-zinc-400">
-                <span>Faster-Whisper STT</span>
-                <span className="text-emerald-400">Offline</span>
-              </div>
-              <div className="h-1.5 w-full rounded-full bg-zinc-800 overflow-hidden">
-                <div className="h-full w-4/5 rounded-full bg-emerald-500/70" />
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-1">
-              <span className="rounded bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 font-mono text-[9px] text-zinc-300">Qwen GGUF</span>
-              <span className="rounded bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 font-mono text-[9px] text-zinc-300">FFmpeg GPU</span>
-            </div>
-          </div>
-          <div className="col-span-5 flex justify-center">
-            <div className="flex h-24 w-14 flex-col items-center justify-between rounded-lg border border-zinc-700/80 bg-zinc-900/90 p-1.5 shadow-lg">
-              <span className="text-[8px] font-mono text-zinc-400">9:16 Clip</span>
-              <div className="w-full flex-1 my-1 rounded bg-zinc-950 border border-zinc-800/80 flex items-end justify-center p-1">
-                <span className="rounded bg-emerald-500/20 border border-emerald-500/40 px-1 py-0.5 font-mono text-[7px] text-emerald-300">Hardsub</span>
-              </div>
-              <span className="h-1 w-5 rounded-full bg-zinc-700" />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {app.id === 'encross' && (
-        <div className="relative z-10 my-auto flex items-center justify-between gap-2 rounded-lg border border-zinc-800/90 bg-zinc-950/90 p-3">
-          <div className="flex flex-col items-center gap-1 text-center">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 font-mono text-[10px] font-semibold text-zinc-200">
-              WIN
-            </div>
-            <span className="font-mono text-[9px] text-zinc-500">Desktop</span>
-          </div>
-          <div className="flex-1 flex flex-col items-center gap-1 px-1">
-            <div className="flex items-center gap-1 text-[9px] font-mono text-emerald-400">
-              <span>Direct P2P</span>
-            </div>
-            <div className="h-px w-full border-t border-dashed border-emerald-500/60" />
-            <span className="rounded bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 font-mono text-[9px] text-zinc-300">
-              WebRTC 64KB Chunk
-            </span>
-          </div>
-          <div className="flex flex-col items-center gap-1 text-center">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 font-mono text-[10px] font-semibold text-zinc-200">
-              APK
-            </div>
-            <span className="font-mono text-[9px] text-zinc-500">Android</span>
-          </div>
-        </div>
-      )}
-
-      {app.id === 'enlife' && (
-        <div className="relative z-10 my-auto grid grid-cols-2 gap-1.5 pt-1">
-          {[
-            { name: 'Keuangan', tag: 'fl_chart' },
-            { name: 'Habit & Fokus', tag: 'Pomodoro' },
-            { name: 'ID Vault', tag: 'Lokal Aman' },
-            { name: 'Kalkulator', tag: 'Split Bill' },
-          ].map((mod) => (
-            <div
-              key={mod.name}
-              className="rounded-lg border border-zinc-800/90 bg-zinc-950/90 px-2.5 py-2 flex flex-col justify-between"
-            >
-              <span className="font-heading text-[10px] font-semibold text-zinc-200 leading-tight">{mod.name}</span>
-              <span className="mt-1 font-mono text-[9px] text-emerald-400/90">{mod.tag}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Bottom caption bar */}
-      <div className="relative z-10 flex items-center justify-between text-[10px] font-mono text-zinc-500 pt-1">
-        <span>Offline / Client-Side Ready</span>
-        <span className="text-zinc-400">{app.year}</span>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0E0E11]/70 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/80 bg-zinc-950/90 px-2.5 py-0.5 text-[10px] font-mono text-emerald-300 backdrop-blur-md">
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+        <span>Live Web App</span>
       </div>
     </div>
   );
@@ -1919,15 +1806,19 @@ export default function PortfolioPage() {
                   <div className="relative z-10">
                     <AppPreviewVisual app={app} />
 
-                    <div className="p-4 sm:p-5">
-                      <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <div className={app.previewImage ? 'p-4 sm:p-5' : 'p-5 sm:p-6'}>
+                      <div className="flex items-center justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 p-1">
+                          <div
+                            className={`relative flex shrink-0 items-center justify-center overflow-hidden border border-zinc-800 bg-zinc-950 ${
+                              app.previewImage ? 'h-7 w-7 rounded-lg p-1' : 'h-9 w-9 rounded-xl p-1.5'
+                            }`}
+                          >
                             <Image
                               src={app.image}
                               alt=""
-                              width={20}
-                              height={20}
+                              width={app.previewImage ? 20 : 24}
+                              height={app.previewImage ? 20 : 24}
                               className="object-contain"
                             />
                           </div>
