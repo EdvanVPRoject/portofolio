@@ -967,7 +967,6 @@ function getBentoSpanClass(idx: number, total: number): string {
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>('all');
   const [activeSkillTab, setActiveSkillTab] = useState<SkillDomain>('all');
-  const [activeCertFilter, setActiveCertFilter] = useState<'featured' | 'all'>('featured');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeModalProject, setActiveModalProject] = useState<
     FeaturedApp | ResearchProject | null
@@ -1186,7 +1185,7 @@ export default function PortfolioPage() {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [activeFilter, activeSkillTab, activeCertFilter, activePillarFilter]);
+  }, [activeFilter, activeSkillTab, activePillarFilter]);
 
   const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget;
@@ -2399,43 +2398,19 @@ export default function PortfolioPage() {
                   Kredensial Industri &amp; Uji Kompetensi
                 </h3>
                 <p className="mt-1 text-xs text-zinc-400">
-                  Menampilkan 4 sertifikasi utama secara ringkas. Ketuk kartu untuk pratinjau dokumen asli atau tampilkan seluruh kredensial.
+                  Ketuk kartu mana saja untuk pratinjau dokumen asli sertifikat atau mengunduh versi PDF.
                 </p>
               </div>
 
-              {/* Balanced Filter Sertifikat: 4 Utama (1 row of 4) vs Semua 8 (2 rows of 4) */}
-              <div className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-800/80 bg-zinc-900/50 p-1 self-start sm:self-auto">
-                <button
-                  type="button"
-                  onClick={() => setActiveCertFilter('featured')}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition cursor-pointer whitespace-nowrap ${
-                    activeCertFilter === 'featured'
-                      ? 'bg-zinc-100 text-zinc-950 font-semibold'
-                      : 'text-zinc-400 hover:text-zinc-200'
-                  }`}
-                >
-                  Pilihan Utama ({CERTIFICATIONS_DATA.filter((c) => c.featured).length})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveCertFilter('all')}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition cursor-pointer whitespace-nowrap ${
-                    activeCertFilter === 'all'
-                      ? 'bg-zinc-100 text-zinc-950 font-semibold'
-                      : 'text-zinc-400 hover:text-zinc-200'
-                  }`}
-                >
-                  Semua Kredensial ({CERTIFICATIONS_DATA.length})
-                </button>
-              </div>
+              <span className="inline-flex items-center rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-1.5 font-mono text-xs text-zinc-300 self-start sm:self-auto whitespace-nowrap">
+                {CERTIFICATIONS_DATA.length} Kredensial Terverifikasi
+              </span>
             </div>
 
             <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-              {CERTIFICATIONS_DATA.filter(
-                (cert) => activeCertFilter === 'all' || Boolean(cert.featured)
-              ).map((cert, idx) => (
+              {CERTIFICATIONS_DATA.map((cert, idx) => (
                 <div
-                  key={`${activeCertFilter}-${cert.id}`}
+                  key={cert.id}
                   style={{ animationDelay: `${idx * 50}ms` }}
                   onMouseMove={handleCardMouseMove}
                   onMouseLeave={handleCardMouseLeave}
