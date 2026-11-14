@@ -1791,7 +1791,7 @@ export default function PortfolioPage() {
                               className="object-contain"
                             />
                           </div>
-                          <span className="truncate font-mono text-[11px] text-emerald-400/90">
+                          <span className="truncate font-mono text-[11px] text-zinc-400">
                             {app.badge}
                           </span>
                         </div>
@@ -1895,7 +1895,7 @@ export default function PortfolioPage() {
 
                     <div className="p-4 sm:p-5">
                       <div className="flex items-center justify-between gap-2 font-mono text-[11px]">
-                        <span className="text-emerald-400/90 truncate">
+                        <span className="text-zinc-400 truncate">
                           {project.tagline.split('·')[0]}
                         </span>
                         <span className="text-zinc-500 shrink-0">{project.year}</span>
@@ -2226,7 +2226,7 @@ export default function PortfolioPage() {
                     <h3 className="font-heading text-lg sm:text-xl font-bold text-zinc-100">
                       S1 Sistem Komputer
                     </h3>
-                    <p className="text-xs font-medium text-emerald-400">
+                    <p className="text-xs font-medium text-zinc-400">
                       Rumpun Ilmu Komputer &amp; Informatika · UNIKOM Bandung
                     </p>
                   </div>
@@ -2301,7 +2301,7 @@ export default function PortfolioPage() {
                     className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-3.5 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                      <span className="font-mono text-[11px] font-medium text-emerald-400/90">
+                      <span className="font-mono text-[11px] font-medium text-zinc-400">
                         Jurnal Komputika · Vol 15(1) 2026 · Hal. 83–94
                       </span>
                     </div>
@@ -2344,7 +2344,7 @@ export default function PortfolioPage() {
                     className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-3.5 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                      <span className="font-mono text-[11px] font-medium text-emerald-400/90">
+                      <span className="font-mono text-[11px] font-medium text-zinc-400">
                         Jurnal Biner · Vol 5(1) 2026 · Hal. 1–9
                       </span>
                     </div>
