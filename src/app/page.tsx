@@ -59,7 +59,6 @@ interface FeaturedApp {
   badge: string;
   category: ProjectCategory[];
   image: string;
-  previewImage?: string;
   description: string;
   highlights: string[];
   tech: string[];
@@ -331,7 +330,6 @@ const FEATURED_APPS: FeaturedApp[] = [
     badge: 'Next.js & Cloudflare',
     category: ['software'],
     image: '/eninformasi-icon.svg',
-    previewImage: '/preview-eninformasi.png',
     description:
       'Portal web teknologi dua bahasa (Indonesia & Inggris) yang memuat 236 artikel tutorial praktis, pembahasan gaming, dan ulasan tren teknologi di atas infrastruktur Cloudflare Workers.',
     highlights: [
@@ -382,7 +380,6 @@ const FEATURED_APPS: FeaturedApp[] = [
     badge: 'Web Suite & OCR',
     category: ['software'],
     image: '/endoclens-icon.svg',
-    previewImage: '/preview-endoclens.png',
     description:
       'Aplikasi web pengolahan dokumen dengan 16 fitur PDF, pemindai kamera otomatis (perspective warp), dan pembaca teks OCR yang berjalan 100% langsung di browser tanpa unggah ke server.',
     highlights: [
@@ -591,7 +588,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     tagline: 'Publikasi Jurnal Komputika · Vol. 15 No. 1 (2026) Hal. 83–94',
     year: '2026',
     category: ['publication'],
-    image: '/journal-liver-cover.png',
+    image: '/journal-liver-paper.png',
     description:
       'Penelitian komparasi algoritma machine learning (Random Forest, SVM, dan Logistic Regression) pada 579 data rekam medis pasien yang terbit di Jurnal Ilmiah Komputika UNIKOM.',
     highlights: [
@@ -623,7 +620,7 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     tagline: 'Publikasi Jurnal Biner · Vol. 5 No. 1 (2026) Hal. 1–9',
     year: '2026',
     category: ['iot-cv', 'publication'],
-    image: '/journal-pos-cover.png',
+    image: '/journal-pos-paper.png',
     description:
       'Integrasi timbangan digital berbasis mikrokontroler ESP32 dan sensor Load Cell HX711 yang langsung terhubung ke aplikasi kasir web untuk membantu transaksi UMKM, terbit di Jurnal Biner.',
     highlights: [
@@ -965,27 +962,6 @@ function getBentoSpanClass(idx: number, total: number): string {
     return 'md:col-span-1 lg:col-span-2';
   }
   return 'md:col-span-1 lg:col-span-2';
-}
-
-function AppPreviewVisual({ app }: { app: FeaturedApp }) {
-  if (!app.previewImage) return null;
-
-  return (
-    <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
-      <Image
-        src={app.previewImage}
-        alt={`Pratinjau antarmuka ${app.title}`}
-        fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 580px"
-        className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.03]"
-      />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0E0E11]/70 via-transparent to-transparent" />
-      <div className="pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border border-zinc-700/80 bg-zinc-950/90 px-2.5 py-0.5 text-[10px] font-mono text-emerald-300 backdrop-blur-md">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-        <span>Live Web App</span>
-      </div>
-    </div>
-  );
 }
 
 export default function PortfolioPage() {
@@ -1804,21 +1780,15 @@ export default function PortfolioPage() {
                   className={`${getBentoSpanClass(idx, filteredApps.length)} spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:border-zinc-700 cursor-pointer`}
                 >
                   <div className="relative z-10">
-                    <AppPreviewVisual app={app} />
-
-                    <div className={app.previewImage ? 'p-4 sm:p-5' : 'p-5 sm:p-6'}>
+                    <div className="p-5 sm:p-6">
                       <div className="flex items-center justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <div
-                            className={`relative flex shrink-0 items-center justify-center overflow-hidden border border-zinc-800 bg-zinc-950 ${
-                              app.previewImage ? 'h-7 w-7 rounded-lg p-1' : 'h-9 w-9 rounded-xl p-1.5'
-                            }`}
-                          >
+                          <div className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-1.5">
                             <Image
                               src={app.image}
                               alt=""
-                              width={app.previewImage ? 20 : 24}
-                              height={app.previewImage ? 20 : 24}
+                              width={24}
+                              height={24}
                               className="object-contain"
                             />
                           </div>
@@ -1915,8 +1885,13 @@ export default function PortfolioPage() {
                         alt={project.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+                        className={`object-cover object-top transition duration-700 ease-out group-hover:scale-[1.03] ${
+                          project.image.includes('-paper.') ? 'brightness-[0.92]' : ''
+                        }`}
                       />
+                      {project.image.includes('-paper.') && (
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0E0E11]/30 via-transparent to-transparent" />
+                      )}
                     </div>
 
                     <div className="p-4 sm:p-5">
