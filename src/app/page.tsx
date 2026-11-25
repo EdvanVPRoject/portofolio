@@ -282,13 +282,13 @@ const FEATURED_APPS: FeaturedApp[] = [
   {
     id: 'eninformasi',
     title: 'EnInformasi Hub',
-    tagline: 'Portal Edukasi & Tren Teknologi · 254 Artikel',
+    tagline: 'Portal Edukasi & Tren Teknologi · 259 Artikel',
     year: '2026',
     category: ['software'],
     description:
-      'Portal web dwibahasa (ID/EN) berisi 254 tutorial praktis, ulasan teknologi, dan gaming di Cloudflare Workers.',
+      'Portal web dwibahasa (ID/EN) berisi 259 tutorial praktis, ulasan teknologi, dan gaming di Cloudflare Workers.',
     highlights: [
-      '254 Materi Terstruktur (Tutorial Praktis, Gaming & Ulasan Teknologi)',
+      '259 Materi Terstruktur (Tutorial Praktis, Gaming & Ulasan Teknologi)',
       'Fitur Ganti Bahasa Instan (ID/EN) & Checklist Praktik Interaktif',
     ],
     tech: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'OpenNext', 'Cloudflare Workers'],
@@ -308,7 +308,7 @@ const FEATURED_APPS: FeaturedApp[] = [
       summary:
         'Platform bacaan teknologi modern yang memisahkan kategori Tutorial Praktis (panduan langkah demi langkah) dan EnInformasi (ulasan mendalam & tren industri). Dirancang agar ringan dibuka, nyaman dibaca di HP maupun PC, dan mendukung dua bahasa secara penuh.',
       bullets: [
-        '254 Artikel Terkurasi: Membahas pengembangan software, pemanfaatan AI/LLM, cloud computing, sistem IoT, hingga perkembangan dunia teknologi dan gaming.',
+        '259 Artikel Terkurasi: Membahas pengembangan software, pemanfaatan AI/LLM, cloud computing, sistem IoT, hingga perkembangan dunia teknologi dan gaming.',
         'Bilingual Real-Time: Tombol pengubah bahasa yang langsung menerjemahkan judul, ringkasan, isi artikel, dan daftar isi tanpa perlu memuat ulang halaman.',
         'Checklist Praktik Interaktif: Pembaca bisa mencentang langkah-langkah tutorial yang sudah dipraktikkan langsung di browser.',
         'Navigasi Daftar Isi Otomatis: Penanda posisi bacaan aktif yang mengikuti guliran layar di desktop maupun perangkat mobile.',
@@ -766,6 +766,7 @@ export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>('projects');
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
 
   // Collapsible Telegram Direct Message Drawer (Open Question 3 - Opsi A)
   const [isMessageDrawerOpen, setIsMessageDrawerOpen] = useState(false);
@@ -775,6 +776,13 @@ export default function PortfolioPage() {
   const [guestMessage, setGuestMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitErrorMsg, setSubmitErrorMsg] = useState('');
+
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const projectCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const expertiseCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const certCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cvCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleCopyEmail = async () => {
     const email = 'septiaedvan@gmail.com';
@@ -790,29 +798,45 @@ export default function PortfolioPage() {
     }
 
     if (!copied && typeof document !== 'undefined') {
+      const prevScrollX = window.scrollX;
+      const prevScrollY = window.scrollY;
       try {
         const textarea = document.createElement('textarea');
         textarea.value = email;
         textarea.setAttribute('readonly', '');
         textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
         textarea.style.opacity = '0';
+        textarea.style.pointerEvents = 'none';
         document.body.appendChild(textarea);
+        textarea.focus({ preventScroll: true });
         textarea.select();
         copied = document.execCommand('copy');
         document.body.removeChild(textarea);
+        if (window.scrollX !== prevScrollX || window.scrollY !== prevScrollY) {
+          window.scrollTo(prevScrollX, prevScrollY);
+        }
       } catch {
         copied = false;
       }
     }
 
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+
     if (copied) {
+      setCopyFailed(false);
       setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2200);
+      copyTimerRef.current = setTimeout(() => setCopiedEmail(false), 2200);
+    } else {
+      setCopiedEmail(false);
+      setCopyFailed(true);
+      copyTimerRef.current = setTimeout(() => setCopyFailed(false), 3200);
     }
   };
 
   const isNavClickRef = useRef(false);
-  const navClickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const navClickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleNavClick = (id: string) => {
     setActiveSection(id);
@@ -824,54 +848,78 @@ export default function PortfolioPage() {
   };
 
   const handleOpenModal = (project: FeaturedApp | ResearchProject) => {
+    if (projectCloseTimerRef.current) {
+      clearTimeout(projectCloseTimerRef.current);
+      projectCloseTimerRef.current = null;
+    }
     setIsClosingModal(false);
     setActiveModalProject(project);
   };
 
   const handleCloseModal = () => {
+    if (projectCloseTimerRef.current) clearTimeout(projectCloseTimerRef.current);
     setIsClosingModal(true);
-    setTimeout(() => {
+    projectCloseTimerRef.current = setTimeout(() => {
       setActiveModalProject(null);
       setIsClosingModal(false);
+      projectCloseTimerRef.current = null;
     }, 240);
   };
 
   const handleOpenExpertiseModal = (item: ExpertiseItem) => {
+    if (expertiseCloseTimerRef.current) {
+      clearTimeout(expertiseCloseTimerRef.current);
+      expertiseCloseTimerRef.current = null;
+    }
     setIsClosingExpertiseModal(false);
     setActiveExpertise(item);
   };
 
   const handleCloseExpertiseModal = () => {
+    if (expertiseCloseTimerRef.current) clearTimeout(expertiseCloseTimerRef.current);
     setIsClosingExpertiseModal(true);
-    setTimeout(() => {
+    expertiseCloseTimerRef.current = setTimeout(() => {
       setActiveExpertise(null);
       setIsClosingExpertiseModal(false);
+      expertiseCloseTimerRef.current = null;
     }, 240);
   };
 
   const handleOpenCertModal = (cert: CertificateCredential) => {
+    if (certCloseTimerRef.current) {
+      clearTimeout(certCloseTimerRef.current);
+      certCloseTimerRef.current = null;
+    }
     setIsClosingCertModal(false);
     setActiveCert(cert);
   };
 
   const handleCloseCertModal = () => {
+    if (certCloseTimerRef.current) clearTimeout(certCloseTimerRef.current);
     setIsClosingCertModal(true);
-    setTimeout(() => {
+    certCloseTimerRef.current = setTimeout(() => {
       setActiveCert(null);
       setIsClosingCertModal(false);
+      certCloseTimerRef.current = null;
     }, 240);
   };
 
   const handleOpenCvModal = () => {
+    if (cvCloseTimerRef.current) {
+      clearTimeout(cvCloseTimerRef.current);
+      cvCloseTimerRef.current = null;
+    }
     setIsClosingCvModal(false);
     setShowCvModal(true);
   };
 
   const handleCloseCvModal = () => {
+    if (cvCloseTimerRef.current) clearTimeout(cvCloseTimerRef.current);
     setIsClosingCvModal(true);
-    setTimeout(() => {
+    cvCloseTimerRef.current = setTimeout(() => {
       setShowCvModal(false);
       setIsClosingCvModal(false);
+      cvCloseTimerRef.current = null;
     }, 240);
   };
 
@@ -904,6 +952,7 @@ export default function PortfolioPage() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        if (mobileMenuOpen) setMobileMenuOpen(false);
         if (activeModalProject && !isClosingModal) handleCloseModal();
         if (activeExpertise && !isClosingExpertiseModal) handleCloseExpertiseModal();
         if (activeCert && !isClosingCertModal) handleCloseCertModal();
@@ -913,6 +962,7 @@ export default function PortfolioPage() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [
+    mobileMenuOpen,
     activeModalProject,
     isClosingModal,
     activeExpertise,
@@ -928,6 +978,10 @@ export default function PortfolioPage() {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
       if (isNavClickRef.current) return;
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 24) {
+        setActiveSection('contact');
+        return;
+      }
       const scrollPosition = window.scrollY + 200;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const id = sectionIds[i];
@@ -944,6 +998,11 @@ export default function PortfolioPage() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (navClickTimeoutRef.current) clearTimeout(navClickTimeoutRef.current);
+      if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+      if (projectCloseTimerRef.current) clearTimeout(projectCloseTimerRef.current);
+      if (expertiseCloseTimerRef.current) clearTimeout(expertiseCloseTimerRef.current);
+      if (certCloseTimerRef.current) clearTimeout(certCloseTimerRef.current);
+      if (cvCloseTimerRef.current) clearTimeout(cvCloseTimerRef.current);
     };
   }, []);
 
@@ -965,10 +1024,15 @@ export default function PortfolioPage() {
 
   async function handleFeedbackSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!guestMessage.trim()) return;
+    if (!guestMessage.trim()) {
+      setSubmitStatus('error');
+      setSubmitErrorMsg('Pesan wajib diisi sebelum mengirim.');
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setSubmitErrorMsg('');
 
     try {
       const res = await fetch('/api/feedback', {
@@ -991,9 +1055,11 @@ export default function PortfolioPage() {
         setGuestMessage('');
       } else {
         setSubmitStatus('error');
+        setSubmitErrorMsg('Gagal mengirim. Silakan hubungi langsung via WhatsApp atau Email.');
       }
     } catch {
       setSubmitStatus('error');
+      setSubmitErrorMsg('Gagal mengirim. Silakan hubungi langsung via WhatsApp atau Email.');
     } finally {
       setIsSubmitting(false);
     }
@@ -1006,6 +1072,7 @@ export default function PortfolioPage() {
         <div className="mx-auto flex max-w-[820px] items-center justify-between px-5 sm:px-6 py-3.5">
           <a
             href="#top"
+            onClick={() => setMobileMenuOpen(false)}
             className="text-sm font-semibold tracking-tight text-[#111113] hover:opacity-75 transition-opacity"
           >
             Edvan Nuriana
@@ -1082,7 +1149,7 @@ export default function PortfolioPage() {
 
       <main className="mx-auto max-w-[820px] px-5 sm:px-6">
         {/* HERO — HUMAN EDITORIAL INTRODUCTION */}
-        <section className="pt-7 pb-6 sm:pt-10 sm:pb-8">
+        <section className="pt-5 pb-5 sm:pt-7 sm:pb-6">
           <div className="flex items-center gap-4 sm:gap-5">
             <div className="relative h-16 w-16 sm:h-20 sm:w-20 shrink-0 overflow-hidden rounded-lg border border-[#E5E4DE] bg-[#F3F2EE]">
               <Image
@@ -1108,7 +1175,7 @@ export default function PortfolioPage() {
             </div>
           </div>
 
-          <div className="mt-4 space-y-2.5 text-[14.5px] sm:text-[15px] leading-[1.65] text-[#3F3F46]">
+          <div className="mt-3.5 space-y-2 text-[14.5px] sm:text-[15px] leading-[1.6] text-[#3F3F46]">
             <p>
               Saya merancang dan menguji aplikasi web, mobile, dan desktop dari awal hingga rilis produksi menggunakan TypeScript, React 19, Next.js 15, Node.js, Python, dan Flutter. Pekerjaan teknis ini ditunjang praktik Quality Assurance (Unit Testing, API Testing dengan Postman, UAT, dan audit Lighthouse), otomasi data SQL &amp; Excel, serta riset terapan IoT dan Computer Vision.
             </p>
@@ -1117,7 +1184,7 @@ export default function PortfolioPage() {
             </p>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2.5 text-[13.5px]">
+          <div className="mt-3.5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px]">
             <button
               type="button"
               onClick={handleOpenCvModal}
@@ -1154,6 +1221,10 @@ export default function PortfolioPage() {
                   <Check className="h-3.5 w-3.5 text-[#15803D]" />
                   <span className="text-[#15803D] font-medium">Email Tersalin</span>
                 </>
+              ) : copyFailed ? (
+                <span className="text-[#B91C1C] font-medium">
+                  Salin manual: septiaedvan@gmail.com
+                </span>
               ) : (
                 <>
                   <Copy className="h-3.5 w-3.5 text-[#5C5C64]" />
@@ -1165,7 +1236,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* PROYEK & RISET */}
-        <section id="projects" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+        <section id="projects" className="scroll-mt-16 border-t border-[#E5E4DE] py-5 sm:py-6">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
             <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
               Proyek &amp; Riset
@@ -1280,14 +1351,14 @@ export default function PortfolioPage() {
                 <article
                   key={`${activeFilter}-${app.id}`}
                   onClick={() => handleOpenModal(app)}
-                  className="editorial-row group -mx-2 px-2 py-3 cursor-pointer rounded-sm"
+                  className="editorial-row group -mx-2 px-2 py-2.5 cursor-pointer rounded-sm"
                 >
                   <div className="flex items-baseline justify-between gap-4">
-                    <div className="min-w-0">
-                      <h3 className="inline text-[14.5px] font-semibold text-[#111113] group-hover:underline decoration-[#C8C7BF] underline-offset-4">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 min-w-0">
+                      <h3 className="text-[14.5px] font-semibold text-[#111113] group-hover:underline decoration-[#C8C7BF] underline-offset-4">
                         {app.title}
                       </h3>
-                      <span className="ml-2 text-[12.5px] text-[#5C5C64]">
+                      <span className="text-[12.5px] text-[#5C5C64]">
                         {app.tagline}
                       </span>
                     </div>
@@ -1300,7 +1371,7 @@ export default function PortfolioPage() {
                     {app.description}
                   </p>
 
-                  <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs">
+                  <div className="mt-1.5 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs">
                     <span className="font-mono text-[11px] text-[#5C5C64]">
                       {app.tech.slice(0, 4).join(' · ')}
                     </span>
@@ -1337,7 +1408,7 @@ export default function PortfolioPage() {
 
           {/* Research & Journal Publications with Compact 112x64 Thumbnails */}
           {filteredResearch.length > 0 && (
-            <div className={filteredApps.length > 0 ? 'mt-3 pt-3 border-t border-[#E5E4DE]' : 'mt-1'}>
+            <div className={filteredApps.length > 0 ? 'mt-2.5 pt-2.5 border-t border-[#E5E4DE]' : 'mt-1'}>
               {filteredApps.length > 0 && (
                 <p className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64] mb-0.5">
                   Riset Terapan &amp; Publikasi Jurnal
@@ -1348,7 +1419,7 @@ export default function PortfolioPage() {
                   <article
                     key={`${activeFilter}-${project.id}`}
                     onClick={() => handleOpenModal(project)}
-                    className="editorial-row group -mx-2 px-2 py-3 cursor-pointer rounded-sm"
+                    className="editorial-row group -mx-2 px-2 py-2.5 cursor-pointer rounded-sm"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-5">
                       <div className="min-w-0 flex-1">
@@ -1369,7 +1440,7 @@ export default function PortfolioPage() {
                           {project.description}
                         </p>
 
-                        <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs">
+                        <div className="mt-1.5 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs">
                           <span className="font-mono text-[11px] text-[#5C5C64]">
                             {project.tech.slice(0, 4).join(' · ')}
                           </span>
@@ -1428,7 +1499,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* KEAHLIAN TEKNIS — 4-ROW DEFINITION TABLE */}
-        <section id="skills" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+        <section id="skills" className="scroll-mt-16 border-t border-[#E5E4DE] py-5 sm:py-6">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
             <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
               Keahlian Teknis
@@ -1438,12 +1509,12 @@ export default function PortfolioPage() {
             </span>
           </div>
 
-          <div className="mt-3 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE]">
+          <div className="mt-2.5 divide-y divide-[#E5E4DE] border-t border-[#E5E4DE]">
             {EXPERTISE_DATA.map((item) => (
               <div
                 key={item.id}
                 onClick={() => handleOpenExpertiseModal(item)}
-                className="editorial-row group grid grid-cols-1 sm:grid-cols-[170px_1fr_auto] items-baseline gap-1 sm:gap-5 -mx-2 px-2 py-2.5 cursor-pointer rounded-sm"
+                className="editorial-row group grid grid-cols-1 sm:grid-cols-[170px_1fr_auto] items-baseline gap-1 sm:gap-5 -mx-2 px-2 py-2 cursor-pointer rounded-sm"
               >
                 <h3 className="text-[13.5px] font-semibold text-[#111113]">
                   {item.label}
@@ -1467,13 +1538,13 @@ export default function PortfolioPage() {
         </section>
 
         {/* PENDIDIKAN, PUBLIKASI & SERTIFIKASI */}
-        <section id="academic" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+        <section id="academic" className="scroll-mt-16 border-t border-[#E5E4DE] py-5 sm:py-6">
           <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
             Pendidikan, Publikasi &amp; Sertifikasi
           </h2>
 
           {/* Pendidikan Formal */}
-          <div className="mt-3 border-y border-[#E5E4DE] py-3 grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-1.5 sm:gap-5">
+          <div className="mt-2.5 border-y border-[#E5E4DE] py-2.5 grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-1.5 sm:gap-5">
             <div className="space-y-0.5">
               <p className="font-mono text-xs tabular-nums text-[#5C5C64]">2022—2026</p>
               <p className="font-mono text-xs tabular-nums font-medium text-[#111113]">
@@ -1494,7 +1565,7 @@ export default function PortfolioPage() {
                   const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-parking');
                   if (proj) handleOpenModal(proj);
                 }}
-                className="mt-1.5 text-left text-[13px] font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+                className="mt-1 text-left text-[13px] font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
               >
                 Skripsi: Sistem Parkir Pintar &amp; Deteksi Pelat Otomatis (YOLOv8 + RFID) ↗
               </button>
@@ -1502,13 +1573,13 @@ export default function PortfolioPage() {
           </div>
 
           {/* Publikasi Jurnal SINTA */}
-          <div className="mt-5">
+          <div className="mt-4">
             <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64]">
               Publikasi Jurnal Terakreditasi SINTA (2026)
             </h3>
 
             <div className="mt-1.5 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE]">
-              <div className="py-2.5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <div className="py-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                 <div className="min-w-0">
                   <p className="text-[13.5px] font-medium text-[#111113] leading-snug">
                     Prediksi Penyakit Liver dengan Perbandingan Logistic Regression, SVM, dan Random Forest
@@ -1547,7 +1618,7 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              <div className="py-2.5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <div className="py-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                 <div className="min-w-0">
                   <p className="text-[13.5px] font-medium text-[#111113] leading-snug">
                     Implementasi Sistem Point of Sale UMKM Berbasis ESP32 dan Sensor Load Cell
@@ -1589,8 +1660,8 @@ export default function PortfolioPage() {
           </div>
 
           {/* Sertifikasi Resmi — 8-Row Hairline Index */}
-          <div className="mt-5">
-            <div className="flex items-baseline justify-between gap-3">
+          <div className="mt-4">
+            <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
               <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64]">
                 Sertifikasi &amp; Kredensial Resmi ({CERTIFICATIONS_DATA.length})
               </h3>
@@ -1599,12 +1670,12 @@ export default function PortfolioPage() {
               </span>
             </div>
 
-            <div className="mt-1.5 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE]">
+            <div className="mt-1.5 divide-y divide-[#E5E4DE] border-t border-[#E5E4DE]">
               {CERTIFICATIONS_DATA.map((cert) => (
                 <div
                   key={cert.id}
                   onClick={() => handleOpenCertModal(cert)}
-                  className="editorial-row group grid grid-cols-1 sm:grid-cols-[1.35fr_0.95fr_78px_166px] items-baseline gap-0.5 sm:gap-3 -mx-2 px-2 py-2.5 cursor-pointer rounded-sm"
+                  className="editorial-row group grid grid-cols-1 sm:grid-cols-[1.4fr_1fr_76px_170px] items-baseline gap-0.5 sm:gap-3 -mx-2 px-2 py-2 cursor-pointer rounded-sm"
                 >
                   <span className="text-[13px] font-medium text-[#111113] leading-snug group-hover:underline decoration-[#C8C7BF] underline-offset-4">
                     {cert.title}
@@ -1618,14 +1689,14 @@ export default function PortfolioPage() {
                     {cert.period}
                   </span>
 
-                  <div className="flex items-center gap-3 text-xs pt-1 sm:pt-0 sm:justify-end shrink-0">
+                  <div className="flex items-center gap-3 text-xs pt-1 sm:pt-0 sm:justify-end shrink-0 whitespace-nowrap">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleOpenCertModal(cert);
                       }}
-                      className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+                      className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer whitespace-nowrap"
                     >
                       Pratinjau
                     </button>
@@ -1634,7 +1705,7 @@ export default function PortfolioPage() {
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                      className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] whitespace-nowrap"
                     >
                       PDF
                     </a>
@@ -1644,7 +1715,7 @@ export default function PortfolioPage() {
                         target="_blank"
                         rel="noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                        className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] whitespace-nowrap"
                         title="Verifikasi Kredensial Resmi"
                       >
                         Verifikasi ↗
@@ -1658,7 +1729,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* KONTAK & COLLAPSIBLE TELEGRAM MESSAGE DRAWER */}
-        <section id="contact" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+        <section id="contact" className="scroll-mt-16 border-t border-[#E5E4DE] py-5 sm:py-6">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
             <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
               Kontak
@@ -1668,8 +1739,8 @@ export default function PortfolioPage() {
             </span>
           </div>
 
-          <dl className="mt-3 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE] text-[13.5px]">
-            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+          <dl className="mt-2.5 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE] text-[13.5px]">
+            <div className="py-2 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
               <dt className="text-xs font-mono text-[#5C5C64]">Email</dt>
               <dd className="flex flex-wrap items-center gap-3">
                 <a
@@ -1683,12 +1754,16 @@ export default function PortfolioPage() {
                   onClick={handleCopyEmail}
                   className="text-xs text-[#5C5C64] hover:text-[#111113] cursor-pointer"
                 >
-                  {copiedEmail ? 'Tersalin ✓' : 'Salin'}
+                  {copiedEmail
+                    ? 'Tersalin ✓'
+                    : copyFailed
+                      ? 'Salin manual'
+                      : 'Salin'}
                 </button>
               </dd>
             </div>
 
-            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+            <div className="py-2 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
               <dt className="text-xs font-mono text-[#5C5C64]">WhatsApp</dt>
               <dd>
                 <a
@@ -1702,7 +1777,7 @@ export default function PortfolioPage() {
               </dd>
             </div>
 
-            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+            <div className="py-2 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
               <dt className="text-xs font-mono text-[#5C5C64]">GitHub</dt>
               <dd>
                 <a
@@ -1716,7 +1791,7 @@ export default function PortfolioPage() {
               </dd>
             </div>
 
-            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+            <div className="py-2 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
               <dt className="text-xs font-mono text-[#5C5C64]">LinkedIn</dt>
               <dd>
                 <a
@@ -1730,7 +1805,7 @@ export default function PortfolioPage() {
               </dd>
             </div>
 
-            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+            <div className="py-2 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
               <dt className="text-xs font-mono text-[#5C5C64]">Dokumen</dt>
               <dd className="flex flex-wrap items-center gap-4">
                 <button
@@ -1751,7 +1826,7 @@ export default function PortfolioPage() {
               </dd>
             </div>
 
-            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+            <div className="py-2 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
               <dt className="text-xs font-mono text-[#5C5C64]">Domisili</dt>
               <dd className="text-[#3F3F46]">
                 Sumedang · Siap On-Site (Bandung / Jabodetabek), Hybrid &amp; Remote
@@ -1760,10 +1835,19 @@ export default function PortfolioPage() {
           </dl>
 
           {/* Collapsible Telegram Message Drawer (Open Question 3 - Opsi A) */}
-          <div id="feedback" className="mt-5 scroll-mt-20">
+          <div id="feedback" className="mt-4 scroll-mt-20">
             <button
               type="button"
-              onClick={() => setIsMessageDrawerOpen((prev) => !prev)}
+              onClick={() => {
+                setIsMessageDrawerOpen((prev) => {
+                  const next = !prev;
+                  if (next) {
+                    setSubmitStatus('idle');
+                    setSubmitErrorMsg('');
+                  }
+                  return next;
+                });
+              }}
               aria-expanded={isMessageDrawerOpen}
               aria-controls="telegram-message-drawer"
               className="inline-flex items-center gap-1.5 rounded-md border border-[#D4D3CC] bg-[#FFFFFF] px-3.5 py-2 text-[13px] font-medium text-[#111113] hover:border-[#111113] transition cursor-pointer"
@@ -1796,7 +1880,10 @@ export default function PortfolioPage() {
                     <select
                       id="guestCategory"
                       value={guestCategory}
-                      onChange={(e) => setGuestCategory(e.target.value)}
+                      onChange={(e) => {
+                        setGuestCategory(e.target.value);
+                        if (submitStatus !== 'idle') setSubmitStatus('idle');
+                      }}
                       className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] outline-none focus:border-[#111113]"
                     >
                       <option value="Rekrutmen / Full-Time">Rekrutmen / Full-Time</option>
@@ -1817,7 +1904,10 @@ export default function PortfolioPage() {
                       id="guestName"
                       type="text"
                       value={guestName}
-                      onChange={(e) => setGuestName(e.target.value)}
+                      onChange={(e) => {
+                        setGuestName(e.target.value);
+                        if (submitStatus !== 'idle') setSubmitStatus('idle');
+                      }}
                       placeholder="Nama lengkap atau perusahaan Anda"
                       className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] placeholder-[#8A8A93] outline-none focus:border-[#111113]"
                     />
@@ -1834,7 +1924,10 @@ export default function PortfolioPage() {
                       id="guestContact"
                       type="text"
                       value={guestContact}
-                      onChange={(e) => setGuestContact(e.target.value)}
+                      onChange={(e) => {
+                        setGuestContact(e.target.value);
+                        if (submitStatus !== 'idle') setSubmitStatus('idle');
+                      }}
                       placeholder="Alamat email atau nomor WhatsApp"
                       className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] placeholder-[#8A8A93] outline-none focus:border-[#111113]"
                     />
@@ -1852,7 +1945,13 @@ export default function PortfolioPage() {
                       rows={3}
                       required
                       value={guestMessage}
-                      onChange={(e) => setGuestMessage(e.target.value)}
+                      onChange={(e) => {
+                        setGuestMessage(e.target.value);
+                        if (submitStatus !== 'idle') {
+                          setSubmitStatus('idle');
+                          setSubmitErrorMsg('');
+                        }
+                      }}
                       placeholder="Tuliskan posisi, ruang lingkup proyek, atau jadwal diskusi"
                       className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] placeholder-[#8A8A93] outline-none focus:border-[#111113]"
                     />
@@ -1874,7 +1973,7 @@ export default function PortfolioPage() {
                     )}
                     {submitStatus === 'error' && (
                       <p className="text-xs text-[#B91C1C]">
-                        Gagal mengirim. Silakan hubungi langsung via WhatsApp atau Email.
+                        {submitErrorMsg || 'Gagal mengirim. Silakan hubungi langsung via WhatsApp atau Email.'}
                       </p>
                     )}
                   </div>
@@ -1886,7 +1985,7 @@ export default function PortfolioPage() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-[#E5E4DE] bg-[#FAFAF8] py-7">
+      <footer className="border-t border-[#E5E4DE] bg-[#FAFAF8] py-5">
         <div className="mx-auto flex max-w-[820px] flex-col items-center justify-between gap-3 px-5 sm:px-6 text-xs text-[#5C5C64] sm:flex-row">
           <p>© 2026 Edvan Nuriana Putra Septia</p>
           <a href="#top" className="text-[#3F3F46] hover:text-[#111113] transition">
@@ -1913,7 +2012,9 @@ export default function PortfolioPage() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
+          className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 ${
+            isClosingModal ? 'pointer-events-none' : ''
+          }`}
           onClick={handleCloseModal}
         >
           <div
@@ -2043,7 +2144,9 @@ export default function PortfolioPage() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
+          className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 ${
+            isClosingExpertiseModal ? 'pointer-events-none' : ''
+          }`}
           onClick={handleCloseExpertiseModal}
         >
           <div
@@ -2130,6 +2233,10 @@ export default function PortfolioPage() {
                         key={projId}
                         type="button"
                         onClick={() => {
+                          if (expertiseCloseTimerRef.current) {
+                            clearTimeout(expertiseCloseTimerRef.current);
+                            expertiseCloseTimerRef.current = null;
+                          }
                           setActiveExpertise(null);
                           setIsClosingExpertiseModal(false);
                           handleOpenModal(foundProj);
@@ -2163,7 +2270,9 @@ export default function PortfolioPage() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
+          className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 ${
+            isClosingCertModal ? 'pointer-events-none' : ''
+          }`}
         >
           <div
             onClick={handleCloseCertModal}
@@ -2336,7 +2445,9 @@ export default function PortfolioPage() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5"
+          className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 ${
+            isClosingCvModal ? 'pointer-events-none' : ''
+          }`}
           onClick={handleCloseCvModal}
         >
           <div
