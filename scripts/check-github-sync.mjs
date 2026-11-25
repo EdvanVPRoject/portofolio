@@ -95,14 +95,10 @@ async function syncEnInformasiStats(shouldApply = false) {
         : `${total} ${term} Terstruktur (${subtext})`;
       pageContent = pageContent.replace(highlightRegex, newHighlightStr);
 
-      // 2. Ganti judul atau tagline di item EnInformasi Hub
+      // 2. Ganti judul di card
       pageContent = pageContent.replace(
         /title:\s*'EnInformasi Hub — Portal \d+ Tutorial, Gaming & Tren Teknologi(?: Terkini)?'/,
         `title: 'EnInformasi Hub — Portal ${total} Tutorial, Gaming & Tren Teknologi'`
-      );
-      pageContent = pageContent.replace(
-        /tagline:\s*'Portal Edukasi & Tren Teknologi · \d+ Artikel'/,
-        `tagline: 'Portal Edukasi & Tren Teknologi · ${total} Artikel'`
       );
 
       // 3. Ganti di deskripsi

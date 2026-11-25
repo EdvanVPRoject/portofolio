@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
@@ -56,9 +56,9 @@ export default function RootLayout({
     <html
       lang="id"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} scroll-smooth dark`}
     >
-      <body className="font-sans antialiased bg-[var(--bg-page)] text-[var(--text-main)] min-h-screen selection:bg-[#111113] selection:text-[#FAFAF8]">
+      <body className="font-sans antialiased bg-[#0A0A0C] text-zinc-100 min-h-screen selection:bg-emerald-500/25 selection:text-emerald-200">
         {children}
       </body>
     </html>

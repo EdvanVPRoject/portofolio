@@ -1,68 +1,75 @@
 @import "tailwindcss";
 
-:root {
-  --bg-page: #FAFAF8;
-  --bg-surface: #FFFFFF;
-  --bg-subtle: #F3F2EE;
-  --text-main: #111113;
-  --text-secondary: #3F3F46;
-  --text-muted: #5C5C64;
-  --border-hairline: #E5E4DE;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-space-grotesk), sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
-  background-color: var(--bg-page);
-  color: var(--text-main);
 }
 
-/* Editorial Warm Paper Scrollbar */
+/* Custom Sleek Dark Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAFAF8;
+  background: #0A0A0C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4D3CC;
+  background: #27272A;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A8A79F;
+  background: #3F3F46;
 }
 
 body {
   overflow-x: hidden;
-  background-color: var(--bg-page);
-  color: var(--text-main);
 }
 
-/* Subtle Hairline Row Interaction */
-.editorial-row {
-  transition: background-color 0.16s ease, border-color 0.16s ease;
+/* Calm Editorial Card Surface */
+.spotlight-card {
+  position: relative;
+  background: rgba(17, 17, 20, 0.72);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.editorial-row:hover {
-  background-color: rgba(17, 17, 19, 0.025);
+.spotlight-card:hover {
+  background: rgba(24, 24, 27, 0.78);
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Tactile Control Transitions */
+.spring-pill {
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease;
 }
 
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.spring-icon {
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease;
 }
 
-/* Entrance Animation */
+/* Entrance & Filter Stagger Animations */
 @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleFadeIn {
   from {
     opacity: 0;
     transform: translateY(8px);
@@ -74,7 +81,58 @@ body {
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.35s ease-out both;
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+.animate-card-enter {
+  animation: scaleFadeIn 0.35s ease-out both;
+}
+
+.delay-75 {
+  animation-delay: 60ms;
+}
+
+.delay-150 {
+  animation-delay: 120ms;
+}
+
+.delay-225 {
+  animation-delay: 180ms;
+}
+
+.delay-300 {
+  animation-delay: 240ms;
+}
+
+/* Scroll-Triggered Reveal Choreography */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal][data-delay="1"] {
+  transition-delay: 50ms;
+}
+
+[data-reveal][data-delay="2"] {
+  transition-delay: 100ms;
+}
+
+[data-reveal][data-delay="3"] {
+  transition-delay: 150ms;
+}
+
+[data-reveal][data-delay="4"] {
+  transition-delay: 200ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -82,11 +140,28 @@ body {
     scroll-behavior: auto;
   }
   .animate-fade-in-up,
-  .animate-backdrop-in,
-  .animate-backdrop-out,
-  .animate-modal-in,
-  .animate-modal-out {
+  .animate-card-enter {
     animation: none !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Polished typographic justification across all screen ratios (natural left-align on mobile to prevent river gaps) */
+.text-justify {
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+}
+
+@media (max-width: 640px) {
+  .text-justify {
+    text-align: left;
+    text-align-last: left;
   }
 }
 
