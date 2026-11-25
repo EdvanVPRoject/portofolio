@@ -10,24 +10,18 @@ import {
   ExternalLink,
   FileText,
   CheckCircle2,
-  ZoomIn,
-  Eye,
   Copy,
   Check,
   Award,
-  Mail,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
-function getTechTagStyle(tech?: string): string {
-  void tech;
-  return 'border-zinc-800 bg-zinc-950/80 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100';
-}
-
 const NAV_ITEMS = [
-  { id: 'about', label: 'Tentang' },
   { id: 'projects', label: 'Proyek' },
   { id: 'skills', label: 'Keahlian' },
   { id: 'academic', label: 'Akademik' },
+  { id: 'contact', label: 'Kontak' },
 ];
 
 type ProjectCategory = 'all' | 'software' | 'iot-cv' | 'publication';
@@ -43,9 +37,7 @@ interface FeaturedApp {
   title: string;
   tagline: string;
   year: string;
-  badge: string;
   category: ProjectCategory[];
-  image: string;
   description: string;
   highlights: string[];
   tech: string[];
@@ -87,12 +79,10 @@ interface CertificateCredential {
   period: string;
   category: string;
   scope: 'industry' | 'academic';
-  featured?: boolean;
   credentialId?: string;
   verifyUrl?: string;
   pdfUrl: string;
   imageUrl: string;
-  summary: string;
   description: string;
   skills: string[];
   modules?: string[];
@@ -106,13 +96,10 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     period: '2026',
     category: 'Frontend Engineering',
     scope: 'industry',
-    featured: true,
     credentialId: '14E9FE830A72',
     verifyUrl: 'https://www.hackerrank.com/certificates/14e9fe830a72',
     pdfUrl: '/cert-hackerrank-react.pdf',
     imageUrl: '/cert-hackerrank-react.png',
-    summary:
-      'Komponen modular ReactJS, manajemen state & props, routing, dan logika antarmuka.',
     description:
       'Sertifikasi uji kompetensi (Role Certification) dari HackerRank yang memvalidasi kemampuan praktis membangun aplikasi web menggunakan ReactJS—mencakup arsitektur komponen modular, pengelolaan state & props, siklus hidup komponen, hingga interaksi DOM yang responsif.',
     skills: [
@@ -129,12 +116,9 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     period: '2026',
     category: 'Data Analytics & SQL',
     scope: 'industry',
-    featured: true,
     credentialId: 'a8434aa9-95b4-42e1-ac53-c578d599d1ad',
     pdfUrl: '/cert-cisco-data-analytics.pdf',
     imageUrl: '/cert-cisco-data-analytics.png',
-    summary:
-      'Alur ETL, pembersihan data Excel, kueri SQL relasional, dan dashboard Tableau.',
     description:
       'Sertifikasi resmi Cisco Networking Academy yang berfokus pada alur kerja analisis dan otomasi data menyeluruh—mulai dari pengumpulan, pembersihan, dan transformasi data (ETL) menggunakan Excel serta kueri SQL relasional, hingga penyusunan dashboard pelaporan visual di Tableau.',
     skills: [
@@ -153,13 +137,10 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     period: '2026',
     category: 'Data Automation & Reporting',
     scope: 'industry',
-    featured: true,
     credentialId: 'V32873K6COVJ (8 Kursus Spesialisasi)',
     verifyUrl: 'https://coursera.org/verify/specialization/V32873K6COVJ',
     pdfUrl: '/cert-coursera-excel.pdf',
     imageUrl: '/cert-coursera-excel.png',
-    summary:
-      'Otomatisasi laporan dengan XLOOKUP, INDEX-MATCH, PivotTable, dan dashboard KPI.',
     description:
       'Spesialisasi 8 kursus berbasis proyek (12 guided projects) di Coursera yang mempraktikkan otomatisasi pengolahan data operasional, rumus lanjutan (SUMIF, VLOOKUP, XLOOKUP, INDEX-MATCH), penyusunan PivotTable, hingga pembuatan dashboard pelacakan KPI.',
     skills: [
@@ -176,11 +157,8 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     period: '2025—2028',
     category: 'Network Infrastructure',
     scope: 'industry',
-    featured: true,
     pdfUrl: '/cert-ccna.pdf',
     imageUrl: '/cert-ccna.png',
-    summary:
-      'Topologi LAN, konfigurasi router/switch Cisco IOS, dan subnetting VLSM IPv4/IPv6.',
     description:
       'Sertifikasi Cisco Networking Academy yang mencakup 17 modul fundamental jaringan: perancangan topologi LAN, konfigurasi perangkat router dan switch berbasis Cisco IOS, pemodelan OSI & TCP/IP, subnetting VLSM IPv4/IPv6, hingga teknik dasar keamanan dan troubleshooting jaringan.',
     skills: [
@@ -221,8 +199,6 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     credentialId: '49cdedf9-0768-42cd-8b3a-82ac8e44a95a',
     pdfUrl: '/cert-cisco-networking-basics.pdf',
     imageUrl: '/cert-cisco-networking-basics.png',
-    summary:
-      'Konfigurasi jaringan nirkabel, IPv4/IPv6, DHCP, NAT, dan diagnostik Packet Tracer.',
     description:
       'Sertifikasi dari Cisco Networking Academy yang menguatkan pemahaman konsep komunikasi data, komponen & topologi jaringan, konfigurasi wireless router, skema pengalamatan IPv4/IPv6, layanan DHCP & NAT, serta simulasi lab Cisco Packet Tracer.',
     skills: [
@@ -262,8 +238,6 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     scope: 'industry',
     pdfUrl: '/cert-gemini.pdf',
     imageUrl: '/cert-gemini.png',
-    summary:
-      'Pemanfaatan Google Gemini AI, penyusunan prompt terstruktur, dan otomasi data.',
     description:
       'Sertifikasi resmi dari Google for Education yang memvalidasi pemanfaatan praktis Google Gemini AI, penyusunan prompt yang efektif, otomatisasi alur kerja analisis data, serta penerapan prinsip kecerdasan buatan yang bertanggung jawab.',
     skills: ['Prompt Engineering', 'Gemini AI Workflow', 'Data Automation', 'AI Ethics'],
@@ -279,8 +253,6 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     verifyUrl: 'https://udimpact.kolleges.net/en/achievements',
     pdfUrl: '/cert-action-ai.pdf',
     imageUrl: '/cert-action-ai.png',
-    summary:
-      'Perancangan prototipe MVP berbasis AI, validasi kebutuhan pengguna, dan uji fitur.',
     description:
       'Program intensif pengembangan produk berbasis AI dari underdogs. & UNIKOM (Act-preneur Certified, W3C VC 2.0) yang berfokus pada perumusan masalah pengguna, penyusunan prompt, hingga pembuatan prototipe MVP menggunakan Gemini dan Lovable.',
     skills: ['AI Prototyping', 'Lovable & Gemini', 'User Requirement Analysis', 'MVP Testing'],
@@ -295,8 +267,6 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
     credentialId: '003/SR/TR/PERPUS-UNIKOM/I/2026',
     pdfUrl: '/cert-unikom-mendeley.pdf',
     imageUrl: '/cert-unikom-mendeley.png',
-    summary:
-      'Pengelolaan basis data literatur dan otomatisasi sitasi jurnal dengan Mendeley.',
     description:
       'Pelatihan penelusuran literatur ilmiah, pengelolaan basis data referensi riset, serta otomatisasi sitasi dan daftar pustaka terstandar menggunakan aplikasi Mendeley untuk menunjang penulisan karya ilmiah dan publikasi jurnal.',
     skills: [
@@ -311,36 +281,26 @@ const CERTIFICATIONS_DATA: CertificateCredential[] = [
 const FEATURED_APPS: FeaturedApp[] = [
   {
     id: 'eninformasi',
-    title: 'EnInformasi Hub — Portal 254 Tutorial, Gaming & Tren Teknologi',
-    tagline: 'Platform Edukasi & Publikasi Web · Bilingual ID/EN',
+    title: 'EnInformasi Hub',
+    tagline: 'Portal Edukasi & Tren Teknologi · 254 Artikel',
     year: '2026',
-    badge: 'Next.js & Cloudflare',
     category: ['software'],
-    image: '/eninformasi-icon.svg',
     description:
-      'Portal web dwibahasa (ID/EN) berisi 248 tutorial praktis, ulasan teknologi, dan gaming di Cloudflare Workers.',
+      'Portal web dwibahasa (ID/EN) berisi 254 tutorial praktis, ulasan teknologi, dan gaming di Cloudflare Workers.',
     highlights: [
       '254 Materi Terstruktur (Tutorial Praktis, Gaming & Ulasan Teknologi)',
       'Fitur Ganti Bahasa Instan (ID/EN) & Checklist Praktik Interaktif',
     ],
-    tech: [
-      'Next.js 15',
-      'TypeScript',
-      'Tailwind CSS',
-      'OpenNext',
-      'Cloudflare Pages / Workers',
-      'Lucide React',
-    ],
+    tech: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'OpenNext', 'Cloudflare Workers'],
     links: [
       {
-        label: 'Kunjungi Website ↗',
+        label: 'Website ↗',
         url: 'https://eninformasi-hub.entehchin.workers.dev/',
         primary: true,
       },
       {
         label: 'GitHub ↗',
         url: 'https://github.com/EdvanVPRoject/eninformasi-hub',
-        primary: false,
       },
     ],
     modalDetails: {
@@ -361,37 +321,26 @@ const FEATURED_APPS: FeaturedApp[] = [
   },
   {
     id: 'endoclens-pdf',
-    title: 'ENDocLens-PDF — Scanner Dokumen, OCR & 16 Alat PDF di Browser',
-    tagline: 'Client-Side Web Suite · 16 Modul PDF & Tooling Dokumen',
+    title: 'ENDocLens-PDF',
+    tagline: 'Web Suite PDF & OCR Lokal',
     year: '2026',
-    badge: 'Web Suite & OCR',
     category: ['software'],
-    image: '/endoclens-icon.svg',
     description:
       'Web suite 16 alat PDF, pemindai kamera auto-warp, dan OCR Tesseract.js yang berjalan 100% lokal di browser.',
     highlights: [
       '16 Alat PDF Terpadu & Privasi Penuh (Diproses Langsung di Browser)',
       'Pelurus Foto Dokumen Otomatis & Ekstraksi Teks OCR (Tesseract.js)',
     ],
-    tech: [
-      'React 19',
-      'TypeScript',
-      'Tailwind CSS 4',
-      'Vite 8',
-      'pdf-lib',
-      'Tesseract.js',
-      'jsPDF',
-    ],
+    tech: ['React 19', 'TypeScript', 'Tailwind CSS 4', 'Vite 8', 'pdf-lib', 'Tesseract.js'],
     links: [
       {
-        label: 'Kunjungi Website ↗',
+        label: 'Website ↗',
         url: 'https://doclens-pdf.vercel.app',
         primary: true,
       },
       {
         label: 'GitHub ↗',
         url: 'https://github.com/EdvanVPRoject/ENDocLens-PDF',
-        primary: false,
       },
     ],
     modalDetails: {
@@ -412,36 +361,26 @@ const FEATURED_APPS: FeaturedApp[] = [
   },
   {
     id: 'enclip',
-    title: 'ENCLip — Native AI Video Clipper & Subtitle Generator',
-    tagline: 'Product Release · Desktop AI & Media Pipeline',
+    title: 'ENCLip',
+    tagline: 'Desktop AI Video Clipper (Windows)',
     year: '2026',
-    badge: 'Desktop & AI',
     category: ['software'],
-    image: '/enclip-icon.png',
     description:
       'Aplikasi desktop Windows (PyQt6) untuk memotong video panjang menjadi klip vertikal otomatis dengan transkripsi AI.',
     highlights: [
       'Mode AI Fleksibel (Bisa 100% Offline via GGUF atau Cloud API)',
       'Antarmuka Tetap Responsif saat Render Video (Asynchronous Worker)',
     ],
-    tech: [
-      'Python',
-      'PyQt6',
-      'Faster-Whisper',
-      'Qwen 2.5 GGUF',
-      'Gemini API',
-      'FFmpeg',
-    ],
+    tech: ['Python', 'PyQt6', 'Faster-Whisper', 'Qwen 2.5 GGUF', 'Gemini API', 'FFmpeg'],
     links: [
       {
-        label: 'Unduh Rilis .exe ↗',
+        label: 'Rilis .exe ↗',
         url: 'https://github.com/EdvanVPRoject/ENCLip/releases/latest',
         primary: true,
       },
       {
         label: 'GitHub ↗',
         url: 'https://github.com/EdvanVPRoject/ENCLip',
-        primary: false,
       },
     ],
     modalDetails: {
@@ -462,12 +401,10 @@ const FEATURED_APPS: FeaturedApp[] = [
   },
   {
     id: 'encross',
-    title: 'ENCross — High-Speed Local File & Screen Sharing',
-    tagline: 'Cross-Platform App · P2P Network Architecture',
+    title: 'ENCross',
+    tagline: 'Transfer File & Screen Share P2P',
     year: '2026',
-    badge: 'P2P WebRTC',
     category: ['software'],
-    image: '/encross-logo.png',
     description:
       'Aplikasi transfer file besar dan screen sharing lintas Windows & Android lewat Wi-Fi lokal menggunakan WebRTC P2P.',
     highlights: [
@@ -498,19 +435,17 @@ const FEATURED_APPS: FeaturedApp[] = [
   },
   {
     id: 'enlife',
-    title: 'ENLife — Aplikasi Produktivitas & Manajemen Aktivitas Harian',
-    tagline: 'Mobile & Desktop App · Flutter Offline-First',
+    title: 'ENLife',
+    tagline: 'Aplikasi Produktivitas Offline (Flutter)',
     year: '2026',
-    badge: 'Flutter & Dart',
     category: ['software'],
-    image: '/enlife-icon.svg',
     description:
       'Aplikasi produktivitas offline-first berbasis Flutter: catatan keuangan, habit tracker, timer Pomodoro, dan ID vault.',
     highlights: [
       'Berjalan 100% Offline dengan Penyimpanan Lokal yang Cepat & Aman',
       '4 Fitur Utama (Catatan Keuangan, Habit/Pomodoro, ID Vault, Kalkulator Praktis)',
     ],
-    tech: ['Flutter', 'Dart', 'Provider', 'fl_chart', 'SharedPreferences', 'Material 3'],
+    tech: ['Flutter', 'Dart', 'Provider', 'fl_chart', 'SharedPreferences'],
     links: [
       {
         label: 'GitHub ↗',
@@ -545,14 +480,14 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
     category: ['iot-cv'],
     image: '/parking-process-blurred.png',
     description:
-      'Sistem palang parkir otomatis dengan verifikasi ganda RFID e-KTP dan deteksi pelat nomor (YOLOv8 & CNN) di ESP32.',
+      'Sistem palang parkir otomatis dengan verifikasi ganda RFID e-KTP dan deteksi pelat nomor (YOLOv8 Nano mAP@0.50 98,51% & CNN 88,07%) pada ESP32.',
     highlights: [
       'Verifikasi Ganda (Kartu RFID e-KTP + Kamera Deteksi Pelat YOLOv8)',
       'Integrasi Mikrokontroler ESP32, Database Lokal SQLite & Firebase',
     ],
     tech: ['YOLOv8 Nano', 'TensorFlow CNN', 'ESP32', 'SQLite', 'Firebase'],
     link: {
-      label: 'Repositori GitHub ↗',
+      label: 'GitHub ↗',
       url: 'https://github.com/EdvanVPRoject/Sistem-parkir-pintar-berbasis-visi-komputer-berbasis-iot-menggunakan-metode-yolo',
     },
     modalDetails: {
@@ -572,19 +507,19 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
   {
     id: 'liver-ml',
     title: 'Prediksi Penyakit Liver dengan Perbandingan Logistic Regression, SVM, dan Random Forest',
-    tagline: 'Publikasi Jurnal Komputika · Vol. 15 No. 1 (2026) Hal. 83–94',
+    tagline: 'Jurnal Komputika · Vol. 15 No. 1 (2026) Hal. 83–94',
     year: '2026',
     category: ['publication'],
     image: '/journal-liver-paper.png',
     description:
-      'Komparasi Random Forest, SVM, dan Logistic Regression pada 579 data klinis pasien — terbit di Jurnal Komputika.',
+      'Komparasi Random Forest, SVM, dan Logistic Regression pada 579 data klinis pasien; terbit di Jurnal Komputika terakreditasi SINTA.',
     highlights: [
       'Terbit di Komputika: Jurnal Sistem Komputer (Vol. 15, No. 1, 2026)',
       'Evaluasi Performa Klasifikasi Menggunakan Metrik F1-Score & MCC',
     ],
     tech: ['Random Forest', 'SVM', 'Logistic Regression', 'Scikit-Learn'],
     link: {
-      label: 'DOI Jurnal ↗',
+      label: 'DOI ↗',
       url: 'https://doi.org/10.34010/komputika.v15i1.19799',
     },
     pdfUrl: '/journal-komputika-liver.pdf',
@@ -604,19 +539,19 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
   {
     id: 'smart-pos',
     title: 'Implementasi Sistem Point of Sale UMKM Berbasis ESP32 dan Sensor Load Cell',
-    tagline: 'Publikasi Jurnal Biner · Vol. 5 No. 1 (2026) Hal. 1–9',
+    tagline: 'Jurnal Biner · Vol. 5 No. 1 (2026) Hal. 1–9',
     year: '2026',
     category: ['iot-cv', 'publication'],
     image: '/journal-pos-paper.png',
     description:
-      'Timbangan digital ESP32 & sensor Load Cell HX711 terhubung langsung ke aplikasi kasir UMKM — terbit di Jurnal Biner.',
+      'Timbangan digital ESP32 & sensor Load Cell HX711 terhubung langsung ke aplikasi kasir web UMKM dengan akurasi >98%; terbit di Jurnal Biner.',
     highlights: [
       'Terbit di Biner: Jurnal Ilmiah Informatika dan Komputer (Vol. 5, No. 1, 2026)',
       'Otomatisasi Pembacaan Berat Timbangan Langsung ke Aplikasi Kasir Web',
     ],
-    tech: ['ESP32', 'Sensor Load Cell HX711', 'Web Application', 'SQLite'],
+    tech: ['ESP32', 'Load Cell HX711', 'Web Application', 'SQLite'],
     link: {
-      label: 'Artikel Jurnal ↗',
+      label: 'Artikel ↗',
       url: 'https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/',
     },
     pdfUrl: '/journal-biner-pos.pdf',
@@ -635,52 +570,39 @@ const RESEARCH_PROJECTS: ResearchProject[] = [
   },
 ];
 
-export type EngineeringPillarId = 'fullstack' | 'qa' | 'data';
+type EngineeringPillarId = 'fullstack' | 'qa' | 'data';
 
-export interface EngineeringPillar {
+interface EngineeringPillar {
   id: EngineeringPillarId;
   title: string;
-  description: string;
   projectIds: string[];
-  ctaLabel: string;
 }
 
 const ENGINEERING_PILLARS: EngineeringPillar[] = [
   {
     id: 'fullstack',
     title: 'Fullstack & Mobile',
-    description:
-      'Membangun aplikasi web & lintas-platform menggunakan ReactJS, Next.js 15, TypeScript, Node.js, REST API, dan Flutter yang responsif di semua perangkat.',
     projectIds: ['eninformasi', 'endoclens-pdf', 'encross', 'enlife', 'smart-pos', 'enclip'],
-    ctaLabel: 'Lihat 6 Proyek Terkait',
   },
   {
     id: 'qa',
-    title: 'Quality Assurance (QA)',
-    description:
-      'Memastikan aplikasi stabil dan bebas bug lewat Unit Testing, API Testing dengan Postman, User Acceptance Testing (UAT), dan optimasi Lighthouse 100%.',
+    title: 'Quality Assurance',
     projectIds: ['endoclens-pdf', 'eninformasi', 'encross', 'smart-parking'],
-    ctaLabel: 'Lihat 4 Proyek Terkait',
   },
   {
     id: 'data',
-    title: 'Data Automation & IoT',
-    description:
-      'Mengolah alur data operasional menjadi dashboard real-time dan sistem Auto Report menggunakan Python, SQL, Tableau, Excel lanjutan, serta sensor IoT.',
+    title: 'Data & IoT',
     projectIds: ['smart-parking', 'smart-pos', 'liver-ml', 'enclip', 'enlife'],
-    ctaLabel: 'Lihat 5 Proyek Terkait',
   },
 ];
 
-type SkillDomain = 'all' | 'fullstack' | 'qa' | 'data' | 'network-ai';
+type SkillDomain = 'fullstack' | 'qa' | 'data' | 'network-ai';
 
 interface ExpertiseItem {
-  id: Exclude<SkillDomain, 'all'>;
+  id: SkillDomain;
+  label: string;
   title: string;
-  subtitle: string;
-  iconName: 'code' | 'shield' | 'chart' | 'cpu';
-  description: string;
-  previewTags: string[];
+  summaryLine: string;
   modalDetails: {
     kicker: string;
     summary: string;
@@ -694,12 +616,10 @@ interface ExpertiseItem {
 const EXPERTISE_DATA: ExpertiseItem[] = [
   {
     id: 'fullstack',
+    label: 'Fullstack & App',
     title: 'Fullstack Web & Cross-Platform App',
-    subtitle: 'Web, Mobile & Desktop Architecture',
-    iconName: 'code',
-    description:
-      'Membangun aplikasi web (React, Next.js, TypeScript, Node.js), mobile Flutter, dan desktop Python PyQt6.',
-    previewTags: ['ReactJS / React 19', 'Next.js 15', 'TypeScript & JS', 'NodeJS & REST API', 'Flutter'],
+    summaryLine:
+      'TypeScript, JavaScript, React 19, Next.js 15, Node.js, REST API, Python (FastAPI, PyQt6), Flutter, Dart, Tailwind CSS',
     modalDetails: {
       kicker: 'Fullstack Software Engineering · Web, Mobile & Desktop',
       summary:
@@ -707,7 +627,7 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
       competencies: [
         'Pengembangan aplikasi web modern berbasis komponen menggunakan React 19 (HackerRank Certified) dan Next.js 15 App Router.',
         'Integrasi layanan backend, pembuatan endpoint REST API dengan Node.js & FastAPI, serta komunikasi real-time menggunakan WebSockets.',
-        'Pembangunan aplikasi mobile Android/iOS dengan Flutter (Dart) berarsitektur Offline-First (SQLite) dan manajemen state Riverpod/Provider.',
+        'Pembangunan aplikasi mobile Android/iOS dengan Flutter (Dart) berarsitektur Offline-First (SQLite) dan manajemen state Provider.',
         'Pengembangan aplikasi desktop Windows mandiri menggunakan Python (PyQt6) dengan asynchronous worker agar UI bebas freeze.',
       ],
       tools: [
@@ -715,12 +635,12 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'TypeScript',
         'ReactJS / React 19',
         'Next.js 15',
-        'NodeJS',
+        'Node.js',
         'REST API',
         'HTML5 & CSS3',
         'Tailwind CSS 4',
         'Flutter & Dart',
-        'Python (PyQt6)',
+        'Python (FastAPI & PyQt6)',
         'Git & GitHub',
         'Cloudflare Workers',
       ],
@@ -731,12 +651,10 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
   },
   {
     id: 'qa',
+    label: 'Quality Assurance',
     title: 'Quality Engineering (QA) & Software Testing',
-    subtitle: 'Reliability, API Testing & Performance',
-    iconName: 'shield',
-    description:
-      'Pengujian Unit, API Testing dengan Postman, skenario UAT, pelacakan bug, dan profiling performa/memori.',
-    previewTags: ['Quality Assurance (QA)', 'API Testing (Postman)', 'Unit Testing', 'UAT', 'Lighthouse 100%'],
+    summaryLine:
+      'Unit & Integration Testing, API Testing (Postman), UAT, Regression Testing, Chrome DevTools & Lighthouse Audit',
     modalDetails: {
       kicker: 'Quality Assurance (QA) & Software Testing',
       summary:
@@ -751,27 +669,24 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'Quality Assurance (QA)',
         'Software Testing',
         'API Testing (Postman)',
-        'Unit Testing',
+        'Unit & Integration Testing',
         'User Acceptance Testing (UAT)',
+        'Regression Testing',
         'ESLint & Static Analysis',
         'Chrome DevTools Profiling',
         'Lighthouse Performance Audit',
-        'Bug Tracking & Debugging',
-        'Cross-Browser & Responsive Testing',
       ],
       highlightMetric:
         'Skor pengujian Google Lighthouse 99–100/100 pada aplikasi web produksi serta penggunaan memori stabil <50MB pada pemrosesan dokumen PDF.',
-      relatedProjectIds: ['eninformasi', 'endoclens-pdf', 'encross'],
+      relatedProjectIds: ['eninformasi', 'endoclens-pdf', 'encross', 'smart-parking'],
     },
   },
   {
     id: 'data',
+    label: 'Data & Database',
     title: 'Data Automation, SQL & Dashboard Reporting',
-    subtitle: 'Operational ETL, Database & Business BI',
-    iconName: 'chart',
-    description:
-      'Perancangan database SQL/Firebase, otomasi laporan Python & Excel (XLOOKUP/Pivot), serta dashboard Tableau.',
-    previewTags: ['Data Automation / ETL', 'SQL / MySQL', 'Tableau Dashboard', 'Excel Advanced', 'Firebase DB'],
+    summaryLine:
+      'PostgreSQL, MySQL, SQLite, Firebase Realtime DB, Python (Pandas, Scikit-Learn), Microsoft Excel (XLOOKUP, Pivot), Tableau',
     modalDetails: {
       kicker: 'IT Systems, Data Automation & Business Intelligence',
       summary:
@@ -783,15 +698,12 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'Sinkronisasi data operasional lapangan secara real-time menggunakan Firebase Realtime Database dan penyimpanan lokal terstruktur.',
       ],
       tools: [
-        'Data Analysis',
-        'Data Automation / ETL',
-        'Dashboard Reporting',
-        'Tableau',
-        'SQL / MySQL / PostgreSQL',
-        'Database Management',
+        'PostgreSQL & MySQL',
         'SQLite & Firebase Realtime DB',
-        'Microsoft Excel (XLOOKUP, PivotTable)',
+        'Data Automation / ETL',
         'Python (Pandas, Scikit-Learn)',
+        'Microsoft Excel (XLOOKUP, Pivot)',
+        'Tableau Dashboard',
         'Exploratory Data Analysis (EDA)',
       ],
       highlightMetric:
@@ -801,12 +713,10 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
   },
   {
     id: 'network-ai',
+    label: 'Jaringan, IoT & AI',
     title: 'Network Infrastructure, IoT & Applied AI',
-    subtitle: 'Cisco CCNA, Field-to-Dashboard IoT & AI',
-    iconName: 'cpu',
-    description:
-      'Konfigurasi jaringan Cisco CCNA, protokol WebRTC P2P, integrasi sensor ESP32 IoT, serta model YOLOv8 & LLM.',
-    previewTags: ['Cisco CCNA', 'ESP32 & IoT POS', 'WebRTC P2P', 'YOLOv8 Vision', 'Local LLM & Gemini'],
+    summaryLine:
+      'Cisco CCNA (Routing/Switching, VLSM, DHCP/NAT), WebRTC P2P, ESP32 IoT (Load Cell, RFID), YOLOv8, TensorFlow CNN, Faster-Whisper, Gemini API',
     modalDetails: {
       kicker: 'Network Infrastructure, IoT Systems & Applied AI',
       summary:
@@ -819,9 +729,8 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
       ],
       tools: [
         'Cisco CCNA (Routing & Switching)',
-        'TCP/IP, IPv4/IPv6 & Subnetting VLSM',
-        'DHCP, NAT & Cisco Packet Tracer',
-        'WebRTC P2P & Socket.IO',
+        'VLSM, DHCP & NAT',
+        'WebRTC P2P DataChannels',
         'ESP32 & Sensor IoT (Load Cell, RFID)',
         'YOLOv8 & TensorFlow CNN',
         'Faster-Whisper & Qwen GGUF',
@@ -829,119 +738,74 @@ const EXPERTISE_DATA: ExpertiseItem[] = [
         'FFmpeg GPU Pipeline',
       ],
       highlightMetric:
-        'Akurasi pembacaan sensor timbangan digital POS >98% (Jurnal Biner) serta akurasi deteksi pelat nomor YOLOv8 sebesar 98,51% (mAP@50) dengan waktu proses <2 detik.',
+        'Akurasi pembacaan sensor timbangan digital POS >98% (Jurnal Biner) serta akurasi deteksi pelat nomor YOLOv8 sebesar 98,51% (mAP@0.50) dengan waktu proses <2 detik.',
       relatedProjectIds: ['smart-parking', 'smart-pos', 'encross', 'enclip'],
     },
   },
 ];
 
-interface SkillKeywordItem {
-  name: string;
-  role: string;
-  domain: Exclude<SkillDomain, 'all'>;
-  group: string;
-}
-
-const SKILL_KEYWORDS: SkillKeywordItem[] = [
-  // 1. Fullstack & Web (8 Items: 4 + 4 for perfect 2x2 grid symmetry)
-  { name: 'TypeScript & JS (ES6+)', role: 'Bahasa Utama Web Type-Safe', domain: 'fullstack', group: 'Bahasa & Backend Runtime' },
-  { name: 'Node.js & REST API', role: 'Layanan Server & Integrasi API', domain: 'fullstack', group: 'Bahasa & Backend Runtime' },
-  { name: 'Python (FastAPI & PyQt6)', role: 'Backend API & Aplikasi Desktop', domain: 'fullstack', group: 'Bahasa & Backend Runtime' },
-  { name: 'Git & GitHub Workflow', role: 'Version Control & Kolaborasi Tim', domain: 'fullstack', group: 'Bahasa & Backend Runtime' },
-  { name: 'ReactJS / React 19', role: 'Library Antarmuka Web Modern', domain: 'fullstack', group: 'Framework Web & Mobile UI' },
-  { name: 'Next.js 15 App Router', role: 'Framework Fullstack Produksi', domain: 'fullstack', group: 'Framework Web & Mobile UI' },
-  { name: 'Flutter & Dart', role: 'Aplikasi Mobile Android / iOS', domain: 'fullstack', group: 'Framework Web & Mobile UI' },
-  { name: 'Tailwind CSS & HTML5/CSS3', role: 'Desain UI Responsif & Presisi', domain: 'fullstack', group: 'Framework Web & Mobile UI' },
-
-  // 2. QA & Software Testing (8 Items: 4 + 4 for perfect 2x2 grid symmetry)
-  { name: 'Quality Assurance (QA)', role: 'Standar Mutu Perangkat Lunak', domain: 'qa', group: 'Metode Pengujian Kualitas' },
-  { name: 'Unit & Integration Testing', role: 'Uji Modul & Logika Kode Inti', domain: 'qa', group: 'Metode Pengujian Kualitas' },
-  { name: 'User Acceptance Test (UAT)', role: 'Validasi Kebutuhan Pengguna', domain: 'qa', group: 'Metode Pengujian Kualitas' },
-  { name: 'Functional & Regression', role: 'Uji Fitur & Cegah Bug Berulang', domain: 'qa', group: 'Metode Pengujian Kualitas' },
-  { name: 'Postman (API Testing)', role: 'Validasi Endpoint & Payload JSON', domain: 'qa', group: 'Tools & Audit Performa' },
-  { name: 'Google Lighthouse Audit', role: 'Audit Core Web Vitals 100%', domain: 'qa', group: 'Tools & Audit Performa' },
-  { name: 'Chrome DevTools Profiling', role: 'Inspeksi Network & Runtime', domain: 'qa', group: 'Tools & Audit Performa' },
-  { name: 'Debugging & Memory Audit', role: 'Pelacakan Bug & Efisiensi RAM', domain: 'qa', group: 'Tools & Audit Performa' },
-
-  // 3. Data Automation & Database (8 Items: 4 + 4 for perfect 2x2 grid symmetry)
-  { name: 'SQL (PostgreSQL & MySQL)', role: 'Database Relasional & Kueri', domain: 'data', group: 'Database & Penyimpanan' },
-  { name: 'SQLite (Offline-First DB)', role: 'Penyimpanan Lokal Mobile Cepat', domain: 'data', group: 'Database & Penyimpanan' },
-  { name: 'Firebase Realtime DB', role: 'Sinkronisasi Data Cloud Live', domain: 'data', group: 'Database & Penyimpanan' },
-  { name: 'Database Management', role: 'Perancangan Skema & Indexing', domain: 'data', group: 'Database & Penyimpanan' },
-  { name: 'Data Automation / ETL', role: 'Otomatisasi Alur & Olah Data', domain: 'data', group: 'Otomasi, Analitik & BI' },
-  { name: 'Tableau & Dashboard BI', role: 'Visualisasi Metrik Operasional', domain: 'data', group: 'Otomasi, Analitik & BI' },
-  { name: 'Excel (XLOOKUP & Pivot)', role: 'Otomasi Laporan & Analisis', domain: 'data', group: 'Otomasi, Analitik & BI' },
-  { name: 'Python (Pandas & Scikit)', role: 'Eksplorasi Data & Klasifikasi ML', domain: 'data', group: 'Otomasi, Analitik & BI' },
-
-  // 4. Network, IoT & AI (8 Items: 4 + 4 for perfect 2x2 grid symmetry)
-  { name: 'Cisco CCNA (Routing/Switch)', role: 'Arsitektur Jaringan LAN / WAN', domain: 'network-ai', group: 'Infrastruktur Jaringan & IoT' },
-  { name: 'TCP/IP, VLSM & DHCP/NAT', role: 'Manajemen Subnet & Protokol IP', domain: 'network-ai', group: 'Infrastruktur Jaringan & IoT' },
-  { name: 'WebRTC P2P DataChannels', role: 'Komunikasi Langsung Antar-Device', domain: 'network-ai', group: 'Infrastruktur Jaringan & IoT' },
-  { name: 'ESP32 & Sensor IoT (POS)', role: 'Integrasi Mikrokontroler & RFID', domain: 'network-ai', group: 'Infrastruktur Jaringan & IoT' },
-  { name: 'YOLOv8 Computer Vision', role: 'Deteksi Objek & Pelat Nomor', domain: 'network-ai', group: 'Applied AI & Computer Vision' },
-  { name: 'Local LLM (Qwen GGUF)', role: 'Eksekusi AI Lokal Tanpa Cloud', domain: 'network-ai', group: 'Applied AI & Computer Vision' },
-  { name: 'Google Gemini API', role: 'Integrasi AI Multimodal Cloud', domain: 'network-ai', group: 'Applied AI & Computer Vision' },
-  { name: 'Faster-Whisper & FFmpeg', role: 'Transkripsi Audio & Render GPU', domain: 'network-ai', group: 'Applied AI & Computer Vision' },
-];
-
-function SectionDivider({ className = '' }: { className?: string }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`h-px w-full bg-zinc-800/70 ${className}`}
-    />
-  );
-}
-
-function SectionKicker({
-  label,
-  className = '',
-}: {
-  label: string;
-  className?: string;
-}) {
-  return (
-    <p className={`font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500 select-none ${className}`}>
-      {label}
-    </p>
-  );
-}
-
-function getBentoSpanClass(idx: number, total: number): string {
-  if (total <= 1) return 'md:col-span-2 lg:col-span-6';
-  if (total === 2) return 'md:col-span-1 lg:col-span-3';
-  if (total === 3) return idx === 2 ? 'md:col-span-2 lg:col-span-2' : 'md:col-span-1 lg:col-span-2';
-  if (total === 4) return 'md:col-span-1 lg:col-span-3';
-  if (total === 5) {
-    if (idx < 2) return 'md:col-span-1 lg:col-span-3';
-    if (idx === 4) return 'md:col-span-2 lg:col-span-2';
-    return 'md:col-span-1 lg:col-span-2';
-  }
-  return 'md:col-span-1 lg:col-span-2';
-}
-
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>('all');
+  const [activePillarFilter, setActivePillarFilter] = useState<EngineeringPillarId | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const [activeModalProject, setActiveModalProject] = useState<
     FeaturedApp | ResearchProject | null
   >(null);
   const [isClosingModal, setIsClosingModal] = useState(false);
+
   const [activeExpertise, setActiveExpertise] = useState<ExpertiseItem | null>(null);
   const [isClosingExpertiseModal, setIsClosingExpertiseModal] = useState(false);
+
   const [activeCert, setActiveCert] = useState<CertificateCredential | null>(null);
   const [isClosingCertModal, setIsClosingCertModal] = useState(false);
+
   const [showCvModal, setShowCvModal] = useState(false);
   const [isClosingCvModal, setIsClosingCvModal] = useState(false);
-  const [activePillarFilter, setActivePillarFilter] = useState<EngineeringPillarId | null>(null);
-  const [activeSection, setActiveSection] = useState<string>('about');
-  const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const [activeSection, setActiveSection] = useState<string>('projects');
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const handleCopyEmail = () => {
-    if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText('septiaedvan@gmail.com');
+  // Collapsible Telegram Direct Message Drawer (Open Question 3 - Opsi A)
+  const [isMessageDrawerOpen, setIsMessageDrawerOpen] = useState(false);
+  const [guestName, setGuestName] = useState('');
+  const [guestContact, setGuestContact] = useState('');
+  const [guestCategory, setGuestCategory] = useState('Rekrutmen / Full-Time');
+  const [guestMessage, setGuestMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleCopyEmail = async () => {
+    const email = 'septiaedvan@gmail.com';
+    let copied = false;
+
+    if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(email);
+        copied = true;
+      } catch {
+        copied = false;
+      }
+    }
+
+    if (!copied && typeof document !== 'undefined') {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        copied = document.execCommand('copy');
+        document.body.removeChild(textarea);
+      } catch {
+        copied = false;
+      }
+    }
+
+    if (copied) {
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2200);
     }
@@ -1014,12 +878,6 @@ export default function PortfolioPage() {
   const handleSelectPillar = (pillarId: EngineeringPillarId) => {
     setActivePillarFilter((prev) => (prev === pillarId ? null : pillarId));
     setActiveFilter('all');
-    if (typeof document !== 'undefined') {
-      const projectsEl = document.getElementById('projects');
-      if (projectsEl) {
-        projectsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
   };
 
   const handleResetPillarFilter = () => {
@@ -1046,18 +904,10 @@ export default function PortfolioPage() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (activeModalProject && !isClosingModal) {
-          handleCloseModal();
-        }
-        if (activeExpertise && !isClosingExpertiseModal) {
-          handleCloseExpertiseModal();
-        }
-        if (activeCert && !isClosingCertModal) {
-          handleCloseCertModal();
-        }
-        if (showCvModal && !isClosingCvModal) {
-          handleCloseCvModal();
-        }
+        if (activeModalProject && !isClosingModal) handleCloseModal();
+        if (activeExpertise && !isClosingExpertiseModal) handleCloseExpertiseModal();
+        if (activeCert && !isClosingCertModal) handleCloseCertModal();
+        if (showCvModal && !isClosingCvModal) handleCloseCvModal();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -1074,11 +924,11 @@ export default function PortfolioPage() {
   ]);
 
   useEffect(() => {
-    const sectionIds = ['about', 'projects', 'skills', 'academic', 'contact', 'feedback'];
+    const sectionIds = ['projects', 'skills', 'academic', 'contact'];
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
       if (isNavClickRef.current) return;
-      const scrollPosition = window.scrollY + 220;
+      const scrollPosition = window.scrollY + 200;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const id = sectionIds[i];
         const el = document.getElementById(id);
@@ -1096,36 +946,6 @@ export default function PortfolioPage() {
       if (navClickTimeoutRef.current) clearTimeout(navClickTimeoutRef.current);
     };
   }, []);
-
-  useEffect(() => {
-    const elements = document.querySelectorAll('[data-reveal]');
-    if (!('IntersectionObserver' in window)) {
-      elements.forEach((el) => el.classList.add('is-revealed'));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-revealed');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05, rootMargin: '0px' }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [activeFilter, activePillarFilter]);
-
-  const [guestName, setGuestName] = useState('');
-  const [guestContact, setGuestContact] = useState('');
-  const [guestCategory, setGuestCategory] = useState('Rekrutmen / Full-Time');
-  const [guestMessage, setGuestMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const currentPillar = ENGINEERING_PILLARS.find((p) => p.id === activePillarFilter);
 
@@ -1180,31 +1000,18 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div
-      id="top"
-      className="relative min-h-screen bg-[#0A0A0C] text-zinc-100 antialiased selection:bg-zinc-700/60 selection:text-white"
-    >
-      {/* NAVBAR */}
-      <header className="sticky top-0 z-50 border-b border-zinc-800/70 bg-[#0A0A0C]/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1240px] items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
+    <div id="top" className="min-h-screen bg-[#FAFAF8] text-[#111113] antialiased">
+      {/* MINIMALIST EDITORIAL NAVBAR */}
+      <header className="sticky top-0 z-40 border-b border-[#E5E4DE] bg-[#FAFAF8]/92 backdrop-blur-md">
+        <div className="mx-auto flex max-w-[820px] items-center justify-between px-5 sm:px-6 py-3.5">
           <a
             href="#top"
-            className="group flex items-center gap-2.5 text-base font-semibold tracking-tight text-zinc-100 hover:text-white transition"
+            className="text-sm font-semibold tracking-tight text-[#111113] hover:opacity-75 transition-opacity"
           >
-            <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full border border-zinc-700/80 bg-zinc-900 transition duration-200 group-hover:border-zinc-500">
-              <Image
-                src="/github-avatar.png"
-                alt="Logo Edvan"
-                width={28}
-                height={28}
-                className="h-full w-full object-cover"
-                priority
-              />
-            </div>
-            <span className="font-heading">Edvan Nuriana</span>
+            Edvan Nuriana
           </a>
 
-          <nav className="hidden items-center gap-1.5 text-xs font-medium md:flex">
+          <nav className="hidden sm:flex items-center gap-6 text-[13px]">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -1212,935 +1019,637 @@ export default function PortfolioPage() {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={() => handleNavClick(item.id)}
-                  className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
+                  className={`transition-colors ${
                     isActive
-                      ? 'border border-zinc-700 bg-zinc-900 text-white font-semibold'
-                      : 'border border-transparent text-zinc-400 hover:border-zinc-800 hover:bg-zinc-900/60 hover:text-zinc-200'
+                      ? 'text-[#111113] font-medium'
+                      : 'text-[#5C5C64] hover:text-[#111113]'
                   }`}
                 >
                   {item.label}
                 </a>
               );
             })}
-            <a
-              href="#contact"
-              onClick={() => handleNavClick('contact')}
-              className={`group inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
-                activeSection === 'contact' || activeSection === 'feedback'
-                  ? 'border-zinc-200 bg-zinc-100 text-zinc-950 font-semibold'
-                  : 'border-zinc-700 bg-zinc-900 text-zinc-100 hover:bg-zinc-100 hover:text-zinc-950'
-              }`}
+            <button
+              type="button"
+              onClick={handleOpenCvModal}
+              className="font-medium text-[#111113] underline decoration-[#C8C7BF] underline-offset-4 hover:decoration-[#111113] transition cursor-pointer"
             >
-              <span>Kontak &amp; Pesan</span>
-              <span>↗</span>
-            </a>
+              CV
+            </button>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900 md:hidden transition"
-            aria-label="Menu"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            className="sm:hidden p-1.5 -mr-1.5 text-[#5C5C64] hover:text-[#111113] transition cursor-pointer"
+            aria-label={mobileMenuOpen ? 'Tutup menu' : 'Buka menu'}
+            aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-800/80 bg-[#0A0A0C]/95 px-6 py-4 space-y-2 text-sm font-medium backdrop-blur-xl animate-fade-in-up">
-            {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={() => {
-                    handleNavClick(item.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-150 ${
-                    isActive
-                      ? 'border border-zinc-700 bg-zinc-900 text-white font-semibold'
-                      : 'border border-transparent text-zinc-300 hover:text-white'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
-            <a
-              href="#contact"
+          <div className="sm:hidden border-t border-[#E5E4DE] bg-[#FAFAF8] px-5 py-2 divide-y divide-[#E5E4DE] text-sm">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={() => {
+                  handleNavClick(item.id);
+                  setMobileMenuOpen(false);
+                }}
+                className="block py-2.5 text-[#3F3F46] hover:text-[#111113] transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+            <button
+              type="button"
               onClick={() => {
-                handleNavClick('contact');
                 setMobileMenuOpen(false);
+                handleOpenCvModal();
               }}
-              className={`flex items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-semibold transition ${
-                activeSection === 'contact' || activeSection === 'feedback'
-                  ? 'border-zinc-200 bg-zinc-100 text-zinc-950'
-                  : 'border-zinc-700 bg-zinc-900 text-zinc-100 hover:bg-zinc-100 hover:text-zinc-950'
-              }`}
+              className="block w-full py-2.5 text-left font-medium text-[#111113] cursor-pointer"
             >
-              <span>Kontak &amp; Pesan</span>
-              <span>↗</span>
-            </a>
+              CV (Pratinjau PDF)
+            </button>
           </div>
         )}
       </header>
 
-      <main className="mx-auto max-w-[1240px] px-4 sm:px-6 lg:px-8">
-        {/* HERO SECTION */}
-        <section className="py-5 sm:py-12 md:py-16 lg:py-20">
-          <div className="grid items-stretch gap-6 sm:gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-12">
-            {/* Left Column */}
-            <div className="space-y-5 sm:space-y-6 lg:col-span-7 xl:col-span-8 flex flex-col justify-between">
-              <div className="space-y-3.5 sm:space-y-5">
-                <p className="animate-fade-in-up hidden sm:block font-mono text-xs tracking-wide text-zinc-400">
-                  Software Engineer · S1 Sistem Komputer UNIKOM
-                </p>
-
-                <div className="animate-fade-in-up delay-75">
-                  <h1 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.16] sm:leading-[1.15] text-zinc-100">
-                    Membangun aplikasi web, desktop, dan sistem terintegrasi yang rapi dan teruji.
-                  </h1>
-                </div>
-
-                <p className="animate-fade-in-up delay-150 text-sm sm:text-base leading-relaxed text-zinc-400">
-                  Saya <strong className="text-zinc-200 font-medium">Edvan Nuriana Putra Septia</strong>, lulusan S1 Sistem Komputer UNIKOM Bandung (IPK 3.53). Fokus utama saya di pengembangan perangkat lunak (TypeScript, React, Next.js, Python, Flutter), didukung pengalaman QA testing, pengolahan data SQL/Excel, serta riset IoT dan Computer Vision.
-                </p>
-
-                {/* CTA Group */}
-                <div className="animate-fade-in-up delay-225 grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
-                  <a
-                    href="#projects"
-                    className="spring-pill col-span-2 sm:col-span-1 sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-950 hover:bg-white"
-                  >
-                    <span>Lihat Proyek</span>
-                    <span>↓</span>
-                  </a>
-                  <button
-                    type="button"
-                    onClick={handleOpenCvModal}
-                    className="spring-pill inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium text-zinc-200 hover:border-zinc-700 hover:text-white cursor-pointer whitespace-nowrap"
-                  >
-                    <Eye className="h-3.5 w-3.5 text-zinc-400" />
-                    <span>Lihat CV</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    className="spring-pill inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-medium text-zinc-300 hover:border-zinc-700 hover:text-white cursor-pointer whitespace-nowrap"
-                  >
-                    {copiedEmail ? (
-                      <>
-                        <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-zinc-200 shrink-0" />
-                        <span className="text-zinc-100 font-medium">Email Tersalin</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
-                        <span>Salin Email</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Spec Strip */}
-              <div className="animate-fade-in-up delay-300 grid w-full grid-cols-3 gap-4 sm:gap-6 border-t border-zinc-800/80 pt-5">
-                <div>
-                  <p className="font-heading text-lg sm:text-2xl font-bold tabular-nums text-zinc-100">
-                    3.53 <span className="text-sm sm:text-base font-normal text-zinc-500">/ 4.00</span>
-                  </p>
-                  <p className="mt-0.5 text-[11px] sm:text-xs text-zinc-400 leading-tight">
-                    IPK S1 Sistem Komputer
-                  </p>
-                </div>
-                <div>
-                  <p className="font-heading text-lg sm:text-2xl font-bold text-zinc-100">
-                    5 Aplikasi
-                  </p>
-                  <p className="mt-0.5 text-[11px] sm:text-xs text-zinc-400 leading-tight">
-                    Web, Desktop &amp; Mobile
-                  </p>
-                </div>
-                <div>
-                  <p className="font-heading text-lg sm:text-2xl font-bold text-zinc-100">
-                    2 Jurnal SINTA
-                  </p>
-                  <p className="mt-0.5 text-[11px] sm:text-xs text-zinc-400 leading-tight">
-                    Komputika &amp; Biner (2026)
-                  </p>
-                </div>
-              </div>
+      <main className="mx-auto max-w-[820px] px-5 sm:px-6">
+        {/* HERO — HUMAN EDITORIAL INTRODUCTION */}
+        <section className="pt-7 pb-6 sm:pt-10 sm:pb-8">
+          <div className="flex items-center gap-4 sm:gap-5">
+            <div className="relative h-16 w-16 sm:h-20 sm:w-20 shrink-0 overflow-hidden rounded-lg border border-[#E5E4DE] bg-[#F3F2EE]">
+              <Image
+                src="/profile-wisuda.jpg"
+                alt="Edvan Nuriana Putra Septia"
+                fill
+                sizes="(max-width: 640px) 64px, 80px"
+                className="object-cover object-top"
+                priority
+              />
             </div>
 
-            {/* Right Column: Clean Portrait Frame */}
-            <div className="animate-fade-in-up delay-150 order-first lg:order-last lg:col-span-5 xl:col-span-4 flex flex-col items-stretch sm:items-center lg:items-end justify-center h-full">
-              <div className="group relative flex w-full sm:max-w-[310px] lg:max-w-[340px] flex-row sm:flex-col items-center sm:items-stretch gap-3.5 sm:gap-0 rounded-xl border border-zinc-800/90 bg-zinc-900/40 p-2.5 sm:p-3">
-                <div className="relative h-24 w-20 sm:h-auto sm:w-full sm:aspect-[4/5] lg:min-h-[360px] shrink-0 overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950">
-                  <Image
-                    src="/profile-wisuda.jpg"
-                    alt="Edvan Nuriana Putra Septia, S.Kom."
-                    fill
-                    sizes="(max-width: 640px) 80px, (max-width: 1280px) 310px, 340px"
-                    className="object-cover object-top"
-                    priority
-                  />
-                </div>
-
-                <div className="min-w-0 flex-1 sm:flex-none sm:pt-3 sm:pb-0.5 text-left sm:text-center">
-                  <h2 className="font-heading text-sm sm:text-base font-semibold tracking-tight text-zinc-100 leading-snug">
-                    Edvan Nuriana Putra Septia, S.Kom.
-                  </h2>
-                  <p className="mt-0.5 text-[11px] sm:text-xs text-zinc-400">
-                    Bandung / Sumedang · Siap Full-Time &amp; Remote
-                  </p>
-                </div>
-              </div>
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#111113] leading-snug">
+                Edvan Nuriana Putra Septia
+              </h1>
+              <p className="mt-0.5 text-[13.5px] sm:text-sm text-[#3F3F46]">
+                Software Engineer · S1 Sistem Komputer UNIKOM (IPK 3.53)
+              </p>
+              <p className="mt-0.5 text-xs text-[#5C5C64]">
+                Sumedang / Bandung · Terbuka untuk Full-Time, Hybrid &amp; Remote
+              </p>
             </div>
           </div>
-        </section>
 
-        {/* TENTANG SAYA & PENGALAMAN PRAKTIS */}
-        <SectionDivider />
-        <section
-          id="about"
-          className="scroll-mt-20 py-10 sm:py-14 md:py-16"
-        >
-          <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-12">
-            <div data-reveal className="lg:col-span-5">
-              <SectionKicker label="Tentang & Kesiapan" />
-              <h2 className="font-heading mt-3 text-xl sm:text-3xl font-bold leading-snug tracking-tight text-zinc-100">
-                Latar belakang sistem komputer, praktik langsung di produksi.
-              </h2>
+          <div className="mt-4 space-y-2.5 text-[14.5px] sm:text-[15px] leading-[1.65] text-[#3F3F46]">
+            <p>
+              Saya merancang dan menguji aplikasi web, mobile, dan desktop dari awal hingga rilis produksi menggunakan TypeScript, React 19, Next.js 15, Node.js, Python, dan Flutter. Pekerjaan teknis ini ditunjang praktik Quality Assurance (Unit Testing, API Testing dengan Postman, UAT, dan audit Lighthouse), otomasi data SQL &amp; Excel, serta riset terapan IoT dan Computer Vision.
+            </p>
+            <p className="text-[13.5px] sm:text-[14px] text-[#5C5C64]">
+              Telah merilis 5 aplikasi lintas platform dan menerbitkan 2 jurnal SINTA (Komputika &amp; Biner, 2026). Siap Full-Time, Kontrak &amp; Freelance · Indonesia &amp; Inggris (EPT 447).
+            </p>
+          </div>
 
-              {/* Ringkasan Kesiapan & Kolaborasi */}
-              <div className="mt-5 rounded-xl border border-zinc-800/90 bg-zinc-950/70 p-4 space-y-2.5 text-xs">
-                <div className="border-b border-zinc-800/80 pb-2">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
-                    Kesiapan Kerja &amp; Kolaborasi
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 gap-2 text-zinc-400">
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="text-zinc-500 shrink-0">Ketersediaan:</span>
-                    <span className="text-right font-medium text-zinc-200">Full-Time, Kontrak &amp; Freelance</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="text-zinc-500 shrink-0">Mobilitas:</span>
-                    <span className="text-right font-medium text-zinc-200">Bandung / Jabodetabek · Hybrid &amp; Remote</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="text-zinc-500 shrink-0">Bahasa:</span>
-                    <span className="text-right font-medium text-zinc-200">Indonesia &amp; Inggris (EPT UNIKOM 447)</span>
-                  </div>
-                </div>
-              </div>
+          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2.5 text-[13.5px]">
+            <button
+              type="button"
+              onClick={handleOpenCvModal}
+              className="inline-flex items-center gap-1.5 rounded-md bg-[#111113] px-3.5 py-1.5 text-[13px] font-medium text-[#FAFAF8] hover:bg-[#27272A] transition cursor-pointer"
+            >
+              <span>Lihat CV</span>
+            </button>
 
-              <div className="mt-4 flex flex-wrap items-center gap-2.5">
-                <a
-                  href="https://www.linkedin.com/in/edvannuriana"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2 text-xs font-medium text-zinc-200 transition hover:border-zinc-700 hover:text-white"
-                >
-                  <span>Profil LinkedIn</span>
-                  <span>↗</span>
-                </a>
-                <a
-                  href="https://github.com/EdvanVPRoject"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800/90 bg-zinc-950 px-3.5 py-2 text-xs font-medium text-zinc-300 transition hover:border-zinc-700 hover:text-white"
-                >
-                  <span>GitHub</span>
-                  <span>↗</span>
-                </a>
-              </div>
-            </div>
+            <a
+              href="https://github.com/EdvanVPRoject"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] transition"
+            >
+              GitHub ↗
+            </a>
 
-            <div data-reveal data-delay="1" className="space-y-5 text-sm text-zinc-400 lg:col-span-7 flex flex-col justify-between">
-              <p className="leading-relaxed text-zinc-300/90">
-                Berbekal fondasi arsitektur perangkat keras, jaringan komputer (CCNA), dan rekayasa perangkat lunak, saya merancang aplikasi dari antarmuka, layanan backend, validasi QA, hingga integrasi sensor lapangan ke dashboard operasional.
-              </p>
+            <a
+              href="https://www.linkedin.com/in/edvannuriana"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] transition"
+            >
+              LinkedIn ↗
+            </a>
 
-              {/* Pengalaman & Kontribusi Praktis */}
-              <div className="space-y-2.5">
-                <p className="font-mono text-[11px] uppercase tracking-wider text-zinc-500">
-                  Jejak Praktis &amp; Kontribusi
-                </p>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-4 space-y-1.5">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-semibold text-zinc-100">Product Builder &amp; Fullstack</span>
-                      <span className="font-mono text-[10px] text-zinc-500">2025—2026</span>
-                    </div>
-                    <p className="text-xs leading-relaxed text-zinc-400">
-                      Merancang dan merilis 5 aplikasi mandiri lintas platform (Web edge, Desktop PyQt6, P2P WebRTC, Flutter Offline) dengan pengujian QA terstruktur.
-                    </p>
-                  </div>
-                  <div className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-4 space-y-1.5">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-semibold text-zinc-100">Peneliti &amp; Penulis Jurnal SINTA</span>
-                      <span className="font-mono text-[10px] text-zinc-500">2025—2026</span>
-                    </div>
-                    <p className="text-xs leading-relaxed text-zinc-400">
-                      Merancang sistem IoT POS real-time berbasis ESP32 + Load Cell (penulis pertama di Jurnal Biner) serta komparasi ML medis pada 579 data klinis (Jurnal Komputika).
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Compact Interactive Role Filter */}
-              <div className="flex flex-wrap items-center gap-2 border-t border-zinc-800/80 pt-3.5">
-                <span className="text-xs text-zinc-500 mr-1">Filter proyek per peran:</span>
-                {ENGINEERING_PILLARS.map((pillar) => {
-                  const isActive = activePillarFilter === pillar.id;
-                  return (
-                    <button
-                      key={pillar.id}
-                      type="button"
-                      onClick={() => handleSelectPillar(pillar.id)}
-                      className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium transition cursor-pointer ${
-                        isActive
-                          ? 'border-zinc-200 bg-zinc-100 text-zinc-950 font-semibold'
-                          : 'border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:border-zinc-700 hover:text-white'
-                      }`}
-                    >
-                      <span>{pillar.title}</span>
-                      <span className={`font-mono text-[10px] ${isActive ? 'text-zinc-600' : 'text-zinc-500'}`}>
-                        ({pillar.projectIds.length})
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="inline-flex items-center gap-1.5 text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] transition cursor-pointer"
+            >
+              {copiedEmail ? (
+                <>
+                  <Check className="h-3.5 w-3.5 text-[#15803D]" />
+                  <span className="text-[#15803D] font-medium">Email Tersalin</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="h-3.5 w-3.5 text-[#5C5C64]" />
+                  <span>Salin Email</span>
+                </>
+              )}
+            </button>
           </div>
         </section>
 
         {/* PROYEK & RISET */}
-        <SectionDivider />
-        <section
-          id="projects"
-          className="scroll-mt-20 py-10 sm:py-14 md:py-16"
-        >
-          <div data-reveal className="mb-7 sm:mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <SectionKicker label="Proyek & Riset" />
-              <h2 className="font-heading mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
-                Proyek Pilihan &amp; Riset Terapan
-              </h2>
-              <p className="mt-1 text-xs text-zinc-400">
-                Ketuk kartu mana saja untuk melihat latar belakang pembuatan, arsitektur, dan rincian pengujiannya.
-              </p>
-            </div>
+        <section id="projects" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+            <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
+              Proyek &amp; Riset
+            </h2>
+            <span className="font-mono text-xs tabular-nums text-[#5C5C64]">
+              {FEATURED_APPS.length + RESEARCH_PROJECTS.length} karya terverifikasi
+            </span>
+          </div>
 
-            {/* Category Filter Buttons (Dynamically synced counts) */}
-            <div className="grid grid-cols-2 sm:inline-flex sm:flex-wrap w-full sm:w-auto gap-1.5 rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-1.5">
-              {[
-                { id: 'all', label: `Semua (${FEATURED_APPS.length + RESEARCH_PROJECTS.length})` },
-                { id: 'software', label: `Aplikasi & AI (${FEATURED_APPS.filter((a) => a.category.includes('software')).length})` },
-                { id: 'iot-cv', label: `IoT & Visi Komputer (${RESEARCH_PROJECTS.filter((r) => r.category.includes('iot-cv')).length})` },
-                { id: 'publication', label: `Jurnal Ilmiah (${RESEARCH_PROJECTS.filter((r) => r.category.includes('publication')).length})` },
-              ].map((tab) => (
+          {/* Underline Category Filter Tabs */}
+          <div
+            role="tablist"
+            aria-label="Filter kategori proyek"
+            className="no-scrollbar mt-3 flex flex-nowrap items-center gap-x-2.5 sm:gap-x-5 overflow-x-auto border-b border-[#E5E4DE] text-[11.5px] sm:text-[13px]"
+          >
+            {[
+              {
+                id: 'all',
+                label: `Semua (${FEATURED_APPS.length + RESEARCH_PROJECTS.length})`,
+              },
+              {
+                id: 'software',
+                label: `Aplikasi & AI (${FEATURED_APPS.filter((a) => a.category.includes('software')).length})`,
+              },
+              {
+                id: 'iot-cv',
+                label: (
+                  <>
+                    <span className="sm:hidden">
+                      IoT &amp; CV ({RESEARCH_PROJECTS.filter((r) => r.category.includes('iot-cv')).length})
+                    </span>
+                    <span className="hidden sm:inline">
+                      IoT &amp; Visi Komputer ({RESEARCH_PROJECTS.filter((r) => r.category.includes('iot-cv')).length})
+                    </span>
+                  </>
+                ),
+              },
+              {
+                id: 'publication',
+                label: `Jurnal Ilmiah (${RESEARCH_PROJECTS.filter((r) => r.category.includes('publication')).length})`,
+              },
+            ].map((tab) => {
+              const isSelected = activeFilter === tab.id && !activePillarFilter;
+              return (
                 <button
                   key={tab.id}
+                  role="tab"
+                  aria-selected={isSelected}
                   type="button"
                   onClick={() => {
                     setActiveFilter(tab.id as ProjectCategory);
                     setActivePillarFilter(null);
                   }}
-                  className={`rounded-lg px-2.5 sm:px-3 py-2 sm:py-1.5 text-[11px] sm:text-xs font-medium transition-all duration-200 cursor-pointer text-center whitespace-nowrap ${
-                    activeFilter === tab.id && !activePillarFilter
-                      ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
-                      : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-200'
+                  className={`-mb-px pb-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                    isSelected
+                      ? 'border-b-2 border-[#111113] font-medium text-[#111113]'
+                      : 'border-b-2 border-transparent text-[#5C5C64] hover:text-[#111113]'
                   }`}
                 >
                   {tab.label}
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
-          {/* Active Pillar Filter Indicator Banner */}
+          {/* Subtle Inline Role Filter */}
+          <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#5C5C64]">
+            <span>Peran:</span>
+            {ENGINEERING_PILLARS.map((pillar) => {
+              const isActive = activePillarFilter === pillar.id;
+              return (
+                <button
+                  key={pillar.id}
+                  type="button"
+                  onClick={() => handleSelectPillar(pillar.id)}
+                  className={`transition cursor-pointer ${
+                    isActive
+                      ? 'font-medium text-[#111113] underline decoration-[#111113] underline-offset-4'
+                      : 'hover:text-[#111113] hover:underline hover:decoration-[#D4D3CC] hover:underline-offset-4'
+                  }`}
+                >
+                  {pillar.title}{' '}
+                  <span className="font-mono text-[11px] tabular-nums">
+                    ({pillar.projectIds.length})
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Pillar Banner (1 line) */}
           {activePillarFilter && currentPillar && (
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-zinc-700 bg-zinc-900/80 p-3.5 sm:p-4 text-xs sm:text-sm text-zinc-200 animate-fade-in-up">
+            <div className="mt-2.5 flex items-center justify-between gap-3 border-b border-[#E5E4DE] bg-[#F3F2EE] px-3 py-1.5 rounded text-xs text-[#3F3F46]">
               <span>
-                Menampilkan <strong>{filteredApps.length + filteredResearch.length}</strong> proyek yang terhubung dengan peran <strong className="text-white">{currentPillar.title}</strong>
+                Menampilkan <strong>{filteredApps.length + filteredResearch.length}</strong> proyek untuk peran{' '}
+                <strong className="text-[#111113]">{currentPillar.title}</strong>
               </span>
               <button
                 type="button"
                 onClick={handleResetPillarFilter}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-xs font-medium text-zinc-200 hover:bg-zinc-100 hover:text-zinc-950 transition cursor-pointer"
+                className="font-medium text-[#111113] underline underline-offset-2 hover:opacity-75 cursor-pointer shrink-0"
               >
-                <span>Reset Filter</span>
-                <span>✕</span>
+                Reset ×
               </button>
             </div>
           )}
 
-          {/* Bento Row 1: Featured Software Applications (Balanced 6-col Bento — Zero Empty Slots) */}
+          {/* Featured Applications Hairline List */}
           {filteredApps.length > 0 && (
-            <div className="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-6 xl:gap-6">
-              {filteredApps.map((app, idx) => (
+            <div className="mt-1 divide-y divide-[#E5E4DE]">
+              {filteredApps.map((app) => (
                 <article
                   key={`${activeFilter}-${app.id}`}
                   onClick={() => handleOpenModal(app)}
-                  style={{ animationDelay: `${idx * 60}ms` }}
-                  className={`${getBentoSpanClass(idx, filteredApps.length)} spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:border-zinc-700 cursor-pointer`}
+                  className="editorial-row group -mx-2 px-2 py-3 cursor-pointer rounded-sm"
                 >
-                  <div className="relative z-10">
-                    <div className="p-5 sm:p-6">
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 p-1.5">
-                            <Image
-                              src={app.image}
-                              alt=""
-                              width={24}
-                              height={24}
-                              className="object-contain"
-                            />
-                          </div>
-                          <span className="truncate font-mono text-[11px] text-zinc-400">
-                            {app.badge}
-                          </span>
-                        </div>
-                        <span className="font-mono text-[11px] text-zinc-500 shrink-0">
-                          {app.year}
-                        </span>
-                      </div>
-
-                      <h3 className="font-heading text-base font-bold text-zinc-100 transition group-hover:text-white leading-snug">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <div className="min-w-0">
+                      <h3 className="inline text-[14.5px] font-semibold text-[#111113] group-hover:underline decoration-[#C8C7BF] underline-offset-4">
                         {app.title}
                       </h3>
-
-                      <p className="mt-2 text-xs leading-relaxed text-zinc-400">
-                        {app.description}
-                      </p>
-
-                      {app.highlights[0] && (
-                        <div className="mt-3 border-l-2 border-zinc-700 pl-2.5 text-[11px] text-zinc-300 leading-snug">
-                          {app.highlights[0]}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Tech Pills & Card Footer Links */}
-                  <div className="relative z-10 px-4 pb-4 sm:px-5 sm:pb-5">
-                    <div className="mb-3.5 flex flex-wrap gap-1.5">
-                      {app.tech.slice(0, 4).map((t) => (
-                        <span
-                          key={t}
-                          className={`rounded border px-2 py-0.5 font-mono text-[10px] transition-colors ${getTechTagStyle(t)}`}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                      {app.tech.length > 4 && (
-                        <span className="rounded border border-zinc-800/80 bg-zinc-900/60 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
-                          +{app.tech.length - 4}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-3">
-                      <span className="text-[11px] font-mono text-zinc-500 group-hover:text-zinc-200 transition inline-flex items-center gap-1">
-                        <span>Detail proyek</span>
-                        <span>↗</span>
-                      </span>
-
-                      <div className="flex flex-wrap items-center gap-1.5">
-                        {app.links.map((link) => (
-                          <a
-                            key={link.label}
-                            href={link.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className={`rounded-lg px-2.5 py-1 text-[11px] font-medium transition ${
-                              link.primary
-                                ? 'bg-zinc-100 text-zinc-950 hover:bg-white'
-                                : 'border border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100'
-                            }`}
-                          >
-                            {link.label}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
-
-          {/* Bento Row 2: Research, Computer Vision & Journal Publications */}
-          {filteredResearch.length > 0 && (
-            <div className="mt-6 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-6 xl:gap-6">
-              {filteredResearch.map((project, idx) => (
-                <article
-                  key={`${activeFilter}-${project.id}`}
-                  onClick={() => handleOpenModal(project)}
-                  style={{ animationDelay: `${(filteredApps.length + idx) * 60}ms` }}
-                  className={`${getBentoSpanClass(idx, filteredResearch.length)} spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:border-zinc-700 cursor-pointer`}
-                >
-                  <div className="relative z-10">
-                    <div className="relative aspect-video w-full overflow-hidden border-b border-zinc-800/80 bg-zinc-950">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className={`object-cover object-top transition duration-500 ease-out group-hover:scale-[1.02] ${
-                          project.image.includes('-paper.') ? 'brightness-[0.92]' : ''
-                        }`}
-                      />
-                      {project.image.includes('-paper.') && (
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0E0E11]/30 via-transparent to-transparent" />
-                      )}
-                    </div>
-
-                    <div className="p-4 sm:p-5">
-                      <div className="flex items-center justify-between gap-2 font-mono text-[11px]">
-                        <span className="text-zinc-400 truncate">
-                          {project.tagline.split('·')[0]}
-                        </span>
-                        <span className="text-zinc-500 shrink-0">{project.year}</span>
-                      </div>
-
-                      <h3 className="font-heading mt-2 text-base font-bold text-zinc-100 transition group-hover:text-white leading-snug">
-                        {project.title}
-                      </h3>
-
-                      <p className="mt-2 text-xs leading-relaxed text-zinc-400">
-                        {project.description}
-                      </p>
-
-                      {project.highlights[0] && (
-                        <div className="mt-3 border-l-2 border-zinc-700 pl-2.5 text-[11px] text-zinc-300 leading-snug">
-                          {project.highlights[0]}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="relative z-10 px-4 pb-4 sm:px-5 sm:pb-5">
-                    <div className="mb-3.5 flex flex-wrap gap-1.5">
-                      {project.tech.slice(0, 4).map((t) => (
-                        <span
-                          key={t}
-                          className={`rounded border px-2 py-0.5 font-mono text-[10px] transition-colors ${getTechTagStyle(t)}`}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-3">
-                      <span className="text-[11px] font-mono text-zinc-500 group-hover:text-zinc-200 transition inline-flex items-center gap-1">
-                        <span>Detail riset</span>
-                        <span>↗</span>
-                      </span>
-
-                      <div className="flex items-center gap-1.5">
-                        {project.pdfUrl && (
-                          <a
-                            href={project.pdfUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-300 transition hover:border-zinc-700 hover:text-white"
-                          >
-                            <FileText className="h-3 w-3 text-zinc-400" />
-                            <span>PDF</span>
-                          </a>
-                        )}
-                        <a
-                          href={project.link.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center rounded-lg border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-200 transition hover:border-zinc-600 hover:text-white"
-                        >
-                          {project.link.label}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
-        </section>
-
-        {/* KEAHLIAN TEKNIS & SPESIALISASI */}
-        <SectionDivider />
-        <section
-          id="skills"
-          className="scroll-mt-20 py-10 sm:py-14 md:py-16"
-        >
-          {/* Left-Aligned Header */}
-          <div data-reveal className="mb-7 sm:mb-8">
-            <SectionKicker label="Keahlian Teknis" />
-            <h2 className="font-heading mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
-              Fokus Utama &amp; Perangkat Kerja
-            </h2>
-            <p className="mt-1.5 max-w-2xl text-xs sm:text-sm leading-relaxed text-zinc-400">
-              Klik salah satu bidang di bawah untuk melihat ruang lingkup kerja, alat utama, dan proyek terkait.
-            </p>
-          </div>
-
-          {/* Unified 2x2 Expertise & Stack Cards */}
-          <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
-            {EXPERTISE_DATA.map((item, idx) => {
-              const domainSkills = SKILL_KEYWORDS.filter((kw) => kw.domain === item.id);
-              return (
-                <div
-                  key={item.id}
-                  data-reveal
-                  data-delay={String((idx % 2) + 1)}
-                  onClick={() => handleOpenExpertiseModal(item)}
-                  className="spotlight-card group flex flex-col justify-between rounded-xl border border-zinc-800/90 p-5 sm:p-6 hover:border-zinc-700 cursor-pointer"
-                >
-                  <div>
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="font-heading text-base font-semibold text-zinc-100 leading-snug group-hover:text-white transition-colors">
-                        {item.title}
-                      </h3>
-                      <span className="inline-flex shrink-0 items-center gap-1 text-xs text-zinc-500 group-hover:text-zinc-200 transition-colors">
-                        <span>Detail</span>
-                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      <span className="ml-2 text-[12.5px] text-[#5C5C64]">
+                        {app.tagline}
                       </span>
                     </div>
-
-                    <p className="mt-2 text-xs leading-relaxed text-zinc-400">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 border-t border-zinc-800/70 pt-4 flex flex-wrap gap-1.5">
-                    {domainSkills.map((kw) => (
-                      <span
-                        key={kw.name}
-                        className="rounded-md border border-zinc-800/80 bg-zinc-950/70 px-2.5 py-1 font-mono text-[11px] text-zinc-300"
-                      >
-                        {kw.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* AKADEMIK & PUBLIKASI */}
-        <SectionDivider />
-        <section
-          id="academic"
-          className="scroll-mt-20 py-10 sm:py-14 md:py-16"
-        >
-          <div data-reveal className="mb-7 sm:mb-8">
-            <SectionKicker label="Akademik & Kredensial" />
-            <h2 className="font-heading mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
-              Pendidikan, Publikasi &amp; Sertifikasi
-            </h2>
-            <p className="mt-1.5 max-w-2xl text-xs sm:text-sm text-zinc-400">
-              Latar belakang S1 Sistem Komputer, publikasi riset terakreditasi SINTA, serta sertifikasi kompetensi yang terverifikasi.
-            </p>
-          </div>
-
-          {/* Tier 1: Balanced 6/6 Pendidikan & Publikasi */}
-          <div className="grid gap-5 lg:grid-cols-12 lg:gap-6 mb-9 sm:mb-10 items-stretch">
-            {/* Pendidikan Formal */}
-            <div
-              data-reveal
-              className="spotlight-card lg:col-span-6 flex flex-col justify-between group/edu relative overflow-hidden rounded-2xl border border-zinc-800/90 p-5 sm:p-6 hover:border-zinc-700"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
-                    Pendidikan Formal
-                  </span>
-                  <span className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-0.5 font-mono text-[11px] text-zinc-400">
-                    2022—2026
-                  </span>
-                </div>
-
-                <div className="mt-3.5 flex flex-wrap items-baseline justify-between gap-2">
-                  <div>
-                    <h3 className="font-heading text-lg sm:text-xl font-bold text-zinc-100">
-                      S1 Sistem Komputer
-                    </h3>
-                    <p className="text-xs font-medium text-zinc-400">
-                      Rumpun Ilmu Komputer &amp; Informatika · UNIKOM Bandung
-                    </p>
-                  </div>
-                  <div className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-950/80 px-3 py-1 text-xs text-zinc-200">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-zinc-400 shrink-0" />
-                    <span>IPK <strong className="text-white font-semibold">3.53</strong> / 4.00</span>
-                  </div>
-                </div>
-
-                <p className="mt-3 text-xs leading-relaxed text-zinc-400">
-                  Menempuh pendidikan sarjana yang memadukan rekayasa perangkat lunak, basis data, jaringan komputer, serta integrasi IoT dan kecerdasan buatan. Pendidikan sebelumnya: SMAN 1 Tanjungsari (IPA, Sumedang, 2019–2022).
-                </p>
-
-                {/* Compact Thesis Shortcut */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-parking');
-                    if (proj) handleOpenModal(proj);
-                  }}
-                  className="mt-4 flex w-full items-center justify-between gap-3 rounded-xl border border-zinc-800/80 bg-zinc-950/70 px-3.5 py-2.5 text-left transition hover:border-zinc-700 hover:bg-zinc-900/80 cursor-pointer group/thesis"
-                >
-                  <div className="min-w-0">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500 block">
-                      Tugas Akhir / Skripsi (2025—2026)
-                    </span>
-                    <span className="text-xs font-semibold text-zinc-200 group-hover/thesis:text-white transition truncate block">
-                      Sistem Parkir Pintar &amp; Deteksi Pelat Otomatis (YOLOv8 + RFID)
+                    <span className="font-mono text-xs tabular-nums text-[#5C5C64] shrink-0">
+                      {app.year}
                     </span>
                   </div>
-                  <ArrowUpRight className="h-4 w-4 shrink-0 text-zinc-500 group-hover/thesis:text-zinc-200 transition" />
-                </button>
-              </div>
 
-              <div className="relative z-10 mt-4 border-t border-zinc-800/80 pt-3 flex flex-wrap gap-1.5">
-                {['Software & Data Engineering', 'Computer Vision & IoT', 'Jaringan & P2P'].map((focus) => (
-                  <span key={focus} className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300">
-                    {focus}
-                  </span>
-                ))}
-              </div>
-            </div>
+                  <p className="mt-1 text-[13.5px] leading-[1.55] text-[#3F3F46]">
+                    {app.description}
+                  </p>
 
-            {/* Publikasi Nasional */}
-            <div
-              data-reveal
-              data-delay="1"
-              className="spotlight-card lg:col-span-6 flex flex-col justify-between group relative overflow-hidden rounded-2xl border border-zinc-800/90 p-5 sm:p-6 hover:border-zinc-700"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between gap-2 mb-3.5">
-                  <span className="font-heading text-xs sm:text-sm font-semibold text-zinc-200">
-                    Publikasi Nasional (2 Paper SINTA)
-                  </span>
-                </div>
+                  <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs">
+                    <span className="font-mono text-[11px] text-[#5C5C64]">
+                      {app.tech.slice(0, 4).join(' · ')}
+                    </span>
 
-                {/* Compact Publications List */}
-                <div className="space-y-3">
-                  {/* Paper 1: Komputika */}
-                  <div
-                    onClick={() => {
-                      const proj = RESEARCH_PROJECTS.find((p) => p.id === 'liver-ml');
-                      if (proj) handleOpenModal(proj);
-                    }}
-                    className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-3.5 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                      <span className="font-mono text-[11px] font-medium text-zinc-400">
-                        Jurnal Komputika · Vol 15(1) 2026 · Hal. 83–94
-                      </span>
-                    </div>
-                    <h4 className="font-heading text-xs sm:text-sm font-semibold text-zinc-200 leading-snug group-hover/card:text-white transition-colors">
-                      Prediksi Penyakit Liver (Logistic Regression, SVM &amp; Random Forest)
-                    </h4>
-                    <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-zinc-900">
-                      <span className="text-[11px] font-mono text-zinc-500">DOI: 10.34010/komputika.v15i1.19799</span>
-                      <div className="flex items-center gap-1.5">
-                        <a
-                          href="/journal-komputika-liver.pdf"
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] text-zinc-300 hover:text-white transition"
-                        >
-                          <FileText className="h-3 w-3 text-zinc-400" />
-                          <span>PDF</span>
-                        </a>
-                        <a
-                          href="https://doi.org/10.34010/komputika.v15i1.19799"
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-0.5 text-[11px] text-zinc-300 hover:text-white transition"
-                        >
-                          <span>DOI</span>
-                          <ArrowUpRight className="h-3 w-3" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Paper 2: Jurnal Biner */}
-                  <div
-                    onClick={() => {
-                      const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-pos');
-                      if (proj) handleOpenModal(proj);
-                    }}
-                    className="group/card cursor-pointer rounded-xl border border-zinc-800 bg-zinc-950/80 p-3.5 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/60"
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                      <span className="font-mono text-[11px] font-medium text-zinc-400">
-                        Jurnal Biner · Vol 5(1) 2026 · Hal. 1–9
-                      </span>
-                    </div>
-                    <h4 className="font-heading text-xs sm:text-sm font-semibold text-zinc-200 leading-snug group-hover/card:text-white transition-colors">
-                      Sistem Point of Sale UMKM Berbasis ESP32 &amp; Sensor Load Cell
-                    </h4>
-                    <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-zinc-900">
-                      <span className="text-[11px] font-mono text-zinc-500">DOI: 10.32699/biner.v5i1.10201</span>
-                      <div className="flex items-center gap-1.5">
-                        <a
-                          href="/journal-biner-pos.pdf"
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] text-zinc-300 hover:text-white transition"
-                        >
-                          <FileText className="h-3 w-3 text-zinc-400" />
-                          <span>PDF</span>
-                        </a>
-                        <a
-                          href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-0.5 text-[11px] text-zinc-300 hover:text-white transition"
-                        >
-                          <span>Artikel</span>
-                          <ArrowUpRight className="h-3 w-3" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Tier 2: Kredensial & Sertifikasi Industri */}
-          <div className="space-y-5">
-            <div data-reveal className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-zinc-800/80 pb-4">
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
-                  Sertifikasi Resmi
-                </p>
-                <h3 className="font-heading mt-2 text-xl sm:text-2xl font-bold tracking-tight text-zinc-100">
-                  Kredensial Industri &amp; Uji Kompetensi
-                </h3>
-                <p className="mt-1 text-xs text-zinc-400">
-                  Ketuk kartu mana saja untuk pratinjau dokumen asli sertifikat atau mengunduh versi PDF.
-                </p>
-              </div>
-
-              <span className="inline-flex items-center rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-1.5 font-mono text-xs text-zinc-300 self-start sm:self-auto whitespace-nowrap">
-                {CERTIFICATIONS_DATA.length} Kredensial Terverifikasi
-              </span>
-            </div>
-
-            <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-              {CERTIFICATIONS_DATA.map((cert, idx) => (
-                <div
-                  key={cert.id}
-                  style={{ animationDelay: `${idx * 50}ms` }}
-                  onClick={() => handleOpenCertModal(cert)}
-                  className="spotlight-card animate-card-enter group relative flex flex-col justify-between overflow-hidden rounded-xl border border-zinc-800/90 hover:border-zinc-700 cursor-pointer"
-                >
-                  {/* Certificate Image Preview Header */}
-                  <div className="relative z-10">
-                    <div
-                      className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-950 border-b border-zinc-800/80 p-2.5"
-                    >
-                      <div className="relative h-full w-full overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/70">
-                        <Image
-                          src={cert.imageUrl}
-                          alt={cert.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="object-contain p-1 brightness-[0.92] contrast-[1.03] transition-transform duration-500 ease-out group-hover:scale-[1.02] group-hover:brightness-100"
-                        />
-                      </div>
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-transparent to-transparent opacity-50 transition-opacity duration-300 group-hover:opacity-75" />
-
-                      {/* Category Pill on top left */}
-                      <div className="absolute top-3.5 left-3.5">
-                        <span className="rounded-md border border-zinc-700/80 bg-zinc-950/90 px-2 py-0.5 text-[10px] font-medium text-zinc-200 backdrop-blur-md shadow-sm">
-                          {cert.category}
-                        </span>
-                      </div>
-
-                      {/* Hover overlay hint */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-700 bg-zinc-950/95 px-3 py-1.5 text-xs font-medium text-zinc-100 shadow-xl backdrop-blur-md">
-                          <ZoomIn className="h-3.5 w-3.5 text-zinc-300" />
-                          <span>Pratinjau</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Certificate Content */}
-                    <div className="p-4">
-                      <div className="flex items-center justify-between gap-2 text-[11px] text-zinc-400">
-                        <span className="font-medium text-zinc-300 truncate">{cert.issuer}</span>
-                        <span className="font-mono text-[10px] text-zinc-500 shrink-0">{cert.period}</span>
-                      </div>
-
-                      <h4 className="font-heading mt-1.5 text-sm font-semibold text-zinc-100 group-hover:text-white transition-colors">
-                        {cert.title}
-                      </h4>
-
-                      <p className="mt-1.5 text-[11px] leading-relaxed text-zinc-400">
-                        {cert.summary}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons Footer */}
-                  <div className="relative z-10 p-4 pt-0">
-                    <div className="flex items-center gap-2 border-t border-zinc-800/80 pt-3">
+                    <div className="flex flex-wrap items-center gap-3.5 shrink-0">
                       <button
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleOpenCertModal(cert);
+                          handleOpenModal(app);
                         }}
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-950 py-1.5 text-xs font-medium text-zinc-300 transition hover:border-zinc-600 hover:text-white cursor-pointer"
+                        className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
                       >
-                        <Eye className="h-3.5 w-3.5" />
-                        <span>Pratinjau</span>
+                        Detail
                       </button>
-                      <a
-                        href={cert.pdfUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center justify-center gap-1 rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition hover:border-zinc-600 hover:text-white"
-                        title="Buka Berkas PDF"
-                      >
-                        <FileText className="h-3.5 w-3.5" />
-                        <span>PDF</span>
-                      </a>
-                      {cert.verifyUrl && (
+                      {app.links.map((link) => (
                         <a
-                          href={cert.verifyUrl}
+                          key={link.label}
+                          href={link.url}
                           target="_blank"
                           rel="noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center justify-center gap-1 rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition hover:border-zinc-600 hover:text-white"
-                          title="Verifikasi Kredensial Resmi"
+                          className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] transition"
                         >
-                          <ExternalLink className="h-3.5 w-3.5" />
+                          {link.label}
                         </a>
-                      )}
+                      ))}
                     </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {/* Research & Journal Publications with Compact 112x64 Thumbnails */}
+          {filteredResearch.length > 0 && (
+            <div className={filteredApps.length > 0 ? 'mt-3 pt-3 border-t border-[#E5E4DE]' : 'mt-1'}>
+              {filteredApps.length > 0 && (
+                <p className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64] mb-0.5">
+                  Riset Terapan &amp; Publikasi Jurnal
+                </p>
+              )}
+              <div className="divide-y divide-[#E5E4DE]">
+                {filteredResearch.map((project) => (
+                  <article
+                    key={`${activeFilter}-${project.id}`}
+                    onClick={() => handleOpenModal(project)}
+                    className="editorial-row group -mx-2 px-2 py-3 cursor-pointer rounded-sm"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-5">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-baseline justify-between gap-3">
+                          <h3 className="text-[14.5px] font-semibold text-[#111113] leading-snug group-hover:underline decoration-[#C8C7BF] underline-offset-4">
+                            {project.title}
+                          </h3>
+                          <span className="font-mono text-xs tabular-nums text-[#5C5C64] shrink-0">
+                            {project.year}
+                          </span>
+                        </div>
+
+                        <p className="mt-0.5 text-[12px] text-[#5C5C64]">
+                          {project.tagline}
+                        </p>
+
+                        <p className="mt-1 text-[13.5px] leading-[1.55] text-[#3F3F46]">
+                          {project.description}
+                        </p>
+
+                        <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs">
+                          <span className="font-mono text-[11px] text-[#5C5C64]">
+                            {project.tech.slice(0, 4).join(' · ')}
+                          </span>
+
+                          <div className="flex flex-wrap items-center gap-3.5 shrink-0">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleOpenModal(project);
+                              }}
+                              className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+                            >
+                              Detail
+                            </button>
+                            {project.pdfUrl && (
+                              <a
+                                href={project.pdfUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] transition"
+                              >
+                                PDF ↗
+                              </a>
+                            )}
+                            <a
+                              href={project.link.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113] transition"
+                            >
+                              {project.link.label}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Compact 112x64 Evidence Thumbnail (Open Question 2 - Opsi A) */}
+                      <div className="relative w-[112px] h-[64px] shrink-0 overflow-hidden rounded ring-1 ring-[#E5E4DE] bg-[#F3F2EE]">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="112px"
+                          className="object-cover object-top"
+                        />
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* KEAHLIAN TEKNIS — 4-ROW DEFINITION TABLE */}
+        <section id="skills" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+            <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
+              Keahlian Teknis
+            </h2>
+            <span className="text-xs text-[#5C5C64]">
+              Perangkat kerja &amp; ruang lingkup kompetensi
+            </span>
+          </div>
+
+          <div className="mt-3 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE]">
+            {EXPERTISE_DATA.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => handleOpenExpertiseModal(item)}
+                className="editorial-row group grid grid-cols-1 sm:grid-cols-[170px_1fr_auto] items-baseline gap-1 sm:gap-5 -mx-2 px-2 py-2.5 cursor-pointer rounded-sm"
+              >
+                <h3 className="text-[13.5px] font-semibold text-[#111113]">
+                  {item.label}
+                </h3>
+                <p className="text-[13px] leading-relaxed text-[#3F3F46]">
+                  {item.summaryLine}
+                </p>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenExpertiseModal(item);
+                  }}
+                  className="justify-self-start sm:justify-self-end font-mono text-xs text-[#5C5C64] group-hover:text-[#111113] transition cursor-pointer shrink-0"
+                >
+                  Detail ↗
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* PENDIDIKAN, PUBLIKASI & SERTIFIKASI */}
+        <section id="academic" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+          <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
+            Pendidikan, Publikasi &amp; Sertifikasi
+          </h2>
+
+          {/* Pendidikan Formal */}
+          <div className="mt-3 border-y border-[#E5E4DE] py-3 grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-1.5 sm:gap-5">
+            <div className="space-y-0.5">
+              <p className="font-mono text-xs tabular-nums text-[#5C5C64]">2022—2026</p>
+              <p className="font-mono text-xs tabular-nums font-medium text-[#111113]">
+                IPK 3.53 / 4.00
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-[14.5px] font-semibold text-[#111113]">
+                S1 Sistem Komputer · Universitas Komputer Indonesia (UNIKOM), Bandung
+              </h3>
+              <p className="mt-1 text-[13px] leading-relaxed text-[#3F3F46]">
+                Fokus studi pada rekayasa perangkat lunak, basis data, jaringan komputer, serta integrasi IoT dan kecerdasan buatan. Pendidikan sebelumnya: SMAN 1 Tanjungsari (IPA, Sumedang, 2019–2022).
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-parking');
+                  if (proj) handleOpenModal(proj);
+                }}
+                className="mt-1.5 text-left text-[13px] font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+              >
+                Skripsi: Sistem Parkir Pintar &amp; Deteksi Pelat Otomatis (YOLOv8 + RFID) ↗
+              </button>
+            </div>
+          </div>
+
+          {/* Publikasi Jurnal SINTA */}
+          <div className="mt-5">
+            <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64]">
+              Publikasi Jurnal Terakreditasi SINTA (2026)
+            </h3>
+
+            <div className="mt-1.5 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE]">
+              <div className="py-2.5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="text-[13.5px] font-medium text-[#111113] leading-snug">
+                    Prediksi Penyakit Liver dengan Perbandingan Logistic Regression, SVM, dan Random Forest
+                  </p>
+                  <p className="mt-0.5 font-mono text-[11px] text-[#5C5C64]">
+                    Jurnal Komputika · Vol. 15 No. 1, Hal. 83–94 · DOI: 10.34010/komputika.v15i1.19799
+                  </p>
+                </div>
+                <div className="flex items-center gap-3.5 text-xs shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const proj = RESEARCH_PROJECTS.find((p) => p.id === 'liver-ml');
+                      if (proj) handleOpenModal(proj);
+                    }}
+                    className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+                  >
+                    Ringkasan
+                  </button>
+                  <a
+                    href="/journal-komputika-liver.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                  >
+                    PDF ↗
+                  </a>
+                  <a
+                    href="https://doi.org/10.34010/komputika.v15i1.19799"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                  >
+                    DOI ↗
+                  </a>
+                </div>
+              </div>
+
+              <div className="py-2.5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="text-[13.5px] font-medium text-[#111113] leading-snug">
+                    Implementasi Sistem Point of Sale UMKM Berbasis ESP32 dan Sensor Load Cell
+                  </p>
+                  <p className="mt-0.5 font-mono text-[11px] text-[#5C5C64]">
+                    Jurnal Biner · Vol. 5 No. 1, Hal. 1–9 · DOI: 10.32699/biner.v5i1.10201
+                  </p>
+                </div>
+                <div className="flex items-center gap-3.5 text-xs shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const proj = RESEARCH_PROJECTS.find((p) => p.id === 'smart-pos');
+                      if (proj) handleOpenModal(proj);
+                    }}
+                    className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+                  >
+                    Ringkasan
+                  </button>
+                  <a
+                    href="/journal-biner-pos.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                  >
+                    PDF ↗
+                  </a>
+                  <a
+                    href="https://ojs.unsiq.ac.id/index.php/biner/article/view/10201/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                  >
+                    Artikel ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sertifikasi Resmi — 8-Row Hairline Index */}
+          <div className="mt-5">
+            <div className="flex items-baseline justify-between gap-3">
+              <h3 className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64]">
+                Sertifikasi &amp; Kredensial Resmi ({CERTIFICATIONS_DATA.length})
+              </h3>
+              <span className="font-mono text-[11px] text-[#5C5C64]">
+                Scan asli &amp; PDF terlampir
+              </span>
+            </div>
+
+            <div className="mt-1.5 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE]">
+              {CERTIFICATIONS_DATA.map((cert) => (
+                <div
+                  key={cert.id}
+                  onClick={() => handleOpenCertModal(cert)}
+                  className="editorial-row group grid grid-cols-1 sm:grid-cols-[1.35fr_0.95fr_78px_166px] items-baseline gap-0.5 sm:gap-3 -mx-2 px-2 py-2.5 cursor-pointer rounded-sm"
+                >
+                  <span className="text-[13px] font-medium text-[#111113] leading-snug group-hover:underline decoration-[#C8C7BF] underline-offset-4">
+                    {cert.title}
+                  </span>
+
+                  <span className="text-xs text-[#5C5C64] leading-snug">
+                    {cert.issuer}
+                  </span>
+
+                  <span className="font-mono text-xs tabular-nums text-[#5C5C64]">
+                    {cert.period}
+                  </span>
+
+                  <div className="flex items-center gap-3 text-xs pt-1 sm:pt-0 sm:justify-end shrink-0">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenCertModal(cert);
+                      }}
+                      className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+                    >
+                      Pratinjau
+                    </button>
+                    <a
+                      href={cert.pdfUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                    >
+                      PDF
+                    </a>
+                    {cert.verifyUrl && (
+                      <a
+                        href={cert.verifyUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                        title="Verifikasi Kredensial Resmi"
+                      >
+                        Verifikasi ↗
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -2148,267 +1657,239 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* KONTAK & ULASAN */}
-        <SectionDivider />
-        <section
-          id="contact"
-          className="scroll-mt-20 py-10 sm:py-14 md:py-16"
-        >
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
-            {/* Kontak Langsung */}
-            <div data-reveal className="space-y-6 lg:col-span-6">
-              <div>
-                <SectionKicker label="Kontak & Kolaborasi" />
-                <h2 className="font-heading mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
-                  Kontak &amp; Pesan
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-                  Terbuka untuk peluang kerja <strong className="text-zinc-200 font-medium">Full-Time</strong>, kontrak, proyek <strong className="text-zinc-200 font-medium">Freelance</strong>, maupun kolaborasi riset. Hubungi langsung lewat WhatsApp atau email, atau kirim pesan melalui formulir di samping.
-                </p>
-              </div>
+        {/* KONTAK & COLLAPSIBLE TELEGRAM MESSAGE DRAWER */}
+        <section id="contact" className="scroll-mt-16 border-t border-[#E5E4DE] py-7 sm:py-8">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+            <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111113]">
+              Kontak
+            </h2>
+            <span className="text-xs text-[#5C5C64]">
+              Full-Time, Kontrak, Freelance &amp; Kolaborasi Riset
+            </span>
+          </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
+          <dl className="mt-3 divide-y divide-[#E5E4DE] border-y border-[#E5E4DE] text-[13.5px]">
+            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+              <dt className="text-xs font-mono text-[#5C5C64]">Email</dt>
+              <dd className="flex flex-wrap items-center gap-3">
+                <a
+                  href="mailto:septiaedvan@gmail.com"
+                  className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113]"
+                >
+                  septiaedvan@gmail.com
+                </a>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="text-xs text-[#5C5C64] hover:text-[#111113] cursor-pointer"
+                >
+                  {copiedEmail ? 'Tersalin ✓' : 'Salin'}
+                </button>
+              </dd>
+            </div>
+
+            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+              <dt className="text-xs font-mono text-[#5C5C64]">WhatsApp</dt>
+              <dd>
                 <a
                   href="https://wa.me/6289630887748?text=Halo%20Edvan%2C%20saya%20melihat%20portofolio%20Anda%20dan%20ingin%20berdiskusi%20lebih%20lanjut."
                   target="_blank"
                   rel="noreferrer"
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
+                  className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113]"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-300 transition group-hover:border-zinc-700 group-hover:text-white">
-                    <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className="text-xs font-medium text-zinc-400 block">
-                      WhatsApp
-                    </span>
-                    <span className="mt-0.5 block truncate text-sm font-semibold text-zinc-100 group-hover:text-white">
-                      +62 896-3088-7748
-                    </span>
-                  </div>
+                  +62 896-3088-7748 ↗
                 </a>
+              </dd>
+            </div>
 
-                <a
-                  href="mailto:septiaedvan@gmail.com"
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-300 transition group-hover:border-zinc-700 group-hover:text-white">
-                    <Mail className="h-5 w-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className="text-xs font-medium text-zinc-400 block">
-                      Email
-                    </span>
-                    <span className="mt-0.5 block truncate text-sm font-semibold text-zinc-100 group-hover:text-white">
-                      septiaedvan@gmail.com
-                    </span>
-                  </div>
-                </a>
-
+            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+              <dt className="text-xs font-mono text-[#5C5C64]">GitHub</dt>
+              <dd>
                 <a
                   href="https://github.com/EdvanVPRoject"
                   target="_blank"
                   rel="noreferrer"
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
+                  className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-300 transition group-hover:border-zinc-700 group-hover:text-white">
-                    <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className="text-xs font-medium text-zinc-400 block">
-                      GitHub
-                    </span>
-                    <span className="mt-0.5 block truncate text-sm font-semibold text-zinc-100 group-hover:text-white">
-                      EdvanVPRoject ↗
-                    </span>
-                  </div>
+                  github.com/EdvanVPRoject ↗
                 </a>
-
-                <a
-                  href="https://linkedin.com/in/edvannuriana"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="spotlight-card group flex items-center gap-3.5 rounded-xl border border-zinc-800/90 p-4 hover:border-zinc-700"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-300 transition group-hover:border-zinc-700 group-hover:text-white">
-                    <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className="text-xs font-medium text-zinc-400 block">
-                      LinkedIn
-                    </span>
-                    <span className="mt-0.5 block truncate text-sm font-semibold text-zinc-100 group-hover:text-white">
-                      edvannuriana ↗
-                    </span>
-                  </div>
-                </a>
-
-                <div className="sm:col-span-2 rounded-xl border border-zinc-800/80 bg-zinc-950/60 p-4 space-y-2.5 text-xs">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-zinc-400">Domisili &amp; Mobilitas:</span>
-                    <span className="text-zinc-200 font-medium">
-                      Sumedang · Siap On-Site (Bandung / Jabodetabek), Hybrid &amp; Remote
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-t border-zinc-800/80 pt-2.5">
-                    <span className="text-zinc-500">Lampiran Proyek:</span>
-                    <a
-                      href="/portofolio-proyek-edvan.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-md border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-200 hover:border-zinc-600 hover:text-white transition"
-                    >
-                      <FileText className="h-3 w-3 text-zinc-400" />
-                      <span>Ringkasan Proyek (PDF)</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
+              </dd>
             </div>
 
-            {/* Pesan Langsung */}
-            <div id="feedback" data-reveal data-delay="1" className="scroll-mt-24 lg:col-span-6">
-              <div className="spotlight-card rounded-xl border border-zinc-800/90 p-5 sm:p-6 md:p-8">
-                <div>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500">
-                    Pesan Langsung
-                  </p>
-                  <h3 className="font-heading mt-2 text-lg font-bold text-zinc-100">
-                    Kirim Pesan, Tawaran Rekrutmen, atau Diskusi Proyek
-                  </h3>
-                  <p className="mt-1 text-xs text-zinc-400">
-                    Pesan Anda akan diteruskan langsung ke Telegram saya beserta kontak balasan yang Anda cantumkan.
-                  </p>
+            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+              <dt className="text-xs font-mono text-[#5C5C64]">LinkedIn</dt>
+              <dd>
+                <a
+                  href="https://www.linkedin.com/in/edvannuriana"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                >
+                  linkedin.com/in/edvannuriana ↗
+                </a>
+              </dd>
+            </div>
 
-                  <form
-                    onSubmit={handleFeedbackSubmit}
-                    className="mt-5 space-y-4"
-                  >
-                    <div>
-                      <label className="block text-xs font-medium text-zinc-300 mb-1.5">
-                        Keperluan Diskusi
-                      </label>
-                      <div className="grid grid-cols-2 gap-2">
-                        {[
-                          'Rekrutmen / Full-Time',
-                          'Proyek Freelance',
-                          'Riset & Teknis',
-                          'Sapaan / Masukan',
-                        ].map((cat) => {
-                          const active = guestCategory === cat;
-                          return (
-                            <button
-                              key={cat}
-                              type="button"
-                              onClick={() => setGuestCategory(cat)}
-                              className={`whitespace-nowrap rounded-lg border px-3 py-2 text-[11px] font-medium transition cursor-pointer text-center ${
-                                active
-                                  ? 'border-zinc-200 bg-zinc-100 text-zinc-950 font-semibold'
-                                  : 'border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
-                              }`}
-                            >
-                              {cat}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
+            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+              <dt className="text-xs font-mono text-[#5C5C64]">Dokumen</dt>
+              <dd className="flex flex-wrap items-center gap-4">
+                <button
+                  type="button"
+                  onClick={handleOpenCvModal}
+                  className="font-medium text-[#111113] underline decoration-[#D4D3CC] underline-offset-4 hover:decoration-[#111113] cursor-pointer"
+                >
+                  Curriculum Vitae (PDF)
+                </button>
+                <a
+                  href="/portofolio-proyek-edvan.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#3F3F46] underline decoration-[#D4D3CC] underline-offset-4 hover:text-[#111113] hover:decoration-[#111113]"
+                >
+                  Ringkasan Proyek (PDF) ↗
+                </a>
+              </dd>
+            </div>
 
-                    <div className="grid gap-3.5 sm:grid-cols-2">
-                      <div>
-                        <label
-                          htmlFor="guestName"
-                          className="block text-xs font-medium text-zinc-300"
-                        >
-                          Nama / Instansi
-                        </label>
-                        <input
-                          id="guestName"
-                          type="text"
-                          value={guestName}
-                          onChange={(e) => setGuestName(e.target.value)}
-                          placeholder="Contoh: Budi — HRD / Tech Lead PT XYZ"
-                          className="mt-1.5 w-full rounded-lg border border-zinc-700/80 bg-zinc-950/90 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-400/75 outline-none transition focus:border-zinc-500"
-                        />
-                      </div>
+            <div className="py-2.5 grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-0.5 sm:gap-4 items-baseline">
+              <dt className="text-xs font-mono text-[#5C5C64]">Domisili</dt>
+              <dd className="text-[#3F3F46]">
+                Sumedang · Siap On-Site (Bandung / Jabodetabek), Hybrid &amp; Remote
+              </dd>
+            </div>
+          </dl>
 
-                      <div>
-                        <label
-                          htmlFor="guestContact"
-                          className="block text-xs font-medium text-zinc-300"
-                        >
-                          Email / WhatsApp (Untuk Balasan)
-                        </label>
-                        <input
-                          id="guestContact"
-                          type="text"
-                          value={guestContact}
-                          onChange={(e) => setGuestContact(e.target.value)}
-                          placeholder="Contoh: budi@perusahaan.com / 0812xxx"
-                          className="mt-1.5 w-full rounded-lg border border-zinc-700/80 bg-zinc-950/90 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-400/75 outline-none transition focus:border-zinc-500"
-                        />
-                      </div>
-                    </div>
+          {/* Collapsible Telegram Message Drawer (Open Question 3 - Opsi A) */}
+          <div id="feedback" className="mt-5 scroll-mt-20">
+            <button
+              type="button"
+              onClick={() => setIsMessageDrawerOpen((prev) => !prev)}
+              aria-expanded={isMessageDrawerOpen}
+              aria-controls="telegram-message-drawer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-[#D4D3CC] bg-[#FFFFFF] px-3.5 py-2 text-[13px] font-medium text-[#111113] hover:border-[#111113] transition cursor-pointer"
+            >
+              <span>Kirim Pesan Langsung</span>
+              {isMessageDrawerOpen ? (
+                <ChevronUp className="h-3.5 w-3.5 text-[#5C5C64]" />
+              ) : (
+                <ChevronDown className="h-3.5 w-3.5 text-[#5C5C64]" />
+              )}
+            </button>
 
-                    <div>
-                      <label
-                        htmlFor="guestMessage"
-                        className="block text-xs font-medium text-zinc-300"
-                      >
-                        Pesan atau Detail Kebutuhan <span className="text-zinc-500">*</span>
-                      </label>
-                      <textarea
-                        id="guestMessage"
-                        rows={3}
-                        required
-                        value={guestMessage}
-                        onChange={(e) => setGuestMessage(e.target.value)}
-                        placeholder="Tulis informasi posisi, ruang lingkup proyek, atau jadwal diskusi..."
-                        className="mt-1.5 w-full rounded-lg border border-zinc-700/80 bg-zinc-950/90 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-400/75 outline-none transition focus:border-zinc-500"
-                      />
-                    </div>
+            {isMessageDrawerOpen && (
+              <div
+                id="telegram-message-drawer"
+                className="mt-4 rounded-lg border border-[#E5E4DE] bg-[#FFFFFF] p-5 sm:p-6 animate-fade-in-up"
+              >
+                <p className="text-xs text-[#5C5C64]">
+                  Pesan diteruskan langsung ke Telegram pribadi saya beserta kontak balasan Anda.
+                </p>
 
+                <form onSubmit={handleFeedbackSubmit} className="mt-4 space-y-3.5">
+                  <div>
+                    <label
+                      htmlFor="guestCategory"
+                      className="block text-xs font-medium text-[#111113]"
+                    >
+                      Keperluan
+                    </label>
+                    <select
+                      id="guestCategory"
+                      value={guestCategory}
+                      onChange={(e) => setGuestCategory(e.target.value)}
+                      className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] outline-none focus:border-[#111113]"
+                    >
+                      <option value="Rekrutmen / Full-Time">Rekrutmen / Full-Time</option>
+                      <option value="Proyek Freelance">Proyek Freelance</option>
+                      <option value="Riset & Teknis">Riset &amp; Teknis</option>
+                      <option value="Sapaan / Masukan">Sapaan / Masukan</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="guestName"
+                      className="block text-xs font-medium text-[#111113]"
+                    >
+                      Nama / Instansi
+                    </label>
+                    <input
+                      id="guestName"
+                      type="text"
+                      value={guestName}
+                      onChange={(e) => setGuestName(e.target.value)}
+                      placeholder="Nama lengkap atau perusahaan Anda"
+                      className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] placeholder-[#8A8A93] outline-none focus:border-[#111113]"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="guestContact"
+                      className="block text-xs font-medium text-[#111113]"
+                    >
+                      Email / WhatsApp untuk Balasan
+                    </label>
+                    <input
+                      id="guestContact"
+                      type="text"
+                      value={guestContact}
+                      onChange={(e) => setGuestContact(e.target.value)}
+                      placeholder="Alamat email atau nomor WhatsApp"
+                      className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] placeholder-[#8A8A93] outline-none focus:border-[#111113]"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="guestMessage"
+                      className="block text-xs font-medium text-[#111113]"
+                    >
+                      Pesan <span className="text-[#5C5C64]">*</span>
+                    </label>
+                    <textarea
+                      id="guestMessage"
+                      rows={3}
+                      required
+                      value={guestMessage}
+                      onChange={(e) => setGuestMessage(e.target.value)}
+                      placeholder="Tuliskan posisi, ruang lingkup proyek, atau jadwal diskusi"
+                      className="mt-1 w-full rounded-md border border-[#D4D3CC] bg-[#FAFAF8] px-3 py-2 text-[13.5px] text-[#111113] placeholder-[#8A8A93] outline-none focus:border-[#111113]"
+                    />
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full rounded-lg bg-zinc-100 px-5 py-2.5 text-xs font-semibold text-zinc-950 transition hover:bg-white disabled:opacity-50 cursor-pointer"
+                      className="rounded-md bg-[#111113] px-4 py-2 text-[13px] font-medium text-[#FAFAF8] transition hover:bg-[#27272A] disabled:opacity-50 cursor-pointer"
                     >
-                      {isSubmitting
-                        ? 'Mengirim pesan...'
-                        : 'Kirim Pesan ↗'}
+                      {isSubmitting ? 'Mengirim...' : 'Kirim ke Telegram ↗'}
                     </button>
 
                     {submitStatus === 'success' && (
-                      <p className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-center text-xs text-emerald-300">
-                        Terima kasih! Pesan Anda sudah berhasil terkirim.
+                      <p className="text-xs font-medium text-[#15803D]">
+                        Pesan berhasil dikirim. Terima kasih!
                       </p>
                     )}
                     {submitStatus === 'error' && (
-                      <p className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-center text-xs text-zinc-400">
-                        Gagal mengirim lewat form. Silakan hubungi langsung melalui WhatsApp atau Email di samping.
+                      <p className="text-xs text-[#B91C1C]">
+                        Gagal mengirim. Silakan hubungi langsung via WhatsApp atau Email.
                       </p>
                     )}
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
-            </div>
+            )}
           </div>
         </section>
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-zinc-800/80 bg-[#0A0A0C] py-8">
-        <div className="mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 text-xs text-zinc-500 sm:flex-row">
+      <footer className="border-t border-[#E5E4DE] bg-[#FAFAF8] py-7">
+        <div className="mx-auto flex max-w-[820px] flex-col items-center justify-between gap-3 px-5 sm:px-6 text-xs text-[#5C5C64] sm:flex-row">
           <p>© 2026 Edvan Nuriana Putra Septia</p>
-          <a
-            href="#top"
-            className="font-medium text-zinc-400 transition hover:text-white"
-          >
+          <a href="#top" className="text-[#3F3F46] hover:text-[#111113] transition">
             Kembali ke atas ↑
           </a>
         </div>
@@ -2418,10 +1899,10 @@ export default function PortfolioPage() {
       <a
         href="#top"
         aria-label="Kembali ke atas"
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700/80 bg-zinc-900/90 text-zinc-300 shadow-lg backdrop-blur-md transition-all duration-200 hover:border-zinc-500 hover:bg-zinc-800 hover:text-white ${
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex h-9 w-9 items-center justify-center rounded-full border border-[#D4D3CC] bg-[#FFFFFF]/95 text-[#111113] shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-[#111113] hover:bg-[#111113] hover:text-[#FAFAF8] ${
           showScrollTop
             ? 'opacity-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 translate-y-4 pointer-events-none'
+            : 'opacity-0 translate-y-3 pointer-events-none'
         }`}
       >
         <ArrowUp className="h-4 w-4" />
@@ -2435,24 +1916,22 @@ export default function PortfolioPage() {
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
           onClick={handleCloseModal}
         >
-          {/* Backdrop */}
           <div
-            className={`absolute inset-0 bg-black/80 backdrop-blur-md ${
+            className={`absolute inset-0 bg-[#111113]/55 backdrop-blur-sm ${
               isClosingModal ? 'animate-backdrop-out pointer-events-none' : 'animate-backdrop-in'
             }`}
           />
 
           <div
-            className={`relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-zinc-800 bg-[#0E0E11] p-4 sm:p-6 md:p-8 shadow-2xl text-left ${
-              isClosingModal
-                ? 'animate-modal-out pointer-events-none'
-                : 'animate-modal-in'
+            className={`relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-[#E5E4DE] bg-[#FAFAF8] p-5 sm:p-7 shadow-xl text-left ${
+              isClosingModal ? 'animate-modal-out pointer-events-none' : 'animate-modal-in'
             }`}
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              type="button"
               onClick={handleCloseModal}
-              className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition"
+              className="absolute top-4 right-4 p-1.5 rounded-md text-[#5C5C64] hover:text-[#111113] hover:bg-[#F3F2EE] transition cursor-pointer"
               aria-label="Tutup"
             >
               <X className="w-5 h-5" />
@@ -2460,27 +1939,27 @@ export default function PortfolioPage() {
 
             <div className="space-y-4">
               <div className="pr-8">
-                <span className="font-mono text-xs uppercase tracking-wider text-emerald-500">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#5C5C64]">
                   {activeModalProject.modalDetails?.kicker || 'Dokumentasi Teknis'}
                 </span>
-                <h3 className="font-heading text-lg sm:text-2xl font-semibold text-zinc-100 mt-1">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#111113] mt-1">
                   {activeModalProject.title}
                 </h3>
               </div>
 
-              <p className="text-sm text-zinc-300 leading-relaxed font-light">
+              <p className="text-[14px] text-[#3F3F46] leading-relaxed">
                 {activeModalProject.modalDetails?.summary || activeModalProject.description}
               </p>
 
               {activeModalProject.modalDetails?.bullets && (
-                <div className="space-y-2 pt-2">
-                  <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold">
+                <div className="space-y-2 pt-1">
+                  <p className="font-mono text-xs uppercase tracking-wider text-[#5C5C64] font-semibold">
                     Rincian Teknis
                   </p>
-                  <ul className="space-y-2 text-xs text-zinc-300">
+                  <ul className="space-y-2 text-[13px] text-[#3F3F46]">
                     {activeModalProject.modalDetails.bullets.map((bullet, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
-                        <span className="text-emerald-400 font-mono text-[11px] mt-0.5">•</span>
+                        <span className="text-[#111113] font-mono text-xs mt-0.5">•</span>
                         <span className="leading-relaxed">{bullet}</span>
                       </li>
                     ))}
@@ -2489,8 +1968,8 @@ export default function PortfolioPage() {
               )}
 
               {activeModalProject.modalDetails?.results && (
-                <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-xs sm:text-sm text-zinc-200 leading-relaxed">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block mb-1.5">
+                <div className="rounded-lg border border-[#E5E4DE] bg-[#F3F2EE] p-4 text-[13px] text-[#111113] leading-relaxed">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64] font-semibold block mb-1">
                     Hasil Pengujian &amp; Implementasi
                   </span>
                   {activeModalProject.modalDetails.results}
@@ -2498,15 +1977,16 @@ export default function PortfolioPage() {
               )}
 
               {activeModalProject.modalDetails?.note && (
-                <p className="text-[11px] text-zinc-500 font-mono italic">
+                <p className="text-[11.5px] text-[#5C5C64] font-mono">
                   * {activeModalProject.modalDetails.note}
                 </p>
               )}
 
-              <div className="pt-4 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-3">
+              <div className="pt-4 border-t border-[#E5E4DE] flex flex-wrap items-center justify-between gap-3">
                 <button
+                  type="button"
                   onClick={handleCloseModal}
-                  className="px-4 py-2 rounded-lg text-xs font-medium text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition"
+                  className="px-3.5 py-1.5 rounded-md border border-[#D4D3CC] bg-[#FFFFFF] text-xs font-medium text-[#3F3F46] hover:border-[#111113] hover:text-[#111113] transition cursor-pointer"
                 >
                   Tutup
                 </button>
@@ -2519,10 +1999,10 @@ export default function PortfolioPage() {
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className={`px-4 py-2 rounded-lg text-xs font-medium transition ${
+                        className={`px-3.5 py-1.5 rounded-md text-xs font-medium transition ${
                           link.primary
-                            ? 'bg-zinc-100 text-zinc-950 hover:bg-emerald-400'
-                            : 'border border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700 hover:text-zinc-100'
+                            ? 'bg-[#111113] text-[#FAFAF8] hover:bg-[#27272A]'
+                            : 'border border-[#D4D3CC] bg-[#FFFFFF] text-[#3F3F46] hover:border-[#111113] hover:text-[#111113]'
                         }`}
                       >
                         {link.label}
@@ -2535,9 +2015,9 @@ export default function PortfolioPage() {
                           href={activeModalProject.pdfUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium border border-zinc-800 bg-zinc-900 text-zinc-200 hover:border-zinc-700 hover:text-white transition"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#D4D3CC] bg-[#FFFFFF] text-[#3F3F46] hover:border-[#111113] hover:text-[#111113] transition"
                         >
-                          <FileText className="h-3.5 w-3.5 text-emerald-400" />
+                          <FileText className="h-3.5 w-3.5" />
                           <span>Unduh PDF Jurnal</span>
                         </a>
                       )}
@@ -2545,7 +2025,7 @@ export default function PortfolioPage() {
                         href={activeModalProject.link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="px-4 py-2 rounded-lg text-xs font-medium bg-zinc-100 text-zinc-950 hover:bg-emerald-400 transition"
+                        className="px-3.5 py-1.5 rounded-md text-xs font-medium bg-[#111113] text-[#FAFAF8] hover:bg-[#27272A] transition"
                       >
                         {activeModalProject.link.label}
                       </a>
@@ -2566,9 +2046,8 @@ export default function PortfolioPage() {
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
           onClick={handleCloseExpertiseModal}
         >
-          {/* Backdrop */}
           <div
-            className={`absolute inset-0 bg-black/80 backdrop-blur-md ${
+            className={`absolute inset-0 bg-[#111113]/55 backdrop-blur-sm ${
               isClosingExpertiseModal
                 ? 'animate-backdrop-out pointer-events-none'
                 : 'animate-backdrop-in'
@@ -2576,7 +2055,7 @@ export default function PortfolioPage() {
           />
 
           <div
-            className={`relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-zinc-800 bg-[#0E0E11] p-4 sm:p-6 md:p-8 shadow-2xl text-left ${
+            className={`relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-[#E5E4DE] bg-[#FAFAF8] p-5 sm:p-7 shadow-xl text-left ${
               isClosingExpertiseModal
                 ? 'animate-modal-out pointer-events-none'
                 : 'animate-modal-in'
@@ -2584,8 +2063,9 @@ export default function PortfolioPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              type="button"
               onClick={handleCloseExpertiseModal}
-              className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 p-2 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition cursor-pointer"
+              className="absolute top-4 right-4 p-1.5 rounded-md text-[#5C5C64] hover:text-[#111113] hover:bg-[#F3F2EE] transition cursor-pointer"
               aria-label="Tutup"
             >
               <X className="w-5 h-5" />
@@ -2593,61 +2073,50 @@ export default function PortfolioPage() {
 
             <div className="space-y-4">
               <div className="pr-8">
-                <span className="font-mono text-xs uppercase tracking-wider text-emerald-400">
+                <span className="font-mono text-xs uppercase tracking-wider text-[#5C5C64]">
                   {activeExpertise.modalDetails.kicker}
                 </span>
-                <h3 className="font-heading text-lg sm:text-2xl font-bold text-zinc-100 mt-1">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#111113] mt-1">
                   {activeExpertise.title}
                 </h3>
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
+              <p className="text-[14px] text-[#3F3F46] leading-relaxed">
                 {activeExpertise.modalDetails.summary}
               </p>
 
-              {/* Fokus Pekerjaan */}
               <div className="space-y-2 pt-1">
-                <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#5C5C64] font-semibold">
                   Fokus Pekerjaan
                 </p>
-                <ul className="space-y-2 text-xs sm:text-sm text-zinc-300">
+                <ul className="space-y-2 text-[13px] text-[#3F3F46]">
                   {activeExpertise.modalDetails.competencies.map((comp, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="text-emerald-400 font-mono text-[11px] mt-0.5">•</span>
+                      <span className="text-[#111113] font-mono text-xs mt-0.5">•</span>
                       <span className="leading-relaxed">{comp}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Tech Stack & Tools */}
-              <div className="pt-3 border-t border-zinc-800/80">
-                <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold mb-2.5">
+              <div className="pt-3 border-t border-[#E5E4DE]">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#5C5C64] font-semibold mb-2">
                   Tech Stack &amp; Tools
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {activeExpertise.modalDetails.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="rounded-md border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-xs text-zinc-200"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
+                <p className="font-mono text-xs leading-relaxed text-[#3F3F46]">
+                  {activeExpertise.modalDetails.tools.join(' · ')}
+                </p>
               </div>
 
-              {/* Hasil & Kredensial */}
-              <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-3.5 sm:p-4 text-xs sm:text-sm text-zinc-200 leading-relaxed">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block mb-1.5">
+              <div className="rounded-lg border border-[#E5E4DE] bg-[#F3F2EE] p-4 text-[13px] text-[#111113] leading-relaxed">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#5C5C64] font-semibold block mb-1">
                   Hasil &amp; Kredensial Terkait
                 </span>
                 {activeExpertise.modalDetails.highlightMetric}
               </div>
 
-              {/* Proyek Terkait */}
-              <div className="pt-3 border-t border-zinc-800/80">
-                <p className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-semibold mb-2.5">
+              <div className="pt-3 border-t border-[#E5E4DE]">
+                <p className="font-mono text-xs uppercase tracking-wider text-[#5C5C64] font-semibold mb-2">
                   Proyek &amp; Riset Terkait
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -2665,20 +2134,21 @@ export default function PortfolioPage() {
                           setIsClosingExpertiseModal(false);
                           handleOpenModal(foundProj);
                         }}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/90 px-3 py-1.5 text-xs font-medium text-zinc-200 transition hover:border-zinc-700 hover:bg-zinc-800 hover:text-white cursor-pointer"
+                        className="inline-flex items-center gap-1 rounded-md border border-[#D4D3CC] bg-[#FFFFFF] px-3 py-1.5 text-xs font-medium text-[#111113] transition hover:border-[#111113] cursor-pointer"
                       >
-                        <span>{foundProj.title.split('—')[0].trim()}</span>
-                        <ArrowUpRight className="h-3.5 w-3.5 text-emerald-400" />
+                        <span>{foundProj.title}</span>
+                        <ArrowUpRight className="h-3.5 w-3.5 text-[#5C5C64]" />
                       </button>
                     );
                   })}
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-end">
+              <div className="pt-3 border-t border-[#E5E4DE] flex items-center justify-end">
                 <button
+                  type="button"
                   onClick={handleCloseExpertiseModal}
-                  className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 text-xs font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition cursor-pointer"
+                  className="px-3.5 py-1.5 rounded-md border border-[#D4D3CC] bg-[#FFFFFF] text-xs font-medium text-[#3F3F46] hover:border-[#111113] hover:text-[#111113] transition cursor-pointer"
                 >
                   Tutup
                 </button>
@@ -2695,41 +2165,37 @@ export default function PortfolioPage() {
           aria-modal="true"
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
         >
-          {/* Backdrop */}
           <div
             onClick={handleCloseCertModal}
-            className={`absolute inset-0 bg-black/85 backdrop-blur-md ${
+            className={`absolute inset-0 bg-[#111113]/60 backdrop-blur-sm ${
               isClosingCertModal ? 'animate-backdrop-out pointer-events-none' : 'animate-backdrop-in'
             }`}
           />
 
-          {/* Modal Container: Scroll menyatu di HP (overflow-y-auto), dan berdampingan rapi di layar PC (md:flex-row, md:overflow-hidden) */}
           <div
-            className={`relative z-10 flex w-full max-w-5xl lg:max-w-6xl flex-col md:flex-row overflow-y-auto md:overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl max-h-[90vh] md:h-[84vh] md:max-h-[740px] ${
+            className={`relative z-10 flex w-full max-w-5xl lg:max-w-6xl flex-col md:flex-row overflow-y-auto md:overflow-hidden rounded-xl border border-[#E5E4DE] bg-[#FAFAF8] shadow-2xl max-h-[90vh] md:h-[84vh] md:max-h-[740px] ${
               isClosingCertModal ? 'animate-modal-out pointer-events-none' : 'animate-modal-in'
             }`}
           >
-            {/* Panel Kiri: Frame Gambar Sertifikat */}
-            <div className="relative flex flex-col justify-between border-b border-zinc-800/80 bg-zinc-950 p-4 sm:p-5 md:w-7/12 md:border-b-0 md:border-r lg:w-3/5 shrink-0">
-              {/* Top Meta Bar */}
+            {/* Panel Kiri: Frame Gambar Sertifikat Asli */}
+            <div className="relative flex flex-col justify-between border-b border-[#E5E4DE] bg-[#F3F2EE] p-4 sm:p-5 md:w-7/12 md:border-b-0 md:border-r lg:w-3/5 shrink-0">
               <div className="flex items-center justify-between gap-2 pb-2">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-emerald-400">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-[#D4D3CC] bg-[#FFFFFF] text-[#111113]">
                     <Award className="h-4 w-4" />
                   </span>
-                  <div className="min-w-0">
-                    <span className="font-heading text-xs font-semibold text-zinc-200 block truncate">
-                      {activeCert.issuer}
-                    </span>
-                  </div>
+                  <span className="text-xs font-semibold text-[#111113] truncate">
+                    {activeCert.issuer}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
+                  <span className="rounded border border-[#D4D3CC] bg-[#FFFFFF] px-2 py-0.5 font-mono text-[11px] tabular-nums text-[#5C5C64]">
                     {activeCert.period}
                   </span>
                   <button
+                    type="button"
                     onClick={handleCloseCertModal}
-                    className="md:hidden rounded-lg border border-zinc-800 bg-zinc-900 p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100 transition"
+                    className="md:hidden rounded-md border border-[#D4D3CC] bg-[#FFFFFF] p-1.5 text-[#5C5C64] hover:text-[#111113] transition cursor-pointer"
                     aria-label="Tutup Pratinjau Sertifikat"
                   >
                     <X className="h-4 w-4" />
@@ -2737,7 +2203,6 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Main Certificate Image Canvas */}
               <div className="relative flex-1 w-full min-h-[200px] sm:min-h-[260px] md:min-h-0 flex items-center justify-center py-2">
                 <div className="relative h-full w-full aspect-[16/11] md:aspect-auto">
                   <Image
@@ -2745,91 +2210,81 @@ export default function PortfolioPage() {
                     alt={activeCert.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 800px"
-                    className="object-contain drop-shadow-[0_16px_36px_rgba(0,0,0,0.85)] rounded-lg"
+                    className="object-contain drop-shadow-md rounded"
                     priority
                   />
                 </div>
               </div>
 
-              {/* Bottom Caption Bar */}
-              <div className="hidden md:flex items-center justify-between pt-2.5 border-t border-zinc-900 text-[11px] font-mono text-zinc-500">
-                <span className="inline-flex items-center gap-1.5 text-zinc-400">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+              <div className="hidden md:flex items-center justify-between pt-2.5 border-t border-[#E5E4DE] text-[11px] font-mono text-[#5C5C64]">
+                <span className="inline-flex items-center gap-1.5 text-[#3F3F46]">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#15803D]" />
                   <span>Kredensial Digital Terverifikasi</span>
                 </span>
                 <a
                   href={activeCert.pdfUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-emerald-400 hover:text-emerald-300 hover:underline inline-flex items-center gap-1 transition"
+                  className="text-[#111113] underline underline-offset-4 hover:opacity-75 inline-flex items-center gap-1 transition"
                 >
-                  Buka Berkas PDF <ExternalLink className="h-3 w-3" />
+                  <span>Buka Berkas PDF</span>
+                  <ExternalLink className="h-3 w-3" />
                 </a>
               </div>
             </div>
 
-            {/* Panel Kanan: Rincian Kredensial & Tombol Aksi */}
-            <div className="flex flex-col justify-between bg-zinc-900/40 p-4 sm:p-5 md:p-6 lg:w-2/5 md:w-5/12 md:overflow-y-auto">
+            {/* Panel Kanan: Rincian Kredensial */}
+            <div className="flex flex-col justify-between bg-[#FAFAF8] p-4 sm:p-5 md:p-6 lg:w-2/5 md:w-5/12 md:overflow-y-auto">
               <div>
-                {/* Header Kanan: Kategori & Tombol Tutup */}
                 <div className="flex items-start justify-between gap-3">
-                  <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-300">
+                  <span className="font-mono text-xs text-[#5C5C64]">
                     {activeCert.category}
                   </span>
                   <button
+                    type="button"
                     onClick={handleCloseCertModal}
-                    className="hidden md:inline-flex rounded-lg p-1.5 text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
+                    className="hidden md:inline-flex rounded-md p-1.5 text-[#5C5C64] transition hover:bg-[#F3F2EE] hover:text-[#111113] cursor-pointer"
                     aria-label="Tutup Pratinjau Sertifikat"
                   >
                     <X className="h-5 w-5" />
                   </button>
                 </div>
 
-                {/* Judul Sertifikasi */}
-                <h3 className="font-heading mt-3 text-base font-bold text-zinc-100 sm:text-xl leading-snug">
+                <h3 className="mt-2 text-base sm:text-xl font-semibold text-[#111113] leading-snug">
                   {activeCert.title}
                 </h3>
 
-                {/* Credential ID */}
                 {activeCert.credentialId && (
-                  <div className="mt-2.5 inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-950 px-2.5 py-1 font-mono text-[11px] text-zinc-400 max-w-full">
-                    <span className="text-zinc-500 shrink-0">ID Kredensial:</span>
-                    <span className="text-zinc-200 select-all font-semibold truncate">{activeCert.credentialId}</span>
+                  <div className="mt-2 inline-flex items-center gap-1.5 rounded border border-[#E5E4DE] bg-[#F3F2EE] px-2.5 py-1 font-mono text-[11px] text-[#5C5C64] max-w-full">
+                    <span className="shrink-0">ID:</span>
+                    <span className="text-[#111113] select-all font-medium truncate">
+                      {activeCert.credentialId}
+                    </span>
                   </div>
                 )}
 
-                {/* Deskripsi */}
-                <p className="mt-3.5 text-xs sm:text-sm leading-relaxed text-zinc-300 font-light">
+                <p className="mt-3.5 text-[13.5px] leading-relaxed text-[#3F3F46]">
                   {activeCert.description}
                 </p>
 
-                {/* Keahlian & Kompetensi Terverifikasi */}
-                <div className="mt-4 pt-3 border-t border-zinc-800/80">
-                  <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 font-medium">
-                    Keahlian yang Divalidasi:
+                <div className="mt-4 pt-3 border-t border-[#E5E4DE]">
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-[#5C5C64] mb-1.5 font-medium">
+                    Kompetensi Tervalidasi
                   </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {activeCert.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-md border border-zinc-800 bg-zinc-950/90 px-2.5 py-1 font-mono text-[11px] text-zinc-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="font-mono text-xs leading-relaxed text-[#3F3F46]">
+                    {activeCert.skills.join(' · ')}
+                  </p>
                 </div>
 
-                {/* Kurikulum Modul Resmi */}
                 {activeCert.modules && (
-                  <div className="mt-4 pt-3 border-t border-zinc-800/80">
-                    <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 font-medium">
-                      Kurikulum Resmi ({activeCert.modules.length} Modul Terverifikasi):
+                  <div className="mt-4 pt-3 border-t border-[#E5E4DE]">
+                    <p className="text-[11px] font-mono uppercase tracking-wider text-[#5C5C64] mb-2 font-medium">
+                      Kurikulum Resmi ({activeCert.modules.length} Modul)
                     </p>
-                    <div className="max-h-36 overflow-y-auto space-y-1.5 rounded-lg border border-zinc-800/80 bg-zinc-950/60 p-2.5">
+                    <div className="max-h-36 overflow-y-auto space-y-1.5 rounded-md border border-[#E5E4DE] bg-[#FFFFFF] p-2.5">
                       {activeCert.modules.map((modul, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-[11px] font-mono text-zinc-300">
-                          <span className="text-emerald-400/80 shrink-0 font-bold">›</span>
+                        <div key={idx} className="flex items-start gap-2 text-[11px] font-mono text-[#3F3F46]">
+                          <span className="text-[#5C5C64] shrink-0">›</span>
                           <span className="leading-snug">{modul}</span>
                         </div>
                       ))}
@@ -2838,16 +2293,15 @@ export default function PortfolioPage() {
                 )}
               </div>
 
-              {/* Action Buttons Footer */}
-              <div className="mt-5 pt-4 border-t border-zinc-800/80 space-y-2">
+              <div className="mt-5 pt-4 border-t border-[#E5E4DE] space-y-2">
                 {activeCert.verifyUrl && (
                   <a
                     href={activeCert.verifyUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 py-2.5 px-4 text-xs font-semibold text-zinc-950 transition hover:bg-emerald-400 shadow-lg shadow-emerald-500/20"
+                    className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-[#111113] py-2 px-4 text-xs font-medium text-[#FAFAF8] transition hover:bg-[#27272A]"
                   >
-                    <ExternalLink className="h-4 w-4" />
+                    <ExternalLink className="h-3.5 w-3.5" />
                     <span>Verifikasi Kredensial Resmi ↗</span>
                   </a>
                 )}
@@ -2857,15 +2311,16 @@ export default function PortfolioPage() {
                     href={activeCert.pdfUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 py-2 px-3 text-xs font-medium text-zinc-200 transition hover:border-emerald-500/40 hover:text-emerald-300"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-md border border-[#D4D3CC] bg-[#FFFFFF] py-2 px-3 text-xs font-medium text-[#111113] transition hover:border-[#111113]"
                   >
-                    <FileText className="h-4 w-4" />
+                    <FileText className="h-3.5 w-3.5" />
                     <span>Unduh PDF Asli</span>
                   </a>
 
                   <button
+                    type="button"
                     onClick={handleCloseCertModal}
-                    className="rounded-lg border border-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
+                    className="rounded-md border border-[#D4D3CC] bg-[#FFFFFF] px-3.5 py-2 text-xs font-medium text-[#3F3F46] transition hover:border-[#111113] hover:text-[#111113] cursor-pointer"
                   >
                     Tutup
                   </button>
@@ -2884,38 +2339,31 @@ export default function PortfolioPage() {
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5"
           onClick={handleCloseCvModal}
         >
-          {/* Backdrop */}
           <div
-            className={`absolute inset-0 bg-black/85 backdrop-blur-md ${
+            className={`absolute inset-0 bg-[#111113]/60 backdrop-blur-sm ${
               isClosingCvModal ? 'animate-backdrop-out pointer-events-none' : 'animate-backdrop-in'
             }`}
           />
 
-          {/* Modal Container */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`relative z-10 flex h-[88vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl ${
+            className={`relative z-10 flex h-[88vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-[#E5E4DE] bg-[#FAFAF8] shadow-2xl ${
               isClosingCvModal ? 'animate-modal-out pointer-events-none' : 'animate-modal-in'
             }`}
           >
-            {/* Header Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 bg-zinc-900/80 px-4 py-3 sm:px-5">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950 text-emerald-400">
-                  <FileText className="h-4 w-4" />
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-heading text-xs sm:text-sm font-semibold text-zinc-100 truncate">
-                    Curriculum Vitae — Edvan Nuriana Putra Septia, S.Kom.
-                  </h3>
-                </div>
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E5E4DE] bg-[#FAFAF8] px-4 py-3 sm:px-5">
+              <div className="flex items-center gap-2 min-w-0">
+                <FileText className="h-4 w-4 text-[#111113] shrink-0" />
+                <h3 className="text-xs sm:text-sm font-semibold text-[#111113] truncate">
+                  Curriculum Vitae — Edvan Nuriana Putra Septia, S.Kom.
+                </h3>
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
                 <a
                   href="/cv-edvan.pdf"
                   download="CV-Edvan-Nuriana-Putra-Septia.pdf"
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-100 px-3 py-1.5 text-xs font-semibold text-zinc-950 transition hover:bg-emerald-400"
+                  className="inline-flex items-center gap-1.5 rounded-md bg-[#111113] px-3 py-1.5 text-xs font-medium text-[#FAFAF8] transition hover:bg-[#27272A]"
                 >
                   <FileText className="h-3.5 w-3.5" />
                   <span>Unduh CV</span>
@@ -2924,7 +2372,7 @@ export default function PortfolioPage() {
                   href="/cv-edvan.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-900 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition hover:border-zinc-700 hover:text-white"
+                  className="hidden sm:inline-flex items-center gap-1 rounded-md border border-[#D4D3CC] bg-[#FFFFFF] px-2.5 py-1.5 text-xs font-medium text-[#3F3F46] transition hover:border-[#111113] hover:text-[#111113]"
                 >
                   <span>Tab Baru</span>
                   <ExternalLink className="h-3 w-3" />
@@ -2932,7 +2380,7 @@ export default function PortfolioPage() {
                 <button
                   type="button"
                   onClick={handleCloseCvModal}
-                  className="rounded-lg border border-zinc-800 bg-zinc-900 p-1.5 text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-100 cursor-pointer"
+                  className="rounded-md border border-[#D4D3CC] bg-[#FFFFFF] p-1.5 text-[#5C5C64] transition hover:border-[#111113] hover:text-[#111113] cursor-pointer"
                   aria-label="Tutup Pratinjau CV"
                 >
                   <X className="h-4 w-4" />
@@ -2940,8 +2388,7 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Embedded PDF Viewer */}
-            <div className="relative flex-1 bg-zinc-900">
+            <div className="relative flex-1 bg-[#F3F2EE]">
               <iframe
                 src="/cv-edvan.pdf#view=FitH"
                 title="Pratinjau CV Edvan Nuriana Putra Septia"
